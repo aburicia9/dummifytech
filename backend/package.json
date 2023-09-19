@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "initDb": "node ./src/db/initDb.js",
     "start": "node --watch server.js"
   },
   "keywords": [],
