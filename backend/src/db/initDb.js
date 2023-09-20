@@ -4,23 +4,23 @@ export const main = async () => {
   let connection
 
   try {
-    const connection = await getDb()
+    connection = await getDb()
 
     console.log('Borrando tablas...')
 
-    await connection.query('DROP TABLE IF NOT EXISTS likes')
-    await connection.query('DROP TABLE IF NOT EXISTS comments')
-    await connection.query('DROP TABLE IF NOT EXISTS posts')
-    await connection.query('DROP TABLE IF NOT EXISTS subcategories')
-    await connection.query('DROP TABLE IF NOT EXISTS categories')
-    await connection.query('DROP TABLE IF NOT EXISTS users')
+    await connection.query('DROP TABLE IF EXISTS likes')
+    await connection.query('DROP TABLE IF EXISTS comments')
+    await connection.query('DROP TABLE IF EXISTS posts')
+    await connection.query('DROP TABLE IF EXISTS subcategories')
+    await connection.query('DROP TABLE IF EXISTS categories')
+    await connection.query('DROP TABLE IF EXISTS users')
 
     console.log('¡Tablas borradas! ✅')
 
     console.log('Creando tabla de USUARIOS...')
 
     await connection.query(`
-      CREATE TABLES IF NOT EXISTS users(
+      CREATE TABLE IF NOT EXISTS users(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         full_name VARCHAR(255) NOT NULL,
         email VARCHAR(100) UNIQUE NOT NULL,
@@ -37,7 +37,7 @@ export const main = async () => {
     console.log('Creando tabla de CATEGORIAS...')
 
     await connection.query(`
-        CREATE TABLES IF NOT EXISTS categories(
+        CREATE TABLE IF NOT EXISTS categories(
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
           name VARCHAR(100) UNIQUE NOT NULL,
           description VARCHAR(255) NOT NULL,
@@ -50,7 +50,7 @@ export const main = async () => {
     console.log('Creando tabla de SUBCATEGORIAS...')
 
     await connection.query(`
-        CREATE TABLES IF NOT EXISTS subcategories(
+        CREATE TABLE IF NOT EXISTS subcategories(
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
           name VARCHAR(100) UNIQUE NOT NULL,
           description VARCHAR(255) NOT NULL,
@@ -65,7 +65,7 @@ export const main = async () => {
     console.log('Creando tabla de POSTS...')
 
     await connection.query(`
-        CREATE TABLES IF NOT EXISTS posts(
+        CREATE TABLE IF NOT EXISTS posts(
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
           title VARCHAR(100) NOT NULL,
           post VARCHAR(255) NOT NULL,
@@ -85,7 +85,7 @@ export const main = async () => {
     console.log('Creando tabla de COMMENTS...')
 
     await connection.query(`
-      CREATE TABLES IF NOT EXISTS comments(
+      CREATE TABLE IF NOT EXISTS comments(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         comment VARCHAR(255) NOT NULL,
         id_user INT unsigned,
@@ -100,7 +100,7 @@ export const main = async () => {
     console.log('Creando tabla de LIKES...')
 
     await connection.query(`
-      CREATE TABLES IF NOT EXISTS likes(
+      CREATE TABLE IF NOT EXISTS likes(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         id_user INT unsigned,
         id_post INT unsigned,
@@ -120,3 +120,5 @@ export const main = async () => {
     process.exit()
   }
 }
+
+main()

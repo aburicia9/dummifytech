@@ -1,11 +1,13 @@
 // Importamos mysql
 import mysql from 'mysql2/promise'
+import 'dotenv/config'
 
 // Obtenemos la informacion destructurada desde el .env
 const { MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE } = process.env
 
 // Variables que va a almacenar un grupo grande de conexiones.
 let pool
+console.log({ MYSQL_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE })
 
 // Variable que va a hacer la conexion con la base de datos.
 export const getDb = async () => {
