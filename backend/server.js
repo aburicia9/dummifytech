@@ -13,6 +13,7 @@ import morgan from 'morgan'
 // Importamos controladores errores
 
 import { errorController, notFoundController } from './src/controllers/errors/index.js'
+import routes from './src/routes/index.js'
 
 // Creamos la variable app para crear el servidor
 const app = express()
@@ -33,6 +34,9 @@ app.get('/', (req, res) => {
     message: 'Welcome'
   })
 })
+
+// Importamos el controlador para indicar a express donde se encuentran las rutas.
+app.use(routes)
 
 // Middleware de ruta no encontrada
 app.use(notFoundController)
