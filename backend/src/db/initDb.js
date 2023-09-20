@@ -4,7 +4,7 @@ export const main = async () => {
   let connection
 
   try {
-    let connection = await getDb()
+    const connection = await getDb()
 
     console.log('Borrando tablas...')
 
