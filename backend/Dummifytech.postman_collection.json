@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "7d2f1df8-33c4-4571-80ae-1353807803d1",
+		"name": "Dummifytech",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28992963"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "User Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"juamsito@example.com\",\r\n    \"password\": \"123456789\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
