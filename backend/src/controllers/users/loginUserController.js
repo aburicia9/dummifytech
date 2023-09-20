@@ -1,7 +1,7 @@
 import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js'
-import { compare } from 'bcrypt'
+import bcrypt from 'bcrypt'
 import { invalidCredentialsError } from '../../services/errorService.js'
-import { sign } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 export const loginUserController = async (req, res, next) => {
   try {
@@ -9,7 +9,7 @@ export const loginUserController = async (req, res, next) => {
 
     const user = await selectUserByEmailModel(email)
 
-    const validPass = await compare(password, user.password)
+    const validPass = await bcrypt.compare(password, user.password)
 
     if (!validPass) {
       invalidCredentialsError()
@@ -20,7 +20,7 @@ export const loginUserController = async (req, res, next) => {
       role: user.role
     }
 
-    const token = sign(tokenInfo, process.env.SECRET, {
+    const token = jwt.sign(tokenInfo, process.env.SECRET, {
       expiresIn: '1d'
     })
     res.send({

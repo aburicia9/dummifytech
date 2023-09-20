@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7d2f1df8-33c4-4571-80ae-1353807803d1",
+		"_postman_id": "32d3f175-e864-464f-8734-4da186c635cc",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28992963"
+		"_exporter_id": "29012477"
 	},
 	"item": [
 		{
@@ -33,6 +33,35 @@
 							"path": [
 								"users",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"xx@example.com\",\r\n    \"password\":\"123\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"login"
 							]
 						}
 					},
