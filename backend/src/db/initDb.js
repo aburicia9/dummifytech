@@ -1,4 +1,3 @@
-import 'dotenv/config'
 import { getDb } from './getDb.js'
 
 export const main = async () => {
