@@ -10,9 +10,10 @@ import cors from 'cors'
 // Importamos la dependencia morgan para notificar por consola más detalladamente
 import morgan from 'morgan'
 
-// Importamos controladores errores
-
+// Importamos controladores de errores
 import { errorController, notFoundController } from './src/controllers/errors/index.js'
+
+// Importamos las rutas.
 import routes from './src/routes/index.js'
 
 // Creamos la variable app para crear el servidor

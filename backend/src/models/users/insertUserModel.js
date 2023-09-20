@@ -1,6 +1,12 @@
+// Importamos dependencia bcrypt para encriptar la contraseña.
 import bcrypt from 'bcrypt'
+
+// Importamos funcion donde se crea la conexión con la base de datos.
 import { getDb } from '../../db/getDb.js'
+
+// Impotamos errores.
 import { emailAlreadyRegisteredError, userAlreadyRegisteredError } from '../../services/errorService.js'
+
 // Función que se conectará a la base de datos y creará un usuario.
 export const insertUserModel = async (username, email, password, fullName) => {
   let connection
