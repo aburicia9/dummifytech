@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import { getDb } from './getDb.js'
-console.log('fuera, funciona?')
+
 export const main = async () => {
   let connection
 
