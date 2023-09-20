@@ -10,6 +10,10 @@ import cors from 'cors'
 // Importamos la dependencia morgan para notificar por consola más detalladamente
 import morgan from 'morgan'
 
+// Importamos controladores errores
+
+import { errorController, notFoundController } from './src/controllers/errors/index.js'
+
 // Creamos la variable app para crear el servidor
 const app = express()
 
@@ -22,32 +26,19 @@ app.use(express.json())
 // Usamos app para que nuestro servidor utilice cors
 app.use(cors())
 
-// Ruta raíz, con el get
+// Uso
 app.get('/', (req, res) => {
   res.send({
-    status: 'ok'
-  })
-})
-// Ruta prueba Login
-app.get('/login', (req, res) => {
-  res.send({
-    status: 'login'
-  })
-})
-// Ruta prueba categorias
-app.get('/categorias', (req, res) => {
-  res.send({
-    status: 'categorias'
+    status: 'ok',
+    message: 'Welcome'
   })
 })
 
-// Manejador de error 404 para cualquier otra ruta no definida utilizando es USE.
-// Todo lo que no esté contemplado en el app.get serà un error 404.
-app.use((req, res) => {
-  res.status(404).json({
-    error: 'Error 404: Not Found'
-  })
-})
+// Middleware de ruta no encontrada
+app.use(notFoundController)
+
+// Middleware de error
+app.use(errorController)
 
 // Usamos app.listen para que el servidor se inicie en el puerto que viene desde nuestro .env
 app.listen(process.env.PORT, () => {
