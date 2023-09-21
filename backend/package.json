@@ -20,7 +20,9 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.1",
-    "standard": "17.1.0"
+    "sharp": "^0.32.6",
+    "standard": "17.1.0",
+    "uuid": "^9.0.1"
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
