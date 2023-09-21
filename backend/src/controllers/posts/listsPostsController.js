@@ -1,11 +1,11 @@
 // Importamos modelo de select.
-import { sellectAllPostsModel } from '../../models/posts/sellectAllPostsModel.js'
+import { selectAllPostsModel } from '../../models/posts/selectAllPostsModel.js'
 
 // funcion controladora para la lista de posts.
 export const listPostsController = async (req, res, next) => {
   try {
-    const posts = await sellectAllPostsModel()
-
+    const posts = await selectAllPostsModel()
+    console.log(posts)
     res.send({
       status: 'ok',
       data: {

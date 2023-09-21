@@ -3,7 +3,7 @@ import { getDb } from '../../db/getDb.js'
 
 // Funcion que crea la conexion con la base de datos.
 
-export const sellectAllPostsModel = async () => {
+export const selectAllPostsModel = async () => {
   let connection
   try {
     connection = await getDb()
@@ -13,7 +13,7 @@ export const sellectAllPostsModel = async () => {
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
     `)
-
+    console.log(posts)
     return posts
   } finally {
     if (connection) connection.release()
