@@ -119,7 +119,7 @@ export const main = async () => {
     await connection.query(`
       INSERT INTO users
       (full_name, email, username, password)
-      VALUES('prueba', 'prueba@prueba.com', 'prueba', 'prueba');
+      VALUES('prueba', 'prueba@prueba.com', 'prueba', '$2b$10$hnxCfAN7Ju5hhLMztg118e52tYZsaos9iSQr1Vhv41QwKe2fZE4xe');
     `)
     console.log('¡Usuario creado! 😉✅')
 
@@ -166,7 +166,7 @@ export const main = async () => {
     console.log('Creando reporte en REPORTE...')
 
     await connection.query(`
-    INSERT INTO .reports(id_user, id_post)
+    INSERT INTO reports(id_user, id_post)
     VALUES(1, 1);
     `)
     console.log('Report creada! 😉✅')
