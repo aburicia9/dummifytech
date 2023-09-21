@@ -5,6 +5,7 @@ import { loginUserController } from '../controllers/users/loginUserController.js
 import { getUserController } from '../controllers/users/getUserController.js'
 import { authUserController } from '../middlewares/authUserController.js'
 import { editUserPasswordController } from '../controllers/users/editUserPasswordController.js'
+import { editAvatarController } from '../controllers/users/editAvatarController.js'
 
 const router = Router()
 
@@ -19,7 +20,9 @@ router.post('/users/login', loginUserController)
 router.get('/users', authUserController, getUserController)
 
 // Modificamos contraseña
+router.post('/users/profile/password', authUserController, editUserPasswordController)
 
-router.post('/users/perfil/password', authUserController, editUserPasswordController)
+// Ruta del avatar usuario.
+router.post('/users/profile/avatar', authUserController, editAvatarController)
 
 export default router
