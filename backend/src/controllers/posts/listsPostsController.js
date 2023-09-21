@@ -5,7 +5,6 @@ import { selectAllPostsModel } from '../../models/posts/selectAllPostsModel.js'
 export const listPostsController = async (req, res, next) => {
   try {
     const posts = await selectAllPostsModel()
-    console.log(posts)
     res.send({
       status: 'ok',
       data: {

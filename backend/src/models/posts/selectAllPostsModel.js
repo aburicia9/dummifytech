@@ -13,7 +13,6 @@ export const selectAllPostsModel = async () => {
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
     `)
-    console.log(posts)
     return posts
   } finally {
     if (connection) connection.release()
