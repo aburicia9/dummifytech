@@ -23,6 +23,6 @@ router.get('/users', authUserController, getUserController)
 router.post('/users/profile/password', authUserController, editUserPasswordController)
 
 // Ruta del avatar usuario.
-router.post('/users/profile/avatar', authUserController, editAvatarController)
+router.put('/users/profile/avatar', authUserController, editAvatarController)
 
 export default router
