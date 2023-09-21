@@ -58,8 +58,8 @@ export const main = async () => {
           post VARCHAR(255) NOT NULL,
           image VARCHAR(255),
           report BOOLEAN default 0,
-          id_category INT unsigned,
-          id_user INT unsigned,
+          id_category INT unsigned NOT NULL,
+          id_user INT unsigned NOT NULL,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
           FOREIGN KEY(id_category) REFERENCES categories(id),
@@ -74,8 +74,8 @@ export const main = async () => {
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         id_comment_parent INT UNSIGNED DEFAULT NULL,
         comment VARCHAR(255) NOT NULL,
-        id_user INT unsigned,
-        id_post INT unsigned,
+        id_user INT unsigned NOT NULL,
+        id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY(id_comment_parent) REFERENCES comments(id),
@@ -89,8 +89,8 @@ export const main = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS likes(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        id_user INT unsigned,
-        id_post INT unsigned,
+        id_user INT unsigned NOT NULL,
+        id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY(id_user) REFERENCES users(id),
@@ -103,8 +103,8 @@ export const main = async () => {
     await connection.query(`
       CREATE TABLE IF NOT EXISTS reports(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-        id_user INT unsigned,
-        id_post INT unsigned,
+        id_user INT unsigned NOT NULL,
+        id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
         FOREIGN KEY(id_user) REFERENCES users(id),

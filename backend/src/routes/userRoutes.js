@@ -8,7 +8,6 @@ const router = Router()
 router.post('/users/register', newUserController)
 
 // Login de usuario
-
 router.post('/users/login', loginUserController)
 
 export default router
