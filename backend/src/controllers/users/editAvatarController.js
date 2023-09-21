@@ -14,7 +14,6 @@ export const editAvatarController = async (req, res, next) => {
     if (user.avatar) {
       await deletePhoto(user.avatar)
     }
-    console.log(req.files)
 
     const avatarName = await savePhoto(req.files.avatar, 150)
 
