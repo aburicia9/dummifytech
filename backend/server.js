@@ -34,12 +34,12 @@ app.use(express.json())
 app.use(cors())
 
 // Uso
-app.get('/', (req, res) => {
-  res.send({
-    status: 'ok',
-    message: 'Welcome'
-  })
-})
+// app.get('/', (req, res) => {
+//   res.send({
+//     status: 'ok',
+//     message: 'Welcome'
+//   })
+// })
 
 // Importamos el controlador para indicar a express donde se encuentran las rutas.
 app.use(routes)
