@@ -16,6 +16,7 @@ export const savePhoto = async (img, width) => {
     const __dirname = path.dirname(__filename)
     // Creamos la ruta absoluta al directorio de subida de archivos.
     const uploadsPath = path.join(__dirname, '..', '..', UPLOADS_DIR)
+
     try {
       // En este try intetamos acceder a la carpeta donde descargamos los archivos, si no existe lanza un error.
       await fs.access(uploadsPath)
