@@ -14,7 +14,6 @@ export const updateAvatarModel = async (avatarName, userId) => {
       avatarName,
       userId
     ])
-    console.log({ avatarName })
   } finally {
     if (connection) connection.release()
   }
