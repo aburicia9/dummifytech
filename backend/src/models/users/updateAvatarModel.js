@@ -7,13 +7,12 @@ export const updateAvatarModel = async (avatarName, userId) => {
 
   try {
     connection = await getDb()
-
     await connection.query(`
     UPDATE users 
     SET avatar = ?
     WHERE id = ?`, [
       avatarName,
-      userId.id
+      userId
     ])
   } finally {
     if (connection) connection.release()
