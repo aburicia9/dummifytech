@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d20a0aa3-baa9-4d94-9eeb-26a932e814f4",
+		"_postman_id": "5976cd9f-bcd5-4cef-a40a-a571f056c73b",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29062082"
+		"_exporter_id": "27953436"
 	},
 	"item": [
 		{
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"xx@example.com\",\r\n    \"password\":\"123\"    \r\n}",
+							"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
