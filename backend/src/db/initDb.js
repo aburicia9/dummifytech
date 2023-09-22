@@ -112,7 +112,64 @@ export const main = async () => {
       )
     `)
     console.log('¡Tabla de REPORTES creada! 😉✅')
+
     console.log('¡Todas las tablas han sido creadas con exito! 🎉🥳😲')
+    console.log('Creando usuario en USUARIOS...')
+
+    await connection.query(`
+      INSERT INTO users
+      (full_name, email, username, password)
+      VALUES('prueba', 'prueba@prueba.com', 'prueba', '$2b$10$hnxCfAN7Ju5hhLMztg118e52tYZsaos9iSQr1Vhv41QwKe2fZE4xe');
+    `)
+    console.log('¡Usuario creado! 😉✅')
+
+    console.log('Creando categoria en CATEGORIAS...')
+
+    await connection.query(`
+    INSERT INTO dummifytech.categories ( name, description)
+    VALUES('Moviles', 'Android');
+    `)
+    console.log('¡Categoria creada! 😉✅')
+
+    console.log('Creando categoria en CATEGORIAS...')
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(1, 'Android', 'Sistema operativo' );
+    `)
+    console.log('¡Categoria creada! 😉✅')
+
+    console.log('Creando post en POST...')
+
+    await connection.query(`
+    INSERT INTO posts (title, post, id_category, id_user)
+    VALUES('Samsung S20', 'Mejor movil',2,1);
+    `)
+    console.log('Post creada! 😉✅')
+
+    console.log('Creando comentario en COMENTARIO...')
+
+    await connection.query(`
+    INSERT INTO dummifytech.comments(comment, id_user, id_post)
+    VALUES('Esto es un comentairo sobre samsung s20', 1, 1);
+    `)
+    console.log('Comentario creada! 😉✅')
+
+    console.log('Creando like en LIKES...')
+
+    await connection.query(`
+    INSERT INTO likes(id_user, id_post)
+    VALUES(1, 1);
+    `)
+    console.log('Like creada! 😉✅')
+
+    console.log('Creando reporte en REPORTE...')
+
+    await connection.query(`
+    INSERT INTO reports(id_user, id_post)
+    VALUES(1, 1);
+    `)
+    console.log('Report creada! 😉✅')
   } catch (error) {
     console.error(error)
   } finally {

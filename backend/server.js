@@ -10,6 +10,8 @@ import cors from 'cors'
 // Importamos la dependencia morgan para notificar por consola más detalladamente
 import morgan from 'morgan'
 
+import fileUpload from 'express-fileupload'
+
 // Importamos controladores de errores
 import { errorController, notFoundController } from './src/controllers/errors/index.js'
 
@@ -18,6 +20,9 @@ import routes from './src/routes/index.js'
 
 // Creamos la variable app para crear el servidor
 const app = express()
+
+// Middleware para hacer que el back entienda el form-data (subir archivos)
+app.use(fileUpload())
 
 // Usamos app para que el servidor utilice morgan
 app.use(morgan('dev'))
