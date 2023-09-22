@@ -2,10 +2,20 @@ import { selectUserByEmailModel } from '../../models/users/selectUserByEmailMode
 import bcrypt from 'bcrypt'
 import { invalidCredentialsError } from '../../services/errorService.js'
 import jwt from 'jsonwebtoken'
+import { loginUserSchema } from '../../schemas/users/loginUserSchema.js'
+import { validateSchema } from '../../utils/validateSchema.js'
+import { fromZodError } from 'zod-validation-error'
 
 export const loginUserController = async (req, res, next) => {
   try {
     const { email, password } = req.body
+
+    // Validamos los datos con zod
+    const result = await validateSchema(loginUserSchema, req.body)
+
+    if (!result.success) {
+      throw fromZodError(result.error)
+    }
 
     const user = await selectUserByEmailModel(email)
 
