@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "5976cd9f-bcd5-4cef-a40a-a571f056c73b",
+		"_postman_id": "b6660249-e466-4d1d-9032-43d3528f9e1f",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27953436"
+		"_exporter_id": "28992963"
 	},
 	"item": [
 		{
@@ -187,6 +187,186 @@
 							"port": "8000",
 							"path": [
 								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\":\"asdasd\",\r\n    \"post\":\"asdasdasdasd\",\r\n    \"categoryId\":2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/posts/insert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Like",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/likes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"likes"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Like",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/likes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"likes"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3OTM2MSwiZXhwIjoxNjk1NDY1NzYxfQ.3q-OXJe0yT54hZZZmOAVvBE90xea_LHHatn1T1wAf4w",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Aleatorio",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								""
 							]
 						}
 					},

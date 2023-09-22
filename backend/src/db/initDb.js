@@ -45,7 +45,7 @@ export const main = async () => {
           image VARCHAR(255),
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
-          FOREIGN KEY(id_categories_parent) REFERENCES categories(id)
+          FOREIGN KEY(id_categories_parent) REFERENCES categories(id) ON DELETE CASCADE
         )
       `)
     console.log('¡Tabla de CATEGORIAS creada! 😉✅')
@@ -62,8 +62,8 @@ export const main = async () => {
           id_user INT unsigned NOT NULL,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
           modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
-          FOREIGN KEY(id_category) REFERENCES categories(id),
-          FOREIGN KEY(id_user) REFERENCES users(id)
+          FOREIGN KEY(id_category) REFERENCES categories(id) ON DELETE CASCADE,
+          FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE
         )
       `)
     console.log('¡Tabla de POSTS creada! 😉✅')
@@ -78,9 +78,9 @@ export const main = async () => {
         id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY(id_comment_parent) REFERENCES comments(id),
-        FOREIGN KEY(id_user) REFERENCES users(id),
-        FOREIGN KEY(id_post) REFERENCES posts(id)
+        FOREIGN KEY(id_comment_parent) REFERENCES comments(id) ON DELETE CASCADE,
+        FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY(id_post) REFERENCES posts(id) ON DELETE CASCADE
       )
     `)
     console.log('¡Tabla de COMMENTS creada! 😉✅')
@@ -93,8 +93,8 @@ export const main = async () => {
         id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY(id_user) REFERENCES users(id),
-        FOREIGN KEY(id_post) REFERENCES posts(id)
+        FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY(id_post) REFERENCES posts(id) ON DELETE CASCADE
       )
     `)
     console.log('¡Tabla de LIKES creada! 😉✅')
@@ -107,8 +107,8 @@ export const main = async () => {
         id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY(id_user) REFERENCES users(id),
-        FOREIGN KEY(id_post) REFERENCES posts(id)
+        FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY(id_post) REFERENCES posts(id) ON DELETE CASCADE
       )
     `)
     console.log('¡Tabla de REPORTES creada! 😉✅')
