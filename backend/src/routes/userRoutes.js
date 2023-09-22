@@ -7,7 +7,6 @@ import { authUserController } from '../middlewares/authUserController.js'
 import { editUserPasswordController } from '../controllers/users/editUserPasswordController.js'
 import { editAvatarController } from '../controllers/users/editAvatarController.js'
 
-
 const router = Router()
 
 // Creamos la ruta. (endpoint)
