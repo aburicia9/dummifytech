@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Users",
+			"name": "USERS",
 			"item": [
 				{
 					"name": "User Register",
@@ -90,6 +90,79 @@
 							"port": "8000",
 							"path": [
 								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update avatar",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM2NTQwMiwiZXhwIjoxNjk1NDUxODAyfQ.0qvYSsPY7-LitEo1ueGCvqjGrKYa6wpFctbiHDyMZUw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/F:/1 - Bootcamp Programador Web/proyecto_final/assets/prueba.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/profile/avatar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"profile",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM2NzQ2MiwiZXhwIjoxNjk1NDUzODYyfQ.nqCRxEomFMBLQLVP-Pg8gHvnEkLW7QFGik3l5kHtMYw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/profile/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"profile",
+								"password"
 							]
 						}
 					},
