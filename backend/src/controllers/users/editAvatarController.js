@@ -8,6 +8,7 @@ import { editAvatarSchema } from '../../schemas/users/editAvatarSchema.js'
 import { deletePhoto } from '../../utils/deletePhoto.js'
 import { savePhoto } from '../../utils/savePhoto.js'
 import { validateSchema } from '../../schemas/validateSchema.js'
+import { UPLOADS_DIRS } from '../../utils/constants.js'
 
 // Funcion que edita el avatar del usuario.
 export const editAvatarController = async (req, res, next) => {
@@ -22,10 +23,10 @@ export const editAvatarController = async (req, res, next) => {
     const user = await selectUserByIdModel(req.user.id)
 
     if (user.avatar) {
-      await deletePhoto(user.avatar)
+      await deletePhoto(user.avatar, UPLOADS_DIRS.AVATAR)
     }
 
-    const avatarName = await savePhoto(req.files.avatar, 150)
+    const avatarName = await savePhoto(req.files.avatar, 150, UPLOADS_DIRS.AVATAR)
 
     await updateAvatarModel(avatarName, req.user.id)
 
