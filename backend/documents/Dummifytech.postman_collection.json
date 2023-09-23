@@ -24,14 +24,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/register",
+							"raw": "http://localhost:8000/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users",
 								"register"
 							]
 						}
@@ -53,14 +52,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/users/login",
+							"raw": "http://localhost:8000/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"users",
 								"login"
 							]
 						}
@@ -135,7 +133,7 @@
 				{
 					"name": "Change Password",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
@@ -163,6 +161,27 @@
 								"users",
 								"profile",
 								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Full Name",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/users/profile/fullname",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"profile",
+								"fullname"
 							]
 						}
 					},
@@ -373,6 +392,12 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "http://localhost:8000/"
 		}
 	]
 }
