@@ -27,8 +27,8 @@ export const main = async () => {
         email VARCHAR(100) UNIQUE NOT NULL,
         username VARCHAR(30) UNIQUE NOT NULL,
         password VARCHAR(100) NOT NULL,
-        role ENUM('admin', 'moderator', 'normal') default 'normal',
-        avatar VARCHAR(255),
+        role ENUM('admin', 'moderator', 'normal') DEFAULT 'normal',
+        avatar VARCHAR(255) DEFAULT 'defaultAvatarProfile.jpg',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP
       )
