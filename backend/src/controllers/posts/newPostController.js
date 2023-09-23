@@ -16,12 +16,12 @@ export const newPostController = async (req, res, next) => {
     }
     // Variable que almacenará el nombre de la imagen(si hay)
     let imgName
-
+    console.log(req.files)
     // Si existe alguna imagen la guardamos y obtenemos su nombre (hace falta el joi)
-    if (req.files?.image) {
-      imgName = await savePhoto(req.files.image, 500)
+    if (req.files?.imgName) {
+      imgName = await savePhoto(req.files.imgName, 500)
     }
-
+    // console.log({ imgName })
     await insertPostModel(title, post, imgName, req.user.id, categoryId)
 
     res.send({

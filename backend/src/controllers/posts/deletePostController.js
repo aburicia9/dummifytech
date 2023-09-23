@@ -7,7 +7,6 @@ export const deletePostController = async (req, res, next) => {
 
     await deletePostModel(postId, req.user.id)
 
-    console.log('hola')
     res.send({
       status: 'ok',
       message: '¡Post eliminado Correctamente!'

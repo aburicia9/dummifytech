@@ -24,6 +24,6 @@ export const newPostSchema = z.object({
   categoryId: z.number({
     invalid_type_error: 'La categoria tiene que ser un numero',
     required_error: 'La categoria es requerida'
-  })
+  }).optional()
 
 })

@@ -2,16 +2,16 @@
 import { getDb } from '../../db/getDb.js'
 
 // Función que va a insertar la informacion en la base de datos.
-export const insertPostModel = async (title, post, img, userId, categoryId) => {
+export const insertPostModel = async (title, post, imgName, userId, categoryId) => {
   let connection
-  console.log({ title, post, img, userId, categoryId })
+  // console.log({ title, post, imgName, userId, categoryId })
   try {
     connection = await getDb()
 
     const [publication] = await connection.query(`
       INSERT INTO posts (title, post, image, id_category, id_user)
       VALUES (?, ?, ?, ?, ?)`,
-    [title, post, img, categoryId, userId]
+    [title, post, imgName, categoryId, userId]
     )
 
     return publication.insertId
