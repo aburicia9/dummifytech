@@ -1,5 +1,6 @@
 import { getDb } from '../../db/getDb.js'
 import { unauthorizedUserError } from '../../services/errorService.js'
+import { deletePhoto } from '../../utils/deletePhoto.js'
 
 // Funcion modelo para eliminar posts.
 export const deletePostModel = async (postId, userId) => {
@@ -12,13 +13,18 @@ export const deletePostModel = async (postId, userId) => {
       [postId]
     )
 
-    console.log(posts)
     if (posts[0].id_user !== userId) {
       unauthorizedUserError()
     }
 
-    await connection.query('DELETE FROM likes WHERE id_post = ?',
-      [postId])
+    const [imageName] = await connection.query('SELECT image FROM posts WHERE id = ?', [postId])
+
+    if (imageName.length > 0) {
+      await deletePhoto(imageName[0].image)
+    }
+
+    // await connection.query('DELETE FROM likes WHERE id_post = ?',
+    //   [postId])
 
     await connection.query('DELETE FROM posts WHERE id = ?', [postId])
   } finally {

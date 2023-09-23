@@ -6,6 +6,7 @@ export const updateUserPasswordModel = async (password, userId) => {
   //   console.log(userId.id)
   try {
     connection = await getDb()
+    
     const hashedPass = await bcrypt.hash(password, 10)
     await connection.query(`
         UPDATE users 

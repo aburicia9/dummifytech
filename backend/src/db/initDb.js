@@ -10,6 +10,7 @@ export const main = async () => {
 
     await connection.query('DROP TABLE IF EXISTS reports')
     await connection.query('DROP TABLE IF EXISTS likes')
+    await connection.query('DROP TABLE IF EXISTS dislikes')
     await connection.query('DROP TABLE IF EXISTS comments')
     await connection.query('DROP TABLE IF EXISTS posts')
     await connection.query('DROP TABLE IF EXISTS categories')
@@ -98,6 +99,22 @@ export const main = async () => {
       )
     `)
     console.log('¡Tabla de LIKES creada! 😉✅')
+
+    console.log('Creando tabla de DISLIKES...')
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS dislikes(
+        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        id_user INT unsigned NOT NULL,
+        id_post INT unsigned NOT NULL,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE,
+        FOREIGN KEY(id_post) REFERENCES posts(id) ON DELETE CASCADE
+      )
+    `)
+    console.log('¡Tabla de DISLIKES creada! 😉✅')
+
     console.log('Creando tabla de REPORTES...')
 
     await connection.query(`
@@ -161,7 +178,15 @@ export const main = async () => {
     INSERT INTO likes(id_user, id_post)
     VALUES(1, 1);
     `)
-    console.log('Like creada! 😉✅')
+    console.log('Like creado! 😉✅')
+
+    console.log('Creando dislike en DIsLIKES...')
+
+    await connection.query(`
+    INSERT INTO dislikes(id_user, id_post)
+    VALUES(1, 1);
+    `)
+    console.log('Dislike creado! 😉✅')
 
     console.log('Creando reporte en REPORTE...')
 
