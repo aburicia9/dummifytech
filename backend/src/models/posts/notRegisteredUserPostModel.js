@@ -8,9 +8,10 @@ export const notRegisteredUserPostModel = async () => {
     // let postdetail = {}
 
     const [[post]] = await connection.query(`
-      SELECT p.id, p.title, p.post, p.image, u.username , p.created_at
+      SELECT p.id, p.title, p.post, p.image, u.username , p.created_at as createdAt, c.name as nameCategory
       FROM posts p 
-      inner join users u on u.id = p.id_user
+      INNER JOIN users u ON u.id = p.id_user
+      INNER JOIN categories c ON c.id = p.id_category
       ORDER BY RAND() LIMIT 1
       `)
 

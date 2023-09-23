@@ -8,12 +8,25 @@ export const selectAllPostsModel = async () => {
   try {
     connection = await getDb()
 
-    const [posts] = await connection.query(`
-      SELECT p.id, p.title, p.post, p.image, p.id_user, u.username, u.avatar
+    const [[post]] = await connection.query(`
+      SELECT p.id, p.title, p.post, p.image, u.username, u.avatar, c.name as nameCategory, p.created_at as createdAt
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
+      INNER JOIN categories c on c.id = p.id_category
     `)
-    return posts
+
+    const [[{ countLikes }]] = await connection.query(`
+    SELECT COUNT(id) AS countLikes
+      FROM likes
+      WHERE id_post = ${post.id}
+    `)
+    const [[{ countComments }]] = await connection.query(`SELECT COUNT(id) AS countComments
+    FROM comments
+    WHERE id_post = ${post.id}
+    `)
+
+    const postDetail = { ...post, countLikes, countComments }
+    return postDetail
   } finally {
     if (connection) connection.release()
   }
