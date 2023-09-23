@@ -7,7 +7,7 @@ import { editAvatarSchema } from '../../schemas/users/editAvatarSchema.js'
 // Funciones que guardan y eliminan archivos.
 import { deletePhoto } from '../../utils/deletePhoto.js'
 import { savePhoto } from '../../utils/savePhoto.js'
-import { validateSchema } from '../../utils/validateSchema.js'
+import { validateSchema } from '../../schemas/validateSchema.js'
 
 // Funcion que edita el avatar del usuario.
 export const editAvatarController = async (req, res, next) => {

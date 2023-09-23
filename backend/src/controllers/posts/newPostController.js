@@ -3,7 +3,7 @@ import { fromZodError } from 'zod-validation-error'
 import { insertPostModel } from '../../models/posts/insertPostModel.js'
 import { newPostSchema } from '../../schemas/posts/newPostSchema.js'
 import { savePhoto } from '../../utils/savePhoto.js'
-import { validateSchema } from '../../utils/validateSchema.js'
+import { validateSchema } from '../../schemas/validateSchema.js'
 
 // Funcion controladora donde se inserta el post.
 export const newPostController = async (req, res, next) => {
