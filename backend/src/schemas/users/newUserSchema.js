@@ -27,7 +27,7 @@ export const newUserSchema = z.object({
     ),
   fullName: z.string({
     invalid_type_error: 'El nombre completo tiene que ser un texto',
-    required_error: 'El nombre completoes requerido'
+    required_error: 'El nombre completo es requerido'
   }).min(3, 'El nombre completo tiene que tener minimo 3 caracteres')
     .max(255, 'Has superado el limite de caracteres(255)')
 })

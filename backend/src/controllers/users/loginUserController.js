@@ -3,7 +3,7 @@ import bcrypt from 'bcrypt'
 import { invalidCredentialsError } from '../../services/errorService.js'
 import jwt from 'jsonwebtoken'
 import { loginUserSchema } from '../../schemas/users/loginUserSchema.js'
-import { validateSchema } from '../../utils/validateSchema.js'
+import { validateSchema } from '../../schemas/validateSchema.js'
 import { fromZodError } from 'zod-validation-error'
 
 export const loginUserController = async (req, res, next) => {
