@@ -15,7 +15,6 @@ export const editAvatarController = async (req, res, next) => {
   try {
     // Validamos los datos de files con joi. Si files no existe enviamos un objeto vacío.
     const result = await validateSchema(editAvatarSchema, req.files || {})
-
     if (!result.success) {
       throw fromZodError(result.error)
     }

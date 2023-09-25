@@ -11,6 +11,7 @@ export const newCommentController = async (req, res, next) => {
     const { postId, commentId } = req.params
 
     const result = await validateSchema(newCommentSchema, req.body)
+
     if (!result.success) {
       throw fromZodError(result.error)
     }

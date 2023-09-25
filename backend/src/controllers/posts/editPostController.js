@@ -13,7 +13,7 @@ export const editPostController = async (req, res, next) => {
     let { post, title } = req.body
 
     const postDetail = await selectPostByIdModel(req.user.id, postId)
-
+    console.log(postDetail)
     // Variable que almacenará el nombre de la imagen(si hay)
     let imgName
     // console.log(req.files)
@@ -27,7 +27,7 @@ export const editPostController = async (req, res, next) => {
     if (!result.success) {
       throw fromZodError(result.error)
     }
-    console.log(postDetail.title !== title)
+
     // if (postDetail.title !== title || postDetail.post !== post || postDetail.image !== imgName)
     if (postDetail.title !== title) {
       title = postDetail.title
