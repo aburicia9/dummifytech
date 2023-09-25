@@ -1,4 +1,4 @@
-import { notRegisteredUserPostModel } from '../../models/posts/notRegisteredUserPostModel.js'
+import { notRegisteredUserPostModel } from '../../models/posts/selectRandomPostModel.js'
 
 export const notRegisteredUserPostController = async (req, res, next) => {
   try {

@@ -7,7 +7,7 @@ import { postAlreadyExistsController } from '../middlewares/postAlreadyExistsCon
 import { newLikeController } from '../controllers/posts/newLikeController.js'
 import { deleteLikeController } from '../controllers/posts/deleteLikeController.js'
 import { deletePostController } from '../controllers/posts/deletePostController.js'
-import { notRegisteredUserPostController } from '../controllers/posts/notRegisteredUserPostController.js'
+import { notRegisteredUserPostController } from '../controllers/posts/getRandomPostController.js'
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 import { listMyPostsController } from '../controllers/posts/listMyPostsController.js'
