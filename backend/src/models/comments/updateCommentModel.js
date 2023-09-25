@@ -3,7 +3,7 @@ import { notFoundError, unauthorizedUserError } from '../../services/errorServic
 
 export const updateCommentModel = async (commentId, comment, userId) => {
   let connection
-  console.log('Adios')
+  // console.log('Adios')
   try {
     connection = await getDb()
     const [comments] = await connection.query(`

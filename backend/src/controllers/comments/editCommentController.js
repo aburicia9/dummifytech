@@ -7,7 +7,7 @@ export const editCommentController = async (req, res, next) => {
   try {
     const { commentId } = req.params
     const { comment } = req.body
-    console.log(commentId)
+    // console.log(commentId)
 
     const result = await validateSchema(newCommentSchema, req.body)
     if (!result.success) {
