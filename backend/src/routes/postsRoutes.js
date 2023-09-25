@@ -8,6 +8,8 @@ import { newLikeController } from '../controllers/posts/newLikeController.js'
 import { deleteLikeController } from '../controllers/posts/deleteLikeController.js'
 import { deletePostController } from '../controllers/posts/deletePostController.js'
 import { notRegisteredUserPostController } from '../controllers/posts/notRegisteredUserPostController.js'
+import { newDislikeController } from '../controllers/posts/newDislikeController.js'
+import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 const router = Router()
 
 // Creamos la ruta. (endpoint)
@@ -27,6 +29,12 @@ router.delete('/posts/:postId', authUserController, postAlreadyExistsController,
 // Dar like a una publicación
 router.post('/posts/:postId/likes', authUserController, postAlreadyExistsController, newLikeController)
 
+// Dar Dislike a una publicación
+router.post('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, newDislikeController)
+
 // Eliminar like de una publicación
 router.delete('/posts/:postId/likes', authUserController, postAlreadyExistsController, deleteLikeController)
 export default router
+
+// Eliminar dislike de una publicación
+router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)

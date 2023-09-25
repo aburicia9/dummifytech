@@ -33,6 +33,13 @@ export function likeAlreadyExistsError () {
     message: 'No se puede dar like más de una vez al mismo elemento'
   }
 }
+export function dislikeAlreadyExistsError () {
+  throw {
+    httpStatus: 409, // Conflict
+    code: 'DISLIKE_ALREADY_EXISTS',
+    message: 'No se puede dar dislike más de una vez al mismo elemento'
+  }
+}
 export function notAuthenticatedError () {
   throw {
     httpStatus: 401, // Unauthorized
