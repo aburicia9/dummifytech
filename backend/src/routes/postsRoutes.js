@@ -7,15 +7,14 @@ import { postAlreadyExistsController } from '../middlewares/postAlreadyExistsCon
 import { newLikeController } from '../controllers/posts/newLikeController.js'
 import { deleteLikeController } from '../controllers/posts/deleteLikeController.js'
 import { deletePostController } from '../controllers/posts/deletePostController.js'
-import { notRegisteredUserPostController } from '../controllers/posts/notRegisteredUserPostController.js'
-import { editCommentController } from '../controllers/comments/editCommentController.js'
+import { selectRandomPostModel } from '../controllers/posts/getRandomPostController.js'
 import { editPostController } from '../controllers/posts/editPostController.js'
 const router = Router()
 
 // Creamos la ruta. (endpoint)
 
 // Visualizar post sin usuario registrado
-router.get('/', notRegisteredUserPostController)
+router.get('/', selectRandomPostModel)
 
 // Visualizar posts con usuario registrado
 router.get('/posts', authUserController, listPostsController)
