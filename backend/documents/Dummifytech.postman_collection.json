@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "607aae2c-c33a-4189-9299-da5d685c80bd",
+		"_postman_id": "c8333ef2-ac83-412f-a767-e28f4a8ea1b3",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29012477"
+		"_exporter_id": "27953436"
 	},
 	"item": [
 		{
@@ -87,7 +87,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTI5MTU2NiwiZXhwIjoxNjk1Mzc3OTY2fQ.lmWjKTjdOQU6NgwniM2E1x2Auf_odj8WfPSlIE_bS_Y",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -112,7 +112,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM2NTQwMiwiZXhwIjoxNjk1NDUxODAyfQ.0qvYSsPY7-LitEo1ueGCvqjGrKYa6wpFctbiHDyMZUw",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -149,7 +149,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM2NzQ2MiwiZXhwIjoxNjk1NDUzODYyfQ.nqCRxEomFMBLQLVP-Pg8gHvnEkLW7QFGik3l5kHtMYw",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -182,7 +182,13 @@
 					"name": "Change Full Name",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8000/users/profile/fullname",
 							"protocol": "http",
@@ -623,6 +629,144 @@
 								{
 									"key": "postId",
 									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CATEGORIES",
+			"item": [
+				{
+					"name": "All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Categories",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"categoryId\": 1 ,\r\n   \"name\" : \"prueba\",\r\n   \"description\" : \" fjdkhsbv \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/insert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upgrade Categories",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n    \"id\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/:categoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Categories",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/categories/:categoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "19"
 								}
 							]
 						}

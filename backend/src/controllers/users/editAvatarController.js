@@ -21,7 +21,7 @@ export const editAvatarController = async (req, res, next) => {
     }
 
     const user = await selectUserByIdModel(req.user.id)
-    console.log(user.avatar)
+    // console.log(user.avatar)
 
     if (!user.avatar.includes('default')) {
       await deletePhoto(user.avatar, UPLOADS_DIRS.AVATAR)

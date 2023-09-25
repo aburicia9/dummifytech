@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { fileURLToPath } from 'url'
 
 // Importamos la constante que contiene el nombre de la carpeta para guardar los archivos.
-import { UPLOADS_DIRS, UPLOADS_DIR_AVATAR, UPLOADS_DIR_POST } from './constants.js'
+import { UPLOADS_DIRS, UPLOADS_DIR_AVATAR, UPLOADS_DIR_CATEGORY, UPLOADS_DIR_POST } from './constants.js'
 import { saveFileError } from '../services/errorService.js'
 
 // Funcion para guardar los archivos de imagen o avatar.
@@ -18,6 +18,7 @@ export const savePhoto = async (img, width, type) => {
 
     if (type === UPLOADS_DIRS.AVATAR) finalDir = UPLOADS_DIR_AVATAR
     if (type === UPLOADS_DIRS.POST) finalDir = UPLOADS_DIR_POST
+    if (type === UPLOADS_DIRS.CATEGORY) finalDir = UPLOADS_DIR_CATEGORY
 
     // Creamos la ruta absoluta al directorio de subida de archivos.
     const uploadsPath = path.join(__dirname, '..', '..', finalDir)
