@@ -6,7 +6,7 @@ export const insertCommentsModel = async (commentId = null, comment, userId, pos
   try {
     connection = await getDb()
 
-    const [insertComment] = await connection.query(`
+    await connection.query(`
     INSERT INTO comments
     (id_comment_parent, comment, id_user, id_post)
     VALUES(?, ?, ?, ?);
