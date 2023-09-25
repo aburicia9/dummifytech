@@ -11,7 +11,6 @@ import { deletePostController } from '../controllers/posts/deletePostController.
 import { getRandomPostController } from '../controllers/posts/getRandomPostController.js'
 import { editPostController } from '../controllers/posts/editPostController.js'
 
-
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 const router = Router()
@@ -45,7 +44,7 @@ router.put('/posts/:postId', authUserController, editPostController)
 // Eliminar dislike de una publicación
 router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
 
-export default router
-
 // Eliminar dislike de una publicación
 router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
+
+export default router
