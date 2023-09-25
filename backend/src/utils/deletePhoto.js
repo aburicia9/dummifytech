@@ -5,7 +5,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 // Importamos el directorio.
-import { UPLOADS_DIRS, UPLOADS_DIR_AVATAR, UPLOADS_DIR_POST } from './constants.js'
+import { UPLOADS_DIRS, UPLOADS_DIR_AVATAR, UPLOADS_DIR_CATEGORY, UPLOADS_DIR_POST } from './constants.js'
 import { deleteFileError } from '../services/errorService.js'
 
 // Funcion que se va a encargar de eliminar la foto del disco.
@@ -14,6 +14,7 @@ export const deletePhoto = async (imgName, type) => {
     let finalDir
     if (type === UPLOADS_DIRS.AVATAR) finalDir = UPLOADS_DIR_AVATAR
     if (type === UPLOADS_DIRS.POST) finalDir = UPLOADS_DIR_POST
+    if (type === UPLOADS_DIRS.CATEGORY) finalDir = UPLOADS_DIR_CATEGORY
 
     if (!type) throw ('Type not supported')
 
