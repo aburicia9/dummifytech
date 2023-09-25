@@ -11,6 +11,7 @@ import { notRegisteredUserPostController } from '../controllers/posts/getRandomP
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 import { listMyPostsController } from '../controllers/posts/listMyPostsController.js'
+import { getAllCategoriesController } from '../controllers/categories/getAllCategoriesController.js'
 const router = Router()
 
 // Creamos la ruta. (endpoint)
@@ -24,6 +25,8 @@ router.get('/posts', authUserController, listPostsController)
 // Visualizar mis publicaciones
 router.get('/posts/myposts', authUserController, listMyPostsController)
 
+// Visualizar todas las categorias
+router.get('/posts/categories', authUserController, getAllCategoriesController)
 // creacion del post
 router.post('/posts/insert/', authUserController, newPostController)
 
