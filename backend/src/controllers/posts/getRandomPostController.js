@@ -1,8 +1,8 @@
-import { notRegisteredUserPostModel } from '../../models/posts/selectRandomPostModel.js'
+import { selectRandomPostModel } from '../../models/posts/selectRandomPostModel.js'
 
-export const notRegisteredUserPostController = async (req, res, next) => {
+export const getRandomPostController = async (req, res, next) => {
   try {
-    const post = await notRegisteredUserPostModel()
+    const post = await selectRandomPostModel()
 
     res.send({
       status: 'ok',

@@ -1,5 +1,5 @@
 import { getDb } from '../../db/getDb.js'
-import { unauthorizedUserError } from '../../services/errorService.js'
+import { notFoundError, unauthorizedUserError } from '../../services/errorService.js'
 import { UPLOADS_DIRS } from '../../utils/constants.js'
 import { deletePhoto } from '../../utils/deletePhoto.js'
 
@@ -13,6 +13,10 @@ export const deletePostModel = async (postId, userId) => {
       'SELECT id_user FROM posts WHERE id = ?',
       [postId]
     )
+
+    if (posts.length < 1) {
+      notFoundError('post')
+    }
 
     if (posts[0].id_user !== userId) {
       unauthorizedUserError()
