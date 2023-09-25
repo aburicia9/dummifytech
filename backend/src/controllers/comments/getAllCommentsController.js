@@ -1,11 +1,11 @@
 // Importamos modelo de select.
-import { selectAllPostsModel } from '../../models/posts/selectAllPostsModel.js'
+import { selectAllCommentModel } from '../../models/comments/selectAllCommentModel.js'
 
 // funcion controladora para la lista de posts.
 export const getAllCommentsController = async (req, res, next) => {
   try {
     const { postId } = req.params
-    const comments = await selectAllPostsModel(postId)
+    const comments = await selectAllCommentModel(postId)
 
     res.send({
       status: 'ok',

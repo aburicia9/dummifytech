@@ -2,7 +2,7 @@
 import { getDb } from '../../db/getDb.js'
 
 // Funcion que crea la conexion con la base de datos.
-export const selectCommentModel = async (postId) => {
+export const selectAllCommentModel = async (postId) => {
   let connection
   try {
     connection = await getDb()
