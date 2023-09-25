@@ -7,13 +7,13 @@ export const selectAllCommentModel = async (postId) => {
   try {
     connection = await getDb()
 
-    const [[comments]] = await connection.query(`
-      SELECT c.comment, u.username created_at as createdAt
-      FROM comments c
+    const [comments] = await connection.query(`
+      SELECT c.comment, u.username, c.created_at as createdAt
+      FROM comments as c
       INNER JOIN users u ON u.id = c.id_user
       INNER JOIN posts p ON p.id = c.id_post 
       WHERE c.id_post = ?;
-    `)
+    `, [postId])
     console.log(comments)
     return comments
   } finally {
