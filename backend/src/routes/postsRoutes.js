@@ -25,6 +25,9 @@ router.get('/posts', authUserController, listPostsController)
 router.get('/posts/myposts', authUserController, listMyPostsController)
 
 // creacion del post
+router.post('/posts/insert/', authUserController, newPostController)
+
+// creacion del post
 router.post('/posts/insert', authUserController, newPostController)
 
 // Eliminacion del post
@@ -34,11 +37,11 @@ router.delete('/posts/:postId', authUserController, postAlreadyExistsController,
 router.post('/posts/:postId/likes', authUserController, postAlreadyExistsController, newLikeController)
 
 // Dar Dislike a una publicación
-router.post('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, newDislikeController)
+router.post('/posts/:postId/dislikes', authUserController, postAlreadyExistsController, newDislikeController)
 
 // Eliminar like de una publicación
 router.delete('/posts/:postId/likes', authUserController, postAlreadyExistsController, deleteLikeController)
 export default router
 
 // Eliminar dislike de una publicación
-router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
+router.delete('/posts/:postId/dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
