@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "ae452147-bce4-40ea-bf30-e74e7f6b8f49",
+		"_postman_id": "c8333ef2-ac83-412f-a767-e28f4a8ea1b3",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "29062082"
+		"_exporter_id": "27953436"
 	},
 	"item": [
 		{
@@ -39,6 +39,18 @@
 				},
 				{
 					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsondata = JSON.parse(responseBody);\r",
+									"postman.setGlobalVariable(\"dummifyToken\",jsondata.data.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -75,7 +87,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTI5MTU2NiwiZXhwIjoxNjk1Mzc3OTY2fQ.lmWjKTjdOQU6NgwniM2E1x2Auf_odj8WfPSlIE_bS_Y",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -100,7 +112,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM2NTQwMiwiZXhwIjoxNjk1NDUxODAyfQ.0qvYSsPY7-LitEo1ueGCvqjGrKYa6wpFctbiHDyMZUw",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -137,7 +149,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM2NzQ2MiwiZXhwIjoxNjk1NDUzODYyfQ.nqCRxEomFMBLQLVP-Pg8gHvnEkLW7QFGik3l5kHtMYw",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -170,7 +182,13 @@
 					"name": "Change Full Name",
 					"request": {
 						"method": "PUT",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8000/users/profile/fullname",
 							"protocol": "http",
@@ -196,7 +214,13 @@
 					"name": "All post",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
 						"url": {
 							"raw": "http://localhost:8000/posts",
 							"protocol": "http",
@@ -218,7 +242,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -241,6 +265,13 @@
 							"path": [
 								"posts",
 								"insert"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -253,10 +284,14 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"url": {
 							"raw": "http://localhost:8000/posts/:postId/likes",
 							"protocol": "http",
@@ -303,7 +338,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -336,7 +371,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3OTM2MSwiZXhwIjoxNjk1NDY1NzYxfQ.3q-OXJe0yT54hZZZmOAVvBE90xea_LHHatn1T1wAf4w",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -373,7 +408,7 @@
 					"response": []
 				},
 				{
-					"name": "Random Post",
+					"name": "Post Aleatorio",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -392,18 +427,73 @@
 					"response": []
 				},
 				{
-					"name": "Insert Dislike",
+					"name": "Edit Post",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"post\":\"Estoy actualizando el post\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COMMENTS",
+			"item": [
+				{
+					"name": "Insert Comment",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentId\":1,\r\n    \"comment\":\"Apuaaa que tal\", \r\n    \"userId\": 1, \r\n    \"postId\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/posts/:postId/Dislikes",
+							"raw": "http://localhost:8000/posts/1/comments",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -411,32 +501,35 @@
 							"port": "8000",
 							"path": [
 								"posts",
-								":postId",
-								"Dislikes"
-							],
-							"variable": [
-								{
-									"key": "postId",
-									"value": "1"
-								}
+								"1",
+								"comments"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Delete Dislike",
+					"name": "Delete Comment",
 					"request": {
 						"method": "DELETE",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8000/posts/:postId/Dislikes",
+							"raw": "http://localhost:8000/posts/:postId/comments/:commentId",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -445,7 +538,92 @@
 							"path": [
 								"posts",
 								":postId",
-								"Dislikes"
+								"comments",
+								":commentId"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								},
+								{
+									"key": "commentId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Comment",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"Esto es otrrrrrrro coment\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/comments/:commentId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"comments",
+								":commentId"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								},
+								{
+									"key": "commentId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List PostComments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"comments"
 							],
 							"variable": [
 								{
@@ -456,33 +634,12 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "My Posts",
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/posts/myposts",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								"myposts"
-							]
-						}
-					},
-					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "CATEGORIES",
+			"item": [
 				{
 					"name": "All Categories",
 					"request": {
@@ -490,7 +647,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -515,13 +672,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"subCategories\": 1 ,\r\n   \"name\" : \"prueba\",\r\n   \"description\" : \" fjdkhsbv \"\r\n}",
+							"raw": "{\r\n   \"categoryId\": 1 ,\r\n   \"name\" : \"prueba\",\r\n   \"description\" : \" fjdkhsbv \"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -544,54 +701,13 @@
 					"response": []
 				},
 				{
-					"name": "Delete Category",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/category/:categoryId",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"category",
-								":categoryId"
-							],
-							"variable": [
-								{
-									"key": "categoryId",
-									"value": "16"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Edit Category",
+					"name": "Upgrade Categories",
 					"request": {
 						"method": "PUT",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"value": "{{dummifyToken}}",
 								"type": "text"
 							}
 						],
@@ -605,20 +721,52 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/category/:categoryId",
+							"raw": "http://localhost:8000/categories/:categoryId",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"category",
+								"categories",
 								":categoryId"
 							],
 							"variable": [
 								{
 									"key": "categoryId",
-									"value": "17"
+									"value": "19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Categories",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/categories/:categoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "19"
 								}
 							]
 						}

@@ -11,10 +11,7 @@ import { notRegisteredUserPostController } from '../controllers/posts/getRandomP
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 import { listMyPostsController } from '../controllers/posts/listMyPostsController.js'
-import { getAllCategoriesController } from '../controllers/categories/getAllCategoriesController.js'
-import { newCategoriesController } from '../controllers/categories/newCategoriesController.js'
-import { deleteCategoryController } from '../controllers/categories/deleteCategoryController.js'
-import { editCategoryController } from '../controllers/categories/editCategoryController.js'
+
 const router = Router()
 
 // Creamos la ruta. (endpoint)
@@ -27,12 +24,6 @@ router.get('/posts', authUserController, listPostsController)
 
 // Visualizar mis publicaciones
 router.get('/posts/myposts', authUserController, listMyPostsController)
-
-// Visualizar todas las categorias
-router.get('/categories', authUserController, getAllCategoriesController)
-
-// Crear nueva categoria
-router.post('/categories/insert', authUserController, newCategoriesController)
 
 // Creacion del post
 router.post('/posts/insert/', authUserController, newPostController)
@@ -51,13 +42,8 @@ router.post('/posts/:postId/dislikes', authUserController, postAlreadyExistsCont
 
 // Eliminar like de una publicación
 router.delete('/posts/:postId/likes', authUserController, postAlreadyExistsController, deleteLikeController)
-export default router
 
 // Eliminar dislike de una publicación
 router.delete('/posts/:postId/dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
 
-// Eliminar categoria
-router.delete('/category/:categoryId', authUserController, deleteCategoryController)
-
-// Editar categoria
-router.put('/category/:categoryId', authUserController, editCategoryController)
+export default router

@@ -20,7 +20,7 @@ export const deletePostModel = async (postId, userId) => {
 
     const [imageName] = await connection.query('SELECT image FROM posts WHERE id = ?', [postId])
 
-    if (imageName.length > 0) {
+    if (imageName.length > 0 && imageName[0].image !== null) {
       await deletePhoto(imageName[0].image, UPLOADS_DIRS.POST)
     }
 

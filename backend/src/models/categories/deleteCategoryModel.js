@@ -11,10 +11,8 @@ export const deleteCategoryModel = async (categoryId) => {
       'SELECT image FROM categories WHERE id = ?',
       [categoryId]
     )
-    console.log(imgName)
 
-    if (imgName.length > 0) {
-      console.log('hola')
+    if (imgName.length > 0 && imgName[0].image !== null) {
       await deletePhoto(imgName[0].image, UPLOADS_DIRS.CATEGORY)
     }
     await connection.query(
