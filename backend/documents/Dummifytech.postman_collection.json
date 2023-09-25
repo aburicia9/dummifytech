@@ -253,7 +253,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
 								"type": "text"
 							}
 						],
@@ -289,7 +289,7 @@
 							"variable": [
 								{
 									"key": "postId",
-									"value": "3"
+									"value": "1"
 								}
 							]
 						}
@@ -303,7 +303,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
 								"type": "text"
 							}
 						],
@@ -322,7 +322,7 @@
 							"variable": [
 								{
 									"key": "postId",
-									"value": "3"
+									"value": "1"
 								}
 							]
 						}
@@ -386,6 +386,98 @@
 							"port": "8000",
 							"path": [
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Dislike",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/Dislikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"Dislikes"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Dislike",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/:postId/Dislikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								":postId",
+								"Dislikes"
+							],
+							"variable": [
+								{
+									"key": "postId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My Posts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTYzMTM0MywiZXhwIjoxNjk1NzE3NzQzfQ.ODjGMC-135qMQMiiUhDyCGz2-l-xqlVbLMEf41HglBE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/posts/myposts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"posts",
+								"myposts"
 							]
 						}
 					},
