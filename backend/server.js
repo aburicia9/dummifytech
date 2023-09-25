@@ -17,9 +17,13 @@ import { errorController, notFoundController } from './src/controllers/errors/in
 
 // Importamos las rutas.
 import routes from './src/routes/index.js'
+import { UPLOADS_DIR } from './src/utils/constants.js'
 
 // Creamos la variable app para crear el servidor
 const app = express()
+
+// Middleware que indica a Express cual es el directorio de ficheros estáticos.
+app.use(express.static(UPLOADS_DIR))
 
 // Middleware para hacer que el back entienda el form-data (subir archivos)
 app.use(fileUpload())
