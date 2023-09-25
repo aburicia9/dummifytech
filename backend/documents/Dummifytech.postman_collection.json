@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "b6660249-e466-4d1d-9032-43d3528f9e1f",
+		"_postman_id": "ae452147-bce4-40ea-bf30-e74e7f6b8f49",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28992963"
+		"_exporter_id": "29062082"
 	},
 	"item": [
 		{
@@ -373,7 +373,7 @@
 					"response": []
 				},
 				{
-					"name": "Post Aleatorio",
+					"name": "Random Post",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -478,6 +478,148 @@
 							"path": [
 								"posts",
 								"myposts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/categories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Categories",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"subCategories\": 1 ,\r\n   \"name\" : \"prueba\",\r\n   \"description\" : \" fjdkhsbv \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/insert",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"insert"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/category/:categoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"category",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTY1MzY4OSwiZXhwIjoxNjk1NzQwMDg5fQ.ChlFKZZYJgH9GoBOS5mm-KBRcrA-xjC5lt4evH88fPs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n    \"id\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/category/:categoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"category",
+								":categoryId"
+							],
+							"variable": [
+								{
+									"key": "categoryId",
+									"value": "17"
+								}
 							]
 						}
 					},
