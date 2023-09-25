@@ -1,6 +1,6 @@
 import { getDb } from '../../db/getDb.js'
 
-export const notRegisteredUserPostModel = async () => {
+export const selectRandomPostModel = async () => {
   let connection
   try {
     connection = await getDb()

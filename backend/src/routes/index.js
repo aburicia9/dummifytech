@@ -4,9 +4,11 @@ import { Router } from 'express'
 // Importamos las rutas.
 import userRoutes from './userRoutes.js'
 import postsRoutes from './postsRoutes.js'
+import commentsRoutes from './commentsRoutes.js'
 export const router = Router()
 
 router.use(postsRoutes)
 router.use(userRoutes)
+router.use(commentsRoutes)
 
 export default router

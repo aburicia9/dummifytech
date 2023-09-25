@@ -7,7 +7,11 @@ import { postAlreadyExistsController } from '../middlewares/postAlreadyExistsCon
 import { newLikeController } from '../controllers/posts/newLikeController.js'
 import { deleteLikeController } from '../controllers/posts/deleteLikeController.js'
 import { deletePostController } from '../controllers/posts/deletePostController.js'
-import { notRegisteredUserPostController } from '../controllers/posts/notRegisteredUserPostController.js'
+
+import { getRandomPostController } from '../controllers/posts/getRandomPostController.js'
+import { editPostController } from '../controllers/posts/editPostController.js'
+
+
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 const router = Router()
@@ -15,7 +19,7 @@ const router = Router()
 // Creamos la ruta. (endpoint)
 
 // Visualizar post sin usuario registrado
-router.get('/', notRegisteredUserPostController)
+router.get('/', getRandomPostController)
 
 // Visualizar posts con usuario registrado
 router.get('/posts', authUserController, listPostsController)
@@ -34,6 +38,13 @@ router.post('/posts/:postId/Dislikes', authUserController, postAlreadyExistsCont
 
 // Eliminar like de una publicación
 router.delete('/posts/:postId/likes', authUserController, postAlreadyExistsController, deleteLikeController)
+
+// Editar post
+router.put('/posts/:postId', authUserController, editPostController)
+
+// Eliminar dislike de una publicación
+router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
+
 export default router
 
 // Eliminar dislike de una publicación

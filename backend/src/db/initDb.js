@@ -56,7 +56,7 @@ export const main = async () => {
         CREATE TABLE IF NOT EXISTS posts(
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
           title VARCHAR(100) NOT NULL,
-          post VARCHAR(255) NOT NULL,
+          post TEXT NOT NULL,
           image VARCHAR(255),
           report BOOLEAN default 0,
           id_category INT unsigned NOT NULL,
@@ -74,7 +74,7 @@ export const main = async () => {
       CREATE TABLE IF NOT EXISTS comments(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         id_comment_parent INT UNSIGNED DEFAULT NULL,
-        comment VARCHAR(255) NOT NULL,
+        comment TEXT NOT NULL,
         id_user INT unsigned NOT NULL,
         id_post INT unsigned NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -140,20 +140,100 @@ export const main = async () => {
     `)
     console.log('¡Usuario creado! 😉✅')
 
-    console.log('Creando categoria en CATEGORIAS...')
+    console.log('Creando categoria en la tabla CATEGORIAS...')
 
     await connection.query(`
-    INSERT INTO dummifytech.categories ( name, description)
-    VALUES('Moviles', 'Android');
+    INSERT INTO categories ( name, description)
+    VALUES('Ordenadores', 'Hardware, software, consejos y tendencias para entusiastas tecnológicos');
     `)
-    console.log('¡Categoria creada! 😉✅')
 
-    console.log('Creando categoria en CATEGORIAS...')
+    await connection.query(`
+    INSERT INTO categories ( name, description)
+    VALUES('Inteligencia Artificial', 'Innovaciones en la simulación de inteligencia humana a través de tecnología');
+    `)
+
+    await connection.query(`
+    INSERT INTO categories ( name, description)
+    VALUES('Videojuegos', 'Explora mundos virtuales, compite y disfruta de experiencias interactivas en línea.');
+    `)
+
+    await connection.query(`
+    INSERT INTO categories ( name, description)
+    VALUES('Desarrollo', 'Conversa sobre programación, diseño y creación de aplicaciones y software.');
+    `)
+
+    await connection.query(`
+    INSERT INTO categories ( name, description)
+    VALUES('Móviles', 'Habla sobre smartphones, aplicaciones, consejos y novedades móviles.');
+    `)
+
+    await connection.query(`
+    INSERT INTO categories ( name, description)
+    VALUES('DummyMemes', 'Disfruta de un rincón divertido para compartir y crear memes.');
+    `)
+
+    console.log('Creando subcategorias en CATEGORIAS...')
 
     await connection.query(`
     INSERT INTO categories(id_categories_parent, name, description)
-    VALUES(1, 'Android', 'Sistema operativo' );
+    VALUES(1, 'Hardware', 'Explora el mundo físico de la tecnología: componentes, dispositivos y equipos.' );
     `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(1, 'Software', 'Discute sobre programas, aplicaciones y sistemas informáticos en constante evolución.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(3, 'PlayStation', 'Comunidad dedicada a la consola de videojuegos PlayStation, juegos y noticias.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(3, 'Xbox', 'Espacio de discusión sobre la plataforma de juegos Xbox, títulos y novedades.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(3, 'Nintendo', 'Comunidad apasionada por los juegos de Nintendo, consolas y personajes icónicos.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(3, 'Pc', 'Discusión y noticias sobre juegos de PC, mods, recomendaciones y análisis.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(4, 'Python', 'Es conocido por su legibilidad y versatilidad, utilizado en una amplia gama de aplicaciones, desde desarrollo web hasta inteligencia artificial y análisis de datos.
+    .' );
+    `)
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(4, 'JavaScript', 'Es ampliamente utilizado para el desarrollo web y es esencial en la construcción de aplicaciones web interactivas' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(4, 'Java', 'Es comúnmente utilizado en desarrollo de aplicaciones empresariales, aplicaciones móviles (Android), y sistemas embebidos.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(4, 'C# (C Sharp)', ' Es un lenguaje de programación desarrollado por Microsoft y es muy utilizado en el desarrollo de aplicaciones de Windows, incluyendo aplicaciones de escritorio y juegos.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(5, 'Android', 'Sistema operativo móvil de Google para dispositivos y aplicaciones.' );
+    `)
+
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(5, 'IOS', 'Sistema operativo móvil exclusivo de Apple para iPhone, iPad y iPod Touch, conocido por su seguridad, rendimiento y ecosistema de aplicaciones.' );
+    `)
+
     console.log('¡Categoria creada! 😉✅')
 
     console.log('Creando post en POST...')
