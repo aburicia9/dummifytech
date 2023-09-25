@@ -10,6 +10,7 @@ import { deletePostController } from '../controllers/posts/deletePostController.
 import { notRegisteredUserPostController } from '../controllers/posts/notRegisteredUserPostController.js'
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
+import { listMyPostsController } from '../controllers/posts/listMyPostsController.js'
 const router = Router()
 
 // Creamos la ruta. (endpoint)
@@ -19,6 +20,9 @@ router.get('/', notRegisteredUserPostController)
 
 // Visualizar posts con usuario registrado
 router.get('/posts', authUserController, listPostsController)
+
+// Visualizar mis publicaciones
+router.get('/posts/myposts', authUserController, listMyPostsController)
 
 // creacion del post
 router.post('/posts/insert', authUserController, newPostController)
