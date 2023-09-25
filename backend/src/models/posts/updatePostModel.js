@@ -3,7 +3,7 @@ import { notFoundError, unauthorizedUserError } from '../../services/errorServic
 
 export const updatePostModel = async (postId, post, title, userId, imgName) => {
   let connection
-
+  // console.log(postId, post, title, userId, imgName)
   try {
     connection = await getDb()
     const [posts] = await connection.query(`
@@ -17,13 +17,12 @@ export const updatePostModel = async (postId, post, title, userId, imgName) => {
     if (posts[0].id_user !== userId) {
       unauthorizedUserError()
     }
+
     await connection.query(`
-    UPDATE posts 
-    SET post = ?, 
-    SET title = ?,
-    SET image = ?
-    WHERE id = ?
-`, [post, title, imgName, postId])
+      UPDATE posts 
+      SET post = ?, title = ?, image = ?
+      WHERE id = ?
+    `, [post, title, imgName, postId])
   } finally {
     if (connection) connection.release()
   }

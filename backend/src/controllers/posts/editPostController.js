@@ -10,14 +10,10 @@ export const editPostController = async (req, res, next) => {
   try {
     // console.log(postDetail)
     const { postId } = req.params
-    const { post, title } = req.body
+    let { post, title } = req.body
 
     const postDetail = await selectPostByIdModel(req.user.id, postId)
-    console.log(postDetail)
-    const result = await validateSchema(updatePostSchema, req.body)
-    if (!result.succes) {
-      throw fromZodError(result.error)
-    }
+
     // Variable que almacenará el nombre de la imagen(si hay)
     let imgName
     // console.log(req.files)
@@ -26,10 +22,25 @@ export const editPostController = async (req, res, next) => {
       imgName = await savePhoto(req.files.imgName, 500, UPLOADS_DIR_POST.POST)
     }
 
-    if (postDetail.title !== title || postDetail.post !== post || postDetail.image !== imgName) {
-      await updatePostModel(postId, post, title, req.user.id, imgName)
-    }
+    const result = await validateSchema(updatePostSchema, req.body)
 
+    if (!result.success) {
+      throw fromZodError(result.error)
+    }
+    console.log(postDetail.title !== title)
+    // if (postDetail.title !== title || postDetail.post !== post || postDetail.image !== imgName)
+    if (postDetail.title !== title) {
+      title = postDetail.title
+    }
+    if (postDetail.post !== post) {
+      post = postDetail.post
+    }
+    if (postDetail.image !== imgName) {
+      imgName = postDetail.image
+    }
+    console.log(title, post, imgName)
+
+    await updatePostModel(postId, post, title, req.user.id, imgName)
     res.send({
       status: 'ok',
       message: '¡Post Editado!'
