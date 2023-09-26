@@ -4,19 +4,20 @@ import { editCategoryController } from '../controllers/categories/editCategoryCo
 import { getAllCategoriesController } from '../controllers/categories/getAllCategoriesController.js'
 import { newCategoriesController } from '../controllers/categories/newCategoriesController.js'
 import { authUserController } from '../middlewares/authUserController.js'
+import { roleUserController } from '../middlewares/roleUserController.js'
 
 const router = Router()
 
 // Eliminar categoria
-router.delete('/categories/:categoryId', authUserController, deleteCategoryController)
+router.delete('/categories/:categoryId', authUserController, roleUserController, deleteCategoryController)
 
 // Editar categoria
-router.put('/categories/:categoryId', authUserController, editCategoryController)
+router.put('/categories/:categoryId', authUserController, roleUserController, editCategoryController)
 
 // Visualizar todas las categorias
 router.get('/categories', authUserController, getAllCategoriesController)
 
 // Crear nueva categoria
-router.post('/categories/insert', authUserController, newCategoriesController)
+router.post('/categories/insert', authUserController, roleUserController, newCategoriesController)
 
 export default router

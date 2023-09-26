@@ -12,6 +12,10 @@ import { editPostController } from '../controllers/posts/editPostController.js'
 import { newDislikeController } from '../controllers/posts/newDislikeController.js'
 import { deleteDislikeController } from '../controllers/posts/deleteDislikeController.js'
 import { listMyPostsController } from '../controllers/posts/listMyPostsController.js'
+import { newReportController } from '../controllers/reports/newReportController.js'
+import { deleteReportController } from '../controllers/reports/deleteReportController.js'
+import { getAllReportController } from '../controllers/reports/getAllReportController.js'
+import { roleUserController } from '../middlewares/roleUserController.js'
 
 const router = Router()
 
@@ -26,10 +30,10 @@ router.get('/posts', authUserController, listPostsController)
 // Visualizar mis publicaciones
 router.get('/posts/myposts', authUserController, listMyPostsController)
 
-// Creacion del post
-router.post('/posts/insert/', authUserController, newPostController)
+// Visualizar los reports
+router.get('/reports', authUserController, roleUserController, getAllReportController)
 
-// creacion del post
+// Creacion del post
 router.post('/posts/insert', authUserController, newPostController)
 
 // Eliminacion del post
@@ -41,6 +45,12 @@ router.post('/posts/:postId/likes', authUserController, postAlreadyExistsControl
 // Dar Dislike a una publicación
 router.post('/posts/:postId/dislikes', authUserController, postAlreadyExistsController, newDislikeController)
 
+// Dar report a una publicación
+router.post('/posts/:postId/report', authUserController, postAlreadyExistsController, newReportController)
+
+// Eliminar report a una publicación
+router.delete('/posts/:postId/report', authUserController, postAlreadyExistsController, deleteReportController)
+
 // Eliminar like de una publicación
 router.delete('/posts/:postId/likes', authUserController, postAlreadyExistsController, deleteLikeController)
 
@@ -51,9 +61,9 @@ router.delete('/posts/:postId/dislikes', authUserController, postAlreadyExistsCo
 router.put('/posts/:postId', authUserController, editPostController)
 
 // Eliminar dislike de una publicación
-router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
+router.delete('/posts/:postId/dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
 
 // Eliminar dislike de una publicación
-router.delete('/posts/:postId/Dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
+router.delete('/posts/:postId/dislikes', authUserController, postAlreadyExistsController, deleteDislikeController)
 
 export default router
