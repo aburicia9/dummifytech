@@ -3,6 +3,8 @@ import { insertUserModel } from '../../models/users/insertUserModel.js'
 import { insertPostModel } from '../../models/posts/insertPostModel.js'
 import { insertCommentsModel } from '../../models/comments/insertCommentsModel.js'
 import { getDb } from '../../db/getDb.js'
+import { insertLikesModel } from '../../models/posts/insertLikesModel.js'
+import { insertDislikeModel } from '../../models/posts/insertDislikeModel.js'
 
 async function generateUsers () {
   for (let id = 2; id < 11; id++) {
@@ -10,8 +12,11 @@ async function generateUsers () {
     const randomeLastName = faker.person.lastName()
     const randomFullName = `${randomFirstName} ${randomeLastName}`
     const randomEmail = faker.internet.email({ randomFirstName, randomeLastName })
-    const randomUsername = faker.internet.userName()
-    const randomPassword = faker.internet.password()
+    let randomUsername = faker.internet.userName({ randomFirstName })
+    if (randomUsername > 30) {
+      randomUsername = randomUsername.slice(0, 30)
+    }
+    const randomPassword = 'pruebas'
     await insertUserModel(randomUsername, randomEmail, randomPassword, randomFullName)
   }
 }
@@ -22,7 +27,7 @@ async function generatePosts () {
     const randomPost = faker.lorem.text()
     const randomImage = faker.image.url()
     const randomCategoryId = faker.number.int({ min: 1, max: 10 })
-    const randomUserId = faker.number.int({ min: 1, max: 18 })
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
     await insertPostModel(randomTitle, randomPost, randomImage, randomCategoryId, randomUserId)
   }
 }
@@ -37,57 +42,69 @@ async function generateComments () {
   }
 }
 
-async function selectPostToComment (commentIdToArray) {
-  let connection
-  try {
-    connection = await getDb()
-
-    const [comments] = await connection.query(`
-        SELECT c.id_post
+async function generateCommentsToComments () {
+  async function selectPostToComment () {
+    let connection
+    try {
+      connection = await getDb()
+      const [idPostsComments] = await connection.query(`
+        SELECT c.id as idComment, c.id_post as idPost
         FROM comments c
-        WHERE c.id = ?
-      `, [commentIdToArray])
-
-    return comments
-  } finally {
-    if (connection) connection.release()
+      `)
+      return idPostsComments
+    } finally {
+      if (connection) connection.release()
+    }
   }
+  const postsCommentsId = await selectPostToComment()
+
+  const promises = postsCommentsId.map((postCommentId) => {
+    const randomParentId = postCommentId.idComment
+    const randomPostId = postCommentId.idPost
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomComment = faker.lorem.text()
+    return insertCommentsModel(randomParentId, randomComment, randomUserId, randomPostId)
+  })
+  await Promise.all(promises)
 }
 
-async function generateIdComments () {
-  const commentIdArray = []
+async function generateLikesPost () {
   for (let id = 2; id < 51; id++) {
-    commentIdArray.push(faker.number.int({ min: 1, max: 50 }))
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    try {
+      await insertLikesModel(randomPostId, randomUserId)
+    } catch (error) {
+
+    }
   }
-  return commentIdArray
 }
 
-async function generateIdPostToIdComment () {
-  const postIdArray = []
-  const commentIdArray = await generateIdComments()
-  for (let id = 2; id < commentIdArray.lenght; id++) {
-    console.log('hola')
-    // postIdArray.push(await selectPostToComment(commentIdArray[id]))
-  }
-  console.log(postIdArray)
-}
-// async function generateCommentToComments () {
+async function generateDislikesPost () {
+  for (let id = 2; id < 51; id++) {
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    try {
+      await insertDislikeModel(randomPostId, randomUserId)
+    } catch (error) {
 
-//   const randomComment = faker.lorem.text()
-//   const randomUserId = faker.number.int({ min: 1, max: 10 })
-//   const randomPostId = selectPostToComment()
-//   await insertCommentsModel(commentId, randomComment, randomUserId, randomPostId)
-// }
-// }
+    }
+  }
+}
 
 const generateData = async () => {
-  await generateUsers()
-  await generatePosts()
-  await generateComments()
-  await generateIdComments()
-  await generateIdPostToIdComment()
-  // await generateCommentToComments()
-  process.exit()
+  try {
+    await generateUsers()
+    await generatePosts()
+    await generateComments()
+    await generateCommentsToComments()
+    await generateLikesPost()
+    await generateDislikesPost()
+  } catch (error) {
+    console.log(error)
+  } finally {
+    process.exit()
+  }
 }
 
 generateData()
