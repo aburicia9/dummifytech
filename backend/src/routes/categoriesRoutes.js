@@ -11,7 +11,7 @@ const router = Router()
 // ------------------------------------------------------------------------------------------------
 //                                        RUTAS DE CATEGORIA
 // ------------------------------------------------------------------------------------------------
-
+// #region categoria
 // Eliminar categoria
 router.delete('/categories/:categoryId', authUserController, roleUserController, deleteCategoryController)
 
@@ -23,5 +23,6 @@ router.get('/categories', authUserController, getAllCategoriesController)
 
 // Crear nueva categoria
 router.post('/categories/insert', authUserController, roleUserController, newCategoriesController)
+// #endregion categoria
 
 export default router

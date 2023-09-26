@@ -11,7 +11,7 @@ const router = Router()
 // ------------------------------------------------------------------------------------------------
 //                                        RUTAS DE REPORTS
 // ------------------------------------------------------------------------------------------------
-
+// #region reportes
 // Visualizar los reports
 router.get('/reports', authUserController, roleUserController, getAllReportController)
 
@@ -20,5 +20,6 @@ router.post('/posts/:postId/report', authUserController, postAlreadyExistsContro
 
 // Eliminar report a una publicación
 router.delete('/posts/:postId/report', authUserController, postAlreadyExistsController, deleteReportController)
+// #endregion reports
 
 export default router
