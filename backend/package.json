@@ -7,7 +7,7 @@
   "scripts": {
     "initDb": "node ./src/db/initDb.js",
     "start": "nodemon server.js",
-    "faker": "node ./src/utils/faker/fakeUser.js"
+    "faker": "node ./src/db/faker/fakerData.js"
   },
   "keywords": [],
   "author": "",

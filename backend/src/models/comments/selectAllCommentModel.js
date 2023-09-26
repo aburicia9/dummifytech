@@ -14,7 +14,7 @@ export const selectAllCommentModel = async (postId) => {
       INNER JOIN posts p ON p.id = c.id_post 
       WHERE c.id_post = ?;
     `, [postId])
-    console.log(comments)
+
     return comments
   } finally {
     if (connection) connection.release()

@@ -1,7 +1,6 @@
 import { getDb } from '../../db/getDb.js'
 
 export const insertCommentsModel = async (commentId = null, comment, userId, postId) => {
-  console.log(commentId, comment, userId, postId)
   let connection
 
   try {
