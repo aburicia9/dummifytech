@@ -1,4 +1,4 @@
-import { insertLikesModel } from '../../models/posts/insertLikesModel.js'
+import { insertLikesModel } from '../../models/likes/insertLikesModel.js'
 
 // Funcion donde insertamos likes.
 export const newLikeController = async (req, res, next) => {

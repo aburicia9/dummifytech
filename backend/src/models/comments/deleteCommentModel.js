@@ -5,7 +5,7 @@ export const deleteCommentModel = async (commentId, userId) => {
   let connection
   try {
     connection = await getDb()
-    // console.log({ commentId })
+
     const [comments] = await connection.query(`
     SELECT id_user FROM comments WHERE id = ?
     `, [commentId])

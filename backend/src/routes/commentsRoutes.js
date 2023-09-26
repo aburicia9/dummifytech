@@ -7,6 +7,10 @@ import { getAllCommentsController } from '../controllers/comments/getAllComments
 
 const router = Router()
 
+// ------------------------------------------------------------------------------------------------
+//                                        RUTAS DE COMENTARIOS
+// ------------------------------------------------------------------------------------------------
+
 // Mostramos los comentarios de un post
 
 router.get('/posts/:postId/comments', authUserController, getAllCommentsController)
