@@ -33,11 +33,11 @@ export function likeAlreadyExistsError () {
     message: 'No se puede dar like más de una vez al mismo elemento'
   }
 }
-export function categoryAlreadyExistsError () {
+export function reportAlreadyExistsError () {
   throw {
     httpStatus: 409, // Conflict
-    code: 'CATEGORY_ALREADY_EXISTS',
-    message: 'Ya existe esta categoria'
+    code: 'REPORT_ALREADY_EXISTS',
+    message: 'No se puede dar report más de una vez al mismo posteo'
   }
 }
 export function dislikeAlreadyExistsError () {

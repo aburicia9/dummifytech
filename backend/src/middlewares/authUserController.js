@@ -11,7 +11,6 @@ export const authUserController = async (req, res, next) => {
       const userInfo = jwt.verify(authorization, process.env.SECRET)
 
       req.user = userInfo
-
       next()
     } catch (error) {
       console.error(error)

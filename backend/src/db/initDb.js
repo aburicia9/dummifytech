@@ -58,7 +58,6 @@ export const main = async () => {
           title VARCHAR(100) NOT NULL,
           post TEXT NOT NULL,
           image VARCHAR(255),
-          report BOOLEAN default 0,
           id_category INT unsigned NOT NULL,
           id_user INT unsigned NOT NULL,
           created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -122,8 +121,10 @@ export const main = async () => {
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         id_user INT unsigned NOT NULL,
         id_post INT unsigned NOT NULL,
+        id_comment INT unsigned,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY(id_comment) REFERENCES comments(id) ON DELETE CASCADE,
         FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE,
         FOREIGN KEY(id_post) REFERENCES posts(id) ON DELETE CASCADE
       )
@@ -247,7 +248,7 @@ export const main = async () => {
     console.log('Creando comentario en COMENTARIO...')
 
     await connection.query(`
-    INSERT INTO dummifytech.comments(comment, id_user, id_post)
+    INSERT INTO comments(comment, id_user, id_post)
     VALUES('Esto es un comentairo sobre samsung s20', 1, 1);
     `)
     console.log('Comentario creada! 😉✅')
