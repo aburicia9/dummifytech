@@ -1,4 +1,4 @@
-import { deleteLikeModel } from '../../models/posts/deleteLikeModel.js'
+import { deleteLikeModel } from '../../models/likes/deleteLikeModel.js'
 
 // Funcion en la que quitamos un like.
 export const deleteLikeController = async (req, res, next) => {

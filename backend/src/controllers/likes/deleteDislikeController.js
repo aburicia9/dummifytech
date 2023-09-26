@@ -1,4 +1,4 @@
-import { deleteDislikeModel } from '../../models/posts/deleteDislikeModel.js'
+import { deleteDislikeModel } from '../../models/likes/deleteDislikeModel.js'
 
 export const deleteDislikeController = async (req, res, next) => {
   try {

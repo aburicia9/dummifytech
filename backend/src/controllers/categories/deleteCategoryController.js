@@ -8,7 +8,7 @@ export const deleteCategoryController = async (req, res, next) => {
 
     res.send({
       status: 'ok',
-      message: 'Categoria borrada'
+      message: '¡Categoria borrada!'
     })
   } catch (error) {
     next(error)

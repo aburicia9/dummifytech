@@ -7,9 +7,16 @@ import { authUserController } from '../middlewares/authUserController.js'
 import { editUserPasswordController } from '../controllers/users/editUserPasswordController.js'
 import { editAvatarController } from '../controllers/users/editAvatarController.js'
 import { editUserFullNameController } from '../controllers/users/editUserFullNameController.js'
+import { getAllUserController } from '../controllers/users/getAllUserController.js'
+import { adminController } from '../middlewares/adminController.js'
+import { deleteUserController } from '../controllers/users/deleteUserController.js'
 
 const router = Router()
 
+// ------------------------------------------------------------------------------------------------
+//                                        RUTAS DE USUARIO
+// ------------------------------------------------------------------------------------------------
+// #region usuario
 // Creamos la ruta. (endpoint)
 router.post('/register', newUserController)
 
@@ -17,7 +24,7 @@ router.post('/register', newUserController)
 router.post('/login', loginUserController)
 
 // Aqui empiezan las rutas de usuario existente
-router.get('/users', authUserController, getUserController)
+router.get('/users/profile', authUserController, getUserController)
 
 // Modificamos contraseña
 router.put('/users/profile/password', authUserController, editUserPasswordController)
@@ -28,4 +35,17 @@ router.put('/users/profile/avatar', authUserController, editAvatarController)
 // Ruta del fullname usuario.
 router.put('/users/profile/fullname', authUserController, editUserFullNameController)
 
+// Eliminar usuario(normal)
+router.delete('/users/profile', authUserController, deleteUserController)
+// #endregion usuario
+// ------------------------------------------------------------------------------------------------
+//                                        RUTAS DE ADMIN
+// ------------------------------------------------------------------------------------------------
+// #region admin
+// Lista de usuarios
+router.get('/users', authUserController, adminController, getAllUserController)
+
+// Eliminar usuario (admin)
+router.delete('/users/:userId', authUserController, adminController, deleteUserController)
+// #endregion admin
 export default router

@@ -8,6 +8,10 @@ import { roleUserController } from '../middlewares/roleUserController.js'
 
 const router = Router()
 
+// ------------------------------------------------------------------------------------------------
+//                                        RUTAS DE CATEGORIA
+// ------------------------------------------------------------------------------------------------
+
 // Eliminar categoria
 router.delete('/categories/:categoryId', authUserController, roleUserController, deleteCategoryController)
 
