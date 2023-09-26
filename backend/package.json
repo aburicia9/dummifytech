@@ -22,6 +22,7 @@
     "express-fileupload": "^1.4.0",
     "i18next": "^23.5.1",
     "intellisense": "^0.0.1",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "mysql2": "^3.6.1",
