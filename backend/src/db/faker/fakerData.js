@@ -3,8 +3,8 @@ import { insertUserModel } from '../../models/users/insertUserModel.js'
 import { insertPostModel } from '../../models/posts/insertPostModel.js'
 import { insertCommentsModel } from '../../models/comments/insertCommentsModel.js'
 import { getDb } from '../../db/getDb.js'
-import { insertLikesModel } from '../../models/posts/insertLikesModel.js'
-import { insertDislikeModel } from '../../models/posts/insertDislikeModel.js'
+import { insertLikesModel } from '../../models/likes/insertLikesModel.js'
+import { insertDislikeModel } from '../../models/likes/insertDislikeModel.js'
 
 async function generateUsers () {
   for (let id = 2; id < 11; id++) {
