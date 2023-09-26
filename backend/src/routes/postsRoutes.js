@@ -15,7 +15,7 @@ const router = Router()
 // ------------------------------------------------------------------------------------------------
 //                                        RUTAS DE POST
 // ------------------------------------------------------------------------------------------------
-
+// #region posts
 // Visualizar post sin usuario registrado
 router.get('/', getRandomPostController)
 
@@ -33,5 +33,6 @@ router.delete('/posts/:postId', authUserController, postAlreadyExistsController,
 
 // Editar post
 router.put('/posts/:postId', authUserController, editPostController)
+// #endregion post
 
 export default router

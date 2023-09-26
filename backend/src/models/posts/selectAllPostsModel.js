@@ -3,7 +3,7 @@ import { getDb } from '../../db/getDb.js'
 
 // Funcion que crea la conexion con la base de datos.
 
-export const selectAllPostsModel = async () => {
+export const selectAllPostsModel = async (userId) => {
   let connection
   try {
     connection = await getDb()
@@ -26,8 +26,16 @@ export const selectAllPostsModel = async () => {
       FROM comments
       WHERE id_post = ${post.id}
     `)
+
+      const [[{ ownerLikes }]] = await connection.query(`
+      SELECT COUNT(id) AS ownerLikes
+      FROM likes
+      WHERE id_post = ${post.id} AND id_user = ${userId}
+    `)
+
       post.countLikes = countLikes
       post.countComments = countComments
+      post.ownerLikes = ownerLikes
     }
 
     return posts

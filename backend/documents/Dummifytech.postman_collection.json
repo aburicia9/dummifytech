@@ -1,215 +1,501 @@
 {
 	"info": {
-		"_postman_id": "c8333ef2-ac83-412f-a767-e28f4a8ea1b3",
+		"_postman_id": "55c4648b-0ca4-4219-a8d4-6fb1b1548d60",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "27953436"
+		"_exporter_id": "28992963"
 	},
 	"item": [
 		{
 			"name": "USERS",
 			"item": [
 				{
-					"name": "User Register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"juamsito@example.com\",\r\n    \"password\": \"123456789\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "User Login",
-					"event": [
+					"name": "ADMIN",
+					"item": [
 						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const jsondata = JSON.parse(responseBody);\r",
-									"postman.setGlobalVariable(\"dummifyToken\",jsondata.data.token)"
+							"name": "All Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
 								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"    \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+								"url": {
+									"raw": "http://localhost:8000/users/list",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"list"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8000/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"login"
-							]
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/users/:userId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "3"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "User Info",
-					"request": {
-						"auth": {
-							"type": "apikey"
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users"
-							]
-						}
-					},
-					"response": []
+					"name": "MODERATOR",
+					"item": []
 				},
 				{
-					"name": "Update avatar",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
+					"name": "NORMAL",
+					"item": [
+						{
+							"name": "User Register",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"juamsito@example.com\",\r\n    \"password\": \"123456789\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Login",
+							"event": [
 								{
-									"key": "avatar",
-									"type": "file",
-									"src": "/F:/1 - Bootcamp Programador Web/proyecto_final/assets/prueba.jpg"
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsondata = JSON.parse(responseBody);\r",
+											"postman.setGlobalVariable(\"dummifyToken\",jsondata.data.token)"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:8000/users/profile/avatar",
-							"protocol": "http",
-							"host": [
-								"localhost"
 							],
-							"port": "8000",
-							"path": [
-								"users",
-								"profile",
-								"avatar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Change Password",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"password\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"login"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8000/users/profile/password",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"profile",
-								"password"
-							]
+						{
+							"name": "User Info",
+							"request": {
+								"auth": {
+									"type": "apikey"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update avatar",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "/F:/1 - Bootcamp Programador Web/proyecto_final/assets/prueba.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8000/users/profile/avatar",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"profile",
+										"avatar"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change Password",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"password\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/users/profile/password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"profile",
+										"password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Change Full Name",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/users/profile/fullname",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"profile",
+										"fullname"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/users/profile",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"users",
+										"profile"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
-				},
-				{
-					"name": "Change Full Name",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/users/profile/fullname",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"users",
-								"profile",
-								"fullname"
-							]
-						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
 		{
 			"name": "POSTS",
 			"item": [
+				{
+					"name": "LIKES",
+					"item": [
+						{
+							"name": "Insert Like",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"likes"
+									],
+									"query": [
+										{
+											"key": "Authorization",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Like",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/likes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"likes"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "REPORTS",
+					"item": [
+						{
+							"name": "Insert Report",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/report",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"report"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Report",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/report",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"report"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All Reports",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/reports",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"reports"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "All post",
 					"request": {
@@ -271,93 +557,6 @@
 									"key": "",
 									"value": null,
 									"disabled": true
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Insert Like",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:8000/posts/:postId/likes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								":postId",
-								"likes"
-							],
-							"query": [
-								{
-									"key": "Authorization",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Im5vcm1hbCIsImlhdCI6MTY5NTM3MDA1OSwiZXhwIjoxNjk1NDU2NDU5fQ.dPnDo2vejbH4_lCF2aTDes1kLyRwOlyALB_fKYgBYRM",
-									"disabled": true
-								},
-								{
-									"key": "",
-									"value": null,
-									"disabled": true
-								},
-								{
-									"key": "",
-									"value": null,
-									"disabled": true
-								}
-							],
-							"variable": [
-								{
-									"key": "postId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Like",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"url": {
-							"raw": "http://localhost:8000/posts/:postId/likes",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								":postId",
-								"likes"
-							],
-							"variable": [
-								{
-									"key": "postId",
-									"value": "1"
 								}
 							]
 						}

@@ -4,15 +4,13 @@ import { authUserController } from '../middlewares/authUserController.js'
 import { deleteCommentsController } from '../controllers/comments/deleteCommentsController.js'
 import { editCommentController } from '../controllers/comments/editCommentController.js'
 import { getAllCommentsController } from '../controllers/comments/getAllCommentsController.js'
-import { newLikeController } from '../controllers/posts/newLikeController.js'
-
 
 const router = Router()
 
 // ------------------------------------------------------------------------------------------------
 //                                        RUTAS DE COMENTARIOS
 // ------------------------------------------------------------------------------------------------
-
+// #region comentarios
 // Mostramos los comentarios de un post
 
 router.get('/posts/:postId/comments', authUserController, getAllCommentsController)
@@ -32,5 +30,6 @@ router.delete('/posts/:postId/comments/:commentId', authUserController, deleteCo
 // Editar un comentario
 
 router.put('/posts/:postId/comments/:commentId', authUserController, editCommentController)
+// #endregion comentarios
 
 export default router
