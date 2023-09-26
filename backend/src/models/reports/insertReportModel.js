@@ -1,7 +1,7 @@
 import { getDb } from '../../db/getDb.js'
 import { reportAlreadyExistsError } from '../../services/errorService.js'
 
-export const insertReportModel = async (postId, userId) => {
+export const insertReportModel = async (postId, userId, commentId) => {
   let connection
   try {
     connection = await getDb()
@@ -16,8 +16,8 @@ export const insertReportModel = async (postId, userId) => {
     }
 
     await connection.query(
-      'INSERT INTO reports(id_post, id_user) VALUES (?, ?)',
-      [postId, userId]
+      'INSERT INTO reports(id_post, id_user, id_comment) VALUES (?, ?, ?)',
+      [postId, userId, commentId]
     )
   } finally {
     if (connection) connection.release()

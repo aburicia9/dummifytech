@@ -5,6 +5,7 @@ import { insertCommentsModel } from '../../models/comments/insertCommentsModel.j
 import { getDb } from '../../db/getDb.js'
 import { insertLikesModel } from '../../models/likes/insertLikesModel.js'
 import { insertDislikeModel } from '../../models/likes/insertDislikeModel.js'
+import { insertReportModel } from '../../models/reports/insertReportModel.js'
 
 async function generateUsers () {
   for (let id = 2; id < 11; id++) {
@@ -91,6 +92,30 @@ async function generateDislikesPost () {
     }
   }
 }
+async function generateReportPost () {
+  for (let id = 2; id < 51; id++) {
+    const randomCommentId = null
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    try {
+      await insertReportModel(randomPostId, randomUserId, randomCommentId)
+    } catch (error) {
+
+    }
+  }
+}
+async function generateReportComment () {
+  for (let id = 2; id < 51; id++) {
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    const randomCommentId = faker.number.int({ min: 2, max: 10 })
+    try {
+      await insertReportModel(randomPostId, randomUserId, randomCommentId)
+    } catch (error) {
+
+    }
+  }
+}
 
 const generateData = async () => {
   try {
@@ -100,6 +125,8 @@ const generateData = async () => {
     await generateCommentsToComments()
     await generateLikesPost()
     await generateDislikesPost()
+    await generateReportPost()
+    await generateReportComment()
   } catch (error) {
     console.log(error)
   } finally {
