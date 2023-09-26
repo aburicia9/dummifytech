@@ -27,7 +27,7 @@ async function generatePosts () {
     const randomTitle = faker.lorem.words({ min: 3, max: 7 })
     const randomPost = faker.lorem.text()
     const randomImage = faker.image.url()
-    const randomCategoryId = faker.number.int({ min: 1, max: 10 })
+    const randomCategoryId = faker.number.int({ min: 7, max: 18 })
     const randomUserId = faker.number.int({ min: 1, max: 10 })
     await insertPostModel(randomTitle, randomPost, randomImage, randomCategoryId, randomUserId)
   }
