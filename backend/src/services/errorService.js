@@ -19,6 +19,13 @@ export function invalidCredentialsError () {
     message: 'Credenciales inválidas'
   }
 }
+export function invalidPasswordComparation () {
+  throw {
+    httpStatus: 401, // Unauthorized
+    code: 'INVALID_CREDENTIALS',
+    message: 'Las contraseñas no coinciden'
+  }
+}
 export function invalidTokenError () {
   throw {
     httpStatus: 401, // Unauthorized

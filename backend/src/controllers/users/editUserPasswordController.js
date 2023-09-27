@@ -1,21 +1,36 @@
 import { updateUserPasswordModel } from '../../models/users/updateUserPasswordModel.js'
-import { selectUserByIdModel } from '../../models/users/selectUserByIdModel.js'
 import { validateSchema } from '../../schemas/validateSchema.js'
 import { editUserPasswordSchema } from '../../schemas/users/editUserPasswordSchema.js'
 import { fromZodError } from 'zod-validation-error'
+import { invalidCredentialsError, invalidPasswordComparation } from '../../services/errorService.js'
+import bcrypt from 'bcrypt'
+import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js'
+import { selectUserByIdModel } from '../../models/users/selectUserByIdModel.js'
 
 export const editUserPasswordController = async (req, res, next) => {
   try {
-    const user = await selectUserByIdModel(req.user.id)
+    const userId = await selectUserByIdModel(req.user.id)
 
-    const { password } = req.body
+    const userEmail = await selectUserByEmailModel(userId.email)
 
-    const result = await validateSchema(editUserPasswordSchema, req.body)
+    const { oldPassword, newPassword, comparePassword } = req.body
+    const validPass = await bcrypt.compare(oldPassword, userEmail.password)
 
+    if (!validPass) {
+      invalidCredentialsError()
+    }
+
+    if (newPassword !== comparePassword) {
+      invalidPasswordComparation()
+    }
+    const password = { password: newPassword }
+
+    const result = await validateSchema(editUserPasswordSchema, password)
     if (!result.success) {
       throw fromZodError(result.error)
     }
-    await updateUserPasswordModel(password, user)
+
+    await updateUserPasswordModel(newPassword, userId.id)
 
     res.send({
       status: 'ok',
