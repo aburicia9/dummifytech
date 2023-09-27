@@ -1,7 +1,7 @@
 export const validateSchema = async (schema, data) => {
   try {
     const result = await schema.safeParseAsync(data)
-
+    console.log(result)
     return result
 
     // console.log(result)
