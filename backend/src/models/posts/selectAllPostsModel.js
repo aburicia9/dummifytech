@@ -3,7 +3,7 @@ import { getDb } from '../../db/getDb.js'
 
 // Funcion que crea la conexion con la base de datos.
 
-export const selectAllPostsModel = async (userId) => {
+export const selectAllPostsModel = async (keyword = '', userId) => {
   let connection
   try {
     connection = await getDb()
@@ -13,7 +13,8 @@ export const selectAllPostsModel = async (userId) => {
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
       INNER JOIN categories c on c.id = p.id_category
-    `)
+      WHERE p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ? OR c.name LIKE ?
+    `, [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
     for (const post of posts) {
       const [[{ countLikes }]] = await connection.query(`
       SELECT COUNT(id) AS countLikes
