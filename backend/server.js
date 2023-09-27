@@ -24,6 +24,7 @@ const app = express()
 
 // Middleware que indica a Express cual es el directorio de ficheros estáticos.
 app.use(express.static(UPLOADS_DIR))
+app.use(express.static('./public'))
 
 // Middleware para hacer que el back entienda el form-data (subir archivos)
 app.use(fileUpload())

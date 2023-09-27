@@ -8,7 +8,7 @@ export const selectUserByEmailModel = async (email) => {
     connection = await getDb()
 
     const [users] = await connection.query(
-      'SELECT id, password, role FROM users WHERE email =?',
+      'SELECT id, password, role, verification_code, status FROM users WHERE email =?',
       [email]
     )
     if (users.length < 1) {

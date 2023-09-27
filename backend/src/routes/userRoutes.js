@@ -10,6 +10,7 @@ import { editUserFullNameController } from '../controllers/users/editUserFullNam
 import { getAllUserController } from '../controllers/users/getAllUserController.js'
 import { adminController } from '../middlewares/adminController.js'
 import { deleteUserController } from '../controllers/users/deleteUserController.js'
+import { getUserVerificationController } from '../controllers/users/getUserVerificationController.js'
 
 const router = Router()
 
@@ -19,6 +20,9 @@ const router = Router()
 // #region usuario
 // Creamos la ruta. (endpoint)
 router.post('/register', newUserController)
+
+// Creamos la ruta para confirmar usuario
+router.get('/confirm/:token', getUserVerificationController)
 
 // Login de usuario
 router.post('/login', loginUserController)

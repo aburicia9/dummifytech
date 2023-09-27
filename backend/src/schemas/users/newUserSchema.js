@@ -6,7 +6,8 @@ export const newUserSchema = z.object({
   username: z.string({
     invalid_type_error: 'El nombre de usuario tiene que ser un texto',
     required_error: 'El nombre de usuario es requerido'
-  }).min(3, 'El nombre de usuario tiene que tener minimo 3 caracteres')
+  })
+    .min(3, 'El nombre de usuario tiene que tener minimo 3 caracteres')
     .max(30, 'Has superado el limite de caracteres(30)'),
 
   email: z.string({
@@ -28,6 +29,7 @@ export const newUserSchema = z.object({
   fullName: z.string({
     invalid_type_error: 'El nombre completo tiene que ser un texto',
     required_error: 'El nombre completo es requerido'
-  }).min(3, 'El nombre completo tiene que tener minimo 3 caracteres')
+  })
+    .min(3, 'El nombre completo tiene que tener minimo 3 caracteres')
     .max(255, 'Has superado el limite de caracteres(255)')
 })

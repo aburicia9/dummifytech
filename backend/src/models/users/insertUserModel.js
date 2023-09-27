@@ -8,7 +8,7 @@ import { getDb } from '../../db/getDb.js'
 import { emailAlreadyRegisteredError, userAlreadyRegisteredError } from '../../services/errorService.js'
 
 // Función que se conectará a la base de datos y creará un usuario.
-export const insertUserModel = async (username, email, password, fullName) => {
+export const insertUserModel = async (username, email, password, fullName, verificationCode = '') => {
   let connection
 
   try {
@@ -41,8 +41,8 @@ export const insertUserModel = async (username, email, password, fullName) => {
 
     // Creamos el usuario.
     await connection.query(
-      'INSERT INTO users(username, email, password, full_name) VALUES(?, ?, ?, ?)',
-      [username, email, hashedPass, fullName]
+      'INSERT INTO users(username, email, password, full_name, verification_code) VALUES(?, ?, ?, ?,?)',
+      [username, email, hashedPass, fullName, verificationCode]
     )
   } finally {
     if (connection) connection.release()

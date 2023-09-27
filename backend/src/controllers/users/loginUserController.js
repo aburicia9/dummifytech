@@ -1,6 +1,6 @@
 import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js'
 import bcrypt from 'bcrypt'
-import { invalidCredentialsError } from '../../services/errorService.js'
+import { invalidCredentialsError, userNotVerificationError } from '../../services/errorService.js'
 import jwt from 'jsonwebtoken'
 import { loginUserSchema } from '../../schemas/users/loginUserSchema.js'
 import { validateSchema } from '../../schemas/validateSchema.js'
@@ -18,6 +18,9 @@ export const loginUserController = async (req, res, next) => {
     }
 
     const user = await selectUserByEmailModel(email)
+    if (user.status === 0) {
+      userNotVerificationError()
+    }
 
     const validPass = await bcrypt.compare(password, user.password)
 
