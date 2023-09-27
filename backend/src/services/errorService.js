@@ -89,3 +89,11 @@ export function userAlreadyRegisteredError () {
     message: 'El nombre de usuario ya está registrado'
   }
 }
+
+export function userNotVerificationError () {
+  throw {
+    httpStatus: 409, // Conflict
+    code: 'USER_NOT_VERIFICATION',
+    message: 'El usuario no ha verificado la cuenta'
+  }
+}

@@ -7,31 +7,36 @@ import { insertLikesModel } from '../../models/likes/insertLikesModel.js'
 import { insertDislikeModel } from '../../models/likes/insertDislikeModel.js'
 import { insertReportModel } from '../../models/reports/insertReportModel.js'
 
+console.log('CREANDO USUARIOS')
+
 async function generateUsers () {
-  for (let id = 2; id < 11; id++) {
+  for (let id = 4; id < 11; id++) {
     const randomFirstName = faker.person.firstName()
     const randomeLastName = faker.person.lastName()
     const randomFullName = `${randomFirstName} ${randomeLastName}`
     const randomEmail = faker.internet.email({ randomFirstName, randomeLastName })
-    let randomUsername = faker.internet.userName({ randomFirstName })
-    if (randomUsername > 30) {
-      randomUsername = randomUsername.slice(0, 30)
-    }
+    const randomUsername = faker.internet.userName({ randomFirstName })
+    const randomUsernameSlice = randomUsername.slice(0, 30)
     const randomPassword = 'pruebas'
-    await insertUserModel(randomUsername, randomEmail, randomPassword, randomFullName)
+    const randomVerificationCode = faker.string.alphanumeric({ length: { min: 100, max: 255 } })
+    await insertUserModel(randomUsernameSlice, randomEmail, randomPassword, randomFullName, randomVerificationCode)
   }
 }
+
+console.log('CREANDO POSTS')
 
 async function generatePosts () {
   for (let id = 2; id < 11; id++) {
     const randomTitle = faker.lorem.words({ min: 3, max: 7 })
     const randomPost = faker.lorem.text()
     const randomImage = faker.image.url()
-    const randomCategoryId = faker.number.int({ min: 7, max: 18 })
+    const randomCategoryId = faker.number.int({ min: 7, max: 17 })
     const randomUserId = faker.number.int({ min: 1, max: 10 })
-    await insertPostModel(randomTitle, randomPost, randomImage, randomCategoryId, randomUserId)
+    await insertPostModel(randomTitle, randomPost, randomImage, randomUserId, randomCategoryId)
   }
 }
+
+console.log('CREANDO COMENTARIOS')
 
 async function generateComments () {
   for (let id = 2; id < 51; id++) {
@@ -42,6 +47,8 @@ async function generateComments () {
     await insertCommentsModel(commentId, randomComment, randomUserId, randomPostId)
   }
 }
+
+console.log('CREANDO RESPUESTA AL COMENTARIO')
 
 async function generateCommentsToComments () {
   async function selectPostToComment () {
@@ -69,6 +76,8 @@ async function generateCommentsToComments () {
   await Promise.all(promises)
 }
 
+console.log('CREANDO LIKES')
+
 async function generateLikesPost () {
   for (let id = 2; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
@@ -81,6 +90,8 @@ async function generateLikesPost () {
   }
 }
 
+console.log('CREANDO DISLIKE')
+
 async function generateDislikesPost () {
   for (let id = 2; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
@@ -92,6 +103,9 @@ async function generateDislikesPost () {
     }
   }
 }
+
+console.log('CREANDO REPORTES AL POST')
+
 async function generateReportPost () {
   for (let id = 2; id < 51; id++) {
     const randomCommentId = null
@@ -104,6 +118,9 @@ async function generateReportPost () {
     }
   }
 }
+
+console.log('CREANDO REPORTES AL COMENTARIO')
+
 async function generateReportComment () {
   for (let id = 2; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })

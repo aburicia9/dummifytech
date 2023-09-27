@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "55c4648b-0ca4-4219-a8d4-6fb1b1548d60",
+		"_postman_id": "397f223e-49d1-4441-84f6-b1667385b3cd",
 		"name": "Dummifytech",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28992963"
+		"_exporter_id": "27953436"
 	},
 	"item": [
 		{
@@ -24,15 +24,14 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8000/users/list",
+									"raw": "http://localhost:8000/users",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"users",
-										"list"
+										"users"
 									]
 								}
 							},
@@ -63,8 +62,48 @@
 									"variable": [
 										{
 											"key": "userId",
-											"value": "3"
+											"value": "4"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "User Admin Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsondata = JSON.parse(responseBody);\r",
+											"postman.setGlobalVariable(\"dummifyToken\",jsondata.data.token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"admin@admin.com\",\r\n    \"password\":\"prueba\"    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"login"
 									]
 								}
 							},
@@ -74,7 +113,48 @@
 				},
 				{
 					"name": "MODERATOR",
-					"item": []
+					"item": [
+						{
+							"name": "User Moderator Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const jsondata = JSON.parse(responseBody);\r",
+											"postman.setGlobalVariable(\"dummifyToken\",jsondata.data.token)"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"moderator@moderator.com\",\r\n    \"password\":\"prueba\"    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
 					"name": "NORMAL",
@@ -86,7 +166,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"juamsito@example.com\",\r\n    \"password\": \"123456789\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"juamsito@example.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" ,\r\n    \"verificationCode\": \"2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -162,14 +242,15 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8000/users",
+									"raw": "http://localhost:8000/users/profile",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"users"
+										"users",
+										"profile"
 									]
 								}
 							},
@@ -192,7 +273,7 @@
 										{
 											"key": "avatar",
 											"type": "file",
-											"src": "/F:/1 - Bootcamp Programador Web/proyecto_final/assets/prueba.jpg"
+											"src": "/F:/1 - Bootcamp Programador Web/proyecto_final/dummifytech/backend/documents/DummifyTech/83ed86a6d0815b1605c68ef94e420c97.jpg"
 										}
 									]
 								},
@@ -225,7 +306,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"password\": \"\"\r\n}",
+									"raw": "{\r\n    \"oldPassword\": \"prueba\",\r\n    \"newPassword\": \"ABCabc123!\",\r\n    \"comparePassword\":\"ABCabc123\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -259,6 +340,15 @@
 										"type": "text"
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fullName\": \"Dani torres\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
 									"raw": "http://localhost:8000/users/profile/fullname",
 									"protocol": "http",
@@ -358,7 +448,7 @@
 									"variable": [
 										{
 											"key": "postId",
-											"value": "1"
+											"value": "5"
 										}
 									]
 								}
@@ -497,6 +587,77 @@
 					]
 				},
 				{
+					"name": "DISLIKES",
+					"item": [
+						{
+							"name": "Insert Dislike",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/dislikes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"dislikes"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Dislike",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/dislikes",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"dislikes"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "All post",
 					"request": {
 						"method": "GET",
@@ -599,7 +760,7 @@
 							"variable": [
 								{
 									"key": "postId",
-									"value": "1"
+									"value": "11"
 								}
 							]
 						}
@@ -747,7 +908,7 @@
 								},
 								{
 									"key": "commentId",
-									"value": "2"
+									"value": "101"
 								}
 							]
 						}
@@ -912,7 +1073,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n    \"id\": 17\r\n}",
+							"raw": "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n    \"id\": 19\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

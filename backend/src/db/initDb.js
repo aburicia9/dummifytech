@@ -29,6 +29,8 @@ export const main = async () => {
         password VARCHAR(100) NOT NULL,
         role ENUM('admin', 'moderator', 'normal') DEFAULT 'normal',
         avatar VARCHAR(255) DEFAULT 'defaultAvatarProfile.jpg',
+        verification_code VARCHAR(255) NOT NULL,
+        status BOOLEAN DEFAULT FALSE,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP
       )
@@ -136,8 +138,24 @@ export const main = async () => {
 
     await connection.query(`
       INSERT INTO users
-      (full_name, email, username, password)
-      VALUES('prueba', 'prueba@prueba.com', 'prueba', '$2b$10$hnxCfAN7Ju5hhLMztg118e52tYZsaos9iSQr1Vhv41QwKe2fZE4xe');
+      (full_name, email, username, password, verification_code, status)
+      VALUES('prueba', 'prueba@prueba.com', 'prueba', '$2b$10$hnxCfAN7Ju5hhLMztg118e52tYZsaos9iSQr1Vhv41QwKe2fZE4xe', "1","1");
+    `)
+    console.log('¡Usuario creado! 😉✅')
+    console.log('Creando usuario en USUARIOS...')
+
+    await connection.query(`
+      INSERT INTO users
+      (full_name, email, username, password, verification_code,role,status)
+      VALUES('admin', 'admin@admin.com', 'admin', '$2b$10$hnxCfAN7Ju5hhLMztg118e52tYZsaos9iSQr1Vhv41QwKe2fZE4xe', "1", "admin","1");
+    `)
+    console.log('¡Usuario creado! 😉✅')
+    console.log('Creando usuario en USUARIOS...')
+
+    await connection.query(`
+      INSERT INTO users
+      (full_name, email, username, password, verification_code,role,status)
+      VALUES('moderator', 'moderator@moderator.com', 'moderator', '$2b$10$hnxCfAN7Ju5hhLMztg118e52tYZsaos9iSQr1Vhv41QwKe2fZE4xe', "1","moderator","1");
     `)
     console.log('¡Usuario creado! 😉✅')
 

@@ -6,6 +6,9 @@ import { insertUserModel } from '../../models/users/insertUserModel.js'
 import { newUserSchema } from '../../schemas/users/newUserSchema.js'
 // Importamos la funcion que va a validar los esquemas
 import { validateSchema } from '../../schemas/validateSchema.js'
+import { randomUUID } from 'crypto'
+import jwt from 'jsonwebtoken'
+import { getTemplate, sendEmail } from '../../utils/email/configEmail.js'
 
 // Funcion controladora final que inserta un nuevo usuario.
 export const newUserController = async (req, res, next) => {
@@ -21,7 +24,24 @@ export const newUserController = async (req, res, next) => {
       throw fromZodError(result.error)
     }
 
-    await insertUserModel(username, email, password, fullName)
+    // Generamos un codigo
+    const code = randomUUID()
+
+    // Creamos un token  para verificar si el usuario ha verificado el correo
+    const tokenInfo = {
+      email,
+      code
+    }
+    // Generamos el token temporal para la verificacion
+    const token = jwt.sign(tokenInfo, process.env.SECRET, { expiresIn: '30m' })
+
+    // Obtenemos el template
+    const template = getTemplate(username, token)
+
+    // Enviamos el correo
+    await sendEmail(email, 'Este es un email de prueba', template)
+
+    await insertUserModel(username, email, password, fullName, code)
 
     res.send({
       status: 'ok',
@@ -31,3 +51,4 @@ export const newUserController = async (req, res, next) => {
     next(error)
   }
 }
+
