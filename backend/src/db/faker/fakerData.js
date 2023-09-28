@@ -19,7 +19,8 @@ async function generateUsers () {
     const randomUsernameSlice = randomUsername.slice(0, 30)
     const randomPassword = 'pruebas'
     const randomVerificationCode = faker.string.alphanumeric({ length: { min: 100, max: 255 } })
-    await insertUserModel(randomUsernameSlice, randomEmail, randomPassword, randomFullName, randomVerificationCode)
+    const status = 1
+    await insertUserModel(randomUsernameSlice, randomEmail, randomPassword, randomFullName, randomVerificationCode, status)
   }
 }
 
