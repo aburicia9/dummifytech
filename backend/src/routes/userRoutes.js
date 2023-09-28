@@ -11,6 +11,7 @@ import { getAllUserController } from '../controllers/users/getAllUserController.
 import { adminController } from '../middlewares/adminController.js'
 import { deleteUserController } from '../controllers/users/deleteUserController.js'
 import { getUserVerificationController } from '../controllers/users/getUserVerificationController.js'
+import { editUserRoleController } from '../controllers/users/editUserRoleController.js'
 
 const router = Router()
 
@@ -48,6 +49,9 @@ router.delete('/users/profile', authUserController, deleteUserController)
 // #region admin
 // Lista de usuarios
 router.get('/users', authUserController, adminController, getAllUserController)
+
+// Editar rol
+router.put('/users/:userId', authUserController, adminController, editUserRoleController)
 
 // Eliminar usuario (admin)
 router.delete('/users/:userId', authUserController, adminController, deleteUserController)
