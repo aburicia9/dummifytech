@@ -100,47 +100,47 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 # Endpoints
 
-# Usuario no registrado.
+## Usuario no registrado.
 
 -   GET `/` - Visualizar post sin usuario registrado, solo un post aleatorio
 -   POST `/register` - Registro de usuario.
 -   GET `/confirm/:token` - Confirmación del usuario
 
-#  Usuario registrado rol normal.
+##  Usuario registrado rol normal.
 
 -   POST `/login` - Login de usuario (devuelve token).
-  ### Perfil
+  #### Perfil
 -   GET `/users/profile` - Perfil de usuario
 -   PUT `/users/profile/avatar` - Editar el avatar.
 -   PUT `/users/profile/password` - Editar la contraseña.
 -   PUT `/users/profile/fullname` - Editar el nombre completo.
 -   DELETE `users/profile` - Borrar tu usuario
-  ### Posts
+  #### Posts
 -   GET `/posts` - Visualizar posts con usuario registrado
 -   GET `/posts/myposts` - Visualizar mis posts.
 -   POST `/posts/insert` - Insertar un post
 -   DELETE `/posts/:postId` - Borrar un propio post.
 -   PUT `/posts/:postId` - Editar un propio post.
-  ### Categorias
+  #### Categorias
 -   GET `/categories` - Visualizar categorias
-  ### Reports
+  #### Reports
 -   POST `/posts/:postId/report` Reportar un post.
 -   DELETE `/posts/:postId/report` Borrar nuestro propio report.
-  ### Comentarios
+  #### Comentarios
 -   GET `/posts/:postId/comments` - Visualizar comentarios de un post.
 -   POST `/posts/:postId/comments` -Crear comentario
 -   POST `/posts/:postId/comments/:commentId`-Crear respuesta a un comentario.
 -   DELETE `/posts/:postId/comments/:commentId` - Borrar un comentario propio.
 -   PUT `/posts/:postId/comments/:commentId` - Editar un comentario propio.
-  ### Likes
+  #### Likes
 -   POST `/posts/:postId/likes` - Dar like a un post
 -   DELETE `/posts/:postId/likes` - Quitar un like propio a un post
-  ### Dislikes
+  #### Dislikes
 -   POST `/posts/:postId/dislikes` - Dar dislike a un post
 -   DELETE `/posts/:postId/dislikes` - Quitar un dislike propio a un post
 
 
-# Usuario registrado rol moderador.
+## Usuario registrado rol moderador.
 
      Las mismas que el rol normal, y añadimos:
 -   PUT `/categories/:categoryId` -Editar la categoría.
@@ -148,7 +148,7 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 -   DELETE `/categories/:categoryId` - Borrar categoría.
 -   GET `/reports` - Visualizar los reports a un post o comentario.
 
-# Usuario registrado rol admin
+## Usuario registrado rol admin
 
     Las mismas que el rol normal y moderador y añadimos:
 
