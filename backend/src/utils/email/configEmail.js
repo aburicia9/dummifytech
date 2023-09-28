@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-export const sendEmail = async (email, subject, html) => {
+export const sendEmailVerificationNewUser = async (email, subject, html) => {
   try {
     await transporter.sendMail({
       from: `INFO DummifyTech <${mail.user}>`, // sender address
@@ -33,7 +33,7 @@ export const sendEmail = async (email, subject, html) => {
   }
 }
 
-export const getTemplate = (name, token) => {
+export const getTemplateVerificationNewUser = (name, token) => {
   return (
     `
       <head>

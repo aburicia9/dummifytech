@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { notAuthenticatedError, notFoundError } from '../../services/errorService.js'
+import { notAuthenticatedError, notFoundError, unauthorizedUserError } from '../../services/errorService.js'
 import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js'
 import { updateUserVerificationModel } from '../../models/users/updateUserVerificationModel.js'
 import { sendVerificationEmail } from '../../utils/email/sendVerificationEmail.js'
@@ -46,7 +46,7 @@ export const getUserVerificationController = async (req, res, next) => {
 
     // Verificar el codigo de verificacion
     if (code !== user.verification_code) {
-      return res.redirect('../../utils/email/templateErrorEmail.html')
+      unauthorizedUserError()
     }
     // Actualizar usuario
     await updateUserVerificationModel(email, code)
@@ -59,5 +59,6 @@ export const getUserVerificationController = async (req, res, next) => {
     })
   } catch (error) {
     console.log(error)
+    next(error)
   }
 }
