@@ -1,5 +1,8 @@
 import { getDb } from '../../db/getDb.js'
 import { likeAlreadyExistsError } from '../../services/errorService.js'
+import { deleteDislikeModel } from './deleteDislikeModel.js'
+import { getDislikeModel } from './getDislikeModel.js'
+import { getLikeModel } from './getLikeModel.js'
 
 // Funcion donde se dan likes
 export const insertLikesModel = async (postId, userId) => {
@@ -7,13 +10,16 @@ export const insertLikesModel = async (postId, userId) => {
   try {
     connection = await getDb()
 
-    const [likes] = await connection.query(
-      'SELECT id FROM likes WHERE id_post = ? AND id_user = ?',
-      [postId, userId]
-    )
+    const likes = await getLikeModel(postId, userId)
 
     if (likes.length > 0) {
       likeAlreadyExistsError()
+    }
+
+    const dislikes = await getDislikeModel(postId, userId)
+
+    if (dislikes.length > 0) {
+      deleteDislikeModel(postId, userId)
     }
 
     await connection.query(
