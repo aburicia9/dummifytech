@@ -2,27 +2,36 @@ import jwt from 'jsonwebtoken'
 import { notAuthenticatedError, notFoundError } from '../../services/errorService.js'
 import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js'
 import { updateUserVerificationModel } from '../../models/users/updateUserVerificationModel.js'
+import { sendVerificationEmail } from '../../utils/email/sendVerificationEmail.js'
 
 export const getUserVerificationController = async (req, res, next) => {
   try {
     // Obtener el token
     const { token } = req.params
-    let data
 
-    jwt.verify(token, process.env.SECRET, (error, data) => {
-      if (error) {
-        error = {
-          name: 'TokenExpiredError',
-          message: 'jwt expired',
-          expiredAt: 1408621000
-        }
-        return error
+    try {
+      const decoded = jwt.decode(token)
+      const expireToken = decoded.exp * 1000
+      const timeNow = new Date().getTime()
+      console.log(timeNow > expireToken)
+
+      if (timeNow > expireToken) {
+        sendVerificationEmail(decoded.email, decoded.username, decoded.code)
+        res.send({
+          status: 'ok',
+          message: 'Correo de verificacion enviado de nuevo'
+        })
       }
-      console.log(data)
-      return data
-    })
+    } catch (error) {
+      res.send({
+        status: 'Error',
+        message: `Algo salio mal: ${error}`
+      })
+    }
 
+    const data = jwt.verify(token, process.env.SECRET)
     // Verificar los datos
+
     if (!data) {
       notAuthenticatedError()
     }
