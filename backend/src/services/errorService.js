@@ -92,7 +92,7 @@ export function userAlreadyRegisteredError () {
 
 export function userNotVerificationError () {
   throw {
-    httpStatus: 409, // Conflict
+    httpStatus: 403, // Conflict
     code: 'USER_NOT_VERIFICATION',
     message: 'El usuario no ha verificado la cuenta'
   }

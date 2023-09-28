@@ -24,7 +24,6 @@ const app = express()
 
 // Middleware que indica a Express cual es el directorio de ficheros estáticos.
 app.use(express.static(UPLOADS_DIR))
-app.use(express.static('./public'))
 
 // Middleware para hacer que el back entienda el form-data (subir archivos)
 app.use(fileUpload())
@@ -37,14 +36,6 @@ app.use(express.json())
 
 // Usamos app para que nuestro servidor utilice cors
 app.use(cors())
-
-// Uso
-// app.get('/', (req, res) => {
-//   res.send({
-//     status: 'ok',
-//     message: 'Welcome'
-//   })
-// })
 
 // Importamos el controlador para indicar a express donde se encuentran las rutas.
 app.use(routes)
