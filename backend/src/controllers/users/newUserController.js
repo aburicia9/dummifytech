@@ -15,7 +15,6 @@ export const newUserController = async (req, res, next) => {
   try {
     // Importamos los datos al body
     const { username, email, password, fullName } = req.body
-    // console.log(req.body)
 
     // Validamos los datos con zod
     const result = await validateSchema(newUserSchema, req.body)
@@ -33,13 +32,12 @@ export const newUserController = async (req, res, next) => {
       code
     }
     // Generamos el token temporal para la verificacion
-    const token = jwt.sign(tokenInfo, process.env.SECRET, { expiresIn: '30m' })
-
+    const token = jwt.sign(tokenInfo, process.env.SECRET, { expiresIn: '10s' })
     // Obtenemos el template
     const template = getTemplate(username, token)
 
     // Enviamos el correo
-    await sendEmail(email, 'Este es un email de prueba', template)
+    await sendEmail(email, 'Correo de verificacion de usuario', template)
 
     await insertUserModel(username, email, password, fullName, code)
 
@@ -51,4 +49,3 @@ export const newUserController = async (req, res, next) => {
     next(error)
   }
 }
-

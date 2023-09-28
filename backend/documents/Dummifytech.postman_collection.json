@@ -166,7 +166,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"juamsito@example.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" ,\r\n    \"verificationCode\": \"2\"\r\n}",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"joyawo8786@bnovel.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -386,6 +386,32 @@
 									"path": [
 										"users",
 										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Verification User",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/confirm/:token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"confirm",
+										":token"
+									],
+									"variable": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYmVwNzI3NTdAYm5vdmVsLmNvbSIsImNvZGUiOiI2MTg0MTliZC1jYmQ1LTQ4YjQtODcxYS0zOTAzYTIyMzljYmEiLCJpYXQiOjE2OTU4MzkzMjgsImV4cCI6MTY5NTg0MTEyOH0.GJZt_tNr-pzAoR5jL-DoSCTOfcUOYlzKcsgutjLYuMc"
+										}
 									]
 								}
 							},
