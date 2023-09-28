@@ -2,6 +2,7 @@ import { getDb } from '../../db/getDb.js'
 import { notFoundError, unauthorizedUserError } from '../../services/errorService.js'
 import { UPLOADS_DIRS } from '../../utils/constants.js'
 import { deletePhoto } from '../../utils/deletePhoto.js'
+import { selectUserByIdModel } from '../users/selectUserByIdModel.js'
 
 // Funcion modelo para eliminar posts.
 export const deletePostModel = async (postId, userId) => {
@@ -17,8 +18,9 @@ export const deletePostModel = async (postId, userId) => {
     if (posts.length < 1) {
       notFoundError('post')
     }
+    const user = await selectUserByIdModel(userId)
 
-    if (posts[0].id_user !== userId) {
+    if (posts[0].id_user !== userId && user.role === 'normal') {
       unauthorizedUserError()
     }
 
