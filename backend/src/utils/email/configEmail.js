@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer'
+
 export const mail = {
   user: 'infodummifytech@gmail.com',
   pass: 'fxcv bzgv bzjd mhet'
@@ -28,7 +29,7 @@ export const sendEmail = async (email, subject, html) => {
     })
     return ''
   } catch (error) {
-    console.log('Algo no va bien con el email' + error)
+    console.log('Algo no va bien con el email ' + error)
   }
 }
 

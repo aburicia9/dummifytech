@@ -2,7 +2,7 @@ import { getDb } from '../../db/getDb.js'
 
 export const updateUserVerificationModel = async (email, verificationCode) => {
   let connection
-  //   console.log(userId.id)
+
   try {
     connection = await getDb()
 

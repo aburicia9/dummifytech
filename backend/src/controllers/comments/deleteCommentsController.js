@@ -3,7 +3,7 @@ import { deleteCommentModel } from '../../models/comments/deleteCommentModel.js'
 export const deleteCommentsController = async (req, res, next) => {
   try {
     const { commentId } = req.params
-    console.log(req.params)
+
     await deleteCommentModel(commentId, req.user.id)
 
     res.send({

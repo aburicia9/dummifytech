@@ -3,7 +3,7 @@ import { notFoundError, unauthorizedUserError } from '../../services/errorServic
 
 export const updatePostModel = async (postId, post, title, userId, imgName) => {
   let connection
-  // console.log(postId, post, title, userId, imgName)
+
   try {
     connection = await getDb()
     const [posts] = await connection.query(`
