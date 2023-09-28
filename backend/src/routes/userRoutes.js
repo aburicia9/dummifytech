@@ -12,6 +12,7 @@ import { adminController } from '../middlewares/adminController.js'
 import { deleteUserController } from '../controllers/users/deleteUserController.js'
 import { getUserVerificationController } from '../controllers/users/getUserVerificationController.js'
 import { editUserRoleController } from '../controllers/users/editUserRoleController.js'
+import { deleteMyUserController } from '../controllers/users/deleteMyUserController.js'
 
 const router = Router()
 
@@ -41,7 +42,7 @@ router.put('/users/profile/avatar', authUserController, editAvatarController)
 router.put('/users/profile/fullname', authUserController, editUserFullNameController)
 
 // Eliminar usuario(normal)
-router.delete('/users/profile', authUserController, deleteUserController)
+router.delete('/users/profile', authUserController, deleteMyUserController)
 // #endregion usuario
 // ------------------------------------------------------------------------------------------------
 //                                        RUTAS DE ADMIN

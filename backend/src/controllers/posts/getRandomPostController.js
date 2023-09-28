@@ -9,6 +9,7 @@ export const getRandomPostController = async (req, res, next) => {
       data: post
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -19,6 +19,7 @@ export const editCommentController = async (req, res, next) => {
       message: '¡Comentario editado!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

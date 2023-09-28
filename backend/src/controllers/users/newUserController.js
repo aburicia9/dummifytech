@@ -33,6 +33,7 @@ export const newUserController = async (req, res, next) => {
       message: 'Usuario creado ✅'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

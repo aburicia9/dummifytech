@@ -17,6 +17,7 @@ export const newCategoriesController = async (req, res, next) => {
       message: 'Categoria creada!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -11,6 +11,7 @@ export const deleteCategoryController = async (req, res, next) => {
       message: '¡Categoria borrada!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -30,9 +30,6 @@ export const deletePostModel = async (postId, userId) => {
       await deletePhoto(imageName[0].image, UPLOADS_DIRS.POST)
     }
 
-    // await connection.query('DELETE FROM likes WHERE id_post = ?',
-    //   [postId])
-
     await connection.query('DELETE FROM posts WHERE id = ?', [postId])
   } finally {
     if (connection) connection.release()

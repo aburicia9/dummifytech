@@ -17,6 +17,7 @@ export const authUserController = async (req, res, next) => {
       invalidTokenError()
     }
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -23,6 +23,7 @@ export const editUserFullNameController = async (req, res, next) => {
       message: 'Nombre completo actualizado'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

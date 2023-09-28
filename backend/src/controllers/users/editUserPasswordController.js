@@ -37,6 +37,7 @@ export const editUserPasswordController = async (req, res, next) => {
       message: 'Contraseña actualizada'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -13,6 +13,7 @@ export const newLikeController = async (req, res, next) => {
       message: 'LIKE'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

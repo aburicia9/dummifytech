@@ -12,6 +12,7 @@ export const newReportController = async (req, res, next) => {
       message: 'REPORTADO'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -11,6 +11,7 @@ export const newDislikeController = async (req, res, next) => {
       message: 'DISLIKE'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

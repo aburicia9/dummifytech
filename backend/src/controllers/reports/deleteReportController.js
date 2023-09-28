@@ -11,6 +11,7 @@ export const deleteReportController = async (req, res, next) => {
       message: 'REPORTE OFF'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

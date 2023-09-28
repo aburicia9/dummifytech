@@ -34,6 +34,7 @@ export const editAvatarController = async (req, res, next) => {
       message: 'Usuario actualizado'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

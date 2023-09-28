@@ -9,6 +9,7 @@ export const editCategoryController = async (req, res, next) => {
       message: 'categoria actualizada!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

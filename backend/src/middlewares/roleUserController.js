@@ -8,6 +8,7 @@ export const roleUserController = async (req, res, next) => {
     }
     unauthorizedUserError()
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

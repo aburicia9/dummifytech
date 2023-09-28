@@ -68,7 +68,7 @@ export const sendDeleteConfig = async (email, subject, html) => {
   }
 }
 
-export const getTemplateDeleteConfig = (name, type) => {
+export const getTemplateDeleteConfig = (username, type, contextEmail) => {
   return (
     `
       <head>
@@ -77,8 +77,8 @@ export const getTemplateDeleteConfig = (name, type) => {
   
       <div id="email___content">
         <img src="https://i.imgur.com/Gv19LWw.jpg" alt="" width="100px" height="100px">
-        <h2>Hola ${name}</h2>
-        <p>Tu ${type} ha sido eliminada de DummifyTech</p>
+        <h2>Hola ${username}</h2>
+        <p>Tu <strong>${type}</strong> con <strong>"${contextEmail}"</strong> ha sido eliminad@ de DummifyTech</p>
         <p>Motivos disciplinarios</p>
       </div> 
     `

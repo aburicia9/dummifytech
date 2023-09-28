@@ -31,6 +31,7 @@ export const newPostController = async (req, res, next) => {
       message: '¡Publicación Creada!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

@@ -12,6 +12,7 @@ export const deleteLikeController = async (req, res, next) => {
       message: 'UNLIKE'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

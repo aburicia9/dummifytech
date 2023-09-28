@@ -12,6 +12,7 @@ export const editUserRoleController = async (req, res, next) => {
       message: 'rol updated'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

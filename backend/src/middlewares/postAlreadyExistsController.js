@@ -20,6 +20,7 @@ export const postAlreadyExistsController = async (req, res, next) => {
 
     next()
   } catch (error) {
+    console.error(error)
     next(error)
   } finally {
     if (connection) connection.release()

@@ -11,6 +11,7 @@ export const deleteDislikeController = async (req, res, next) => {
       message: 'DISLIKE OFF'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

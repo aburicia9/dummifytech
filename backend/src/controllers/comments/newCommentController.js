@@ -23,6 +23,7 @@ export const newCommentController = async (req, res, next) => {
       message: '¡Comentario Creado!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }

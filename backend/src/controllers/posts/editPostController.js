@@ -44,6 +44,7 @@ export const editPostController = async (req, res, next) => {
       message: '¡Post Editado!'
     })
   } catch (error) {
+    console.error(error)
     next(error)
   }
 }
