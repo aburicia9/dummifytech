@@ -18,7 +18,7 @@ const transporter = nodemailer.createTransport({
   }
 })
 
-export const sendEmailVerificationNewUser = async (email, subject, html) => {
+export const sendVerificationNewUserEmailConfig = async (email, subject, html) => {
   try {
     await transporter.sendMail({
       from: `INFO DummifyTech <${mail.user}>`, // sender address
@@ -33,7 +33,7 @@ export const sendEmailVerificationNewUser = async (email, subject, html) => {
   }
 }
 
-export const getTemplateVerificationNewUser = (name, token) => {
+export const getTemplateVerificationNewUserEmailConfig = (name, token) => {
   return (
     `
       <head>
@@ -48,6 +48,38 @@ export const getTemplateVerificationNewUser = (name, token) => {
             href="http://localhost:8000/confirm/${token}"
             target="_blank"
         >Confirmar Cuenta</a>
+      </div> 
+    `
+  )
+}
+
+export const sendDeleteConfig = async (email, subject, html) => {
+  try {
+    await transporter.sendMail({
+      from: `INFO DummifyTech <${mail.user}>`, // sender address
+      to: email, // list of receivers
+      subject, // Subject line
+      text: 'Hello world?', // plain text body
+      html // html body
+    })
+    return ''
+  } catch (error) {
+    console.log('Algo no va bien con el email ' + error)
+  }
+}
+
+export const getTemplateDeleteConfig = (name, type) => {
+  return (
+    `
+      <head>
+        <link rel="stylesheet" href="./style.css">
+      </head>
+  
+      <div id="email___content">
+        <img src="https://i.imgur.com/Gv19LWw.jpg" alt="" width="100px" height="100px">
+        <h2>Hola ${name}</h2>
+        <p>Tu ${type} ha sido eliminada de DummifyTech</p>
+        <p>Motivos disciplinarios</p>
       </div> 
     `
   )
