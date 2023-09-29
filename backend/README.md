@@ -1,4 +1,10 @@
-# DummifyTech
+
+
+![logo dummifytech](./documents/Logo.png)
+
+#### [ENGLISH README](#dummifytech-en)
+
+# DummifyTech ES
 
 Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios podrán compartir sus opiniones acerca de distintos temas navegando por las distintas categorías.
 
@@ -155,3 +161,187 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 -   DELETE `/users/:userId` - Borrar usuario.
 -   PUT `/users/:userId` - Editar role de usuario.
 
+## Equipo
+
+Este proyecto fue creado por:
+
+- Guadi Tarelli
+- Juan Brosio
+- Dani Torres
+- Carlos Rico
+
+---
+
+
+####
+ [README EN ESPAÑOL](#dummifytech-es)
+
+# DummifyTech EN
+
+![DummifyTech Logo](./documents/Logo.png)
+
+
+
+Here we present our project of a forum for opinions where users can share their opinions on various topics by navigating through different categories.
+
+## Installation
+
+1. Install dependencies using the command `npm install` or `npm i`.
+2. Save the `.env.example` file as `.env` and fill in the necessary data.
+3. Run `npm run initDb` to create the required tables in the previously created database.
+4. Execute `npm start` to launch the server.
+
+## Entities
+
+### Users
+
+| Field                | Type     | Description                               |
+| -------------------- | -------- | ----------------------------------------- |
+| id                   | INT      | Unique identifier of the user.            |
+| full_name            | VARCHAR  | User's full name.                         |
+| email                | VARCHAR  | Email address.                            |
+| username             | VARCHAR  | User's username.                          |
+| password             | VARCHAR  | User's password.                          |
+| role                 | ENUM     | User's role (anonymous, mod, admin).      |
+| avatar               | VARCHAR  | User's avatar name.                       |
+| role                 | VARCHAR  | User's role (normal or admin).            |
+| verification_code    | VARCHAR  | Email verification code.                  |
+| status               | BOOLEAN  | User's status.                            |
+| createdAt            | DATETIME | Date and time of user creation.           |
+| modifiedAt           | DATETIME | Date and time of last modification.       |
+
+### Categories
+
+| Field                 | Type     | Description                                  |
+| --------------------- | -------- | -------------------------------------------- |
+| id                    | INT      | Unique identifier of the category.            |
+| id_categories_parent  | INT      | Identifier of the parent category.             |
+| name                  | VARCHAR  | Category name.                                 |
+| description           | VARCHAR  | Category description.                          |
+| image                 | VARCHAR  | Image associated with the category.            |
+| createdAt             | DATETIME | Date and time of category creation.           |
+| modifiedAt            | DATETIME | Date and time of last modification.           |
+
+### Posts
+
+| Field        | Type     | Description                                  |
+| ------------ | -------- | -------------------------------------------- |
+| id           | INT      | Unique identifier of the post.                |
+| title        | VARCHAR  | Post title.                                   |
+| post         | TEXT     | Post content.                                 |
+| image        | VARCHAR  | Post image.                                   |
+| id_category  | INT      | Identifier of the category to which the post belongs. |
+| id_user      | INT      | Identifier of the user who posted the post.   |
+| createdAt    | DATETIME | Date and time of post creation.               |
+| modifiedAt   | DATETIME | Date and time of last modification.           |
+
+### Comments
+
+| Field              | Type     | Description                                      |
+| ------------------ | -------- | ------------------------------------------------ |
+| id                 | INT      | Unique identifier of the comment.                |
+| id_comment_parent  | INT      | Identifier of the parent comment.                |
+| comment            | TEXT     | Comment text.                                    |
+| id_user            | INT      | Unique user identifier.                          |
+| id_post            | INT      | Unique identifier of the post being commented on. |
+| createdAt          | DATETIME | Date and time of comment creation.              |
+| modifiedAt         | DATETIME | Date and time of last modification.             |
+
+### Likes
+
+| Field     | Type     | Description                                   |
+| --------- | -------- | --------------------------------------------- |
+| id        | INT      | Unique identifier of the like.                |
+| id_user   | INT      | Identifier of the user who gave the like.     |
+| id_post   | INT      | Identifier of the post that received the like. |
+| createdAt | DATETIME | Date and time of like creation.               |
+| modifiedAt| DATETIME | Date and time of last modification.          |
+
+### Dislikes
+
+| Field     | Type     | Description                                      |
+| --------- | -------- | ------------------------------------------------ |
+| id        | INT      | Unique identifier of the dislike.                |
+| id_user   | INT      | Identifier of the user who gave the dislike.     |
+| id_post   | INT      | Identifier of the post that received the dislike. |
+| createdAt | DATETIME | Date and time of dislike creation.               |
+| modifiedAt| DATETIME | Date and time of last modification.              |
+
+### Reports
+
+| Field     | Type     | Description                                         |
+| --------- | -------- | --------------------------------------------------- |
+| id        | INT      | Unique identifier of the report.                     |
+| id_user   | INT      | Identifier of the user who reported.                 |
+| id_post   | INT      | Identifier of the post that was reported.            |
+| id_comment| INT      | Identifier of the comment that was reported.         |
+| createdAt | DATETIME | Date and time of report creation.                    |
+| modifiedAt| DATETIME | Date and time of last modification.                 |
+
+# Endpoints
+
+## Unregistered Users
+
+- GET `/` - View posts without a registered user, only a random post.
+- POST `/register` - User registration.
+- GET /confirm/:token - User confirmation.
+
+## Registered Users with Normal Role
+
+- POST `/login` - User login (returns a token).
+#### Users
+
+- GET `/users/profile` - User profile.
+- PUT `/users/profile/avatar` - Edit avatar.
+- PUT `/users/profile/password` - Edit password.
+- PUT `/users/profile/fullname` - Edit full name.
+- DELETE `users/profile` - Delete your account.
+
+#### Posts
+- GET `/posts` - View posts with a registered user.
+- GET `/posts/myposts` - View my posts.
+- POST `/posts/insert` - Insert a post.
+- DELETE `/posts/:postId` - Delete own post or delete if you are an administrator or moderator.
+- PUT `/posts/:postId` - Edit own post.
+
+#### Categories
+
+- GET `/categories` - View categories.
+#### Reports
+
+- POST `/posts/:postId/report` - Report a post.
+- DELETE `/posts/:postId/report` - Delete your own report.
+#### Comments
+
+- GET `/posts/:postId/comments` - View comments on a post.
+- POST `/posts/:postId/comments` - Create a comment.
+- POST `/posts/:postId/comments/:commentId` - Create a reply to a comment.
+- DELETE `/posts/:postId/comments/:commentId` - Delete own comment.
+- PUT `/posts/:postId/comments/:commentId` - Edit own comment.
+
+#### Likes/Dislikes
+
+- POST `/posts/:postId/likes` - Like a post.
+- DELETE `/posts/:postId/likes` - Remove own like from a post.
+- POST `/posts/:postId/dislikes` - Dislike a post.
+- DELETE `/posts/:postId/dislikes` - Remove own dislike from a post.
+#### Registered Users with Moderator Role
+      The same endpoints as normal role, with the following additions:
+- PUT `/categories/:categoryId` - Edit a category.
+- POST `/categories/insert` - Add a new category.
+- DELETE `/categories/:categoryId` - Delete a category.
+- GET `/reports` - View reports on a post or comment.
+#### Registered Users with Admin Role
+      The same endpoints as normal and moderator roles, with the following additions:
+- GET `/users` - List of users.
+- DELETE `/users/:userId` - Delete a user.
+- PUT `/users/:userId` - Edit user role.
+
+## Team
+
+This project was created by:
+
+- Guadi Tarelli
+- Juan Brosio
+- Dani Torres
+- Carlos Rico
