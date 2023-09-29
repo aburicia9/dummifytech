@@ -1,0 +1,707 @@
+openapi: 3.0.0
+info:
+  title: Dummifytech
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+components:
+  securitySchemes:
+    apikeyAuth:
+      type: http
+      scheme: apikey
+tags:
+  - name: USERS
+  - name: POSTS
+  - name: COMMENTS
+  - name: CATEGORIES
+paths:
+
+  /users:
+    get:
+      tags:
+        - USERS
+      summary: List All Users (Admin)
+      description: "As an admin user, you can list all the users."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/{userId}:
+    delete:
+      tags:
+        - USERS
+      summary: Delete User (Admin)
+      description: "As an admin user, you can delete a specific user."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: userId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '4'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /login:
+    post:
+      tags:
+        - USERS
+      summary: Login User
+      description: "At this endpoint, you can log in."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: "*******@******.com"
+                password: "*******"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /register:
+    post:
+      tags:
+        - USERS
+      summary: Register User 
+      description: "At this endpoint, you can register."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: juamsito19
+                email: joyawo8786@bnovel.com
+                password: Abc1234!
+                fullName: Juan Agustin Brosio
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/profile:
+    get:
+      tags:
+        - USERS
+      summary: User Info
+      description: "The logged-in user can view their own profile."
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - USERS
+      summary: Delete My Profile
+      description: "The logged-in user can delete their own profile."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/profile/avatar:
+    put:
+      tags:
+        - USERS
+      summary: Update Avatar User
+      description: "The logged-in user can change their avatar."
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/profile/password:
+    put:
+      tags:
+        - USERS
+      summary: Change Password User
+      description: "The logged-in user can change their password."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                oldPassword: prueba
+                newPassword: ABCabc123!
+                comparePassword: ABCabc123
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/profile/fullname:
+    put:
+      tags:
+        - USERS
+      summary: Change Full Name
+      description: "The logged-in user can change their full name."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                fullName: Dani torres
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /confirm/{token}:
+    get:
+      tags:
+        - USERS
+      summary: Verification User
+      description: "When the user registers, it sends an email with a link for user verification."
+      parameters:
+        - name: token
+          in: path
+          schema:
+            type: string
+          required: true
+          example: >-
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYmVwNzI3NTdAYm5vdmVsLmNvbSIsImNvZGUiOiI2MTg0MTliZC1jYmQ1LTQ4YjQtODcxYS0zOTAzYTIyMzljYmEiLCJpYXQiOjE2OTU4MzkzMjgsImV4cCI6MTY5NTg0MTEyOH0.GJZt_tNr-pzAoR5jL-DoSCTOfcUOYlzKcsgutjLYuMc
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/likes:
+    post:
+      tags:
+        - POSTS 
+      summary: Insert Like Post
+      description: "The logged-in user can like a post."
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '""'
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '5'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - POSTS 
+      summary: Delete Like Post
+      description: "The logged-in user can remove the like from a post."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/report:
+    post:
+      tags:
+        - POSTS 
+      summary: Insert Report Post
+      Description: "The logged-in user can report a post."
+      requestBody:
+        content: {}
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - POSTS 
+      summary: Delete Report Post
+      description: "The logged-in user can delete the report of the post."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /reports:
+    get:
+      tags:
+        - POSTS 
+      summary: All Reports (Moderator)
+      description: "The user with the moderator role can view all the posts/comments that have been reported."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/dislikes:
+    post:
+      tags:
+        - POSTS 
+      summary: Insert Dislike Post
+      description: "The logged-in user can dislike a post."
+      requestBody:
+        content: {}
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - POSTS 
+      summary: Delete Dislike Post
+      description: "The logged-in user can remove the dislike."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts:
+    get:
+      tags:
+        - POSTS
+      summary: All post
+      Description: "From the home, you will be able to see all the posts."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/insert:
+    post:
+      tags:
+        - POSTS
+      summary: Post Create
+      description: "The logged-in user can create posts."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                title: asdasd
+                post: asdasdasdasd
+                categoryId: 2
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}:
+    delete:
+      tags:
+        - POSTS
+      summary: Delete Post
+      description: "The logged-in user can delete their own post."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '11'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - POSTS
+      summary: Edit Post
+      description: "The logged-in user can edit their own post."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                post: Estoy actualizando el post
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /:
+    get:
+      tags:
+        - POSTS
+      summary: Post Aleatorio
+      description: "The anonymous user can only view a random post."
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/1/comments:
+    post:
+      tags:
+        - COMMENTS
+      summary: Insert Comment
+      description: "The logged-in user can leave a comment on a post."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                commentId: 1
+                comment: Apuaaa que tal
+                userId: 1
+                postId: 1
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/comments/{commentId}:
+    delete:
+      tags:
+        - COMMENTS
+      summary: Delete Comment
+      description: "The logged-in user can delete their own comment."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+        - name: commentId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '101'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - COMMENTS
+      summary: Edit Comment
+      description: "The logged-in user can edit their own comment."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                comment: Esto es otrrrrrrro coment
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+        - name: commentId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/comments:
+    get:
+      tags:
+        - COMMENTS
+      summary: List PostComments
+      description: "The logged-in user can view the comments on a post."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories:
+    get:
+      tags:
+        - CATEGORIES
+      summary: All Categories
+      description: "The logged-in user can view all the categories."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories/insert:
+    post:
+      tags:
+        - CATEGORIES
+      summary: Insert Categories (Moderator)
+      description: "The regular user can request new categories, and the moderator user can create them."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                categoryId: 1
+                name: prueba
+                description: ' fjdkhsbv '
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories/{categoryId}:
+    put:
+      tags:
+        - CATEGORIES
+      summary: Upgrade Categories
+      description: "The moderator user can edit a category."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: caca
+                description: hola
+                id: 19
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: categoryId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '19'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - CATEGORIES
+      summary: Delete Categories (Moderator)
+      description: "The moderator user can delete categories."
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+        - name: categoryId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '19'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
