@@ -6,6 +6,7 @@ import { getDb } from '../../db/getDb.js'
 import { insertLikesModel } from '../../models/likes/insertLikesModel.js'
 import { insertDislikeModel } from '../../models/likes/insertDislikeModel.js'
 import { insertReportModel } from '../../models/reports/insertReportModel.js'
+import { insertReqCategoryModel } from '../../models/categories/insertReqCategoryModel.js'
 
 console.log('CREANDO USUARIOS')
 
@@ -86,7 +87,7 @@ async function generateLikesPost () {
     try {
       await insertLikesModel(randomPostId, randomUserId)
     } catch (error) {
-
+      console.error(error)
     }
   }
 }
@@ -100,7 +101,7 @@ async function generateDislikesPost () {
     try {
       await insertDislikeModel(randomPostId, randomUserId)
     } catch (error) {
-
+      console.error(error)
     }
   }
 }
@@ -115,7 +116,7 @@ async function generateReportPost () {
     try {
       await insertReportModel(randomPostId, randomUserId, randomCommentId)
     } catch (error) {
-
+      console.error(error)
     }
   }
 }
@@ -130,7 +131,24 @@ async function generateReportComment () {
     try {
       await insertReportModel(randomPostId, randomUserId, randomCommentId)
     } catch (error) {
+      console.error(error)
+    }
+  }
+}
 
+console.log('CREANDO PETICIONES DE CATEGORIAS')
+
+async function generateRequestCategory () {
+  for (let id = 1; id < 51; id++) {
+    const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomNameCategory = faker.lorem.text()
+    const randomNameCategorySlice = randomNameCategory.slice(0, 99)
+    const randomReasonCategory = faker.lorem.text()
+    const randomReasonCategorySlice = randomReasonCategory.slice(0, 254)
+    try {
+      await insertReqCategoryModel(randomUserId, randomNameCategorySlice, randomReasonCategorySlice)
+    } catch (error) {
+      console.error(error)
     }
   }
 }
@@ -145,6 +163,7 @@ const generateData = async () => {
     await generateDislikesPost()
     await generateReportPost()
     await generateReportComment()
+    await generateRequestCategory()
   } catch (error) {
     console.log(error)
   } finally {

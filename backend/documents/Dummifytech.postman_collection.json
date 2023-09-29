@@ -14,7 +14,7 @@
 					"name": "ADMIN",
 					"item": [
 						{
-							"name": "All Users",
+							"name": "List All Users",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -71,7 +71,7 @@
 							"response": []
 						},
 						{
-							"name": "User Admin Login",
+							"name": "Insert Admin Login",
 							"event": [
 								{
 									"listen": "test",
@@ -116,7 +116,7 @@
 					"name": "MODERATOR",
 					"item": [
 						{
-							"name": "User Moderator Login",
+							"name": "Insert Moderator Login",
 							"event": [
 								{
 									"listen": "test",
@@ -161,13 +161,13 @@
 					"name": "NORMAL",
 					"item": [
 						{
-							"name": "User Register",
+							"name": "Insert User Register",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"joyawo8786@bnovel.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"linon24675@klanze.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -189,7 +189,7 @@
 							"response": []
 						},
 						{
-							"name": "User Login",
+							"name": "Insert User Login",
 							"event": [
 								{
 									"listen": "test",
@@ -207,7 +207,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"    \r\n}",
+									"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -229,7 +229,7 @@
 							"response": []
 						},
 						{
-							"name": "User Info",
+							"name": "List User Info",
 							"request": {
 								"auth": {
 									"type": "apikey"
@@ -295,7 +295,7 @@
 							"response": []
 						},
 						{
-							"name": "Change Password",
+							"name": "Update Password",
 							"request": {
 								"method": "PUT",
 								"header": [
@@ -331,7 +331,7 @@
 							"response": []
 						},
 						{
-							"name": "Change Full Name",
+							"name": "Update Full Name",
 							"request": {
 								"method": "PUT",
 								"header": [
@@ -413,6 +413,41 @@
 											"key": "token",
 											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYmVwNzI3NTdAYm5vdmVsLmNvbSIsImNvZGUiOiI2MTg0MTliZC1jYmQ1LTQ4YjQtODcxYS0zOTAzYTIyMzljYmEiLCJpYXQiOjE2OTU4MzkzMjgsImV4cCI6MTY5NTg0MTEyOH0.GJZt_tNr-pzAoR5jL-DoSCTOfcUOYlzKcsgutjLYuMc"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Forget Password",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"linon24675@klanze.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/recovery-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recovery-password"
 									]
 								}
 							},
@@ -587,7 +622,7 @@
 							"response": []
 						},
 						{
-							"name": "All Reports",
+							"name": "List All Reports",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -685,7 +720,7 @@
 					]
 				},
 				{
-					"name": "All post",
+					"name": "List All Post",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -710,7 +745,7 @@
 					"response": []
 				},
 				{
-					"name": "Post Create",
+					"name": "Insert Create Post",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -795,7 +830,7 @@
 					"response": []
 				},
 				{
-					"name": "Post Aleatorio",
+					"name": "List Post Aleatorio",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -814,7 +849,7 @@
 					"response": []
 				},
 				{
-					"name": "Edit Post",
+					"name": "Update Post",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -943,7 +978,7 @@
 					"response": []
 				},
 				{
-					"name": "Edit Comment",
+					"name": "Update Comment",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -990,7 +1025,7 @@
 					"response": []
 				},
 				{
-					"name": "List PostComments",
+					"name": "List Post Comments",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1028,7 +1063,7 @@
 			"name": "CATEGORIES",
 			"item": [
 				{
-					"name": "All Categories",
+					"name": "List All Categories",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1088,7 +1123,7 @@
 					"response": []
 				},
 				{
-					"name": "Upgrade Categories",
+					"name": "Update Categories",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1154,6 +1189,121 @@
 								{
 									"key": "categoryId",
 									"value": "19"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Req New Catgory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Req Catgory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Req Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request/:requestCategoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request",
+								":requestCategoryId"
+							],
+							"variable": [
+								{
+									"key": "requestCategoryId",
+									"value": "1"
 								}
 							]
 						}

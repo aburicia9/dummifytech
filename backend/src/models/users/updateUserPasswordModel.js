@@ -11,7 +11,7 @@ export const updateUserPasswordModel = async (password, userId) => {
         UPDATE users 
         SET password = ?
         WHERE id = ?
-    `, [hashedPass, userId.id])
+    `, [hashedPass, userId])
   } finally {
     if (connection) connection.release()
   }

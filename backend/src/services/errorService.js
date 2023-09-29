@@ -47,6 +47,13 @@ export function reportAlreadyExistsError () {
     message: 'No se puede dar report más de una vez al mismo posteo'
   }
 }
+export function categoryNameAlreadyExistsError () {
+  throw {
+    httpStatus: 409, // Conflict
+    code: 'CATEGORY NAME_ALREADY_EXISTS',
+    message: 'No se puede pedir una categoria con el mismo nombre mas de una vez'
+  }
+}
 export function dislikeAlreadyExistsError () {
   throw {
     httpStatus: 409, // Conflict
@@ -97,3 +104,12 @@ export function userNotVerificationError () {
     message: 'El usuario no ha verificado la cuenta'
   }
 }
+
+export function managementCategoryRequestError () {
+  throw {
+    httpStatus: 403, // Conflict
+    code: 'MANAGEMENT_CATEGORY_REQUEST',
+    message: 'La peticion de la categoria ya ha sido procesadada'
+  }
+}
+
