@@ -119,7 +119,7 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 -   GET `/posts` - Visualizar posts con usuario registrado
 -   GET `/posts/myposts` - Visualizar mis posts.
 -   POST `/posts/insert` - Insertar un post
--   DELETE `/posts/:postId` - Borrar un propio post.
+-   DELETE `/posts/:postId` - Borrar un propio post o borrar si  eres administrador o moderador.
 -   PUT `/posts/:postId` - Editar un propio post.
   #### Categorias
 -   GET `/categories` - Visualizar categorias
@@ -152,6 +152,7 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
     Las mismas que el rol normal y moderador y añadimos:
 
--   GET `/users` -Editar la categoría.
--   DELETE `/users/:userId` - Borrar categoría.
+-   GET `/users` - Lista de usuarios
+-   DELETE `/users/:userId` - Borrar usuario
+-   PUT `/users/:userId` - Editar role de usuario
 
