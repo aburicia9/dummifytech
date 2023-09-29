@@ -20,7 +20,7 @@ const router = Router()
 //                                        RUTAS DE USUARIO
 // ------------------------------------------------------------------------------------------------
 // #region usuario
-// Creamos la ruta. (endpoint)
+
 router.post('/register', newUserController)
 
 // Creamos la ruta para confirmar usuario
@@ -49,12 +49,27 @@ router.delete('/users/profile', authUserController, deleteMyUserController)
 // ------------------------------------------------------------------------------------------------
 // #region admin
 // Lista de usuarios
+// #region swaggerGetUsers
+/**
+ * @swagger
+ * paths:
+ *  /users:
+ *    get:
+ *      tag:
+ *        - Users
+ *        description: Listar todos los usuarios como Admin
+ *        responses:
+ *          200:
+ *            status: ok
+ */
+// #endregion swaggerGetUsers
 router.get('/users', authUserController, adminController, getAllUserController)
 
 // Editar rol
 router.put('/users/:userId', authUserController, adminController, editUserRoleController)
 
 // Eliminar usuario (admin)
+
 router.delete('/users/:userId', authUserController, adminController, deleteUserController)
 // #endregion admin
 export default router
