@@ -1,16 +1,15 @@
 import { getDb } from '../../db/getDb.js'
 
-export const selectAllReqCategoriesModel = async () => {
+export const updateReqCategoryModel = async (statusReq, accepted, requestCategoryId) => {
   let connection
   try {
     connection = await getDb()
     const [categories] = await connection.query(
-      `SELECT id, id_user, name_category, reason, req_status, accepted
-      FROM req_categories
-      WHERE req_status = 1;
       `
-    )
-
+      UPDATE req_categories
+      SET req_status = ?, accepted = ? 
+      WHERE id = ?;
+      `, [statusReq, accepted, requestCategoryId])
     return categories
   } finally {
     if (connection) connection.release()

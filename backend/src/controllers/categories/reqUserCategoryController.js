@@ -1,4 +1,4 @@
-import { inserReqCategoryModel } from '../../models/categories/inserReqCategoryModel.js'
+import { insertReqCategoryModel } from '../../models/categories/insertReqCategoryModel.js'
 import { selectUserByIdModel } from '../../models/users/selectUserByIdModel.js'
 import { sendCategoryEmail } from '../../utils/email/sendCategoryEmail.js'
 
@@ -10,7 +10,7 @@ export const newReqCategoryController = async (req, res, next) => {
 
     const user = await selectUserByIdModel(userId)
 
-    await inserReqCategoryModel(userId, categoryName, categoryReason)
+    await insertReqCategoryModel(userId, categoryName, categoryReason)
 
     await sendCategoryEmail(user.username, categoryName, categoryReason, user.email)
 

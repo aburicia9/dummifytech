@@ -7,6 +7,7 @@ import { authUserController } from '../middlewares/authUserController.js'
 import { roleUserController } from '../middlewares/roleUserController.js'
 import { newReqCategoryController } from '../controllers/categories/reqUserCategoryController.js'
 import { getAllReqCategoriesController } from '../controllers/categories/getAllReqCategoriesController.js'
+import { editReqCategoryController } from '../controllers/categories/editReqCategoryController.js'
 
 const router = Router()
 
@@ -28,6 +29,9 @@ router.get('/categories', authUserController, getAllCategoriesController)
 
 // Visualizar todas las peticiones de categorias
 router.get('/categories/request', authUserController, roleUserController, getAllReqCategoriesController)
+
+// Visualizar todas las peticiones de categorias
+router.put('/categories/request/:requestCategoryId', authUserController, roleUserController, editReqCategoryController)
 
 // Crear nueva categoria
 router.post('/categories/insert', authUserController, roleUserController, newCategoriesController)

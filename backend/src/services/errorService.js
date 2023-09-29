@@ -104,3 +104,12 @@ export function userNotVerificationError () {
     message: 'El usuario no ha verificado la cuenta'
   }
 }
+
+export function managementCategoryRequestError () {
+  throw {
+    httpStatus: 403, // Conflict
+    code: 'MANAGEMENT_CATEGORY_REQUEST',
+    message: 'La peticion de la categoria ya ha sido procesadada'
+  }
+}
+
