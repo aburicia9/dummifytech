@@ -463,6 +463,41 @@
 								"description": "The user has forgotten the password and can request a new password."
 							},
 							"response": []
+						},
+						{
+							"name": "Update Forget Password",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"linon24675@klanze.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/recovery-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recovery-password"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				}
@@ -1341,6 +1376,121 @@
 							]
 						},
 						"description": "The moderator can manage requests for new categories."
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Req New Catgory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Req Catgory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Req Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request/:requestCategoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request",
+								":requestCategoryId"
+							],
+							"variable": [
+								{
+									"key": "requestCategoryId",
+									"value": "1"
+								}
+							]
+						}
 					},
 					"response": []
 				}
