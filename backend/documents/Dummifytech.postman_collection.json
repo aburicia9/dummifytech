@@ -14,7 +14,7 @@
 					"name": "ADMIN",
 					"item": [
 						{
-							"name": "All Users",
+							"name": "List All Users",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -34,7 +34,8 @@
 									"path": [
 										"users"
 									]
-								}
+								},
+								"description": "As an admin user, you can list all the users."
 							},
 							"response": []
 						},
@@ -66,12 +67,13 @@
 											"value": "4"
 										}
 									]
-								}
+								},
+								"description": "As an admin user, you can delete a specific user."
 							},
 							"response": []
 						},
 						{
-							"name": "User Admin Login",
+							"name": "Insert Admin Login",
 							"event": [
 								{
 									"listen": "test",
@@ -116,7 +118,7 @@
 					"name": "MODERATOR",
 					"item": [
 						{
-							"name": "User Moderator Login",
+							"name": "Insert Moderator Login",
 							"event": [
 								{
 									"listen": "test",
@@ -161,13 +163,13 @@
 					"name": "NORMAL",
 					"item": [
 						{
-							"name": "User Register",
+							"name": "Insert User Register",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"joyawo8786@bnovel.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"linon24675@klanze.com\",\r\n    \"password\": \"Abc1234!\",\r\n    \"fullName\": \"Juan Agustin Brosio\" \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -184,12 +186,13 @@
 									"path": [
 										"register"
 									]
-								}
+								},
+								"description": "At this endpoint, you can register."
 							},
 							"response": []
 						},
 						{
-							"name": "User Login",
+							"name": "Insert User Login",
 							"event": [
 								{
 									"listen": "test",
@@ -207,7 +210,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"    \r\n}",
+									"raw": "{\r\n    \"email\":\"prueba@prueba.com\",\r\n    \"password\":\"prueba\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -224,12 +227,13 @@
 									"path": [
 										"login"
 									]
-								}
+								},
+								"description": "At this endpoint, you can log in."
 							},
 							"response": []
 						},
 						{
-							"name": "User Info",
+							"name": "List User Info",
 							"request": {
 								"auth": {
 									"type": "apikey"
@@ -253,7 +257,8 @@
 										"users",
 										"profile"
 									]
-								}
+								},
+								"description": "The logged-in user can view their own profile."
 							},
 							"response": []
 						},
@@ -290,12 +295,13 @@
 										"profile",
 										"avatar"
 									]
-								}
+								},
+								"description": "The logged-in user can change their avatar."
 							},
 							"response": []
 						},
 						{
-							"name": "Change Password",
+							"name": "Update Password",
 							"request": {
 								"method": "PUT",
 								"header": [
@@ -326,12 +332,13 @@
 										"profile",
 										"password"
 									]
-								}
+								},
+								"description": "The logged-in user can change their password."
 							},
 							"response": []
 						},
 						{
-							"name": "Change Full Name",
+							"name": "Update Full Name",
 							"request": {
 								"method": "PUT",
 								"header": [
@@ -362,12 +369,13 @@
 										"profile",
 										"fullname"
 									]
-								}
+								},
+								"description": "The logged-in user can change their full name."
 							},
 							"response": []
 						},
 						{
-							"name": "Delete User",
+							"name": "Delete  Own User",
 							"request": {
 								"method": "DELETE",
 								"header": [
@@ -388,7 +396,8 @@
 										"users",
 										"profile"
 									]
-								}
+								},
+								"description": "The logged-in user can delete their own profile."
 							},
 							"response": []
 						},
@@ -414,7 +423,44 @@
 											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhvYmVwNzI3NTdAYm5vdmVsLmNvbSIsImNvZGUiOiI2MTg0MTliZC1jYmQ1LTQ4YjQtODcxYS0zOTAzYTIyMzljYmEiLCJpYXQiOjE2OTU4MzkzMjgsImV4cCI6MTY5NTg0MTEyOH0.GJZt_tNr-pzAoR5jL-DoSCTOfcUOYlzKcsgutjLYuMc"
 										}
 									]
-								}
+								},
+								"description": "When the user registers, it sends an email with a link for user verification."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Forget Password",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"linon24675@klanze.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/recovery-password",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recovery-password"
+									]
+								},
+								"description": "The user has forgotten the password and can request a new password."
 							},
 							"response": []
 						}
@@ -478,7 +524,8 @@
 											"value": "5"
 										}
 									]
-								}
+								},
+								"description": "The logged-in user can like a post."
 							},
 							"response": []
 						},
@@ -511,7 +558,8 @@
 											"value": "1"
 										}
 									]
-								}
+								},
+								"description": "The logged-in user can remove the like from a post."
 							},
 							"response": []
 						}
@@ -549,7 +597,8 @@
 											"value": "1"
 										}
 									]
-								}
+								},
+								"description": "The logged-in user can report a post."
 							},
 							"response": []
 						},
@@ -582,12 +631,13 @@
 											"value": "1"
 										}
 									]
-								}
+								},
+								"description": "The logged-in user can delete the report of the post."
 							},
 							"response": []
 						},
 						{
-							"name": "All Reports",
+							"name": "List All Reports",
 							"request": {
 								"method": "GET",
 								"header": [
@@ -607,7 +657,8 @@
 									"path": [
 										"reports"
 									]
-								}
+								},
+								"description": "The user with the moderator role can view all the posts/comments that have been reported."
 							},
 							"response": []
 						}
@@ -645,7 +696,8 @@
 											"value": "1"
 										}
 									]
-								}
+								},
+								"description": "The logged-in user can dislike a post."
 							},
 							"response": []
 						},
@@ -678,14 +730,15 @@
 											"value": "1"
 										}
 									]
-								}
+								},
+								"description": "The logged-in user can delete the report of the post."
 							},
 							"response": []
 						}
 					]
 				},
 				{
-					"name": "All post",
+					"name": "List All Post",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -705,12 +758,13 @@
 							"path": [
 								"posts"
 							]
-						}
+						},
+						"description": "From the home, you will be able to see all the posts."
 					},
 					"response": []
 				},
 				{
-					"name": "Post Create",
+					"name": "Insert Create Post",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -747,7 +801,8 @@
 									"disabled": true
 								}
 							]
-						}
+						},
+						"description": "The logged-in user can create posts."
 					},
 					"response": []
 				},
@@ -790,12 +845,13 @@
 									"value": "11"
 								}
 							]
-						}
+						},
+						"description": "The logged-in user can delete their own post."
 					},
 					"response": []
 				},
 				{
-					"name": "Post Aleatorio",
+					"name": "List Post Aleatorio",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -809,12 +865,13 @@
 							"path": [
 								""
 							]
-						}
+						},
+						"description": "The anonymous user can only view a random post."
 					},
 					"response": []
 				},
 				{
-					"name": "Edit Post",
+					"name": "Update Post",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -850,7 +907,8 @@
 									"value": "1"
 								}
 							]
-						}
+						},
+						"description": "The logged-in user can edit their own post."
 					},
 					"response": []
 				}
@@ -891,7 +949,8 @@
 								"1",
 								"comments"
 							]
-						}
+						},
+						"description": "The logged-in user can leave a comment on a post."
 					},
 					"response": []
 				},
@@ -938,12 +997,13 @@
 									"value": "101"
 								}
 							]
-						}
+						},
+						"description": "The logged-in user can delete their own comment."
 					},
 					"response": []
 				},
 				{
-					"name": "Edit Comment",
+					"name": "Update Comment",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -985,12 +1045,13 @@
 									"value": "1"
 								}
 							]
-						}
+						},
+						"description": "The logged-in user can edit their own comment."
 					},
 					"response": []
 				},
 				{
-					"name": "List PostComments",
+					"name": "List Post Comments",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1018,7 +1079,8 @@
 									"value": "1"
 								}
 							]
-						}
+						},
+						"description": "The logged-in user can view the comments on a post."
 					},
 					"response": []
 				}
@@ -1028,7 +1090,7 @@
 			"name": "CATEGORIES",
 			"item": [
 				{
-					"name": "All Categories",
+					"name": "List All Categories",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1048,7 +1110,8 @@
 							"path": [
 								"categories"
 							]
-						}
+						},
+						"description": "The logged-in user can view all the categories."
 					},
 					"response": []
 				},
@@ -1083,12 +1146,13 @@
 								"categories",
 								"insert"
 							]
-						}
+						},
+						"description": "The regular user can request new categories, and the moderator user can create them."
 					},
 					"response": []
 				},
 				{
-					"name": "Upgrade Categories",
+					"name": "Update Categories",
 					"request": {
 						"method": "PUT",
 						"header": [
@@ -1124,7 +1188,8 @@
 									"value": "19"
 								}
 							]
-						}
+						},
+						"description": "The moderator user can edit a category."
 					},
 					"response": []
 				},
@@ -1156,7 +1221,126 @@
 									"value": "19"
 								}
 							]
-						}
+						},
+						"description": "The moderator user can delete categories."
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Req New Catgory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request"
+							]
+						},
+						"description": "The logged-in user can make requests for new categories."
+					},
+					"response": []
+				},
+				{
+					"name": "List Req Catgory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request"
+							]
+						},
+						"description": "The moderator user can view a list of requests for new categories to process"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Req Category",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{dummifyToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"statusReq\": 0, \r\n    \"accepted\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/categories/request/:requestCategoryId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories",
+								"request",
+								":requestCategoryId"
+							],
+							"variable": [
+								{
+									"key": "requestCategoryId",
+									"value": "3"
+								}
+							]
+						},
+						"description": "The moderator can manage requests for new categories."
 					},
 					"response": []
 				}

@@ -15,19 +15,18 @@ tags:
   - name: COMMENTS
   - name: CATEGORIES
 paths:
-
   /users:
     get:
       tags:
         - USERS
-      summary: List All Users (Admin)
-      description: "As an admin user, you can list all the users."
+      summary: List All Users
+      description: As an admin user, you can list all the users.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -37,14 +36,14 @@ paths:
     delete:
       tags:
         - USERS
-      summary: Delete User (Admin)
-      description: "As an admin user, you can delete a specific user."
+      summary: Delete User
+      description: As an admin user, you can delete a specific user.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: userId
           in: path
           schema:
@@ -59,17 +58,16 @@ paths:
   /login:
     post:
       tags:
-        - USERS
-      summary: Login User
-      description: "At this endpoint, you can log in."
+      summary: Insert User Login
+      description: At this endpoint, you can log in.
       requestBody:
         content:
           application/json:
             schema:
               type: object
               example:
-                email: "*******@******.com"
-                password: "*******"
+                email: prueba@prueba.com
+                password: prueba
       responses:
         '200':
           description: Successful response
@@ -78,9 +76,8 @@ paths:
   /register:
     post:
       tags:
-        - USERS
-      summary: Register User 
-      description: "At this endpoint, you can register."
+      summary: Insert User Register
+      description: At this endpoint, you can register.
       requestBody:
         content:
           application/json:
@@ -88,7 +85,7 @@ paths:
               type: object
               example:
                 username: juamsito19
-                email: joyawo8786@bnovel.com
+                email: linon24675@klanze.com
                 password: Abc1234!
                 fullName: Juan Agustin Brosio
       responses:
@@ -99,9 +96,8 @@ paths:
   /users/profile:
     get:
       tags:
-        - USERS
-      summary: User Info
-      description: "The logged-in user can view their own profile."
+      summary: List User Info
+      description: The logged-in user can view their own profile.
       security:
         - apikeyAuth: []
       parameters:
@@ -109,7 +105,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -117,15 +113,14 @@ paths:
             application/json: {}
     delete:
       tags:
-        - USERS
-      summary: Delete My Profile
-      description: "The logged-in user can delete their own profile."
+      summary: Delete  Own User
+      description: The logged-in user can delete their own profile.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -134,9 +129,8 @@ paths:
   /users/profile/avatar:
     put:
       tags:
-        - USERS
-      summary: Update Avatar User
-      description: "The logged-in user can change their avatar."
+      summary: Update avatar
+      description: The logged-in user can change their avatar.
       requestBody:
         content:
           multipart/form-data:
@@ -151,7 +145,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -160,9 +154,8 @@ paths:
   /users/profile/password:
     put:
       tags:
-        - USERS
-      summary: Change Password User
-      description: "The logged-in user can change their password."
+      summary: Update Password
+      description: The logged-in user can change their password.
       requestBody:
         content:
           application/json:
@@ -177,7 +170,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -186,9 +179,8 @@ paths:
   /users/profile/fullname:
     put:
       tags:
-        - USERS
-      summary: Change Full Name
-      description: "The logged-in user can change their full name."
+      summary: Update Full Name
+      description: The logged-in user can change their full name.
       requestBody:
         content:
           application/json:
@@ -201,7 +193,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -210,9 +202,10 @@ paths:
   /confirm/{token}:
     get:
       tags:
-        - USERS
       summary: Verification User
-      description: "When the user registers, it sends an email with a link for user verification."
+      description: >-
+        When the user registers, it sends an email with a link for user
+        verification.
       parameters:
         - name: token
           in: path
@@ -226,12 +219,30 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /recovery-password:
+    put:
+      tags:
+      summary: Update Forget Password
+      description: The user has forgotten the password and can request a new password.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                username: juamsito19
+                email: linon24675@klanze.com
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
   /posts/{postId}/likes:
     post:
       tags:
-        - POSTS 
-      summary: Insert Like Post
-      description: "The logged-in user can like a post."
+        - POSTS
+      summary: Insert Like
+      description: The logged-in user can like a post.
       requestBody:
         content:
           '*/*':
@@ -243,7 +254,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -257,15 +268,15 @@ paths:
             application/json: {}
     delete:
       tags:
-        - POSTS 
-      summary: Delete Like Post
-      description: "The logged-in user can remove the like from a post."
+        - POSTS
+      summary: Delete Like
+      description: The logged-in user can remove the like from a post.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -280,9 +291,9 @@ paths:
   /posts/{postId}/report:
     post:
       tags:
-        - POSTS 
-      summary: Insert Report Post
-      Description: "The logged-in user can report a post."
+        - POSTS
+      summary: Insert Report
+      description: The logged-in user can report a post.
       requestBody:
         content: {}
       parameters:
@@ -290,7 +301,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -304,15 +315,15 @@ paths:
             application/json: {}
     delete:
       tags:
-        - POSTS 
-      summary: Delete Report Post
-      description: "The logged-in user can delete the report of the post."
+        - POSTS
+      summary: Delete Report
+      description: The logged-in user can delete the report of the post.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -327,15 +338,17 @@ paths:
   /reports:
     get:
       tags:
-        - POSTS 
-      summary: All Reports (Moderator)
-      description: "The user with the moderator role can view all the posts/comments that have been reported."
+        - POSTS
+      summary: List All Reports
+      description: >-
+        The user with the moderator role can view all the posts/comments that
+        have been reported.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -344,9 +357,9 @@ paths:
   /posts/{postId}/dislikes:
     post:
       tags:
-        - POSTS 
-      summary: Insert Dislike Post
-      description: "The logged-in user can dislike a post."
+        - POSTS
+      summary: Insert Dislike
+      description: The logged-in user can dislike a post.
       requestBody:
         content: {}
       parameters:
@@ -354,7 +367,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -368,15 +381,15 @@ paths:
             application/json: {}
     delete:
       tags:
-        - POSTS 
-      summary: Delete Dislike Post
-      description: "The logged-in user can remove the dislike."
+        - POSTS
+      summary: Delete Dislike
+      description: The logged-in user can delete the report of the post.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -392,14 +405,14 @@ paths:
     get:
       tags:
         - POSTS
-      summary: All post
-      Description: "From the home, you will be able to see all the posts."
+      summary: List All Post
+      description: From the home, you will be able to see all the posts.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -409,8 +422,8 @@ paths:
     post:
       tags:
         - POSTS
-      summary: Post Create
-      description: "The logged-in user can create posts."
+      summary: Insert Create Post
+      description: The logged-in user can create posts.
       requestBody:
         content:
           application/json:
@@ -425,7 +438,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -436,13 +449,13 @@ paths:
       tags:
         - POSTS
       summary: Delete Post
-      description: "The logged-in user can delete their own post."
+      description: The logged-in user can delete their own post.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -457,8 +470,8 @@ paths:
     put:
       tags:
         - POSTS
-      summary: Edit Post
-      description: "The logged-in user can edit their own post."
+      summary: Update Post
+      description: The logged-in user can edit their own post.
       requestBody:
         content:
           application/json:
@@ -471,7 +484,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -487,8 +500,8 @@ paths:
     get:
       tags:
         - POSTS
-      summary: Post Aleatorio
-      description: "The anonymous user can only view a random post."
+      summary: List Post Aleatorio
+      description: The anonymous user can only view a random post.
       responses:
         '200':
           description: Successful response
@@ -499,7 +512,7 @@ paths:
       tags:
         - COMMENTS
       summary: Insert Comment
-      description: "The logged-in user can leave a comment on a post."
+      description: The logged-in user can leave a comment on a post.
       requestBody:
         content:
           application/json:
@@ -515,7 +528,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -526,13 +539,13 @@ paths:
       tags:
         - COMMENTS
       summary: Delete Comment
-      description: "The logged-in user can delete their own comment."
+      description: The logged-in user can delete their own comment.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -553,8 +566,8 @@ paths:
     put:
       tags:
         - COMMENTS
-      summary: Edit Comment
-      description: "The logged-in user can edit their own comment."
+      summary: Update Comment
+      description: The logged-in user can edit their own comment.
       requestBody:
         content:
           application/json:
@@ -567,7 +580,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -589,14 +602,14 @@ paths:
     get:
       tags:
         - COMMENTS
-      summary: List PostComments
-      description: "The logged-in user can view the comments on a post."
+      summary: List Post Comments
+      description: The logged-in user can view the comments on a post.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: postId
           in: path
           schema:
@@ -612,14 +625,14 @@ paths:
     get:
       tags:
         - CATEGORIES
-      summary: All Categories
-      description: "The logged-in user can view all the categories."
+      summary: List All Categories
+      description: The logged-in user can view all the categories.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -629,8 +642,10 @@ paths:
     post:
       tags:
         - CATEGORIES
-      summary: Insert Categories (Moderator)
-      description: "The regular user can request new categories, and the moderator user can create them."
+      summary: Insert Categories
+      description: >-
+        The regular user can request new categories, and the moderator user can
+        create them.
       requestBody:
         content:
           application/json:
@@ -645,7 +660,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
       responses:
         '200':
           description: Successful response
@@ -655,8 +670,8 @@ paths:
     put:
       tags:
         - CATEGORIES
-      summary: Upgrade Categories
-      description: "The moderator user can edit a category."
+      summary: Update Categories
+      description: The moderator user can edit a category.
       requestBody:
         content:
           application/json:
@@ -671,7 +686,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: categoryId
           in: path
           schema:
@@ -686,20 +701,94 @@ paths:
     delete:
       tags:
         - CATEGORIES
-      summary: Delete Categories (Moderator)
-      description: "The moderator user can delete categories."
+      summary: Delete Categories
+      description: The moderator user can delete categories.
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk1OTczNDQ5LCJleHAiOjE2OTYwNTk4NDl9.hpa0Coa7RcHmgH9JiF10o8ZpSK49h7fkvWWuCKp6ozY"
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
         - name: categoryId
           in: path
           schema:
             type: integer
           required: true
           example: '19'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories/request:
+    post:
+      tags:
+        - CATEGORIES
+      summary: Insert Req New Catgory
+      description: The logged-in user can make requests for new categories.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                categoryName: tumama
+                categoryReason: porque esta re buena y me encanta
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - CATEGORIES
+      summary: List Req Catgory
+      description: >-
+        The moderator user can view a list of requests for new categories to
+        process
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /categories/request/{requestCategoryId}:
+    put:
+      tags:
+        - CATEGORIES
+      summary: Update Req Category
+      description: The moderator can manage requests for new categories.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                statusReq: 0
+                accepted: 0
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+        - name: requestCategoryId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '3'
       responses:
         '200':
           description: Successful response
