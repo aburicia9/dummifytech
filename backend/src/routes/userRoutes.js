@@ -13,6 +13,7 @@ import { deleteUserController } from '../controllers/users/deleteUserController.
 import { getUserVerificationController } from '../controllers/users/getUserVerificationController.js'
 import { editUserRoleController } from '../controllers/users/editUserRoleController.js'
 import { deleteMyUserController } from '../controllers/users/deleteMyUserController.js'
+import { forgottenUserPasswordController } from '../controllers/users/forgottenUserPasswordController.js'
 
 const router = Router()
 
@@ -28,6 +29,9 @@ router.get('/confirm/:token', getUserVerificationController)
 
 // Login de usuario
 router.post('/login', loginUserController)
+
+// Recuperacion de nueva contraseña.
+router.put('/recovery-password', forgottenUserPasswordController)
 
 // Aqui empiezan las rutas de usuario existente
 router.get('/users/profile', authUserController, getUserController)

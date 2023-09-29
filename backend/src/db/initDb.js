@@ -8,6 +8,7 @@ export const main = async () => {
 
     console.log('Borrando tablas...')
 
+    await connection.query('DROP TABLE IF EXISTS req_categories')
     await connection.query('DROP TABLE IF EXISTS reports')
     await connection.query('DROP TABLE IF EXISTS likes')
     await connection.query('DROP TABLE IF EXISTS dislikes')
@@ -132,6 +133,22 @@ export const main = async () => {
       )
     `)
     console.log('¡Tabla de REPORTES creada! 😉✅')
+    console.log('Creando tabla de PETICIONES DE CATEGORIAS...')
+
+    await connection.query(`
+      CREATE TABLE IF NOT EXISTS req_categories(
+        id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+        id_user INT unsigned NOT NULL,
+        name_category VARCHAR(100) UNIQUE NOT NULL,
+        reason VARCHAR(255) NOT NULL,
+        req_status BOOLEAN DEFAULT TRUE,
+        accepted BOOLEAN DEFAULT FALSE,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY(id_user) REFERENCES users(id) ON DELETE CASCADE
+      )
+    `)
+    console.log('¡Tabla de PETICIONES DE CATEGORIAS creada! 😉✅')
 
     console.log('¡Todas las tablas han sido creadas con exito! 🎉🥳😲')
     console.log('Creando usuario en USUARIOS...')

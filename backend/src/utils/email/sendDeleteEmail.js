@@ -4,7 +4,6 @@ import { getTemplateDeleteConfig, sendDeleteConfig } from './configEmail.js'
 
 // Funcion controladora final que inserta un nuevo usuario.
 export const sendDeleteEmail = async (userId, type, contextEmail) => {
-  console.log({ userId, type, contextEmail })
   try {
     const user = await selectUserByIdModel(userId)
     // Obtenemos el template

@@ -47,6 +47,13 @@ export function reportAlreadyExistsError () {
     message: 'No se puede dar report más de una vez al mismo posteo'
   }
 }
+export function categoryNameAlreadyExistsError () {
+  throw {
+    httpStatus: 409, // Conflict
+    code: 'CATEGORY NAME_ALREADY_EXISTS',
+    message: 'No se puede pedir una categoria con el mismo nombre mas de una vez'
+  }
+}
 export function dislikeAlreadyExistsError () {
   throw {
     httpStatus: 409, // Conflict
