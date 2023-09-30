@@ -21,7 +21,6 @@ const router = Router()
 //                                        RUTAS DE USUARIO
 // ------------------------------------------------------------------------------------------------
 // #region usuario
-
 router.post('/register', newUserController)
 
 // Creamos la ruta para confirmar usuario
@@ -73,7 +72,6 @@ router.get('/users', authUserController, adminController, getAllUserController)
 router.put('/users/:userId', authUserController, adminController, editUserRoleController)
 
 // Eliminar usuario (admin)
-
 router.delete('/users/:userId', authUserController, adminController, deleteUserController)
 // #endregion admin
 export default router
