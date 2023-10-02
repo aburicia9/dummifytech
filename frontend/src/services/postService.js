@@ -1,4 +1,20 @@
+import { getToken } from '../utils/getToken'
+
 const baseApiURL = import.meta.env.VITE_API_URL
+
+// Crear un post
+export const createPostService = async (formData) => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/posts/insert`, {
+    method: 'post',
+    headers: {
+      Authorization: token
+    },
+    body: formData
+  })
+  const body = await res.json()
+  return body
+}
 
 // Coger un posts random
 export const getRandomPostService = async () => {
@@ -58,13 +74,14 @@ export const deletePostService = async (postId) => {
 }
 
 // Modificamos un post
-export const updatePostService = async (postId) => {
+export const updatePostService = async (postId, formData) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/posts/${postId}`, {
     method: 'put',
     headers: {
       Authorization: token
-    }
+    },
+    body: formData
   })
 }
 
@@ -94,6 +111,22 @@ export const listReportPostService = async () => {
   return body
 }
 
+// Crear un comentario en un post
+export const createCommentPostService = async (postId, comment) => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/posts/${postId}/comments`, {
+    method: 'post',
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      comment
+    })
+  })
+  const body = await res.json()
+  return body
+}
 // Listamos comentarios de post
 export const listCommentsPostService = async (postId) => {
   const token = getToken()
@@ -107,13 +140,17 @@ export const listCommentsPostService = async (postId) => {
   return body
 }
 
-export const updateCommentPostService = async (postId, commentId) => {
+export const updateCommentPostService = async (postId, commentId, comment) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/posts/${postId}/comments/${commentId}`, {
     method: 'put',
     headers: {
-      Authorization: token
-    }
+      Authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      comment
+    })
   })
   const body = await res.json()
   return body
