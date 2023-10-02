@@ -28,7 +28,8 @@ export const listAllPostsService = async (searchParams) => {
   const token = getToken()
 
   const res = await fetch(`${baseApiURL}/posts?${searchParams}`, {
-    headers: token ? { Authorization: token } : {}
+    method: 'get',
+    headers: { Authorization: token }
   })
   const body = await res.json
   return body
