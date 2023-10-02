@@ -83,6 +83,8 @@ export const updatePostService = async (postId, formData) => {
     },
     body: formData
   })
+  const body = await res.json()
+  return body
 }
 
 // Crear o eliminar report en un post

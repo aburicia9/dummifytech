@@ -35,7 +35,7 @@ export const createUserService = async ({ username, email, password, fullName })
     method: 'post',
     headers: {
       'Content-Type': 'application/json'
-    },1
+    },
     body: JSON.stringify({
       username,
       email,
@@ -64,37 +64,37 @@ export const loginUserService = async ({ email, password }) => {
 }
 
 // Ver mi propio perfil
-export const getInfoOwnerUserService = async () =>{
+export const getInfoOwnerUserService = async () => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/users/profile`,{
-    headers:{
+  const res = await fetch(`${baseApiURL}/users/profile`, {
+    headers: {
       Authorization: token
     }
   })
-const body = await res.json()
-return body
+  const body = await res.json()
+  return body
 }
 
 // Modificamos el avatar
-export const updateAvatarUserService = async (formData) =>{
+export const updateAvatarUserService = async (formData) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/users/profile/avatar`,{
-  method: "put",
-  headers:{
-    Authorization: token,
-  },
-  body:formData
+  const res = await fetch(`${baseApiURL}/users/profile/avatar`, {
+    method: 'put',
+    headers: {
+      Authorization: token
+    },
+    body: formData
   })
   const body = await res.json()
   return body
 }
 
 // Modificamos la contraseña
-export const updatePasswordUserService = async (oldPassword, newPassword, comparePassword) =>{
+export const updatePasswordUserService = async (oldPassword, newPassword, comparePassword) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/users/profile/password`,{
-    method: "put",
-    headers:{
+  const res = await fetch(`${baseApiURL}/users/profile/password`, {
+    method: 'put',
+    headers: {
       Authorization: token,
       'Content-Type': 'application/json'
     },
@@ -109,11 +109,11 @@ export const updatePasswordUserService = async (oldPassword, newPassword, compar
 }
 
 // Modificamos el nombre completo
-export const updateFullNameUserService = async (fullName) =>{
+export const updateFullNameUserService = async (fullName) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/users/profile/fullname`,{
-    method: "put",
-    headers:{
+  const res = await fetch(`${baseApiURL}/users/profile/fullname`, {
+    method: 'put',
+    headers: {
       Authorization: token,
       'Content-Type': 'application/json'
     },
@@ -126,11 +126,11 @@ export const updateFullNameUserService = async (fullName) =>{
 }
 
 // Borramos nuestro usuario
-export const deleteOwnUserService = async () =>{
+export const deleteOwnUserService = async () => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/users/profile`,{
-    method: "delete",
-    headers:{
+  const res = await fetch(`${baseApiURL}/users/profile`, {
+    method: 'delete',
+    headers: {
       Authorization: token
     }
   })
@@ -146,11 +146,11 @@ export const verificationOwnUserService = async (token) => {
 }
 
 // Enviar una contraseña nueva
-export const updateForgetPasswordUserService = async (username, email) =>{
-  const res = await fetch(`${baseApiURL}/recovery-password`,{
-    method: "put",
-    body:JSON.stringify({
-      username, 
+export const updateForgetPasswordUserService = async (username, email) => {
+  const res = await fetch(`${baseApiURL}/recovery-password`, {
+    method: 'put',
+    body: JSON.stringify({
+      username,
       email
     })
   })
