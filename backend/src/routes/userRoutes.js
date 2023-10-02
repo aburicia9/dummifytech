@@ -53,19 +53,7 @@ router.delete('/users/profile', authUserController, deleteMyUserController)
 // #region admin
 // Lista de usuarios
 // #region swaggerGetUsers
-/**
- * @swagger
- * paths:
- *  /users:
- *    get:
- *      tag:
- *        - Users
- *        description: Listar todos los usuarios como Admin
- *        responses:
- *          200:
- *            status: ok
- */
-// #endregion swaggerGetUsers
+
 router.get('/users', authUserController, adminController, getAllUserController)
 
 // Editar rol

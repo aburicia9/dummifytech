@@ -25,7 +25,8 @@ router.put('/categories/:categoryId', authUserController, roleUserController, ed
 router.post('/categories/request', authUserController, newReqCategoryController)
 
 // Visualizar todas las categorias
-router.get('/categories', authUserController, getAllCategoriesController)
+// router.get('/categories', authUserController, getAllCategoriesController)
+router.get('/categories', getAllCategoriesController)
 
 // Visualizar todas las peticiones de categorias
 router.get('/categories/request', authUserController, roleUserController, getAllReqCategoriesController)

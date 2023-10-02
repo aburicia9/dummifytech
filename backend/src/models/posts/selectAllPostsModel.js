@@ -15,6 +15,7 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
       INNER JOIN categories c on c.id = p.id_category
       WHERE p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ? OR c.name LIKE ? or p.id = ?
     `, [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
+
     for (const post of posts) {
       const [[{ countLikes }]] = await connection.query(`
       SELECT COUNT(id) AS countLikes

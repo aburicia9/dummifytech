@@ -1,0 +1,13 @@
+.header-home{
+display: flex;
+flex-direction:row;
+align-content: center;
+justify-content: space-between;
+align-items: center;
+width: 100vw;
+background-color: blueviolet;
+}
+
+.hader-user{
+  margin-right: 2em;
+}

@@ -1,0 +1,24 @@
+.nav-aside{
+  background-color: blue;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  position: absolute;
+  width: 200px;
+  height: 100vh;
+  align-items: center;
+}
+
+.nav-title{
+display: flex;
+align-items: flex-start;
+}
+.categories-list{
+  list-style: none;
+}
+
+.nav-li-category{
+  width: 100%;
+  border-bottom: 1px solid rgba(255,255,255,.5);
+  font-size: 1.5em;
+}
