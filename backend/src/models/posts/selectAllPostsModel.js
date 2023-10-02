@@ -13,7 +13,7 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
       INNER JOIN categories c on c.id = p.id_category
-      WHERE p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ? OR c.name LIKE ? or p.id = ?
+      WHERE p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ? OR c.name LIKE ?
     `, [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
 
     for (const post of posts) {
@@ -35,9 +35,16 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
       WHERE id_post = ${post.id} AND id_user = ${userId}
     `)
 
+      const [[{ ownerdisLikes }]] = await connection.query(`
+      SELECT COUNT(id) AS ownerdisLikes
+      FROM dislikes
+      WHERE id_post = ${post.id} AND id_user = ${userId}
+    `)
+
       post.countLikes = countLikes
       post.countComments = countComments
       post.ownerLikes = ownerLikes
+      post.ownerdisLikes = ownerdisLikes
     }
 
     return posts
