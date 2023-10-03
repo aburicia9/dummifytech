@@ -8,9 +8,11 @@
 
 aside{
   padding:10px;
+  min-height: 100vh;
+
 }
 
 footer{
   /* margin-top: 100vh; */
-  color:tomato
+  margin-top: 10px;
 }
