@@ -6,11 +6,11 @@ const baseApiURL = import.meta.env.VITE_API_URL
 
 export const PostListComponent = ({ posts }) => {
   return (
-    <article>
+    <article className='div-article-prueba'>
       {
         posts.map((post) => {
           return (
-            <section key={post.id}>
+            <section className='article-post' key={post.id}>
               <PostHeaderComponent avatar={post.avatar} username={post.username} createdAt={post.createdAt} baseApiURL={baseApiURL} />
               <PostBodyComponent title={post.title} image={post.image} post={post.post} baseApiURL={baseApiURL} />
               <PostFooterComponent countLikes={post.countLikes} countComments={post.countComments} />

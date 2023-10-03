@@ -5,3 +5,12 @@
 .home-page-subcategory-li{
   list-style: none;
 }
+
+aside{
+  padding:10px;
+}
+
+footer{
+  /* margin-top: 100vh; */
+  color:tomato
+}

@@ -13,25 +13,27 @@ export const HomePage = () => {
 
   return (
     <>
-      <header>
+      <header className='layout'>
         <NavLink to='/'>
-          <img src={logo} alt='Logo dummifytech' />
+          <img className='img-div' src={logo} alt='Logo dummifytech' />
         </NavLink>
-        <form>
+        <form className='search-div'>
           <input type='text' placeholder='Busca aqui tu post...' />
           <button>🔍</button>
         </form>
         <NavLink to='/register'>
-          <button>Registrarse</button>
+          <button className='search1-div'>Registrarse</button>
         </NavLink>
-        <button>Iniciar Sesion</button>
+        <button className='search2-div'>Iniciar Sesion</button>
       </header>
-      <main>
+      <hr />
+      <main className='layout2'>
         <aside>
           <h3>Categorias</h3>
           <CategoryListComponent categories={categories} />
           <footer>Copyright©</footer>
         </aside>
+
         <PostListComponent posts={posts} />
       </main>
     </>

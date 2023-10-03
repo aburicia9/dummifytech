@@ -1,0 +1,12 @@
+.div-article-prueba{
+  max-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(212, 214, 214);
+}
+
+.article-post{
+  border: 3px solid green;
+}
