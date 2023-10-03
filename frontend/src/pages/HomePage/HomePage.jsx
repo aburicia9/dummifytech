@@ -6,7 +6,7 @@ import { PostListComponent } from '../../components/PostRandom/PostListComponent
 import { usePosts } from '../../hooks/posts/usePosts'
 import { CategoryListComponent } from '../../components/Category/CategoryListComponent'
 import { useCategories } from '../../hooks/categories/useCategories'
-import { NavLink, Navigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export const HomePage = () => {
   const { posts } = usePosts()
