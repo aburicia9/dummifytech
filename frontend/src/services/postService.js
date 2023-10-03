@@ -31,7 +31,7 @@ export const listAllPostsService = async (searchParams) => {
     method: 'get',
     headers: { Authorization: token }
   })
-  const body = await res.json
+  const body = await res.json()
   return body
 }
 

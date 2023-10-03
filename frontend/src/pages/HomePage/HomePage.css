@@ -1,6 +1,7 @@
+.home-page-categoryParent-li{
+  list-style: none;
+}
 
-.home-page-post-random{
-  display: flex;
-  flex-direction: column;
-
+.home-page-subcategory-li{
+  list-style: none;
 }

@@ -4,11 +4,12 @@ const baseApiURL = import.meta.env.VITE_API_URL
 
 // Creamos una categoria
 export const createCategoryService = async (categoryParentId, name, description) => {
-  const token = getToken
+  const token = getToken()
   const res = await fetch(`${baseApiURL}/categories/insert`, {
     method: 'post',
     headers: {
-      Authorization: token
+      Authorization: token,
+      'Content-Type': 'application/json'
     },
     body: {
       categoryParentId,
@@ -16,6 +17,8 @@ export const createCategoryService = async (categoryParentId, name, description)
       description
     }
   })
+  const body = await res.json()
+  return body
 }
 
 // Listamos las categorias
@@ -58,17 +61,20 @@ export const deleteCategoryService = async (categoryId) => {
 
 // Creamos una request para una categoria nueva
 export const createReqCategoryService = async (categoryName, categoryReason) => {
-  const token = getToken
+  const token = getToken()
   const res = await fetch(`${baseApiURL}/categories/request`, {
     method: 'post',
     headers: {
-      Authorization: token
+      Authorization: token,
+      'Content-Type': 'application/json'
     },
     body: {
       categoryName,
       categoryReason
     }
   })
+  const body = await res.json()
+  return body
 }
 
 // Listamos todas las peticiones de nuevas categorias

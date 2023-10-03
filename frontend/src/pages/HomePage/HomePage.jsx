@@ -1,43 +1,40 @@
-import { useEffect, useState } from 'react'
-import { getRandomPostService } from '../../services/postService'
+import { useState } from 'react'
+import logo from '../../assets/logo/logo.svg'
 import './HomePage.css'
-import { LayoutComponent } from '../../components/Layout/LayoutComponent'
+
+import { PostListComponent } from '../../components/PostRandom/PostListComponent'
+import { usePosts } from '../../hooks/posts/usePosts'
+import { CategoryListComponent } from '../../components/Category/CategoryListComponent'
+import { useCategories } from '../../hooks/categories/useCategories'
+import { NavLink, Navigate } from 'react-router-dom'
 
 export const HomePage = () => {
-  const [randomPosts, setRandomPost] = useState([])
-
-  useEffect(() => {
-    const fetchRandomPost = async () => {
-      try {
-        const { data } = await getRandomPostService()
-
-        setRandomPost(data)
-      } catch (error) {
-        console.log(error.message)
-      }
-    }
-    fetchRandomPost()
-  }, [])
+  const { posts } = usePosts()
+  const { categories } = useCategories()
 
   return (
-    <LayoutComponent>
-
-      <section className='home-page-post-random'>
-        {
-          randomPosts.map((randomPost) => {
-            console.log(randomPost)
-            return (
-              <section key={randomPost.id}>
-                <p>{randomPost.username}</p>
-                <p>{randomPost.createdAt}</p>
-                <p>{randomPost.title}</p>
-                <p>{randomPost.post}</p>
-                <img src={randomPost.image} alt='' />
-              </section>
-            )
-          })
-        }
-      </section>
-    </LayoutComponent>
+    <>
+      <header>
+        <NavLink to='/'>
+          <img src={logo} alt='Logo dummifytech' />
+        </NavLink>
+        <form>
+          <input type='text' placeholder='Busca aqui tu post...' />
+          <button>🔍</button>
+        </form>
+        <NavLink to='/register'>
+          <button>Registrarse</button>
+        </NavLink>
+        <button>Iniciar Sesion</button>
+      </header>
+      <main>
+        <aside>
+          <h3>Categorias</h3>
+          <CategoryListComponent categories={categories} />
+          <footer>Copyright©</footer>
+        </aside>
+        <PostListComponent posts={posts} />
+      </main>
+    </>
   )
 }
