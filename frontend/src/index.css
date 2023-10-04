@@ -1,4 +1,30 @@
+:root{
+  --darkBlue: #569ABC;
+  --midBlue: #6DA5CC;
+  --lightBlue: #74C9EF;
+  --white: #F3FFFC;
+  --beige: #EEE0CA;
+  --red: #C63B25;
+  --optinalBlue: #517689;
+}
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+body{
+  display:flex;
+  flex-direction: column;
+  min-width: 1200px;
+  width: 100%;
+  height: 100%;
+  background-image: url("./assets/background/3161112.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+
+
+

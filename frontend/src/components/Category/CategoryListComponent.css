@@ -1,0 +1,43 @@
+.aside-category-list{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  height: 100%;
+
+}
+.ul-category-list{
+  display: flex;
+  flex-direction: column;
+  gap:1em;
+  margin: 1rem;
+
+}
+
+.name-button-category{
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+
+}
+
+.a-subcategory-category{
+  display: flex;
+  margin: 16px;
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  color: white;
+}
+
+.li-category{
+  list-style: none;
+  color: white;
+}
+
+.h3-category{
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  margin: 8px;
+  color: white;
+}

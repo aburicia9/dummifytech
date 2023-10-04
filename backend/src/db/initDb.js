@@ -194,7 +194,7 @@ export const main = async () => {
 
     await connection.query(`
     INSERT INTO categories ( name, description)
-    VALUES('Inteligencia Artificial', 'Innovaciones en la simulación de inteligencia humana a través de tecnología');
+    VALUES('IA', 'Innovaciones en la simulación de inteligencia humana a través de tecnología');
     `)
 
     await connection.query(`
@@ -262,6 +262,14 @@ export const main = async () => {
     await connection.query(`
     INSERT INTO categories ( name, description)
     VALUES('DummyMemes', 'Disfruta de un rincón divertido para compartir y crear memes.');
+    `)
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(4, 'IA ', 'Innovaciones en la simulación de inteligencia humana a través de tecnología');
+    `)
+    await connection.query(`
+    INSERT INTO categories(id_categories_parent, name, description)
+    VALUES(18, 'DummyMemes ', 'Disfruta de un rincón divertido para compartir y crear memes.');
     `)
 
     console.log('¡Categoria creada! 😉✅')

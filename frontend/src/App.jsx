@@ -1,25 +1,22 @@
 // Importamos los componentes.
-// import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { HeaderComponent } from './components/Header/HeaderComponent'
-import { NavAsideComponent } from './components/NavAside/NavAsideComponent'
-import { HomePage } from './pages/Home/HomePage'
-// import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
+import { HomePage } from './pages/HomePage/HomePage'
+import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
+import { RegisterPage } from './pages/RegisterPage/RegisterPage'
+import { LoginPage } from './pages/LoginPage/LoginPage'
 
-// import { Home } from './components/Home/Home'
-
-function App () {
+export const App = () => {
   return (
-    <div>
-      <HeaderComponent />
-      {/* <Routes>
-        <Route path='/' element={<Home />} />
+    <>
+      {/* <h1>DummifyTech</h1> */}
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/register' element={<RegisterPage />} />
+        <Route path='/login' element={<LoginPage />} />
         <Route path='*' element={<NotFoundPage />} />
-      </Routes> */}
-      <NavAsideComponent />
-      <HomePage />
-    </div>
+      </Routes>
+    </>
+
   )
 }
-
-export default App

@@ -8,7 +8,7 @@ export const selectRandomPostModel = async () => {
     // let postdetail = {}
 
     const [posts] = await connection.query(`
-      SELECT p.id, p.title, p.post, p.image, u.username , p.created_at as createdAt, c.name as nameCategory
+      SELECT p.id, p.title, p.post, p.image, u.username, u.avatar , p.created_at as createdAt, c.name as nameCategory
       FROM posts p 
       INNER JOIN users u ON u.id = p.id_user
       INNER JOIN categories c ON c.id = p.id_category

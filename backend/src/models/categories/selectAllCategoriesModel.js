@@ -18,7 +18,6 @@ export const selectAllCategoriesModel = async () => {
         `)
       category.subcategories = subcategories
     }
-    console.log(categories)
     return categories
   } finally {
     if (connection) connection.release()

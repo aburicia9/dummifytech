@@ -1,13 +1,82 @@
-.header-home{
-display: flex;
-flex-direction:row;
-align-content: center;
-justify-content: space-between;
-align-items: center;
-width: 100vw;
-background-color: blueviolet;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px #08283868 solid;
+}
+.img-logo-header {
+  display: flex;
 }
 
-.hader-user{
-  margin-right: 2em;
+.div-button-users-header {
+  display: flex;
+  gap: 1em;
+  margin-right: 1em;
+}
+.form-search-header {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.div-search-header {
+  position: relative;
+}
+
+.img-search-header {
+  width: 2em;
+  height: 2em;
+}
+
+.button-search-header {
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  position: absolute;
+  right: 10px;
+  top: 2.5px;
+}
+
+.button-search-header:hover {
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.input-search-header {
+  border-radius: 15px;
+  border: 1px black solid;
+  width: 50rem;
+  height: 2.5em;
+  margin-left: 230px;
+}
+
+.button-register-header {
+  border-radius: 15px;
+  background: transparent;
+  color: black;
+  border: 1px black solid;
+  width: 10em;
+  height: 2.5em;
+}
+.button-register-header:hover {
+  background: transparent;
+  color: black;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.button-login-header {
+  border-radius: 15px;
+  background: transparent;
+  color: black;
+  border: 1px black solid;
+  width: 10em;
+  height: 2.5em;
+}
+.button-login-header:hover {
+  background: transparent;
+  color: black;
+  box-shadow: none;
+  cursor: pointer;
 }

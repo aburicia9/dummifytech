@@ -1,29 +1,48 @@
-// Importamos los compontentes.
-import { NavLink } from 'react-router-dom'
-
-// Importamos iconos
-import RegisterIcon from '../../assets/header/register.svg'
-import LoginIcon from '../../assets/header/login.svg'
-import LogoutIcon from '../../assets/header/logout.svg'
-import AvatarUser from '../../assets/header/user_login.svg'
-import Logo from '../../assets/logo/logo.svg'
-import Search from '../../assets/post/search_post.svg'
-
-// Importamos estilos
+import { useNavigate } from 'react-router-dom'
+import logo from '../../assets/logo/logo.svg'
 import './HeaderComponent.css'
+import search from '../../assets/header/search.svg'
+import { ButtonComponent } from '../Button/ButtonComponent'
 
-export const HeaderComponent = () => {
+export const Header = () => {
+  const navigate = useNavigate()
+
+  const handleOnClickRegister = (event) => {
+    event.preventDefault()
+    navigate('/register')
+  }
+
+  const handleOnClickHome = (event) => {
+    event.preventDefault()
+    navigate('/')
+  }
+
+  const handleOnClickLogin = (event) => {
+    event.preventDefault()
+    navigate('/login')
+  }
+  const handleOnClickSearch = (event) => {
+    event.preventDefault()
+  }
   return (
-    <header className='header-home'>
-      <NavLink to='/'><img src={Logo} alt='Logo dummifytech' className='logo-home' /></NavLink>
-      <form>
-        <input type='search-post' placeholder='Busca tu post...🔍' />
-      </form>
-      <div className='hader-user'>
-        <NavLink to='/'>REGISTRO</NavLink>
-        {' | '}
-        <NavLink to='/'>LOGIN</NavLink>
-      </div>
-    </header>
+    <>
+      <header className='header'>
+
+        <img className='img-logo-header' src={logo} alt='Logo dummifytech' onClick={handleOnClickHome} />
+
+        <form className='form-search-header'>
+          <div className='div-search-header'>
+            <input className='input-search-header' type='text' placeholder='   Busca tu post...' />
+            <button className='button-search-header' onClick={handleOnClickSearch}><img src={search} alt='image search' className='img-search-header' /></button>
+          </div>
+        </form>
+        <div className='div-button-users-header'>
+
+          <ButtonComponent handleOnClick={handleOnClickRegister} buttonName='Registrarse' />
+
+          <ButtonComponent handleOnClick={handleOnClickLogin} buttonName='Iniciar sesion' />
+        </div>
+      </header>
+    </>
   )
 }
