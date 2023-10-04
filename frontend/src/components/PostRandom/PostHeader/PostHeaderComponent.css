@@ -1,1 +1,20 @@
+.header-post {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  min-height: 1em;
+  margin: 1em;
+  
+}
 
+.header-post-username{
+  margin-right: 6em;
+}
+
+.header-post-date{
+display: flex;
+justify-content: end;
+width: 100%;
+margin-right: 1em;
+}

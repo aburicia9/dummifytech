@@ -1,0 +1,36 @@
+.body-div-post{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 1em;
+  min-height: 12em;
+}
+.body-title-post{
+  display: flex;
+  text-align: center;
+  justify-content: flex-start;
+  margin-left: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+  
+}
+
+.body-image-text-post{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.button-leer-body-post{
+  background: transparent;
+  border: none;
+}
+
+.button-leer-body-post:hover{
+  background:transparent;
+  color: black;
+
+}

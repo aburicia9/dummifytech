@@ -1,0 +1,14 @@
+.button-generic{
+  border-radius: 15px;
+  background:var(--midBlue) ;
+  color: white;
+  border: 1px #6da5c0 solid;
+  width: 10em;
+  height: 2.5em;
+}
+.button-generic:hover{
+  background: var(--midBlue) ;
+  color: white;
+  box-shadow: none;
+cursor: pointer;
+}

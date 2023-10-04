@@ -1,12 +1,28 @@
-.div-article-prueba{
-  max-height: 100vh;
-  min-width: 100vw;
+
+.article-post {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  background-color: rgb(212, 214, 214);
+  height: 100%;
+  width: 100%;
+  border-radius: 0px;
+  transition:all 0.4s;
+  background-size: 100%;
+  margin-right: 150px;
+
 }
 
-.article-post{
-  border: 3px solid green;
+
+.section-post{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 0.5px solid #294d61;
+  margin-top: 5em;
+  background-color:#F3FEFF;
+  width: 50em;
+  height: 25em;
+  border-radius: 25px;
+  box-shadow: 5px 5px 10px #888888 ;
 }
+

@@ -1,0 +1,76 @@
+.div-footer-post{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  margin: 1em;
+}
+.div-like-footer-post{
+  display: flex;
+  gap: 1em;
+}
+
+.div-comment-footer-post{
+  display: flex;
+  gap: 1em;
+}
+
+.button-like-footer-post{
+  width: 3em;
+  background: transparent;
+  border: none;
+}
+
+.button-like-footer-post:hover{
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.button-dislike-footer-post{
+  width: 3em;
+  background: transparent;
+  border: none;
+}
+
+.button-dislike-footer-post:hover{
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.button-comment-footer-post{
+  width: 3em;
+  background: transparent;
+  border: none;
+}
+
+.button-comment-footer-post:hover{
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.button-report-footer-post{
+  width: 3em;
+  background: transparent;
+  border: none;
+}
+
+.button-report-footer-post:hover{
+  background-color: transparent;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.span-countlikes-footer-post{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.span-countcomments-footer-post{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
