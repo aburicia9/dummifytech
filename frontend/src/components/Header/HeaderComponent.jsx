@@ -4,7 +4,7 @@ import './HeaderComponent.css'
 import search from '../../assets/header/search.svg'
 import { ButtonComponent } from '../Button/ButtonComponent'
 
-export const Header = () => {
+export const HeaderComponent = ({ isSearchDisabled }) => {
   const navigate = useNavigate()
 
   const handleOnClickRegister = (event) => {
@@ -32,8 +32,8 @@ export const Header = () => {
 
         <form className='form-search-header'>
           <div className='div-search-header'>
-            <input className='input-search-header' type='text' placeholder='   Busca tu post...' />
-            <button className='button-search-header' onClick={handleOnClickSearch}><img src={search} alt='image search' className='img-search-header' /></button>
+            <input className='input-search-header' disabled={isSearchDisabled} type='text' placeholder='   Busca tu post...' />
+            <button className='button-search-header' disabled={isSearchDisabled} onClick={handleOnClickSearch}><img src={search} alt='image search' className='img-search-header' /></button>
           </div>
         </form>
         <div className='div-button-users-header'>

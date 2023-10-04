@@ -3,6 +3,7 @@ import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import './RegisterPage.css'
 import { createUserService } from '../../services/authService'
 import { useNavigate } from 'react-router-dom'
+import { Layout } from '../../components/Layout/Layout'
 
 export const RegisterPage = () => {
   const navigate = useNavigate()
@@ -50,8 +51,9 @@ export const RegisterPage = () => {
       }
       const resutl = await createUserService({ username, email, password, fullName })
 
+      resetForm()
+
       if (resutl.status === 'ok') {
-        resetForm()
         navigate('/login')
       }
     } catch (error) {
@@ -62,7 +64,7 @@ export const RegisterPage = () => {
   }
 
   return (
-    <>
+    <Layout isSearchDisabled isSubcategoryDisabled>
       <form>
         <h2>Formulario de registro</h2>
         <label htmlFor='fullName'>Nombre completo: </label>
@@ -78,6 +80,6 @@ export const RegisterPage = () => {
         <ButtonComponent buttonName='Registrarse' handleOnClick={handleOnClick} />
 
       </form>
-    </>
+    </Layout>
   )
 }
