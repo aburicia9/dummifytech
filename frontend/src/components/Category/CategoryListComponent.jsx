@@ -36,7 +36,7 @@ function Category ({ category, isSubcategoryDisabled }) {
     <li key={id} className='li-category'>
       <ButtonCategoryComponent className={className} onClick={handleOnClick} buttonName={name} />
       {toggle && (
-        <ul>
+        <ul className='ul-subcategory-category'>
           {
         subcategories.map((subcategory) => {
           return (

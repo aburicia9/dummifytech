@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import './LoginPage.css'
 import { loginUserService } from '../../services/authService'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
 
 export const LoginPage = () => {
@@ -45,17 +45,21 @@ export const LoginPage = () => {
 
   return (
     <Layout isSearchDisabled>
-      <form>
-        <h2>Login</h2>
-        <label htmlFor='email'>Correo electronico: </label>
-        <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
-        <label htmlFor='password'>Contraseña: </label>
-        <input type='password' id='password' onChange={handleOnChangePassword} value={password} />
-        <ButtonComponent buttonName='Ingresar' handleOnClick={handleOnClick} />
-      </form>
+      <div className='div-login'>
+        <form className='form-login'>
+          <h2 className='title-login'>Login</h2>
+          <label htmlFor='email'>Correo electronico: </label>
+          <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
+          <label htmlFor='password'>Contraseña: </label>
+          <input type='password' id='password' onChange={handleOnChangePassword} value={password} />
+          <ButtonComponent className='button-login' buttonName='Iniciar Sesión' handleOnClick={handleOnClick} />
+          <div className='div-p-login'>
+            <p>Hay una primera vez para todo <Link className='link-register-login' to='/register'>¡Registrate!</Link></p>
+            <p>¿Has olvidado la <Link className='link-recovery-password-login' to='/recoverypassword'>contraseña</Link>?</p>
+          </div>
+        </form>
 
-      <p>Hay una primera vez para todo<a href='/register'> ¡Registrate!</a></p>
-      <p>¿Has olvidado la <a href='#'>contraseña</a>?</p>
+      </div>
     </Layout>
   )
 }

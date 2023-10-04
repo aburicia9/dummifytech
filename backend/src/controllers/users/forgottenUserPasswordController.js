@@ -8,6 +8,7 @@ export const forgottenUserPasswordController = async (req, res, next) => {
   try {
     const { username, email } = req.body
 
+    console.log(req.body)
     const user = await selectUserByEmailModel(email)
 
     if (username !== user.username) {

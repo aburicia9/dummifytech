@@ -65,21 +65,22 @@ export const RegisterPage = () => {
 
   return (
     <Layout isSearchDisabled isSubcategoryDisabled>
-      <form>
-        <h2>Formulario de registro</h2>
-        <label htmlFor='fullName'>Nombre completo: </label>
-        <input type='text' id='fullName' onChange={handleOnChangeFullName} value={fullName} />
-        <label htmlFor='username'>Usuario: </label>
-        <input type='text' id='username' onChange={handleOnChangeUsername} value={username} />
-        <label htmlFor='email'>Correo electronico: </label>
-        <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
-        <label htmlFor='password'>Contraseña: </label>
-        <input type='password' id='password' onChange={handleOnChangePassword} value={password} />
-        <label htmlFor='repeatPassword'>Repite la contraseña: </label>
-        <input type='password' id='repeatPassword' onChange={handleOnChangeRepeatPassword} value={repeatPassword} />
-        <ButtonComponent buttonName='Registrarse' handleOnClick={handleOnClick} />
-
-      </form>
+      <div className='div-register'>
+        <form className='form-register'>
+          <h2 className='title-register'>Formulario de registro</h2>
+          <label htmlFor='fullName'>Nombre completo: </label>
+          <input type='text' id='fullName' onChange={handleOnChangeFullName} value={fullName} />
+          <label htmlFor='username'>Usuario: </label>
+          <input type='text' id='username' onChange={handleOnChangeUsername} value={username} />
+          <label htmlFor='email'>Correo electronico: </label>
+          <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
+          <label htmlFor='password'>Contraseña: </label>
+          <input type='password' id='password' onChange={handleOnChangePassword} value={password} />
+          <label htmlFor='repeatPassword'>Repite la contraseña: </label>
+          <input type='password' id='repeatPassword' onChange={handleOnChangeRepeatPassword} value={repeatPassword} />
+          <ButtonComponent className='button-register' buttonName='Registrarse' handleOnClick={handleOnClick} />
+        </form>
+      </div>
     </Layout>
   )
 }
