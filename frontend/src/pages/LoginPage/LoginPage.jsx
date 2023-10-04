@@ -55,7 +55,7 @@ export const LoginPage = () => {
           <ButtonComponent className='button-login' buttonName='Iniciar Sesión' handleOnClick={handleOnClick} />
           <div className='div-p-login'>
             <p>Hay una primera vez para todo <Link className='link-register-login' to='/register'>¡Registrate!</Link></p>
-            <p>¿Has olvidado la <Link className='link-recovery-password-login' to='/recoverypassword'>contraseña</Link>?</p>
+            <p>¿Has olvidado la <Link className='link-recovery-password-login' to='/recovery-password'>contraseña</Link>?</p>
           </div>
         </form>
 

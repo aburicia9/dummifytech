@@ -146,10 +146,13 @@ export const verificationOwnUserService = async (token) => {
 }
 
 // Enviar una contraseña nueva
-export const updateForgetPasswordUserService = async (username, email) => {
-  console.log({ username, email })
+export const updateForgetPasswordUserService = async ({ username, email }) => {
+  // console.log({ username, email })
   const res = await fetch(`${baseApiURL}/recovery-password`, {
-    method: 'patch',
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       username,
       email
