@@ -60,6 +60,7 @@ export const loginUserService = async ({ email, password }) => {
     })
   })
   const body = await res.json()
+
   return body
 }
 

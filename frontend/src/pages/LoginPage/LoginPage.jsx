@@ -4,12 +4,12 @@ import './LoginPage.css'
 import { loginUserService } from '../../services/authService'
 import { Link, useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
-import { toastifyLogin } from '../../utils/Toastify/Toastify'
+import { toastifyForm } from '../../utils/Toastify/Toastify'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState()
+  const [email, setEmail] = useState()
   const [loading, setLoading] = useState(false)
 
   const handleOnChangePassword = (event) => {
@@ -21,8 +21,8 @@ export const LoginPage = () => {
   }
 
   const resetForm = () => {
-    setEmail('')
-    setPassword('')
+    setEmail()
+    setPassword()
   }
 
   const handleOnClick = async (event) => {
@@ -31,11 +31,11 @@ export const LoginPage = () => {
       setLoading(true)
 
       const result = await loginUserService({ email, password })
-      console.log(result)
-      resetForm()
-      toastifyLogin(result)
+
+      toastifyForm(result)
 
       if (result.status === 'ok') {
+        resetForm()
         navigate('/')
       }
     } catch (error) {

@@ -1,8 +1,6 @@
-import { zodCustomErrorMap } from './zodCustomErrorMap.js'
-
 export const validateSchema = async (schema, data) => {
   try {
-    const result = await schema.safeParseAsync(data, zodCustomErrorMap)
+    const result = await schema.safeParseAsync(data)
 
     return result
   } catch (error) {

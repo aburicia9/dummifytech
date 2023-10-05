@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 1em;
   height: 100%;
+  min-width: 11.5rem;
 
 }
 .ul-category-list{

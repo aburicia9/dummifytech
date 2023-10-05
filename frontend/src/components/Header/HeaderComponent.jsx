@@ -8,7 +8,7 @@ import avatarUser from '../../assets/users/login.svg'
 export const HeaderComponent = ({ isSearchDisabled, isUserLogued = false }) => {
   const navigate = useNavigate()
   let divSearchHeader = 'div-search-header'
-  console.log(isUserLogued)
+
   if (isUserLogued === true) {
     divSearchHeader = divSearchHeader + '-logued'
   }
