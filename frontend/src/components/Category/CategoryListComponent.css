@@ -3,7 +3,9 @@
   flex-direction: column;
   gap: 1em;
   height: 100%;
-
+  position: fixed;
+  top: 100px;
+  background: var(--midBlue);
 }
 .ul-category-list{
   display: flex;

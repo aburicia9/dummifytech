@@ -5,11 +5,10 @@ import search from '../../assets/header/search.svg'
 import { ButtonComponent } from '../Button/ButtonComponent'
 import avatarUser from '../../assets/users/login.svg'
 
-export const HeaderComponent = ({ isSearchDisabled, isUserLogued = false }) => {
+export const HeaderComponent = ({ isSearchDisabled, isUserLogged = false }) => {
   const navigate = useNavigate()
   let divSearchHeader = 'div-search-header'
-  console.log(isUserLogued)
-  if (isUserLogued === true) {
+  if (isUserLogged === true) {
     divSearchHeader = divSearchHeader + '-logued'
   }
 
@@ -61,7 +60,7 @@ export const HeaderComponent = ({ isSearchDisabled, isUserLogued = false }) => {
             </button>
           </div>
         </form>
-        {isUserLogued
+        {isUserLogged
           ? (
             <button className='button-avatar-user-header'>
               <img src={avatarUser} alt='avatar usuario' />

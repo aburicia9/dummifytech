@@ -1,15 +1,14 @@
 
 .article-post {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 100%;
   border-radius: 0px;
-  transition:all 0.4s;
+  transition: all 0.4s;
   background-size: 100%;
   margin-right: 150px;
-
 }
 
 
