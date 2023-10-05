@@ -30,7 +30,7 @@ export const newUserController = async (req, res, next) => {
 
     res.send({
       status: 'ok',
-      message: 'Usuario creado ✅'
+      message: 'Usuario creado con exito, revisa tu correo para verificar tu usuario✅'
     })
   } catch (error) {
     console.error(error)

@@ -1,0 +1,7 @@
+
+.Toastify__toast{
+  border-radius: var(--borderRadiusSmall) !important;
+  border: 0.5px solid #294d61 !important;
+  box-shadow: 5px 5px 10px #888888 !important ; 
+  white-space : pre-line !important; 
+} 

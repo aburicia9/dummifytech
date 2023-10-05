@@ -12,6 +12,10 @@ export const editUserPasswordSchema = z.object({
     .max(100, 'La contraseña tiene que tener como maximo 100 caracteres')
     .regex(
       /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[¡!$%^&*()_+|~=`{}:";'<>¿?,.])[a-zA-Z0-9¡!$%^&*()_+|~=`{}:";'<>¿?,.]{8,}$/,
-      'La contraseña debe contener al menos un número, una letra en minúscula, una letra en mayúscula y un caracter especial'
+      `La contraseña debe contener\n
+      - Al menos un número\n 
+      - Una letra en minúscula\n 
+      - Una letra en mayúscula\n
+      - Un caracter especial`
     )
 })

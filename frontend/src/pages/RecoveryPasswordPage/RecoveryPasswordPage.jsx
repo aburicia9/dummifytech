@@ -29,7 +29,6 @@ export const RecoveryPasswordPage = () => {
       setLoading(true)
 
       const result = await updateForgetPasswordUserService({ username, email })
-      console.log(result)
 
       resetForm()
 

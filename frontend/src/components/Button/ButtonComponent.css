@@ -1,5 +1,5 @@
 .button-generic{
-  border-radius: 15px;
+  border-radius: var(--borderRadiusSmall);
   background:var(--midBlue) ;
   color: white;
   border: 1px #6da5c0 solid;

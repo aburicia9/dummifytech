@@ -38,7 +38,7 @@ margin-right: 10.5rem ;
 .button-search-header {
   background: transparent;
   border: none;
-  border-radius: 50%;
+  border-radius: var(--borderRadiusSmall);
   position: absolute;
   right: 10px;
   top: 2.5px;
@@ -51,7 +51,7 @@ margin-right: 10.5rem ;
 }
 
 .input-search-header {
-  border-radius: 15px;
+  border-radius: var(--borderRadiusSmall);
   border: 1px black solid;
   width: 50rem;
   height: 2.5em;
@@ -59,7 +59,7 @@ margin-right: 10.5rem ;
 }
 
 .button-register-header {
-  border-radius: 15px;
+  border-radius: var(--borderRadiusSmall);
   background: transparent;
   color: black;
   border: 1px black solid;
@@ -74,7 +74,7 @@ margin-right: 10.5rem ;
 }
 
 .button-login-header {
-  border-radius: 15px;
+  border-radius: var(--borderRadiusSmall);
   background: transparent;
   color: black;
   border: 1px black solid;

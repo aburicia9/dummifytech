@@ -1,4 +1,4 @@
-.aside-category-list{
+.aside-category-list {
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -7,22 +7,20 @@
   top: 100px;
   background: var(--midBlue);
 }
-.ul-category-list{
+.ul-category-list {
   display: flex;
   flex-direction: column;
-  gap:1em;
+  gap: 1em;
   margin: 1rem;
-
 }
 
-.name-button-category{
+.name-button-category {
   font-size: 1.1rem;
   font-weight: bold;
   color: white;
-
 }
 
-.a-subcategory-category{
+.a-subcategory-category {
   display: flex;
   margin: 16px;
   text-decoration: none;
@@ -31,12 +29,12 @@
   color: white;
 }
 
-.li-category{
+.li-category {
   list-style: none;
   color: white;
 }
 
-.h3-category{
+.h3-category {
   text-align: center;
   font-weight: bold;
   font-size: 2rem;

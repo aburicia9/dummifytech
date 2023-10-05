@@ -5,12 +5,11 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  border-radius: 0px;
-  transition: all 0.4s;
+  border-radius: var(--borderRadiusSmall);
+  transition:all 0.4s;
   background-size: 100%;
   margin-right: 150px;
 }
-
 
 .section-post{
   display: flex;
@@ -21,7 +20,7 @@
   background:linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);
   width: 50em;
   height: 25em;
-  border-radius: 25px;
+  border-radius: var(--borderRadiusSmall);
   box-shadow: 5px 5px 10px #888888 ;
 }
 

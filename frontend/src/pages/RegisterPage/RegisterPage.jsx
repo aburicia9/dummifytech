@@ -4,6 +4,7 @@ import './RegisterPage.css'
 import { createUserService } from '../../services/authService'
 import { useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
+import { toastifyForm } from '../../utils/Toastify/Toastify'
 
 export const RegisterPage = () => {
   const navigate = useNavigate()
@@ -49,11 +50,12 @@ export const RegisterPage = () => {
       if (password !== repeatPassword) {
         console.log('Las contraseñas no coinciden')
       }
-      const resutl = await createUserService({ username, email, password, fullName })
+      const result = await createUserService({ username, email, password, fullName })
 
-      resetForm()
+      toastifyForm(result)
 
-      if (resutl.status === 'ok') {
+      if (result.status === 'ok') {
+        resetForm()
         navigate('/login')
       }
     } catch (error) {
