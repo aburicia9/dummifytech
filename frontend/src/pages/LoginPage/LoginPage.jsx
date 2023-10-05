@@ -64,7 +64,6 @@ export const LoginPage = () => {
             <label className='label-login' htmlFor='password'>Contraseña: </label>
             <input
               className='input-login'
-              className='input-login'
               type='password'
               id='password'
               onChange={handleOnChangePassword}

@@ -14,7 +14,7 @@
   display: flex;
   gap: 1em;
   position: fixed;
-  right: 10px;
+  right: 12px;
 }
 .form-search-header {
   display: flex;
@@ -88,5 +88,12 @@
   background: transparent;
   width: 70px;
   height: 70px;
+  border: none;
+}
+
+.button-logout-header{
+  background: transparent;
+  width: 61px;
+  height: 75px;
   border: none;
 }

@@ -70,7 +70,7 @@ export const RegisterPage = () => {
       <div className='div-register'>
         <form className='form-register'>
           <h2 className='title-register'>Formulario de registro</h2>
-          <label className='label-register'  htmlFor='fullName'>Nombre completo: </label>
+          <label className='label-register' htmlFor='fullName'>Nombre completo: </label>
           <input className='input-register' type='text' id='fullName' onChange={handleOnChangeFullName} value={fullName} />
           <label className='label-register' htmlFor='username'>Usuario: </label>
           <input className='input-register' type='text' id='username' onChange={handleOnChangeUsername} value={username} />
