@@ -5,12 +5,14 @@ import { loginUserService } from '../../services/authService'
 import { Link, useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
 import { toastifyLogin } from '../../utils/Toastify/Toastify'
+import { useAuth } from '../../hooks/useAuthHook'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
+  const { authLogin } = useAuth()
 
   const handleOnChangePassword = (event) => {
     setPassword(event.target.value)
@@ -30,12 +32,11 @@ export const LoginPage = () => {
     try {
       setLoading(true)
 
-      const result = await loginUserService({ email, password })
-      console.log(result)
-      resetForm()
+      const result = await authLogin({ email, password })
       toastifyLogin(result)
 
       if (result.status === 'ok') {
+        resetForm()
         navigate('/')
       }
     } catch (error) {

@@ -9,7 +9,6 @@ export const PostListComponent = ({ posts }) => {
     <article className='article-post'>
       {
         posts.map((post) => {
-          console.log(post)
           return (
             <section className='section-post' key={post.id}>
               <PostHeaderComponent avatar={post.avatar} username={post.username} createdAt={post.createdAt} baseApiURL={baseApiURL} />

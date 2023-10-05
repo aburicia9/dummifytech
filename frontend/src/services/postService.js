@@ -26,7 +26,6 @@ export const getRandomPostService = async () => {
 // Listar todos los posts
 export const listAllPostsService = async (searchParams) => {
   const token = getToken()
-
   const res = await fetch(`${baseApiURL}/posts?${searchParams}`, {
     method: 'get',
     headers: { Authorization: token }
