@@ -4,6 +4,7 @@ import './LoginPage.css'
 import { loginUserService } from '../../services/authService'
 import { Link, useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
+import { toastifyLogin } from '../../utils/Toastify/Toastify'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
@@ -30,8 +31,9 @@ export const LoginPage = () => {
       setLoading(true)
 
       const result = await loginUserService({ email, password })
-
+      console.log(result)
       resetForm()
+      toastifyLogin(result)
 
       if (result.status === 'ok') {
         navigate('/')

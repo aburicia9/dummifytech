@@ -6,6 +6,7 @@ import { NotFoundPage } from './pages/NotFoundPage/NotFoundPage'
 import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RecoveryPasswordPage } from './pages/RecoveryPasswordPage/RecoveryPasswordPage'
+import { ToastContainer } from 'react-toastify'
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
+      <ToastContainer />
     </>
 
   )
