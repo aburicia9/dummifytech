@@ -3,7 +3,10 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  border: 1px #08283868 solid;
+  border: 1px var(--darkBlue) solid;
+  position: fixed;
+  z-index: 100;
+  background: var(--midBlue);
 }
 .img-logo-header {
   display: flex;

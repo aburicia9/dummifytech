@@ -1,8 +1,8 @@
 
 .article-post {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
   width: 100%;
   border-radius: var(--borderRadiusSmall);

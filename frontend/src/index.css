@@ -1,7 +1,8 @@
 :root{
-  --darkBlue: #569ABC;
-  --midBlue: #6DA5CC;
+  --darkBlue: #101826;
+  --midBlue: #374151;
   --lightBlue: #74C9EF;
+  /* --lightBlue: #1C64F2; */
   --white: #F3FFFC;
   --beige: #EEE0CA;
   --red: #C63B25;
@@ -81,7 +82,7 @@ body{
   min-width: 1200px;
   width: 100%;
   height: 100%;
-  background-image: url("./assets/background/3161112.png");
+  background:linear-gradient(144deg,#569ABC,#ffffff, 75%,#74C9EF);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;

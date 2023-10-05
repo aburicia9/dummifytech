@@ -2,11 +2,13 @@ import { selectRandomPostModel } from '../../models/posts/selectRandomPostModel.
 
 export const getRandomPostController = async (req, res, next) => {
   try {
-    const post = await selectRandomPostModel()
+    const posts = await selectRandomPostModel()
 
     res.send({
       status: 'ok',
-      data: post
+      data: {
+        posts
+      }
     })
   } catch (error) {
     console.error(error)
