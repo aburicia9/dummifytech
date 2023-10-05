@@ -3,11 +3,14 @@ import './HeaderComponent.css'
 import search from '../../assets/header/search.svg'
 import { ButtonComponent } from '../Button/ButtonComponent'
 import avatarUser from '../../assets/users/login.svg'
+import logoutIcon from '../../assets/header/logout.svg'
 import { useAuth } from '../../hooks/useAuth'
 import { usePosts } from '../../hooks/posts/usePosts'
 import { useState } from 'react'
+import { toastifySuccess } from '../../utils/Toastify/Toastify'
 
 export const HeaderComponent = () => {
+  const { authLogout } = useAuth()
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
   const { setSearchParams } = usePosts()
@@ -30,6 +33,12 @@ export const HeaderComponent = () => {
 
   const onChangeSearch = (event) => {
     setKeyword(event.target.value)
+  }
+
+  const onClicklogout = (event) => {
+    event.preventDefault()
+    authLogout()
+    toastifySuccess('¡Sesión Cerrada!')
   }
   return (
     <>
@@ -59,6 +68,9 @@ export const HeaderComponent = () => {
         {isAuthenticated
           ? (
             <div className='div-button-users-header'>
+              <button className='button-logout-header' onClick={onClicklogout}>
+                <img src={logoutIcon} alt='icono logout' />
+              </button>
               <button className='button-avatar-user-header'>
                 <img src={avatarUser} alt='avatar usuario' />
               </button>
