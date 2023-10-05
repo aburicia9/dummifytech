@@ -14,6 +14,7 @@ export const App = () => {
       {/* <h1>DummifyTech</h1> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/posts/:categoryId' element={<HomePage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />

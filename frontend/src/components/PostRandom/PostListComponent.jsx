@@ -4,7 +4,7 @@ import { PostFooterComponent } from './PostFooter/PostFooterComponent'
 import { PostHeaderComponent } from './PostHeader/PostHeaderComponent'
 const baseApiURL = import.meta.env.VITE_API_URL
 
-export const PostListComponent = ({ posts }) => {
+export const PostListComponent = ({ posts, fetchPosts }) => {
   return (
     <article className='article-post'>
       {
@@ -13,7 +13,7 @@ export const PostListComponent = ({ posts }) => {
             <section className='section-post' key={post.id}>
               <PostHeaderComponent avatar={post.avatar} username={post.username} createdAt={post.createdAt} baseApiURL={baseApiURL} />
               <PostBodyComponent title={post.title} image={post.image} post={post.post} baseApiURL={baseApiURL} />
-              <PostFooterComponent countLikes={post.countLikes} countComments={post.countComments} />
+              <PostFooterComponent fetchPosts={fetchPosts} postId={post.id} ownerLikes={post.ownerLikes} countLikes={post.countLikes} countComments={post.countComments} />
             </section>
           )
         })

@@ -21,8 +21,17 @@
   display: flex;
   text-align: center;
   justify-content: center;
-  width: 100%;
+  width: 500px;
+  max-height: 700px;
+    
 }
+
+.body-image-text-post > img{
+  object-fit: contain;
+  width: 100%;
+  height: auto;
+}
+
 
 .button-leer-body-post{
   background: transparent;

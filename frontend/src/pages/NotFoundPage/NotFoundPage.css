@@ -7,7 +7,7 @@
   border-radius: var(--borderRadiusSmall);
   transition:all 0.4s;
   background-size: 100%;
-  margin-right: 150px;
+  margin-top: 5rem;
 }
 
 .div-not-found-son {
@@ -18,15 +18,14 @@
   margin: 5em;
   background:linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);  width: 50em;
   border-radius: var(--borderRadiusSmall);
-  box-shadow: 5px 5px 10px #888888 ;
+  box-shadow: var(--borderColorShadow);
   padding: 1.5rem;
   gap: 0.3rem;
 }
 .title-not-found {
   display: flex;
   text-align: center;
-  justify-content: flex-start;
-  margin-left: 1em;
+  justify-content: center;
   margin-bottom: 1em;
   width: 100%;
 }

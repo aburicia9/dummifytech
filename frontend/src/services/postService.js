@@ -37,6 +37,7 @@ export const listAllPostsService = async (searchParams) => {
 // Crear o eliminar like en un post
 export const likePostService = async (postId, method) => {
   const token = getToken()
+  console.log({ postId, method })
   const res = await fetch(`${baseApiURL}/posts/${postId}/likes`, {
     method,
     headers: {
@@ -162,6 +163,18 @@ export const deleteCommentPostService = async (postId, commentId) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/posts/${postId}/comments/${commentId}`, {
     method: 'delete',
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}
+
+export const listPostByIdCategoryService = async (categoryId) => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/posts/${categoryId}`, {
+    method: 'get',
     headers: {
       Authorization: token
     }

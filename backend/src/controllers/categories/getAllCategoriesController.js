@@ -2,11 +2,12 @@ import { selectAllCategoriesModel } from '../../models/categories/selectAllCateg
 
 export const getAllCategoriesController = async (req, res, next) => {
   try {
-    const categories = await selectAllCategoriesModel()
+    const { categories, countCategories } = await selectAllCategoriesModel()
     res.send({
       status: 'ok',
       data: {
-        categories
+        categories,
+        countCategories
       }
 
     })

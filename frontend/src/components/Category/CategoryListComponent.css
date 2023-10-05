@@ -1,17 +1,27 @@
 .aside-category-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1em;
+  width: 13rem;
   height: 100%;
-  position: fixed;
-  top: 100px;
   background: var(--midBlue);
+  border-right: 0.5px solid var(--darBlueOpacity);
+  position: fixed;
+  z-index: 10;
 }
 .ul-category-list {
   display: flex;
   flex-direction: column;
   gap: 1em;
   margin: 1rem;
+}
+.img-logo-category {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7rem;
+  height: 7rem;
 }
 
 .name-button-category {
@@ -32,6 +42,7 @@
 .li-category {
   list-style: none;
   color: white;
+  position: relative;
 }
 
 .h3-category {

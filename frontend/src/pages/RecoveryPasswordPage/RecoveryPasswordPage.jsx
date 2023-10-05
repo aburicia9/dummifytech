@@ -46,10 +46,10 @@ export const RecoveryPasswordPage = () => {
       <div className='div-recovery-password'>
         <form className='form-recovery-password'>
           <h2 className='title-recogery-password'>Recupera tu contraseña</h2>
-          <label htmlFor='username'>Nombre de usuario: </label>
-          <input type='text' id='username' onChange={handleOnChangeUsername} value={username} />
-          <label htmlFor='email'>Correo electronico: </label>
-          <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
+          <label className='label-recogery-password' htmlFor='username'>Nombre de usuario: </label>
+          <input className='input-recogery-password' type='text' id='username' onChange={handleOnChangeUsername} value={username} />
+          <label className='label-recogery-password' htmlFor='email'>Correo electronico: </label>
+          <input className='input-recogery-password' type='email' id='email' onChange={handleOnChangeEmail} value={email} />
           <ButtonComponent className='button-recovery-password' buttonName='Recuperar' handleOnClick={handleOnClick} />
         </form>
       </div>

@@ -6,7 +6,7 @@ export const NotFoundPage = () => {
     <Layout isSearchDisabled isSubcategoryDisabled>
       <div className='div-not-found-father'>
         <div className='div-not-found-son'>
-          <h2 className='title-not-found'>Página no encontrada - 404</h2>
+          <h2 className='title-not-found'>🚩Página no encontrada - ☢️404☢️</h2>
           <img src={itsFine} alt='' className='img-not-found' />
         </div>
       </div>

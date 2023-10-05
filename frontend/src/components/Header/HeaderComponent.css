@@ -1,21 +1,20 @@
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  border: 1px var(--darkBlue) solid;
+  min-height: 7rem;
+  border-bottom: 0.5px solid var(--darBlueOpacity);
+  background: var(--midBlue); 
   position: fixed;
-  z-index: 100;
-  background: var(--midBlue);
-}
-.img-logo-header {
-  display: flex;
+  z-index: 8;
 }
 
 .div-button-users-header {
   display: flex;
   gap: 1em;
-  margin-right: 1em;
+  position: fixed;
+  right: 10px;
 }
 .form-search-header {
   display: flex;
@@ -25,10 +24,7 @@
 .div-search-header {
   position: relative;
 }
-.div-search-header-logued{
-position: relative;
-margin-right: 10.5rem ;
-}
+
 
 .img-search-header {
   width: 2em;
@@ -55,7 +51,7 @@ margin-right: 10.5rem ;
   border: 1px black solid;
   width: 50rem;
   height: 2.5em;
-  margin-left: 230px;
+  padding-left: 25px
 }
 
 .button-register-header {
@@ -93,5 +89,4 @@ margin-right: 10.5rem ;
   width: 70px;
   height: 70px;
   border: none;
-  margin-right: 3rem;
 }

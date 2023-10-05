@@ -40,7 +40,8 @@ export const loginUserController = async (req, res, next) => {
       status: 'ok',
       data: {
         token
-      }
+      },
+      message: 'El usuario ha iniciado sesion correctamente 🎉 '
     })
   } catch (error) {
     console.error(error)

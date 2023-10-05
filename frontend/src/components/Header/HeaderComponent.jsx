@@ -1,56 +1,52 @@
 import { useNavigate } from 'react-router-dom'
-import logo from '../../assets/logo/logo.svg'
 import './HeaderComponent.css'
 import search from '../../assets/header/search.svg'
 import { ButtonComponent } from '../Button/ButtonComponent'
 import avatarUser from '../../assets/users/login.svg'
+import { useAuth } from '../../hooks/useAuth'
+import { usePosts } from '../../hooks/posts/usePosts'
+import { useState } from 'react'
 
-export const HeaderComponent = ({ isSearchDisabled, isUserLogged = false }) => {
+export const HeaderComponent = () => {
   const navigate = useNavigate()
-  let divSearchHeader = 'div-search-header'
-  if (isUserLogged === true) {
-    divSearchHeader = divSearchHeader + '-logued'
-  }
+  const { isAuthenticated } = useAuth()
+  const { setSearchParams } = usePosts()
+  const [keyword, setKeyword] = useState('')
 
   const handleOnClickRegister = (event) => {
     event.preventDefault()
     navigate('/register')
   }
 
-  const handleOnClickHome = (event) => {
-    event.preventDefault()
-    navigate('/')
-  }
-
   const handleOnClickLogin = (event) => {
     event.preventDefault()
     navigate('/login')
   }
-  const handleOnClickSearch = (event) => {
+
+  const onSubmitFormSearch = (event) => {
     event.preventDefault()
+    setSearchParams(new URLSearchParams({ keyword }))
+  }
+
+  const onChangeSearch = (event) => {
+    setKeyword(event.target.value)
   }
   return (
     <>
       <header className='header'>
-        <img
-          className='img-logo-header'
-          src={logo}
-          alt='Logo dummifytech'
-          onClick={handleOnClickHome}
-        />
 
-        <form className='form-search-header'>
-          <div className={divSearchHeader}>
+        <form className='form-search-header' onSubmit={onSubmitFormSearch}>
+          <div className='div-form-header'>
             <input
               className='input-search-header'
-              disabled={isSearchDisabled}
+              onChange={onChangeSearch}
+              disabled={!isAuthenticated}
               type='text'
-              placeholder='   Busca tu post...'
+              placeholder='Busca tu post...'
             />
             <button
               className='button-search-header'
-              disabled={isSearchDisabled}
-              onClick={handleOnClickSearch}
+              disabled={!isAuthenticated}
             >
               <img
                 src={search}
@@ -60,11 +56,13 @@ export const HeaderComponent = ({ isSearchDisabled, isUserLogged = false }) => {
             </button>
           </div>
         </form>
-        {isUserLogged
+        {isAuthenticated
           ? (
-            <button className='button-avatar-user-header'>
-              <img src={avatarUser} alt='avatar usuario' />
-            </button>
+            <div className='div-button-users-header'>
+              <button className='button-avatar-user-header'>
+                <img src={avatarUser} alt='avatar usuario' />
+              </button>
+            </div>
             )
           : (
             <div className='div-button-users-header'>

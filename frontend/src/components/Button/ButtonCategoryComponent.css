@@ -1,4 +1,8 @@
-.buttonCategory-generic-{
+.button-category{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   text-align: left;
   border-radius: var(--borderRadiusSmall);
   padding-right: 15px;
@@ -9,29 +13,37 @@
   padding-left: 15px;
   border:1px solid transparent;
 }
-.buttonCategory-generic-:hover{
+.button-category:hover{
   background: transparent;
-  border: 1px solid var(--midBlue);
+  border:1px solid transparent;
   color: black;
   box-shadow: none;
   cursor: pointer;
 }
 
-.buttonCategory-generic-hover{
+.button-category{
   text-align: left;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: var(--borderRadiusSmall);
   background: transparent;
   color: black;
-  border: 1px solid var(--midBlue);
+  border:1px solid transparent;
 
   height: 2.5em;
 }
-.buttonCategory-generic-hover:hover{
+.button-categoryhover:hover{
   background: transparent;
   border: 1px solid var(--midBlue);
   color: black;
   box-shadow: none;
 cursor: pointer;
 }
+
+.img-hide-button-category{
+width: 15px;
+height: 15px;
+position: absolute  ;
+right: -10px;
+}
+

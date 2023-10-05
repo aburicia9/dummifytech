@@ -1,12 +1,7 @@
 .main-layout{
   display: flex;
   align-items: flex-start;
-  height: 100%;
-  width: 100%;
-}
-.div-layout{
-  display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }

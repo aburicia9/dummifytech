@@ -15,26 +15,56 @@ async function generateUsers () {
     const randomFirstName = faker.person.firstName()
     const randomeLastName = faker.person.lastName()
     const randomFullName = `${randomFirstName} ${randomeLastName}`
-    const randomEmail = faker.internet.email({ randomFirstName, randomeLastName })
+    const randomEmail = faker.internet.email({
+      randomFirstName,
+      randomeLastName
+    })
     const randomUsername = faker.internet.userName({ randomFirstName })
     const randomUsernameSlice = randomUsername.slice(0, 30)
     const randomPassword = 'pruebas'
-    const randomVerificationCode = faker.string.alphanumeric({ length: { min: 100, max: 255 } })
+    const randomVerificationCode = faker.string.alphanumeric({
+      length: { min: 100, max: 255 }
+    })
     const status = 1
-    await insertUserModel(randomUsernameSlice, randomEmail, randomPassword, randomFullName, randomVerificationCode, status)
+    await insertUserModel(
+      randomUsernameSlice,
+      randomEmail,
+      randomPassword,
+      randomFullName,
+      randomVerificationCode,
+      status
+    )
   }
 }
 
 console.log('CREANDO POSTS')
 
 async function generatePosts () {
-  for (let id = 2; id < 11; id++) {
+  const randomImages = [
+    'fcb291ac-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb293e6-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29508-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29620-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb2971a-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29814-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29a4e-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29b5c-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29c4c-638c-11ee-8c99-0242ac120002.jpg',
+    'fcb29d5a-638c-11ee-8c99-0242ac120002.jpg'
+  ]
+  for (let id = 11; id < 50; id++) {
     const randomTitle = faker.lorem.words({ min: 3, max: 7 })
     const randomPost = faker.lorem.text()
-    const randomImage = faker.image.url()
+    const randomImage = randomImages[faker.number.int({ min: 0, max: 9 })]
     const randomCategoryId = faker.number.int({ min: 7, max: 17 })
     const randomUserId = faker.number.int({ min: 1, max: 10 })
-    await insertPostModel(randomTitle, randomPost, randomImage, randomUserId, randomCategoryId)
+    await insertPostModel(
+      randomTitle,
+      randomPost,
+      randomImage,
+      randomUserId,
+      randomCategoryId
+    )
   }
 }
 
@@ -46,7 +76,12 @@ async function generateComments () {
     const randomComment = faker.lorem.text()
     const randomUserId = faker.number.int({ min: 1, max: 10 })
     const randomPostId = faker.number.int({ min: 1, max: 10 })
-    await insertCommentsModel(commentId, randomComment, randomUserId, randomPostId)
+    await insertCommentsModel(
+      commentId,
+      randomComment,
+      randomUserId,
+      randomPostId
+    )
   }
 }
 
@@ -73,7 +108,12 @@ async function generateCommentsToComments () {
     const randomPostId = postCommentId.idPost
     const randomUserId = faker.number.int({ min: 1, max: 10 })
     const randomComment = faker.lorem.text()
-    return insertCommentsModel(randomParentId, randomComment, randomUserId, randomPostId)
+    return insertCommentsModel(
+      randomParentId,
+      randomComment,
+      randomUserId,
+      randomPostId
+    )
   })
   await Promise.all(promises)
 }
@@ -83,7 +123,7 @@ console.log('CREANDO LIKES')
 async function generateLikesPost () {
   for (let id = 2; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
-    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    const randomPostId = faker.number.int({ min: 1, max: 50 })
     try {
       await insertLikesModel(randomPostId, randomUserId)
     } catch (error) {
@@ -97,7 +137,7 @@ console.log('CREANDO DISLIKE')
 async function generateDislikesPost () {
   for (let id = 2; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
-    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    const randomPostId = faker.number.int({ min: 1, max: 50 })
     try {
       await insertDislikeModel(randomPostId, randomUserId)
     } catch (error) {
@@ -112,7 +152,7 @@ async function generateReportPost () {
   for (let id = 2; id < 51; id++) {
     const randomCommentId = null
     const randomUserId = faker.number.int({ min: 1, max: 10 })
-    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    const randomPostId = faker.number.int({ min: 1, max: 50 })
     try {
       await insertReportModel(randomPostId, randomUserId, randomCommentId)
     } catch (error) {
@@ -126,7 +166,7 @@ console.log('CREANDO REPORTES AL COMENTARIO')
 async function generateReportComment () {
   for (let id = 2; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
-    const randomPostId = faker.number.int({ min: 2, max: 10 })
+    const randomPostId = faker.number.int({ min: 1, max: 50 })
     const randomCommentId = faker.number.int({ min: 2, max: 10 })
     try {
       await insertReportModel(randomPostId, randomUserId, randomCommentId)
@@ -146,7 +186,11 @@ async function generateRequestCategory () {
     const randomReasonCategory = faker.lorem.text()
     const randomReasonCategorySlice = randomReasonCategory.slice(0, 254)
     try {
-      await insertReqCategoryModel(randomUserId, randomNameCategorySlice, randomReasonCategorySlice)
+      await insertReqCategoryModel(
+        randomUserId,
+        randomNameCategorySlice,
+        randomReasonCategorySlice
+      )
     } catch (error) {
       console.error(error)
     }

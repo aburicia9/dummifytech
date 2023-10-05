@@ -18,7 +18,11 @@ export const selectAllCategoriesModel = async () => {
         `)
       category.subcategories = subcategories
     }
-    return categories
+    const [[{ countCategories }]] = await connection.query(`
+      SELECT COUNT(id) as countCategories
+      FROM categories
+    `)
+    return { categories, countCategories }
   } finally {
     if (connection) connection.release()
   }

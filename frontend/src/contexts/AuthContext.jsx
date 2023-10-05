@@ -3,6 +3,7 @@ import { createUserService, getInfoOwnerUserService, loginUserService } from '..
 import { getToken } from '../utils/getToken'
 import { useNavigate } from 'react-router-dom'
 import { TOKEN_LOCAL_STORAGE_KEY } from '../utils/constants'
+import { toastifyWarning } from '../utils/Toastify/Toastify'
 // import { useError } from '../hooks/useError'
 
 export const AuthContext = createContext(null)
@@ -25,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         if (body.status === 'error') {
           throw new Error(body.message)
         }
-
+        setIsAuthenticated(true)
         setAuthUser(body.data.user)
       } catch (error) {
         console.log(error.message)
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true)
 
       if (password !== reapeatPassword) {
-        throw new Error('las contraseñas no coinciden')
+        toastifyWarning('Las contraseñas no coinciden')
       }
 
       const body = await createUserService(username, email, password, fullName)
@@ -68,7 +69,7 @@ export const AuthProvider = ({ children }) => {
       const body = await loginUserService(email, password)
 
       if (body.status === 'error') {
-        throw new Error(body.message)
+        return body
       }
 
       window.localStorage.setItem(TOKEN_LOCAL_STORAGE_KEY, body.data.token)

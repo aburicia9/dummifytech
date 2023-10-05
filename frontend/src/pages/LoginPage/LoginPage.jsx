@@ -1,16 +1,15 @@
 import { useState } from 'react'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import './LoginPage.css'
-import { loginUserService } from '../../services/authService'
 import { Link, useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
 import { toastifyForm } from '../../utils/Toastify/Toastify'
-import { useAuth } from '../../hooks/useAuthHook'
+import { useAuth } from '../../hooks/useAuth'
 
 export const LoginPage = () => {
   const navigate = useNavigate()
-  const [password, setPassword] = useState()
-  const [email, setEmail] = useState()
+  const [password, setPassword] = useState('prueba')
+  const [email, setEmail] = useState('prueba@prueba.com')
   const [loading, setLoading] = useState(false)
   const { authLogin } = useAuth()
 
@@ -33,7 +32,6 @@ export const LoginPage = () => {
       setLoading(true)
 
       const result = await authLogin({ email, password })
-
       toastifyForm(result)
 
       if (result.status === 'ok') {
@@ -51,29 +49,36 @@ export const LoginPage = () => {
     <Layout isSearchDisabled isSubcategoryDisabled>
       <div className='div-login'>
         <form className='form-login'>
-          <h2 className='title-login'>Login</h2>
-          <label htmlFor='email'>Correo electronico: </label>
-          <input
-            type='email'
-            id='email'
-            onChange={handleOnChangeEmail}
-            value={email}
-          />
-          <label htmlFor='password'>Contraseña: </label>
-          <input
-            type='password'
-            id='password'
-            onChange={handleOnChangePassword}
-            value={password}
-          />
-          <ButtonComponent
-            className='button-login'
-            buttonName='Iniciar Sesión'
-            handleOnClick={handleOnClick}
-          />
+          <h2 className='title-login'>Iniciar sesion</h2>
+          <div className='div-email-login'>
+            <label className='label-login' htmlFor='email'>Correo electronico: </label>
+            <input
+              className='input-login'
+              type='email'
+              id='email'
+              onChange={handleOnChangeEmail}
+              value={email}
+            />
+          </div>
+          <div className='div-password-login'>
+            <label className='label-login' htmlFor='password'>Contraseña: </label>
+            <input
+              className='input-login'
+              className='input-login'
+              type='password'
+              id='password'
+              onChange={handleOnChangePassword}
+              value={password}
+            />
+          </div>
           <div className='div-p-login'>
+            <ButtonComponent
+              className='button-generic large'
+              buttonName='Iniciar Sesión'
+              handleOnClick={handleOnClick}
+            />
             <p>
-              Hay una primera vez para todo{' '}
+              Para todo hay una primera vez{' '}
               <Link className='link-register-login' to='/register'>
                 ¡Registrate!
               </Link>

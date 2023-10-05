@@ -4,7 +4,7 @@ import './RegisterPage.css'
 import { createUserService } from '../../services/authService'
 import { useNavigate } from 'react-router-dom'
 import { Layout } from '../../components/Layout/Layout'
-import { toastifyForm } from '../../utils/Toastify/Toastify'
+import { toastifyForm, toastifyWarning } from '../../utils/Toastify/Toastify'
 
 export const RegisterPage = () => {
   const navigate = useNavigate()
@@ -48,7 +48,7 @@ export const RegisterPage = () => {
     try {
       setLoading(true)
       if (password !== repeatPassword) {
-        console.log('Las contraseñas no coinciden')
+        toastifyWarning('Las contraseñas no coinciden')
       }
       const result = await createUserService({ username, email, password, fullName })
 
@@ -70,16 +70,16 @@ export const RegisterPage = () => {
       <div className='div-register'>
         <form className='form-register'>
           <h2 className='title-register'>Formulario de registro</h2>
-          <label htmlFor='fullName'>Nombre completo: </label>
-          <input type='text' id='fullName' onChange={handleOnChangeFullName} value={fullName} />
-          <label htmlFor='username'>Usuario: </label>
-          <input type='text' id='username' onChange={handleOnChangeUsername} value={username} />
-          <label htmlFor='email'>Correo electronico: </label>
-          <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
-          <label htmlFor='password'>Contraseña: </label>
-          <input type='password' id='password' onChange={handleOnChangePassword} value={password} />
-          <label htmlFor='repeatPassword'>Repite la contraseña: </label>
-          <input type='password' id='repeatPassword' onChange={handleOnChangeRepeatPassword} value={repeatPassword} />
+          <label className='label-register'  htmlFor='fullName'>Nombre completo: </label>
+          <input className='input-register' type='text' id='fullName' onChange={handleOnChangeFullName} value={fullName} />
+          <label className='label-register' htmlFor='username'>Usuario: </label>
+          <input className='input-register' type='text' id='username' onChange={handleOnChangeUsername} value={username} />
+          <label className='label-register' htmlFor='email'>Correo electronico: </label>
+          <input className='input-register' type='email' id='email' onChange={handleOnChangeEmail} value={email} />
+          <label className='label-register' htmlFor='password'>Contraseña: </label>
+          <input className='input-register' type='password' id='password' onChange={handleOnChangePassword} value={password} />
+          <label className='label-register' htmlFor='repeatPassword'>Repite la contraseña: </label>
+          <input className='input-register' type='password' id='repeatPassword' onChange={handleOnChangeRepeatPassword} value={repeatPassword} />
           <ButtonComponent className='button-register' buttonName='Registrarse' handleOnClick={handleOnClick} />
         </form>
       </div>
