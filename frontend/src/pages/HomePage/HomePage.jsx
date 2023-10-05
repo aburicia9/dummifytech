@@ -1,19 +1,14 @@
 import './HomePage.css'
 
+import { Layout } from '../../components/Layout/Layout'
+import { PostListComponent } from '../../components/PostRandom/PostListComponent'
 import { usePosts } from '../../hooks/posts/usePosts'
-
-import { useCategories } from '../../hooks/categories/useCategories'
-import { Header } from '../../components/Header/HeaderComponent'
-import { Main } from '../../components/Main/Main'
 
 export const HomePage = () => {
   const { posts } = usePosts()
-  const { categories } = useCategories()
-
   return (
-    <div className='div-homepage'>
-      <Header />
-      <Main posts={posts} categories={categories} />
-    </div>
+    <Layout isSubcategoryDisabled isSearchDisabled isUserLogued={false}>
+      <PostListComponent posts={posts} />
+    </Layout>
   )
 }

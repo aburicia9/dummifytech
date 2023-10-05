@@ -41,3 +41,7 @@
   margin: 8px;
   color: white;
 }
+
+.ul-subcategory-category {
+  list-style: none;
+}

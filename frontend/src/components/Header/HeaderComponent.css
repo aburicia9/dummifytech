@@ -22,6 +22,10 @@
 .div-search-header {
   position: relative;
 }
+.div-search-header-logued{
+position: relative;
+margin-right: 10.5rem ;
+}
 
 .img-search-header {
   width: 2em;
@@ -79,4 +83,12 @@
   color: black;
   box-shadow: none;
   cursor: pointer;
+}
+
+.button-avatar-user-header{
+  background: transparent;
+  width: 70px;
+  height: 70px;
+  border: none;
+  margin-right: 3rem;
 }

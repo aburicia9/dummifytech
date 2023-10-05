@@ -7,7 +7,9 @@ import { updateUserPasswordModel } from '../../models/users/updateUserPasswordMo
 export const forgottenUserPasswordController = async (req, res, next) => {
   try {
     const { username, email } = req.body
+    console.log({ username, email })
 
+    console.log(req.body)
     const user = await selectUserByEmailModel(email)
 
     if (username !== user.username) {

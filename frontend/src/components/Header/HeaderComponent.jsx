@@ -3,9 +3,15 @@ import logo from '../../assets/logo/logo.svg'
 import './HeaderComponent.css'
 import search from '../../assets/header/search.svg'
 import { ButtonComponent } from '../Button/ButtonComponent'
+import avatarUser from '../../assets/users/login.svg'
 
-export const Header = () => {
+export const HeaderComponent = ({ isSearchDisabled, isUserLogued = false }) => {
   const navigate = useNavigate()
+  let divSearchHeader = 'div-search-header'
+  console.log(isUserLogued)
+  if (isUserLogued === true) {
+    divSearchHeader = divSearchHeader + '-logued'
+  }
 
   const handleOnClickRegister = (event) => {
     event.preventDefault()
@@ -27,21 +33,52 @@ export const Header = () => {
   return (
     <>
       <header className='header'>
-
-        <img className='img-logo-header' src={logo} alt='Logo dummifytech' onClick={handleOnClickHome} />
+        <img
+          className='img-logo-header'
+          src={logo}
+          alt='Logo dummifytech'
+          onClick={handleOnClickHome}
+        />
 
         <form className='form-search-header'>
-          <div className='div-search-header'>
-            <input className='input-search-header' type='text' placeholder='   Busca tu post...' />
-            <button className='button-search-header' onClick={handleOnClickSearch}><img src={search} alt='image search' className='img-search-header' /></button>
+          <div className={divSearchHeader}>
+            <input
+              className='input-search-header'
+              disabled={isSearchDisabled}
+              type='text'
+              placeholder='   Busca tu post...'
+            />
+            <button
+              className='button-search-header'
+              disabled={isSearchDisabled}
+              onClick={handleOnClickSearch}
+            >
+              <img
+                src={search}
+                alt='image search'
+                className='img-search-header'
+              />
+            </button>
           </div>
         </form>
-        <div className='div-button-users-header'>
-
-          <ButtonComponent handleOnClick={handleOnClickRegister} buttonName='Registrarse' />
-
-          <ButtonComponent handleOnClick={handleOnClickLogin} buttonName='Iniciar sesion' />
-        </div>
+        {isUserLogued
+          ? (
+            <button className='button-avatar-user-header'>
+              <img src={avatarUser} alt='avatar usuario' />
+            </button>
+            )
+          : (
+            <div className='div-button-users-header'>
+              <ButtonComponent
+                handleOnClick={handleOnClickRegister}
+                buttonName='Registrarse'
+              />
+              <ButtonComponent
+                handleOnClick={handleOnClickLogin}
+                buttonName='Iniciar sesion'
+              />
+            </div>
+            )}
       </header>
     </>
   )

@@ -1,7 +1,7 @@
 import './ButtonComponent.css'
 
-export const ButtonComponent = ({ handleOnClick, buttonName }) => {
+export const ButtonComponent = ({ handleOnClick, buttonName, className = 'button-generic' }) => {
   return (
-    <button className='button-generic' onClick={handleOnClick}> {buttonName}</button>
+    <button className={className} onClick={handleOnClick}> {buttonName}</button>
   )
 }
