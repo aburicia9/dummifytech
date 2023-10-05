@@ -35,8 +35,8 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
       WHERE id_post = ${post.id} AND id_user = ${userId}
     `)
 
-      const [[{ ownerdisLikes }]] = await connection.query(`
-      SELECT COUNT(id) AS ownerdisLikes
+      const [[{ ownerDislikes }]] = await connection.query(`
+      SELECT COUNT(id) AS ownerDislikes
       FROM dislikes
       WHERE id_post = ${post.id} AND id_user = ${userId}
     `)
@@ -44,7 +44,7 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
       post.countLikes = countLikes
       post.countComments = countComments
       post.ownerLikes = ownerLikes
-      post.ownerdisLikes = ownerdisLikes
+      post.ownerDislikes = ownerDislikes
     }
 
     return posts

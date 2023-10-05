@@ -13,7 +13,7 @@ export const PostListComponent = ({ posts, fetchPosts }) => {
             <section className='section-post' key={post.id}>
               <PostHeaderComponent avatar={post.avatar} username={post.username} createdAt={post.createdAt} baseApiURL={baseApiURL} />
               <PostBodyComponent title={post.title} image={post.image} post={post.post} baseApiURL={baseApiURL} />
-              <PostFooterComponent fetchPosts={fetchPosts} postId={post.id} ownerLikes={post.ownerLikes} countLikes={post.countLikes} countComments={post.countComments} />
+              <PostFooterComponent fetchPosts={fetchPosts} postId={post.id} ownerLikes={post.ownerLikes} ownerDislikes={post.ownerDislikes} countLikes={post.countLikes} countComments={post.countComments} />
             </section>
           )
         })

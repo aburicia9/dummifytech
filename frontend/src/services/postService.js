@@ -37,7 +37,6 @@ export const listAllPostsService = async (searchParams) => {
 // Crear o eliminar like en un post
 export const likePostService = async (postId, method) => {
   const token = getToken()
-  console.log({ postId, method })
   const res = await fetch(`${baseApiURL}/posts/${postId}/likes`, {
     method,
     headers: {
@@ -51,6 +50,7 @@ export const likePostService = async (postId, method) => {
 // Crear o eliminar dislike en un post
 export const dislikePostService = async (postId, method) => {
   const token = getToken()
+  console.log({ postId, method })
   const res = await fetch(`${baseApiURL}/posts/${postId}/dislikes`, {
     method,
     headers: {
