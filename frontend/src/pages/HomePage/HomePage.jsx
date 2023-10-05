@@ -7,7 +7,7 @@ import { usePosts } from '../../hooks/posts/usePosts'
 export const HomePage = () => {
   const { posts } = usePosts()
   return (
-    <Layout>
+    <Layout isSubcategoryDisabled isSearchDisabled isUserLogued={false}>
       <PostListComponent posts={posts} />
     </Layout>
   )

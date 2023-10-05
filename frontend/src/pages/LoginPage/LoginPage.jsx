@@ -44,7 +44,7 @@ export const LoginPage = () => {
   }
 
   return (
-    <Layout isSearchDisabled>
+    <Layout isSearchDisabled isSubcategoryDisabled>
       <div className='div-login'>
         <form className='form-login'>
           <h2 className='title-login'>Login</h2>

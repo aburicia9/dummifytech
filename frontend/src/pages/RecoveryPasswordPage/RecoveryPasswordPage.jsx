@@ -43,14 +43,17 @@ export const RecoveryPasswordPage = () => {
     }
   }
   return (
-    <Layout isSearchDisabled>
-      <form>
-        <label htmlFor='username'>Nombre de usuario: </label>
-        <input type='text' id='username' onChange={handleOnChangeUsername} value={username} />
-        <label htmlFor='email'>Correo electronico: </label>
-        <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
-        <ButtonComponent className='button-recovery' buttonName='Recuperar' handleOnClick={handleOnClick} />
-      </form>
+    <Layout isSearchDisabled isSubcategoryDisabled>
+      <div className='div-recovery-password'>
+        <form className='form-recovery-password'>
+          <h2 className='title-recogery-password'>Recupera tu contraseña</h2>
+          <label htmlFor='username'>Nombre de usuario: </label>
+          <input type='text' id='username' onChange={handleOnChangeUsername} value={username} />
+          <label htmlFor='email'>Correo electronico: </label>
+          <input type='email' id='email' onChange={handleOnChangeEmail} value={email} />
+          <ButtonComponent className='button-recovery-password' buttonName='Recuperar' handleOnClick={handleOnClick} />
+        </form>
+      </div>
     </Layout>
   )
 }
