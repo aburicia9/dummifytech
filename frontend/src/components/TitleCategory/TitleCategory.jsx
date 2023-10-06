@@ -31,7 +31,7 @@ export const TitleCategory = () => {
     }
   }, [params])
   return (
-    <h2>{titleCategory}</h2>
+    <h2 className='title-category'>{titleCategory}</h2>
 
   )
 }

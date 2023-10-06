@@ -92,6 +92,9 @@ body{
   background-position: center center;
 }
 
-
+a{
+  color:black;
+  text-decoration: none;
+}
 
 
