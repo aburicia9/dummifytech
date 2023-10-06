@@ -13,7 +13,6 @@ export const usePosts = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true)
-      console.log(posts.length)
 
       let body = []
 

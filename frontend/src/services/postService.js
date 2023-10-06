@@ -51,7 +51,7 @@ export const likePostService = async (postId, method) => {
 // Crear o eliminar dislike en un post
 export const dislikePostService = async (postId, method) => {
   const token = getToken()
-  console.log({ postId, method })
+
   const res = await fetch(`${baseApiURL}/posts/${postId}/dislikes`, {
     method,
     headers: {
