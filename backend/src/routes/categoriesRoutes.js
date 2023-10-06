@@ -8,6 +8,7 @@ import { roleUserController } from '../middlewares/roleUserController.js'
 import { newReqCategoryController } from '../controllers/categories/reqUserCategoryController.js'
 import { getAllReqCategoriesController } from '../controllers/categories/getAllReqCategoriesController.js'
 import { editReqCategoryController } from '../controllers/categories/editReqCategoryController.js'
+import { getAllCategoriesByIdController } from '../controllers/categories/getAllCategoriesByIdController.js'
 
 const router = Router()
 
@@ -20,6 +21,9 @@ router.delete('/categories/:categoryId', authUserController, roleUserController,
 
 // Editar categoria
 router.put('/categories/:categoryId', authUserController, roleUserController, editCategoryController)
+
+// Listar categorias por ID
+router.get('/categories/:categoryId', authUserController, getAllCategoriesByIdController)
 
 // Peticion de categoria
 router.post('/categories/request', authUserController, newReqCategoryController)

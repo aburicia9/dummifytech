@@ -107,3 +107,16 @@ export const updateReqCategoryService = async (requestcategoryId, statusReq, acc
   const body = await res.json()
   return body
 }
+
+// Listamos todas las categorias por id
+export const listAllCategoriesByIdService = async (categoryId) => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/categories/${categoryId}`, {
+    method: 'get',
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}

@@ -7,7 +7,7 @@
   border-radius: var(--borderRadiusSmall);
   transition:all 0.4s;
   background-size: 100%;
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 
 .section-post{
@@ -51,6 +51,17 @@
   width: 100%;
   height: auto;
   padding: 30px;
+}
+
+.title-no-post{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  margin-top: 5em;
+  width: 100%;
+  margin: 1em;
+  min-height: 12em;
 
 }
 

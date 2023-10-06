@@ -3,6 +3,8 @@ import './PostListComponent.css'
 import { PostFooterComponent } from './PostFooter/PostFooterComponent'
 import { PostHeaderComponent } from './PostHeader/PostHeaderComponent'
 import noData from '../../assets/post/no_data_post.gif'
+import { TitleCategory } from '../titleCategory/titleCategory'
+
 const baseApiURL = import.meta.env.VITE_API_URL
 
 export const PostListComponent = ({ posts, fetchPosts }) => {
@@ -11,10 +13,11 @@ export const PostListComponent = ({ posts, fetchPosts }) => {
 
   return (
     <article className='article-post'>
+      <TitleCategory />
+
       {
       lengthPosts
         ? posts.map((post) => {
-          console.log(post.id)
           return (
 
             <section className='section-post' key={post.id}>
@@ -30,7 +33,7 @@ export const PostListComponent = ({ posts, fetchPosts }) => {
           <div className='div-no-data-post'>
             <img src={noData} alt='gif no data' className='img-no-data-post' />
           </div>
-        </section>
+          </section>
       }
     </article>
   )
