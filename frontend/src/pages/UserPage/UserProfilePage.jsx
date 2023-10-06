@@ -1,0 +1,172 @@
+import { Layout } from '../../components/Layout/Layout'
+import './UserProfilePage.css'
+import editProfileImg from '../../assets/post/button_new_post.svg'
+import defaultAvatar from '../../assets/users/defaultAvatarProfile.png'
+import { useAuth } from '../../hooks/useAuth'
+import { useState } from 'react'
+import { toastifyForm, toastifyWarning } from '../../utils/Toastify/Toastify'
+import { useNavigate } from 'react-router'
+import { updateAvatarUserService, updateFullNameUserService, updatePasswordUserService } from '../../services/authService'
+const baseApiURL = import.meta.env.VITE_API_URL
+
+export const UserProfilePage = () => {
+  const { authUser } = useAuth()
+
+  const navigate = useNavigate()
+  const [inputFullName, setInputFullName] = useState('')
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState(' ')
+  const [comparePassword, setComparePassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [selectedFile, setSelectedFile] = useState(null)
+
+  const handleOnChangeFullName = (event) => {
+    setInputFullName(event.target.value)
+  }
+  const handleOnChangeOldPassword = (event) => {
+    setOldPassword(event.target.value)
+  }
+
+  const handleOnChangeNewPassword = (event) => {
+    setNewPassword(event.target.value)
+  }
+
+  const handleOnChangeComparePassword = (event) => {
+    setComparePassword(event.target.value)
+  }
+
+  const resetForm = () => {
+    setInputFullName('')
+    setOldPassword('')
+    setNewPassword('')
+    setComparePassword('')
+  }
+
+  const handleOnClickUpdatePassword = async (event) => {
+    event.preventDefault()
+    try {
+      setLoading(true)
+
+      if (newPassword !== comparePassword) {
+        toastifyWarning('Las contraseñas no coinciden')
+        return
+      }
+
+      const result = await updatePasswordUserService(oldPassword, newPassword, comparePassword)
+
+      toastifyForm(result)
+
+      if (result.status === 'ok') {
+        resetForm()
+        navigate('/users/profile')
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+  const handleOnClickUpdateFullName = async (event) => {
+    event.preventDefault()
+
+    try {
+      setLoading(true)
+      console.log(fullName);
+      const result = await updateFullNameUserService( fullName )
+
+      toastifyForm(result)
+
+      if (result.status === 'ok') {
+        resetForm()
+        navigate('/users/profile')
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  const handleOnClickUpdateAvatar = async (event) => {
+    event.preventDefault()
+
+    try {
+      setLoading(true)
+      if (selectedFile) {
+        const formData = new FormData()
+        formData.append('file', selectedFile)
+
+        const result = await updateAvatarUserService({ formData })
+
+        if (result.status === 'ok') {
+          resetForm()
+          navigate('/users/profile')
+        }
+      }
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading || !authUser) {
+    return (
+      <Layout>
+        <div className='div-user-profile'>
+          <div className='form-user-profile'>
+            <h2 className='title-user-profile'>Perfil de Usuario</h2>
+            <h3 className='title-user-profile'>Cargando...</h3>
+          </div>
+        </div>
+      </Layout>
+    )
+  }
+
+  const { fullName, username, email, avatar } = authUser
+
+  return (
+    <Layout>
+      <div className='div-user-profile'>
+        <form className='form-user-profile'>
+          <h2 className='title-user-profile'>Perfil de Usuario</h2>
+          <div className='div-avatar-profile'>
+            <img className='image-edit-profile' src={`${baseApiURL}/avatar/${avatar}`} alt='' />
+            <input type='file' onChange={handleFileChange} />
+            <button className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' onClick={handleOnClickUpdateAvatar} /></button>
+          </div>
+          <div>
+            <label className='label-user-profile' htmlFor='fullName'>Nombre Completo:</label>
+            <input onChange={handleOnChangeFullName} className='input-user-profile' id='fullName' type='text' placeholder={fullName} />
+            <button onClick={handleOnClickUpdateFullName} className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' /></button>
+          </div>
+          <div>
+
+            <label className='label-user-profile' htmlFor='username'>Nombre usuario:</label>
+            <input className='input-user-profile' id='username' type='text' placeholder={username} disabled />
+          </div>
+          <div>
+
+            <label className='label-user-profile' htmlFor='email'>Correo electrónico</label>
+            <input className='input-user-profile' id='email' type='email' placeholder={email} disabled />
+          </div>
+          <div>
+
+            <label className='label-user-profile' htmlFor=''>Contraseña actual:</label>
+            <input className='input-user-profile' type='password' id='password' placeholder='*****' />
+            <label className='label-user-profile' htmlFor=''>Introduce nueva ontraseña:</label>
+            <input className='input-user-profile' type='password' id='password' placeholder='Nueva contraseña' />
+            <label className='label-user-profile' htmlFor=''>Repite la nueva Contraseña:</label>
+            <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' /> <button onClick={handleOnClickUpdatePassword} className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' /></button>
+          </div>
+          <button className='button-user-profile'>Eliminar Perfil</button>
+        </form>
+
+      </div>
+    </Layout>
+  )
+}
