@@ -1,19 +1,18 @@
 import { getDb } from '../../db/getDb.js'
 
-export const selectPostByIdCategoryModel = async (categoryId, userId) => {
+export const selectPostByIdCategoryModel = async (categoryId, keyword = '', userId) => {
   let connection
   try {
     connection = await getDb()
+
 
     const [posts] = await connection.query(`
     SELECT p.id, p.title, p.post, p.image, u.id, u.username, u.avatar, c.id , c.name as nameCategory, p.created_at as createdAt
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
       INNER JOIN categories c on c.id = p.id_category
-      WHERE c.id = ?
-    `, [categoryId])
-
-    console.log(categoryId)
+      WHERE c.id = ? AND (p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ?)
+    `, [categoryId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
 
     for (const post of posts) {
       const [[{ countLikes }]] = await connection.query(`

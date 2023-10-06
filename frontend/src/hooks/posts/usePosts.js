@@ -13,6 +13,7 @@ export const usePosts = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true)
+      console.log(posts.length)
 
       let body = []
 
@@ -20,7 +21,7 @@ export const usePosts = () => {
         body = await getRandomPostService()
       } else {
         if (params.categoryId) {
-          body = await listPostByIdCategoryService(params.categoryId)
+          body = await listPostByIdCategoryService(params.categoryId, searchParams)
         } else {
           body = await listAllPostsService(searchParams)
         }

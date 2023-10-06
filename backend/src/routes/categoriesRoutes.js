@@ -9,7 +9,6 @@ import { newReqCategoryController } from '../controllers/categories/reqUserCateg
 import { getAllReqCategoriesController } from '../controllers/categories/getAllReqCategoriesController.js'
 import { editReqCategoryController } from '../controllers/categories/editReqCategoryController.js'
 
-
 const router = Router()
 
 // ------------------------------------------------------------------------------------------------
@@ -34,8 +33,6 @@ router.get('/categories/request', authUserController, roleUserController, getAll
 
 // Visualizar todas las peticiones de categorias
 router.put('/categories/request/:requestCategoryId', authUserController, roleUserController, editReqCategoryController)
-
-
 
 // Crear nueva categoria
 router.post('/categories/insert', authUserController, roleUserController, newCategoriesController)

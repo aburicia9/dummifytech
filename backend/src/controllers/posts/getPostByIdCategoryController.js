@@ -2,9 +2,9 @@ import { selectPostByIdCategoryModel } from '../../models/posts/selectPostByIdCa
 
 export const getPostByIdCategoryController = async (req, res, next) => {
   try {
-    const { categoryId } = req.params
+    const { categoryId, keyword } = req.params
 
-    const posts = await selectPostByIdCategoryModel(categoryId, req.user.id)
+    const posts = await selectPostByIdCategoryModel(categoryId, keyword, req.user.id)
     res.send({
       status: 'ok',
       data: {
