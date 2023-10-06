@@ -4,7 +4,6 @@ import { sendDeleteEmail } from '../../utils/email/sendDeleteEmail.js'
 
 export const deleteMyUserController = async (req, res, next) => {
   try {
-    // const { id: myUserId } = req.user
     const { id: userId } = req.user
     const user = await selectUserByIdModel(userId)
     const type = 'usuario'

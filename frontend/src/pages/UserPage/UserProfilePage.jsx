@@ -1,7 +1,5 @@
 import { Layout } from '../../components/Layout/Layout'
 import './UserProfilePage.css'
-import editProfileImg from '../../assets/post/button_new_post.svg'
-import defaultAvatar from '../../assets/users/defaultAvatarProfile.png'
 import { useAuth } from '../../hooks/useAuth'
 import { useState } from 'react'
 import { toastifyForm, toastifyWarning } from '../../utils/Toastify/Toastify'
@@ -42,78 +40,139 @@ export const UserProfilePage = () => {
     setComparePassword('')
   }
 
-  const handleOnClickUpdatePassword = async (event) => {
-    event.preventDefault()
-    try {
-      setLoading(true)
+  // const handleOnClickUpdatePassword = async (event) => {
+  //   event.preventDefault()
+  //   try {
+  //     setLoading(true)
 
-      if (newPassword !== comparePassword) {
-        toastifyWarning('Las contraseñas no coinciden')
-        return
-      }
+  //     if (newPassword !== comparePassword) {
+  //       toastifyWarning('Las contraseñas no coinciden')
+  //       return
+  //     }
 
-      const result = await updatePasswordUserService(oldPassword, newPassword)
+  //     const result = await updatePasswordUserService(oldPassword, newPassword)
 
-      toastifyForm(result)
+  //     toastifyForm(result)
 
-      if (result.status === 'ok') {
-        resetForm()
-        navigate('/users/profile')
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
-  }
-  const handleOnClickUpdateFullName = async (event) => {
-    event.preventDefault()
+  //     if (result.status === 'ok') {
+  //       resetForm()
+  //       navigate('/users/profile')
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
+  // const handleOnClickUpdateFullName = async (event) => {
+  //   event.preventDefault()
 
-    try {
-      setLoading(true)
+  //   try {
+  //     setLoading(true)
 
-      const result = await updateFullNameUserService(inputFullName)
+  //     const result = await updateFullNameUserService(inputFullName)
 
-      toastifyForm(result)
+  //     toastifyForm(result)
 
-      if (result.status === 'ok') {
-        setAuthUser({
-          ...authUser,
-          fullName: inputFullName
-        })
-        resetForm()
-        navigate('/users/profile')
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false)
-    }
-  }
+  //     if (result.status === 'ok') {
+  //       setAuthUser({
+  //         ...authUser,
+  //         fullName: inputFullName
+  //       })
+  //       resetForm()
+  //       navigate('/users/profile')
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0])
   }
 
-  const handleOnClickUpdateAvatar = async (event) => {
-    event.preventDefault()
+  // const handleOnClickUpdateAvatar = async (event) => {
+  //   event.preventDefault()
 
+  //   try {
+  //     setLoading(true)
+  //     if (selectedFile) {
+  //       const formData = new FormData()
+  //       formData.append('avatar', selectedFile)
+
+  //       const result = await updateAvatarUserService(formData)
+
+  //       toastifyForm(result)
+  //       if (result.status === 'ok') {
+  //         setAuthUser({
+  //           ...useAuth,
+  //           avatar: result.data.avatarName
+  //         })
+  //         resetForm()
+  //         navigate('/users/profile')
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
+  const handleOnClickUpdatePerfil = async (event) => {
+    event.preventDefault()
     try {
       setLoading(true)
+
       if (selectedFile) {
         const formData = new FormData()
         formData.append('avatar', selectedFile)
 
         const result = await updateAvatarUserService(formData)
 
-        toastifyForm(result)
         if (result.status === 'ok') {
+          toastifyForm(result)
           setAuthUser({
             ...useAuth,
             avatar: result.data.avatarName
           })
           resetForm()
           navigate('/users/profile')
+        }
+      }
+
+      if (inputFullName) {
+        const result = await updateFullNameUserService(inputFullName)
+
+        if (result.status === 'ok') {
+          toastifyForm(result)
+          setAuthUser({
+            ...authUser,
+            fullName: inputFullName
+          })
+          resetForm()
+          navigate('/users/profile')
+        } else {
+          toastifyForm(result)
+        }
+      }
+
+      if (oldPassword) {
+        if (newPassword !== comparePassword) {
+          toastifyWarning('Las contraseñas no coinciden')
+          return
+        }
+
+        const result = await updatePasswordUserService(oldPassword, newPassword)
+        toastifyForm(result)
+
+        if (result.status === 'ok') {
+          toastifyForm(result)
+          resetForm()
+          navigate('/users/profile')
+        } else {
+          toastifyForm(result)
         }
       }
     } catch (error) {
@@ -145,38 +204,30 @@ export const UserProfilePage = () => {
           <h2 className='title-user-profile'>Perfil de Usuario</h2>
           <div className='div-avatar-profile'>
             <img className='image-edit-profile' src={`${baseApiURL}/avatar/${avatar}`} alt='' />
-            <div>
-              <input type='file' onChange={handleFileChange} />
-              <button className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' onClick={handleOnClickUpdateAvatar} /></button>
-            </div>
+            <input type='file' onChange={handleFileChange} />
           </div>
           <div>
             <label className='label-user-profile' htmlFor='fullName'>Nombre Completo:</label>
             <input onChange={handleOnChangeFullName} className='input-user-profile' id='fullName' type='text' placeholder={fullName} />
-            <button onClick={handleOnClickUpdateFullName} className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' /></button>
           </div>
           <div>
-
             <label className='label-user-profile' htmlFor='username'>Nombre usuario:</label>
             <input className='input-user-profile' id='username' type='text' placeholder={username} disabled />
           </div>
           <div>
-
             <label className='label-user-profile' htmlFor='email'>Correo electrónico</label>
             <input className='input-user-profile' id='email' type='email' placeholder={email} disabled />
           </div>
           <div>
-
             <label className='label-user-profile' htmlFor=''>Contraseña actual:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='*****' onChange={handleOnChangeOldPassword} />
             <label className='label-user-profile' htmlFor=''>Introduce nueva ontraseña:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='Nueva contraseña' onChange={handleOnChangeNewPassword} />
             <label className='label-user-profile' htmlFor=''>Repite la nueva Contraseña:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' onChange={handleOnChangeComparePassword} />
-            <button onClick={handleOnClickUpdatePassword} className='button-edit-profile'>
-              <img className='img-user-profile' src={editProfileImg} alt='' />
-            </button>
+
           </div>
+          <button className='button-user-profile' onClick={handleOnClickUpdatePerfil}>Guardar Cambios</button>
           <button className='button-user-profile'>Eliminar Perfil</button>
         </form>
 

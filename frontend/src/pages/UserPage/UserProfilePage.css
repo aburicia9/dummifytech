@@ -9,6 +9,7 @@
   transition: all 0.4s;
   background-size: 100%;
   margin-top: 5rem;
+
 }
 
 .form-user-profile {
@@ -80,15 +81,17 @@
 
 .image-edit-profile{
   background: none;
-  height: 150px;
-  width: 150px;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
 }
 
 .div-avatar-profile{
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; 
+  gap: 10px;
 }
 
 .button-edit-profile:hover{

@@ -34,7 +34,7 @@ export const toastifyInfo = (message) => {
 }
 
 export const toastifySuccess = (message) => {
-  toast.info(`${message}`, options)
+  toast.success(`${message}`, options)
 }
 
 export const toastifyError = (message) => {

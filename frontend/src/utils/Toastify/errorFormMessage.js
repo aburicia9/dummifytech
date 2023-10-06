@@ -1,12 +1,18 @@
 export const errorFormMessage = (result) => {
   const resultArray = []
-  resultArray.push(result)
-  const [errorMessages] = resultArray.map((errorMessage) => {
-    const message = errorMessage.message
-    const cleanErrorMessage = message.split(':').slice(1).join().split(';').join()
+  const messageZod = (result.message)
+  resultArray.push(messageZod)
+  const validation = 'Validation'
+  if (!messageZod.includes(validation)) {
+    return resultArray
+  }
+  if (messageZod.includes(validation)) {
+    const [errorMessages] = resultArray.map((errorMessage) => {
+      const cleanErrorMessage = errorMessage.split(':').slice(1).join().replaceAll(' at ', ' en ').split(';').join()
+      const separateErrorMessage = cleanErrorMessage.split(',')
+      return separateErrorMessage
+    })
 
-    const separateErrorMessage = cleanErrorMessage.split(',')
-    return separateErrorMessage
-  })
-  return errorMessages
+    return errorMessages
+  }
 }
