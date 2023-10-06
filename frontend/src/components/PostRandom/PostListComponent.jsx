@@ -2,7 +2,7 @@ import { PostBodyComponent } from './PostBody/PostBodyComponent'
 import './PostListComponent.css'
 import { PostFooterComponent } from './PostFooter/PostFooterComponent'
 import { PostHeaderComponent } from './PostHeader/PostHeaderComponent'
-import noData from '../../assets/post/no_data_post.gif'
+import noData from '../../assets/post/no-data-post.gif'
 import { TitleCategory } from '../titleCategory/titleCategory'
 
 const baseApiURL = import.meta.env.VITE_API_URL
@@ -33,7 +33,7 @@ export const PostListComponent = ({ posts, fetchPosts }) => {
           <div className='div-no-data-post'>
             <img src={noData} alt='gif no data' className='img-no-data-post' />
           </div>
-          </section>
+        </section>
       }
     </article>
   )
