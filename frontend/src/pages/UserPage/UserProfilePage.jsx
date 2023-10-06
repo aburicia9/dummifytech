@@ -10,7 +10,7 @@ import { updateAvatarUserService, updateFullNameUserService, updatePasswordUserS
 const baseApiURL = import.meta.env.VITE_API_URL
 
 export const UserProfilePage = () => {
-  const { authUser } = useAuth()
+  const { authUser, setAuthUser } = useAuth()
 
   const navigate = useNavigate()
   const [inputFullName, setInputFullName] = useState('')
@@ -52,7 +52,7 @@ export const UserProfilePage = () => {
         return
       }
 
-      const result = await updatePasswordUserService(oldPassword, newPassword, comparePassword)
+      const result = await updatePasswordUserService(oldPassword, newPassword)
 
       toastifyForm(result)
 
@@ -71,12 +71,16 @@ export const UserProfilePage = () => {
 
     try {
       setLoading(true)
-      console.log(fullName);
-      const result = await updateFullNameUserService( fullName )
+
+      const result = await updateFullNameUserService(inputFullName)
 
       toastifyForm(result)
 
       if (result.status === 'ok') {
+        setAuthUser({
+          ...authUser,
+          fullName: inputFullName
+        })
         resetForm()
         navigate('/users/profile')
       }
@@ -98,11 +102,16 @@ export const UserProfilePage = () => {
       setLoading(true)
       if (selectedFile) {
         const formData = new FormData()
-        formData.append('file', selectedFile)
+        formData.append('avatar', selectedFile)
 
-        const result = await updateAvatarUserService({ formData })
+        const result = await updateAvatarUserService(formData)
 
+        toastifyForm(result)
         if (result.status === 'ok') {
+          setAuthUser({
+            ...useAuth,
+            avatar: result.data.avatarName
+          })
           resetForm()
           navigate('/users/profile')
         }
@@ -136,8 +145,10 @@ export const UserProfilePage = () => {
           <h2 className='title-user-profile'>Perfil de Usuario</h2>
           <div className='div-avatar-profile'>
             <img className='image-edit-profile' src={`${baseApiURL}/avatar/${avatar}`} alt='' />
-            <input type='file' onChange={handleFileChange} />
-            <button className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' onClick={handleOnClickUpdateAvatar} /></button>
+            <div>
+              <input type='file' onChange={handleFileChange} />
+              <button className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' onClick={handleOnClickUpdateAvatar} /></button>
+            </div>
           </div>
           <div>
             <label className='label-user-profile' htmlFor='fullName'>Nombre Completo:</label>
@@ -157,11 +168,14 @@ export const UserProfilePage = () => {
           <div>
 
             <label className='label-user-profile' htmlFor=''>Contraseña actual:</label>
-            <input className='input-user-profile' type='password' id='password' placeholder='*****' />
+            <input className='input-user-profile' type='password' id='password' placeholder='*****' onChange={handleOnChangeOldPassword} />
             <label className='label-user-profile' htmlFor=''>Introduce nueva ontraseña:</label>
-            <input className='input-user-profile' type='password' id='password' placeholder='Nueva contraseña' />
+            <input className='input-user-profile' type='password' id='password' placeholder='Nueva contraseña' onChange={handleOnChangeNewPassword} />
             <label className='label-user-profile' htmlFor=''>Repite la nueva Contraseña:</label>
-            <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' /> <button onClick={handleOnClickUpdatePassword} className='button-edit-profile'><img className='img-user-profile' src={editProfileImg} alt='' /></button>
+            <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' onChange={handleOnChangeComparePassword} />
+            <button onClick={handleOnClickUpdatePassword} className='button-edit-profile'>
+              <img className='img-user-profile' src={editProfileImg} alt='' />
+            </button>
           </div>
           <button className='button-user-profile'>Eliminar Perfil</button>
         </form>

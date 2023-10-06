@@ -79,6 +79,7 @@ export const getInfoOwnerUserService = async () => {
 // Modificamos el avatar
 export const updateAvatarUserService = async (formData) => {
   const token = getToken()
+
   const res = await fetch(`${baseApiURL}/users/profile/avatar`, {
     method: 'put',
     headers: {
