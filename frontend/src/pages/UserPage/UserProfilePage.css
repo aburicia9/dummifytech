@@ -1,4 +1,5 @@
-.div-register {
+
+.div-user-profile {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -10,7 +11,7 @@
   margin-top: 5rem;
 }
 
-.form-register {
+.form-user-profile {
   display: flex;
   align-items: left;
   flex-direction: column;
@@ -24,7 +25,16 @@
   gap: 0.3rem;
 }
 
-.title-register {
+.input-user-profile{
+  border-radius: var(--borderRadiusSmall);
+  width: 40rem;
+  height: 2rem;
+  margin-left: 2rem;
+  padding-left: 1rem
+}
+
+
+.title-user-profile {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -32,20 +42,12 @@
   width: 100%;
 }
 
-.label-register {
+.label-user-profile {
   margin-left: 2rem;
   font-size: 1.2rem;
 }
 
-.input-register {
-  border-radius: var(--borderRadiusSmall);
-  width: 40rem;
-  height: 2rem;
-  margin-left: 2rem;
-  padding-left: 1rem;
-}
-
-.button-register {
+.button-user-profile {
   border-radius: var(--borderRadiusSmall);
   background: var(--midBlue);
   color: white;
@@ -56,9 +58,39 @@
   margin-left: 18rem;
   font-size: 1rem;
 }
-.button-register:hover {
+.button-user-profile:hover {
   background: var(--midBlue);
   color: white;
   box-shadow: none;
+  cursor: pointer;
+}
+
+.img-user-profile{
+  width: 25px;
+  height: 25px;
+
+}
+
+.button-edit-profile{
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+}
+
+.image-edit-profile{
+  background: none;
+  height: 150px;
+  width: 150px;
+}
+
+.div-avatar-profile{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.button-edit-profile:hover{
   cursor: pointer;
 }

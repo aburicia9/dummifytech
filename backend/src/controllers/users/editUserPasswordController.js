@@ -13,16 +13,13 @@ export const editUserPasswordController = async (req, res, next) => {
 
     const userEmail = await selectUserByEmailModel(userId.email)
 
-    const { oldPassword, newPassword, comparePassword } = req.body
+    const { oldPassword, newPassword } = req.body
     const validPass = await bcrypt.compare(oldPassword, userEmail.password)
 
     if (!validPass) {
       invalidCredentialsError()
     }
 
-    if (newPassword !== comparePassword) {
-      invalidPasswordComparation()
-    }
     const password = { password: newPassword }
 
     const result = await validateSchema(editUserPasswordSchema, password)

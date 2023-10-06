@@ -7,6 +7,7 @@ import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RecoveryPasswordPage } from './pages/RecoveryPasswordPage/RecoveryPasswordPage'
 import { ToastContainer } from 'react-toastify'
+import { UserProfilePage } from './pages/UserPage/UserProfilePage'
 
 export const App = () => {
   return (
@@ -18,6 +19,7 @@ export const App = () => {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
+        <Route path='/users/profile' element={<UserProfilePage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />
