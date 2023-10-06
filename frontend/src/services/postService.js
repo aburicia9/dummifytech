@@ -50,7 +50,7 @@ export const likePostService = async (postId, method) => {
 // Crear o eliminar dislike en un post
 export const dislikePostService = async (postId, method) => {
   const token = getToken()
-  console.log({ postId, method })
+
   const res = await fetch(`${baseApiURL}/posts/${postId}/dislikes`, {
     method,
     headers: {
@@ -173,7 +173,7 @@ export const deleteCommentPostService = async (postId, commentId) => {
 
 export const listPostByIdCategoryService = async (categoryId) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/posts/${categoryId}`, {
+  const res = await fetch(`${baseApiURL}/posts/categories/${categoryId}`, {
     method: 'get',
     headers: {
       Authorization: token

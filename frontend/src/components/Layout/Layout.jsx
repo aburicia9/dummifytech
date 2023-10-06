@@ -6,6 +6,7 @@ import { useCategories } from '../../hooks/categories/useCategories'
 export const Layout = ({ children, isSearchDisabled = false, isSubcategoryDisabled = false }) => {
   const { categories } = useCategories()
 
+
   return (
     <>
       <CategoryListComponent categories={categories} isSubcategoryDisabled={isSubcategoryDisabled} />

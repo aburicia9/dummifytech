@@ -277,8 +277,8 @@ export const main = async () => {
     console.log('Creando post en POST...')
 
     await connection.query(`
-    INSERT INTO posts (title, post, id_category, id_user)
-    VALUES('Samsung S20', 'Mejor movil',2,1);
+      INSERT INTO posts (title, post, id_category, id_user)
+      VALUES('Samsung S20', 'Mejor movil',2,1);
     `)
     console.log('Post creada! 😉✅')
 

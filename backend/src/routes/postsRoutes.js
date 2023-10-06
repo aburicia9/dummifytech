@@ -27,7 +27,7 @@ router.get('/posts', authUserController, listPostsController)
 router.get('/posts/myposts', authUserController, listMyPostsController)
 
 // Vizualizar los posts con esa categoria
-router.get('/posts/:categoryId', authUserController, getPostByIdCategoryController)
+router.get('/posts/categories/:categoryId', authUserController, getPostByIdCategoryController)
 
 // Creacion del post
 router.post('/posts/insert', authUserController, newPostController)

@@ -38,7 +38,6 @@ export const PostFooterComponent = ({ fetchPosts, postId, ownerLikes, ownerDisli
 
   const onClickDislikePost = async () => {
     let method = ''
-    console.log(ownerDislikes)
 
     if (ownerDislikes === 1) {
       method = 'delete'
