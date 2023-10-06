@@ -70,6 +70,16 @@
 
 .button-position {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+  justify-content: space-between;
+}
+
+.button-create-post {
+  justify-content: end;
+  margin-right: 5rem;
 }
 
 
@@ -79,7 +89,7 @@
 }
 
 /* Estilo para la lista de opciones desplegable */
-.category-menu-div {
+.category-menu-select{
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -89,20 +99,16 @@
 }
 
 /* Estilo para cada opción en el menú desplegable */
-.category-menu-div span {
+.category-menu-select .option-subcategory {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
 
-/* Cambiar el color del texto cuando se pasa el ratón por encima de una opción */
-.category-menu-div span:hover {
-  background-color: #3498db;
-  color: white;
-}
+
 
 /* Mostrar el menú desplegable cuando se pasa el ratón por encima del botón */
-.category-menu:hover .category-menu-div {
+.category-menu:hover .category-menu-select {
   display: block;
-}
+} 
