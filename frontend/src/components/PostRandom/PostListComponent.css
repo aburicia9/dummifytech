@@ -22,3 +22,35 @@
   box-shadow: var(--borderColorShadow);
 }
 
+.section-no-post{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 0.5px solid #294d61;
+  margin-top: 5em;
+  background:linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);
+  width: 50rem;
+  border-radius: var(--borderRadiusSmall);
+  box-shadow: var(--borderColorShadow);
+}
+.div-no-data-post{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 1em;
+  min-height: 12em;
+}
+.title-no-post{
+  margin-top: 30px;
+}
+.img-no-data-post{
+  object-fit: fill;
+  width: 100%;
+  height: auto;
+  padding: 30px;
+
+}
+

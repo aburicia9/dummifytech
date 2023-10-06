@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       setLoading(true)
 
       if (password !== reapeatPassword) {
-        toastifyWarning('Las contraseñas no coinciden')
+        toastifyWarning('Las contraseñas no coinciden ❌')
       }
 
       const body = await createUserService(username, email, password, fullName)

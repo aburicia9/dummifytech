@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import './HeaderComponent.css'
 import search from '../../assets/header/search.svg'
-import { ButtonComponent } from '../Button/ButtonComponent'
-import avatarUser from '../../assets/users/login.svg'
 import logoutIcon from '../../assets/header/logout.svg'
 import { useAuth } from '../../hooks/useAuth'
 import { usePosts } from '../../hooks/posts/usePosts'
 import { useState } from 'react'
 import { toastifySuccess } from '../../utils/Toastify/Toastify'
+import { CircleMenu, CircleMenuItem, TooltipPlacement } from 'react-circular-menu'
+import registerUser from '../../assets/users/register.svg'
+import loginUser from '../../assets/users/login.svg'
 
 export const HeaderComponent = () => {
   const { authLogout } = useAuth()
@@ -68,24 +69,63 @@ export const HeaderComponent = () => {
         {isAuthenticated
           ? (
             <div className='div-button-users-header'>
-              <button className='button-logout-header' onClick={onClicklogout}>
+              <CircleMenu
+                startAngle={180}
+                rotationAngle={-180}
+                itemSize={2}
+                radius={5}
+                rotationAngleInclusive={false}
+              >
+                <CircleMenuItem
+                  onClick={onClicklogout}
+                  tooltip='logout'
+                  tooltipPlacement={TooltipPlacement.Bottom}
+                >
+                  <img src={logoutIcon} alt='' />
+                </CircleMenuItem>
+
+              </CircleMenu>
+              {/* <button className='button-logout-header' onClick={onClicklogout}>
                 <img src={logoutIcon} alt='icono logout' />
               </button>
               <button className='button-avatar-user-header'>
                 <img src={avatarUser} alt='avatar usuario' />
-              </button>
+              </button> */}
             </div>
             )
           : (
             <div className='div-button-users-header'>
-              <ButtonComponent
+              <CircleMenu
+                startAngle={180}
+                rotationAngle={-180}
+                itemSize={2}
+                radius={5}
+                rotationAngleInclusive={false}
+              >
+                <CircleMenuItem
+                  onClick={handleOnClickLogin}
+                  tooltip='Iniciar sesion'
+                  tooltipPlacement={TooltipPlacement.Bottom}
+                >
+                  <img src={loginUser} alt='boton para iniciar sesion' />
+                </CircleMenuItem>
+                <CircleMenuItem
+                  onClick={handleOnClickRegister}
+                  tooltip='Registrarse'
+                  tooltipPlacement={TooltipPlacement.Bottom}
+                >
+                  <img src={registerUser} alt='boton para registrar usuario' />
+                </CircleMenuItem>
+
+              </CircleMenu>
+              {/* <ButtonComponent
                 handleOnClick={handleOnClickRegister}
                 buttonName='Registrarse'
               />
               <ButtonComponent
                 handleOnClick={handleOnClickLogin}
                 buttonName='Iniciar sesion'
-              />
+              /> */}
             </div>
             )}
       </header>

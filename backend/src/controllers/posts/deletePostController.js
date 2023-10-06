@@ -11,7 +11,7 @@ export const deletePostController = async (req, res, next) => {
 
     const post = await selectPostByIdModel(userId, postId)
     const type = 'post'
-    console.log(post)
+
     const contextEmail = `titulo: ${post.title}`
 
     await deletePostModel(postId, userId)

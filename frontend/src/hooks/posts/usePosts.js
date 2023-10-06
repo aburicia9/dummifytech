@@ -20,7 +20,7 @@ export const usePosts = () => {
         body = await getRandomPostService()
       } else {
         if (params.categoryId) {
-          body = await listPostByIdCategoryService(params.categoryId)
+          body = await listPostByIdCategoryService(params.categoryId, searchParams)
         } else {
           body = await listAllPostsService(searchParams)
         }

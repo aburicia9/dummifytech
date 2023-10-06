@@ -1,6 +1,6 @@
 import './PostHeaderComponent.css'
 
-export const PostHeaderComponent = ({ avatar, username, createdAt, baseApiURL, postId }) => {
+export const PostHeaderComponent = ({ avatar, username, createdAt, baseApiURL }) => {
   const createdAtModificated = new Date(createdAt).toLocaleTimeString('es-ES', {
     hour: '2-digit',
     minute: '2-digit',
@@ -14,7 +14,7 @@ export const PostHeaderComponent = ({ avatar, username, createdAt, baseApiURL, p
       {/* <img src='http://localhost:8000/uploads/post/fbb6eb87-3cd5-47fb-a6de-0e24950d3e24.jpg' alt='Post de la imagen' /> */}
       <p className='header-post-username'>{username}</p>
       <p className='header-post-date'>{createdAtModificated}</p>
-      <p>Post Id: {postId}</p>
+
     </div>
 
   )

@@ -7,7 +7,7 @@ import comment from '../../../assets/post/button_comments.svg'
 import report from '../../../assets/post/button_report.svg'
 import { dislikePostService, likePostService } from '../../../services/postService'
 
-export const PostFooterComponent = ({ fetchPosts, postId, ownerLikes, ownerDislikes, countLikes, countComments }) => {
+export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes = '', ownerDislikes = '', countLikes = '', countComments = '' }) => {
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
 

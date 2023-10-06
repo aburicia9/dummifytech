@@ -8,7 +8,8 @@ export const createPostService = async (formData) => {
   const res = await fetch(`${baseApiURL}/posts/insert`, {
     method: 'post',
     headers: {
-      Authorization: token
+      Authorization: token,
+      'Content-Type': 'application/json'
     },
     body: formData
   })
@@ -80,7 +81,8 @@ export const updatePostService = async (postId, formData) => {
   const res = await fetch(`${baseApiURL}/posts/${postId}`, {
     method: 'put',
     headers: {
-      Authorization: token
+      Authorization: token,
+      'Content-Type': 'application/json'
     },
     body: formData
   })
@@ -171,9 +173,9 @@ export const deleteCommentPostService = async (postId, commentId) => {
   return body
 }
 
-export const listPostByIdCategoryService = async (categoryId) => {
+export const listPostByIdCategoryService = async (categoryId, searchParams) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/posts/categories/${categoryId}`, {
+  const res = await fetch(`${baseApiURL}/posts/categories/${categoryId}?${searchParams}`, {
     method: 'get',
     headers: {
       Authorization: token

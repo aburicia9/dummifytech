@@ -15,7 +15,7 @@ export const selectPostByIdModel = async (userId, postId) => {
       FROM posts as p
       WHERE p.id = ? AND p.id_user = ?
     `, [postId, userId])
-    console.log({ postId, userId })
+
     if (post?.length < 1) {
       notFoundError('post')
     }
