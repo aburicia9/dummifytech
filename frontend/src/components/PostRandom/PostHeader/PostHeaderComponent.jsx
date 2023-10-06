@@ -14,6 +14,7 @@ export const PostHeaderComponent = ({ avatar = '', username = '', createdAt = ''
       {/* <img src='http://localhost:8000/uploads/post/fbb6eb87-3cd5-47fb-a6de-0e24950d3e24.jpg' alt='Post de la imagen' /> */}
       <p className='header-post-username'>{username}</p>
       <p className='header-post-date'>{createdAtModificated}</p>
+
     </div>
 
   )

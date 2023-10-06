@@ -175,7 +175,7 @@ export const deleteCommentPostService = async (postId, commentId) => {
 
 export const listPostByIdCategoryService = async (categoryId, searchParams) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/posts/${categoryId}?${searchParams}`, {
+  const res = await fetch(`${baseApiURL}/posts/categories/${categoryId}?${searchParams}`, {
     method: 'get',
     headers: {
       Authorization: token
