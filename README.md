@@ -1,6 +1,6 @@
 
 
-![logo dummifytech](./documents/Logo.png)
+![logo dummifytech](./backend/documents/Logo.png)
 
 #### [ENGLISH README](#dummifytech-en)
 
