@@ -180,7 +180,7 @@ Made with [contributors-img](https://contrib.rocks).
 
 # DummifyTech EN
 
-![DummifyTech Logo](./documents/Logo.png)
+![logo dummifytech](./backend/documents/Logo.png)
 
 
 
