@@ -3,7 +3,7 @@ import { getToken } from '../utils/getToken'
 const baseApiURL = import.meta.env.VITE_API_URL
 
 // Crear un post
-export const createPostService = async (formData) => {
+export const createPostService = async ({ title, post, categoryId }) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/posts/insert`, {
     method: 'post',
@@ -11,7 +11,7 @@ export const createPostService = async (formData) => {
       Authorization: token,
       'Content-Type': 'application/json'
     },
-    body: formData
+    body: JSON.stringify({ title, post, categoryId })
   })
   const body = await res.json()
   return body

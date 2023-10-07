@@ -2,48 +2,46 @@ import { useNavigate } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
 import './CreatePostPage.css'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPostService } from '../../services/postService'
+import { getInfoOwnerUserService } from '../../services/authService'
+import { useAuth } from '../../hooks/useAuth'
+import { getToken } from '../../utils/getToken'
+import { PostHeaderComponent } from '../../components/PostRandom/PostHeader/PostHeaderComponent'
 
-export const CreatePostPage = ({ avatar }) => {
+export const CreatePostPage = ({ avatar, username }) => {
   const navigate = useNavigate()
+  const [authUser, setAuthUser] = useState()
+  // authUser = useAuth()
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  // const [authContext] = useAuth()
   const [title, setTitle] = useState('')
-  const [text, setText] = useState('')
-  const [category, setCategory] = useState()
+  const [post, setPost] = useState('')
+  const [categoryId, setCategoryId] = useState()
   const [loading, setLoading] = useState(false)
 
   const handleOnChangeTitle = (event) => {
     setTitle(event.target.value)
   }
   const handleOnChangeText = (event) => {
-    setText(event.target.value)
+    setPost(event.target.value)
   }
   const handleOnChangeCategory = (event) => {
-    setCategory(event.target.value)
+    setCategoryId(Number(event.target.value))
   }
 
-  const resetForm = () => {
-    setTitle()
-    setText()
-  }
-
-  const handleOnClickCreatePost = async () => {
+  const handleOnClickCreatePost = async (event) => {
+    event.preventDefault()
     try {
       setLoading(true)
 
-      // const formData = new FormData()
-      // formData.append('text', text)
+      const body = await createPostService({ title, post, categoryId })
 
-      const body = await createPostService({ title, text, category })
-
-      if (body.status === 'ok') {
-        resetForm()
-        navigate('/')
+      if (body.status === 'error') {
+        throw new Error(body.message)
       }
 
-      // if (body.status === 'error') {
-      //   throw new Error(body.message)
-      // }
+      navigate('/')
     } catch (error) {
       console.log(error.message)
     } finally {
@@ -51,10 +49,40 @@ export const CreatePostPage = ({ avatar }) => {
     }
   }
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        setLoading(true)
+
+        const body = await getInfoOwnerUserService()
+
+        if (body.status === 'error') {
+          throw new Error(body.message)
+        }
+
+        setIsAuthenticated(true)
+        setAuthUser(body.data.user)
+      } catch (error) {
+        console.log(error.message)
+      } finally {
+        setLoading(true)
+      }
+    }
+    setAuthUser(authUser)
+    const token = getToken()
+    if (token) fetchUser()
+  }, [isAuthenticated])
+
+  console.log(authUser)
   return (
     <Layout>
       <div className='div-create-post'>
         <form className='form-create-post'>
+          <PostHeaderComponent avatar={avatar} username={username} />
+          {/* <div className='header-post'>
+            <img src={`${baseApiURL}/avatar/${avatar}`} alt='Avatar de la usuario' style={{ width: '80px', height: '80px' }} />
+            <p className='header-post-username'>{authUser.username}</p>
+          </div> */}
           <h2 className='title-create-post'>¿En que piensas?</h2>
           <label htmlFor='title' className='label-post-create'>Titulo del post:</label>
           <input
@@ -71,33 +99,33 @@ export const CreatePostPage = ({ avatar }) => {
             rows='10'
             className='input-post-create-txt'
             onChange={handleOnChangeText}
-            value={text}
+            value={post}
           />
           <div className='button-position'>
-            <form class='category-menu'>
+            <section className='category-menu'>
               <label className='button-generic' id='categorias'>Categorias</label>
               <select
                 id='categorias'
-                class='category-menu-select'
+                className='category-menu-select'
                 onChange={handleOnChangeCategory}
-                value={category}
+                value={categoryId}
               >
-                <option className='option-subcategory' value='Hardware'>Hardware</option>
-                <option className='option-subcategory' value='Software'>Software</option>
-                <option className='option-subcategory' value='IA'>IA</option>
-                <option className='option-subcategory' value='PlayStation'>PlayStation</option>
-                <option className='option-subcategory' value='Xbox'>Xbox</option>
-                <option className='option-subcategory' value='PC'>PC</option>
-                <option className='option-subcategory' value='Nintendo'>Nintendo</option>
-                <option className='option-subcategory' value='Python'>Python</option>
-                <option className='option-subcategory' value='Java'>Java</option>
-                <option className='option-subcategory' value='JavaScript'>JavaScript</option>
-                <option className='option-subcategory' value='C#Sharp'>C#Sharp</option>
-                <option className='option-subcategory' value='Android'>Android</option>
-                <option className='option-subcategory' value='IOS'>IOS</option>
-                <option className='option-subcategory' value='DummyMemes'>DummyMemes</option>
+                <option className='option-subcategory' value='2'>Hardware</option>
+                <option className='option-subcategory' value='3'>Software</option>
+                <option className='option-subcategory' value='19'>IA</option>
+                <option className='option-subcategory' value='6'>PlayStation</option>
+                <option className='option-subcategory' value='7'>Xbox</option>
+                <option className='option-subcategory' value='8'>PC</option>
+                <option className='option-subcategory' value='9'>Nintendo</option>
+                <option className='option-subcategory' value='11'>Python</option>
+                <option className='option-subcategory' value='12'>Java</option>
+                <option className='option-subcategory' value='13'>JavaScript</option>
+                <option className='option-subcategory' value='14'>C#Sharp</option>
+                <option className='option-subcategory' value='16'>Android</option>
+                <option className='option-subcategory' value='17'>IOS</option>
+                <option className='option-subcategory' value='18'>DummyMemes</option>
               </select>
-            </form>
+            </section>
             <div className='button-create-post'>
               <ButtonComponent
                 className='button-generic large'

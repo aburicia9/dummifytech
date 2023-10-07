@@ -19,7 +19,7 @@ export const App = () => {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
-        <Route path='/posts/create' element={<CreatePostPage />} />
+        <Route path='/posts/insert' element={<CreatePostPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />
