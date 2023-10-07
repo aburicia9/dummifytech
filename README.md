@@ -165,11 +165,13 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 Este proyecto fue creado por:
 
-- Guadi Tarelli
-- Juan Brosio
-- Dani Torres
-- Carlos Rico
+<!-- Copy-paste in your Readme.md file -->
 
+<a href = "https://github.com/aburicia9/dummifytech/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=aburicia9/dummifytech"/>
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
 ---
 
 
