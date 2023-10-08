@@ -2,19 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
 import './CreatePostPage.css'
-import { useEffect, useState } from 'react'
 import { createPostService } from '../../services/postService'
-import { getInfoOwnerUserService } from '../../services/authService'
-import { useAuth } from '../../hooks/useAuth'
-import { getToken } from '../../utils/getToken'
-import { PostHeaderComponent } from '../../components/PostRandom/PostHeader/PostHeaderComponent'
+import { useState } from 'react'
+import { toastifyError } from '../../utils/Toastify/Toastify'
+import newPost from '../../assets/post/new_post.svg'
 
 export const CreatePostPage = ({ avatar, username }) => {
   const navigate = useNavigate()
-  const [authUser, setAuthUser] = useState()
-  // authUser = useAuth()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  // const [authContext] = useAuth()
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
   const [categoryId, setCategoryId] = useState()
@@ -37,6 +31,16 @@ export const CreatePostPage = ({ avatar, username }) => {
 
       const body = await createPostService({ title, post, categoryId })
 
+      if (title === '') {
+        toastifyError('El titulo es obligatorio')
+      }
+      if (post === '') {
+        toastifyError('La publicación es obligatoria')
+      }
+      if (!categoryId) {
+        toastifyError('Y la categoria?...')
+      }
+
       if (body.status === 'error') {
         throw new Error(body.message)
       }
@@ -49,41 +53,13 @@ export const CreatePostPage = ({ avatar, username }) => {
     }
   }
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        setLoading(true)
-
-        const body = await getInfoOwnerUserService()
-
-        if (body.status === 'error') {
-          throw new Error(body.message)
-        }
-
-        setIsAuthenticated(true)
-        setAuthUser(body.data.user)
-      } catch (error) {
-        console.log(error.message)
-      } finally {
-        setLoading(true)
-      }
-    }
-    setAuthUser(authUser)
-    const token = getToken()
-    if (token) fetchUser()
-  }, [isAuthenticated])
-
-  console.log(authUser)
   return (
     <Layout>
       <div className='div-create-post'>
         <form className='form-create-post'>
-          <PostHeaderComponent avatar={avatar} username={username} />
-          {/* <div className='header-post'>
-            <img src={`${baseApiURL}/avatar/${avatar}`} alt='Avatar de la usuario' style={{ width: '80px', height: '80px' }} />
-            <p className='header-post-username'>{authUser.username}</p>
-          </div> */}
-          <h2 className='title-create-post'>¿En que piensas?</h2>
+          <div className='h2-div'>
+            <h2 className='title-create-post'>Crea tu post<img src={newPost} className='logo-new-post' /></h2>
+          </div>
           <label htmlFor='title' className='label-post-create'>Titulo del post:</label>
           <input
             type='text'
@@ -103,7 +79,6 @@ export const CreatePostPage = ({ avatar, username }) => {
           />
           <div className='button-position'>
             <section className='category-menu'>
-              <label className='button-generic' id='categorias'>Categorias</label>
               <select
                 id='categorias'
                 className='category-menu-select'

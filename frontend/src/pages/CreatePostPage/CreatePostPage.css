@@ -10,9 +10,14 @@
   margin-top: 5rem;
 }
 
+.h2-div {
+  display: flex;
+}
+
 .form-create-post {
   display: flex;
   align-items: left;
+  justify-content: center;
   flex-direction: column;
   border: 0.5px solid #294d61;
   margin: 5em;
@@ -30,6 +35,11 @@
   justify-content: center;
   margin-bottom: 1em;
   width: 100%;
+  padding-inline: 100px;
+}
+
+.logo-new-post {
+  max-width: 1.5rem;
 }
 
 .label-post-create {
@@ -56,21 +66,21 @@
 .button-generic {
   border-radius: var(--borderRadiusSmall);
   background:var(--midBlue) ;
-  color: white;
+  color: var(--white);
   border: 1px var(--darBlueOpacity) solid;
   width: 10em;
   height: 2.5em;
 }
 .button-generic:hover {
   background: var(--midBlue) ;
-  color: white;
+  color: var(--white);
   box-shadow: none;
   cursor: pointer;  
 }
 
 .button-position {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding-left: 30px;
@@ -90,25 +100,36 @@
 
 /* Estilo para la lista de opciones desplegable */
 .category-menu-select{
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
+  color: var(--white);
+  background-color: var(--midBlue);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border-radius: var(--borderRadiusSmall);
+  font-size: large  ;
+  border: 1px var(--darBlueOpacity) solid;
+  width: 10em;
+  height: 2.5em;
 }
 
 /* Estilo para cada opción en el menú desplegable */
 .category-menu-select .option-subcategory {
-  color: black;
+  color: var(--white);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+}
+
+.option-subcategory{
+  border-radius: var(--borderRadiusSmall);
+  background:var(--midBlue) ;
+  color: white;
+  border: 1px var(--darBlueOpacity) solid;
+  width: 10em;
+  height: 2.5em;
 }
 
 
 
 /* Mostrar el menú desplegable cuando se pasa el ratón por encima del botón */
 .category-menu:hover .category-menu-select {
-  display: block;
 } 
