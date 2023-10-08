@@ -5,17 +5,22 @@ import dislike from '../../../assets/post/button_dislike.svg'
 import dislikeOn from '../../../assets/post/button_dislike_on.svg'
 import comment from '../../../assets/post/button_comments.svg'
 import report from '../../../assets/post/button_report.svg'
-import { dislikePostService, likePostService } from '../../../services/postService'
+import reportOn from '../../../assets/post/button_report_on.svg'
+import { dislikePostService, likePostService, reportPostService } from '../../../services/postService'
 
-export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes = '', ownerDislikes = '', countLikes = '', countComments = '' }) => {
+export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes = '', ownerDislikes = '', ownerReport = '', countLikes = '', countComments = '' }) => {
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
+  let reportOrReportOn = report
 
   if (ownerLikes) {
     likeOrLikeOn = likeOn
   }
   if (ownerDislikes) {
     disLikeOrDislikeOn = dislikeOn
+  }
+  if (ownerReport) {
+    reportOrReportOn = reportOn
   }
 
   const onClickLikePost = async () => {
@@ -54,6 +59,23 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
     }
   }
 
+  const onClickReportPost = async () => {
+    let method = ''
+    if (ownerReport === 1) {
+      method = 'delete'
+      const resultDelete = await reportPostService(postId, method)
+      if (resultDelete?.status === 'ok') {
+        fetchPosts()
+      }
+    } else {
+      method = 'post'
+      const resultPut = await reportPostService(postId, method)
+      if (resultPut?.status === 'ok') {
+        fetchPosts()
+      }
+    }
+  }
+
   return (
     <div className='div-footer-post'>
       <div className='div-like-footer-post'>
@@ -63,7 +85,7 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
       <div className='div-comment-footer-post'>
         <button className='button-comment-footer-post'><img src={comment} alt='comment image button' /></button><span className='span-countcomments-footer-post'>{countComments}</span>
       </div>
-      <button className='button-report-footer-post'><img src={report} alt='report image button' /></button>
+      <button className='button-report-footer-post'><img src={reportOrReportOn} alt='report image button' onClick={onClickReportPost} /></button>
     </div>
   )
 }

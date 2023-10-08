@@ -46,6 +46,7 @@ export const PostListComponent = ({ posts, fetchPosts }) => {
                     postId={post.id}
                     ownerLikes={post.ownerLikes}
                     ownerDislikes={post.ownerDislikes}
+                    ownerReport={post.ownerReport}
                     countLikes={post.countLikes}
                     countComments={post.countComments}
                   />
