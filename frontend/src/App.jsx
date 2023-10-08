@@ -10,7 +10,6 @@ import { ToastContainer } from 'react-toastify'
 import { CreatePostPage } from './pages/CreatePostPage/CreatePostPage'
 import { UserProfilePage } from './pages/UserPage/UserProfilePage'
 
-
 export const App = () => {
   return (
     <>
