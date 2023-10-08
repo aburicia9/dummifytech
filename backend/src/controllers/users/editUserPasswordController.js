@@ -2,7 +2,7 @@ import { updateUserPasswordModel } from '../../models/users/updateUserPasswordMo
 import { validateSchema } from '../../schemas/validateSchema.js'
 import { editUserPasswordSchema } from '../../schemas/users/editUserPasswordSchema.js'
 import { fromZodError } from 'zod-validation-error'
-import { invalidCredentialsError, invalidPasswordComparation } from '../../services/errorService.js'
+import { invalidCredentialsError } from '../../services/errorService.js'
 import bcrypt from 'bcrypt'
 import { selectUserByEmailModel } from '../../models/users/selectUserByEmailModel.js'
 import { selectUserByIdModel } from '../../models/users/selectUserByIdModel.js'
@@ -13,16 +13,13 @@ export const editUserPasswordController = async (req, res, next) => {
 
     const userEmail = await selectUserByEmailModel(userId.email)
 
-    const { oldPassword, newPassword, comparePassword } = req.body
+    const { oldPassword, newPassword } = req.body
     const validPass = await bcrypt.compare(oldPassword, userEmail.password)
 
     if (!validPass) {
       invalidCredentialsError()
     }
 
-    if (newPassword !== comparePassword) {
-      invalidPasswordComparation()
-    }
     const password = { password: newPassword }
 
     const result = await validateSchema(editUserPasswordSchema, password)

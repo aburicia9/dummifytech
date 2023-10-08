@@ -49,6 +49,7 @@ export const RegisterPage = () => {
       setLoading(true)
       if (password !== repeatPassword) {
         toastifyWarning('Las contraseñas no coinciden')
+        return
       }
       const result = await createUserService({ username, email, password, fullName })
 
@@ -74,7 +75,7 @@ export const RegisterPage = () => {
           <input className='input-register' type='text' id='fullName' onChange={handleOnChangeFullName} value={fullName} />
           <label className='label-register' htmlFor='username'>Usuario: </label>
           <input className='input-register' type='text' id='username' onChange={handleOnChangeUsername} value={username} />
-          <label className='label-register' htmlFor='email'>Correo electronico: </label>
+          <label className='label-register' htmlFor='email'>Correo electrónico: </label>
           <input className='input-register' type='email' id='email' onChange={handleOnChangeEmail} value={email} />
           <label className='label-register' htmlFor='password'>Contraseña: </label>
           <input className='input-register' type='password' id='password' onChange={handleOnChangePassword} value={password} />

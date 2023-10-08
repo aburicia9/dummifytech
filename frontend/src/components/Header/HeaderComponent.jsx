@@ -9,6 +9,7 @@ import { toastifySuccess } from '../../utils/Toastify/Toastify'
 import { CircleMenu, CircleMenuItem, TooltipPlacement } from 'react-circular-menu'
 import registerUser from '../../assets/users/register.svg'
 import loginUser from '../../assets/users/login.svg'
+import userProfil from '../../assets/users/userProfile.svg'
 
 export const HeaderComponent = () => {
   const { authLogout } = useAuth()
@@ -40,6 +41,10 @@ export const HeaderComponent = () => {
     event.preventDefault()
     authLogout()
     toastifySuccess('¡Sesión Cerrada!')
+  }
+  const onClickUserProfile = (event) => {
+    event.preventDefault()
+    navigate('/users/profile')
   }
   return (
     <>
@@ -81,16 +86,17 @@ export const HeaderComponent = () => {
                   tooltip='logout'
                   tooltipPlacement={TooltipPlacement.Bottom}
                 >
-                  <img src={logoutIcon} alt='' />
+                  <img src={logoutIcon} alt='boton para cerrar sesion' />
+                </CircleMenuItem>
+                <CircleMenuItem
+                  onClick={onClickUserProfile}
+                  tooltip='Perfil'
+                  tooltipPlacement={TooltipPlacement.Bottom}
+                >
+                  <img src={userProfil} alt='boton para entrar en el perfil' />
                 </CircleMenuItem>
 
               </CircleMenu>
-              {/* <button className='button-logout-header' onClick={onClicklogout}>
-                <img src={logoutIcon} alt='icono logout' />
-              </button>
-              <button className='button-avatar-user-header'>
-                <img src={avatarUser} alt='avatar usuario' />
-              </button> */}
             </div>
             )
           : (

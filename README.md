@@ -1,6 +1,6 @@
 
 
-![logo dummifytech](./documents/Logo.png)
+![logo dummifytech](./backend/documents/Logo.png)
 
 #### [ENGLISH README](#dummifytech-en)
 
@@ -165,10 +165,26 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 Este proyecto fue creado por:
 
-- Guadi Tarelli
-- Juan Brosio
-- Dani Torres
-- Carlos Rico
+
+
+<a href = "https://github.com/aburicia9/dummifytech/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=aburicia9/dummifytech"/>
+</a>
+
+
+## Tecnologías empleadas
+
+![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Node.js](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![MySql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![Git](	https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+
+
+
+
 
 ---
 
@@ -178,7 +194,7 @@ Este proyecto fue creado por:
 
 # DummifyTech EN
 
-![DummifyTech Logo](./documents/Logo.png)
+![logo dummifytech](./backend/documents/Logo.png)
 
 
 
@@ -341,7 +357,19 @@ Here we present our project of a forum for opinions where users can share their 
 
 This project was created by:
 
-- Guadi Tarelli
-- Juan Brosio
-- Dani Torres
-- Carlos Rico
+
+
+<a href = "https://github.com/aburicia9/dummifytech/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo=aburicia9/dummifytech"/>
+</a>
+
+## Used technologies
+
+![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Node.js](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![MySql](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
+![Git](	https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+

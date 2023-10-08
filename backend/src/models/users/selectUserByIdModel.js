@@ -8,7 +8,7 @@ export const selectUserByIdModel = async (userId) => {
     connection = await getDb()
 
     const [users] = await connection.query(
-      'SELECT id, username, email, avatar, role FROM users WHERE id = ?',
+      'SELECT id, full_name as fullName, username, email, avatar, role FROM users WHERE id = ?',
       [userId]
     )
     if (users.length < 1) {

@@ -92,6 +92,31 @@ body{
   background-position: center center;
 }
 
+a{
+  color:black;
+  text-decoration: none;
+}
 
+.footer-elevator{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.elevator {
+    text-align: center;
+    cursor: pointer;
+    width: 140px;
+    margin: auto;
+}
+.elevator:hover {
+  opacity: 0.7;
+}
+.elevator svg {
+  width: 40px;
+  height: 40px;
+  display: block;
+  margin: auto;
+  margin-bottom: 5px;
+}
 
 
