@@ -39,7 +39,7 @@ export const CategoryListComponent = ({
   )
 }
 
-function Category ({ category, isSubcategoryDisabled }) {
+export function Category ({ category, isSubcategoryDisabled }) {
   const { id, name, subcategories } = category
   const [toggle, setToggle] = useState(false)
 

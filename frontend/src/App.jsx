@@ -21,6 +21,7 @@ export const App = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
         <Route path='/posts/insert' element={<CreatePostPage />} />
+        <Route path='/posts/:categoryId/insert' element={<CreatePostPage />} />
         <Route path='/users/profile' element={<UserProfilePage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

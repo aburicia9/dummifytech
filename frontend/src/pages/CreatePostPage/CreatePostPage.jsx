@@ -2,16 +2,22 @@ import { useNavigate } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
 import './CreatePostPage.css'
+import image from '../../assets/post/image_logo.svg'
 import { createPostService } from '../../services/postService'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { toastifyError } from '../../utils/Toastify/Toastify'
-import newPost from '../../assets/post/new_post.svg'
+import { handleAddFilePreview } from '../../utils/handleAddFilePreview'
+import { handleRemoveFilePreview } from '../../utils/handleRemoveFilePreview'
 
-export const CreatePostPage = ({ avatar, username }) => {
+export const CreatePostPage = ({ categories }) => {
   const navigate = useNavigate()
+  const formData = new FormData()
+  const fileInputRef = useRef(null)
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
   const [categoryId, setCategoryId] = useState()
+  const [file, setFile] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState('')
   const [loading, setLoading] = useState(false)
 
   const handleOnChangeTitle = (event) => {
@@ -24,12 +30,25 @@ export const CreatePostPage = ({ avatar, username }) => {
     setCategoryId(Number(event.target.value))
   }
 
+  const handleOnChangeAddFile = (event) => {
+    handleAddFilePreview(event, setFile, setPreviewUrl)
+  }
+  const handleOnChangeRemoveFile = (event) => {
+    handleRemoveFilePreview(fileInputRef, setFile, setPreviewUrl)
+  }
+
   const handleOnClickCreatePost = async (event) => {
     event.preventDefault()
     try {
       setLoading(true)
 
-      const body = await createPostService({ title, post, categoryId })
+      const formData = new FormData()
+      formData.append('title', title)
+      formData.append('post', post)
+      formData.append('categoryId', categoryId)
+      if (file) formData.append('imgName', file)
+
+      const body = await createPostService(formData)
 
       if (title === '') {
         toastifyError('El titulo es obligatorio')
@@ -58,7 +77,7 @@ export const CreatePostPage = ({ avatar, username }) => {
       <div className='div-create-post'>
         <form className='form-create-post'>
           <div className='h2-div'>
-            <h2 className='title-create-post'>Crea tu post<img src={newPost} className='logo-new-post' /></h2>
+            <h2 className='title-create-post'>Crea tu post</h2>
           </div>
           <label htmlFor='title' className='label-post-create'>Titulo del post:</label>
           <input
@@ -98,9 +117,24 @@ export const CreatePostPage = ({ avatar, username }) => {
                 <option className='option-subcategory' value='14'>C#Sharp</option>
                 <option className='option-subcategory' value='16'>Android</option>
                 <option className='option-subcategory' value='17'>IOS</option>
-                <option className='option-subcategory' value='18'>DummyMemes</option>
+                <option className='option-subcategory' value='20'>DummyMemes</option>
               </select>
             </section>
+
+            <label htmlFor='file-input' className='custom-file-label'>
+              <span>Adjuntar imagen</span>
+              <img className='icon-image' src={image} alt='adjuntar imagen icono' />
+            </label>
+
+            <input
+              className='input-file'
+              type='file'
+              id='file-input'
+              accept='image/*'
+              ref={fileInputRef}
+              onChange={handleOnChangeAddFile}
+            />
+
             <div className='button-create-post'>
               <ButtonComponent
                 className='button-generic large'
@@ -109,6 +143,17 @@ export const CreatePostPage = ({ avatar, username }) => {
               />
             </div>
           </div>
+
+          <div className='div-preview-img'>
+            {previewUrl && (
+              <img
+                className='img-preview'
+                src={previewUrl}
+                onClick={handleOnChangeRemoveFile} alt='previsualización' title='Eliminar imagen'
+              />
+            )}
+          </div>
+
         </form>
       </div>
     </Layout>

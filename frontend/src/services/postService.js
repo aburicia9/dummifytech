@@ -3,19 +3,31 @@ import { getToken } from '../utils/getToken'
 const baseApiURL = import.meta.env.VITE_API_URL
 
 // Crear un post
-export const createPostService = async ({ title, post, categoryId }) => {
+export const createPostService = async (formData) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/posts/insert`, {
     method: 'post',
     headers: {
-      Authorization: token,
-      'Content-Type': 'application/json'
+      Authorization: token
     },
-    body: JSON.stringify({ title, post, categoryId })
+    body: formData
   })
   const body = await res.json()
   return body
 }
+// export const createPostService = async ({ title, post, categoryId }) => {
+//   const token = getToken()
+//   const res = await fetch(`${baseApiURL}/posts/insert`, {
+//     method: 'post',
+//     headers: {
+//       Authorization: token,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ title, post, categoryId })
+//   })
+//   const body = await res.json()
+//   return body
+// }
 
 // Coger un posts random
 export const getRandomPostService = async () => {
