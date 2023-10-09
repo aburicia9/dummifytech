@@ -40,86 +40,10 @@ export const UserProfilePage = () => {
     setComparePassword('')
   }
 
-  // const handleOnClickUpdatePassword = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     setLoading(true)
-
-  //     if (newPassword !== comparePassword) {
-  //       toastifyWarning('Las contraseñas no coinciden')
-  //       return
-  //     }
-
-  //     const result = await updatePasswordUserService(oldPassword, newPassword)
-
-  //     toastifyForm(result)
-
-  //     if (result.status === 'ok') {
-  //       resetForm()
-  //       navigate('/users/profile')
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-  // const handleOnClickUpdateFullName = async (event) => {
-  //   event.preventDefault()
-
-  //   try {
-  //     setLoading(true)
-
-  //     const result = await updateFullNameUserService(inputFullName)
-
-  //     toastifyForm(result)
-
-  //     if (result.status === 'ok') {
-  //       setAuthUser({
-  //         ...authUser,
-  //         fullName: inputFullName
-  //       })
-  //       resetForm()
-  //       navigate('/users/profile')
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0])
   }
 
-  // const handleOnClickUpdateAvatar = async (event) => {
-  //   event.preventDefault()
-
-  //   try {
-  //     setLoading(true)
-  //     if (selectedFile) {
-  //       const formData = new FormData()
-  //       formData.append('avatar', selectedFile)
-
-  //       const result = await updateAvatarUserService(formData)
-
-  //       toastifyForm(result)
-  //       if (result.status === 'ok') {
-  //         setAuthUser({
-  //           ...useAuth,
-  //           avatar: result.data.avatarName
-  //         })
-  //         resetForm()
-  //         navigate('/users/profile')
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
   const handleOnClickUpdatePerfil = async (event) => {
     event.preventDefault()
     try {

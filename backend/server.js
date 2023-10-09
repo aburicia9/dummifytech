@@ -45,8 +45,16 @@ app.use(morgan('dev'))
 // Usamos app para que nuestro servidor entienda los JSON
 app.use(express.json())
 
+// Configurar opciones CORS
+const corsOptions = {
+  origin: 'http://localhost:5173', // Cambia esto con la ubicación de tu aplicación web
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Habilita las credenciales (por ejemplo, cookies)
+  optionsSuccessStatus: 204 // Establece el código de estado para las solicitudes OPTIONS
+}
+
 // Usamos app para que nuestro servidor utilice cors
-app.use(cors())
+app.use(cors(corsOptions))
 
 // Importamos el controlador para indicar a express donde se encuentran las rutas.
 app.use(routes)

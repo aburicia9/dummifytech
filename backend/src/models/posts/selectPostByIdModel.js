@@ -10,13 +10,13 @@ export const selectPostByIdModel = async (userId, postId) => {
   try {
     connection = await getDb()
 
-    const [[post]] = await connection.query(`
-      SELECT  p.title, p.post, p.image
+    const [post] = await connection.query(`
+      SELECT  p.title, p.post, p.image, p.id_category as idCategory
       FROM posts as p
       WHERE p.id = ? AND p.id_user = ?
     `, [postId, userId])
 
-    if (post?.length < 1) {
+    if ([post]?.length < 1) {
       notFoundError('post')
     }
 

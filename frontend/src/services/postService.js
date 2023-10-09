@@ -91,11 +91,11 @@ export const deletePostService = async (postId) => {
 // Modificamos un post
 export const updatePostService = async (postId, formData) => {
   const token = getToken()
+
   const res = await fetch(`${baseApiURL}/posts/${postId}`, {
     method: 'put',
     headers: {
-      Authorization: token,
-      'Content-Type': 'application/json'
+      Authorization: token
     },
     body: formData
   })
@@ -196,4 +196,3 @@ export const getPostByIdService = async (postId) => {
   const body = await res.json()
   return body
 }
-

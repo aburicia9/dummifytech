@@ -1,14 +1,15 @@
 import { useNavigate, useParams } from 'react-router'
-import './EditPostPage.jsx'
+import './EditPostPage.css'
 import { useEffect, useRef, useState } from 'react'
 import image from '../../assets/post/image_logo.svg'
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview'
 import { handleRemoveFilePreview } from '../../utils/handleRemoveFilePreview'
-import { updatePostService } from '../../services/postService.js'
+import { getPostByIdService, updatePostService } from '../../services/postService.js'
 import { ButtonComponent } from '../../components/Button/ButtonComponent.jsx'
 import { Layout } from '../../components/Layout/Layout.jsx'
 import { useCategories } from '../../hooks/categories/useCategories.js'
-import { selectPostByIdModel } from '../../../../backend/src/models/posts/selectPostByIdModel.js'
+import { toastifyForm } from '../../utils/Toastify/Toastify.js'
+const baseApiURL = import.meta.env.VITE_API_URL
 
 export const EditPostPage = () => {
   const navigate = useNavigate()
@@ -16,9 +17,9 @@ export const EditPostPage = () => {
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
   const [previewUrl, setPreviewUrl] = useState('')
-  const [categoryId, setCategoryId] = useState(params?.categoryId ?? '')
+  const [categoryId, setCategoryId] = useState('')
+  const [imgName, setImgName] = useState('')
   const params = useParams()
-  const [file, setFile] = useState(null)
   const [loading, setLoading] = useState(false)
   const { categories } = useCategories()
   const postId = params.postId
@@ -30,10 +31,10 @@ export const EditPostPage = () => {
     setPost(event.target.value)
   }
   const handleOnChangeAddFile = (event) => {
-    handleAddFilePreview(event, setFile, setPreviewUrl)
+    handleAddFilePreview(event, setImgName, setPreviewUrl)
   }
   const handleOnChangeRemoveFile = (event) => {
-    handleRemoveFilePreview(fileInputRef, setFile, setPreviewUrl)
+    handleRemoveFilePreview(fileInputRef, setImgName, setPreviewUrl)
   }
 
   const handleOnClickUpdatePost = async (event) => {
@@ -44,7 +45,7 @@ export const EditPostPage = () => {
       const formData = new FormData()
       formData.append('title', title)
       formData.append('post', post)
-      if (file) formData.append('imgName', file)
+      if (imgName) formData.append('imgName', imgName)
 
       const body = await updatePostService(postId, formData)
 
@@ -62,7 +63,16 @@ export const EditPostPage = () => {
     const fetchUpdatePost = async () => {
       try {
         setLoading(true)
-        const result = await (postId)
+        const result = await getPostByIdService(postId)
+        const resultPost = result.data.posts[0]
+        if (result.data.posts.length < 1) {
+          toastifyForm(result)
+        }
+
+        setTitle(resultPost.title)
+        setPost(resultPost.post)
+        setCategoryId(resultPost.idCategory)
+        setImgName(resultPost.image)
       } catch (error) {
 
       } finally {
@@ -71,6 +81,7 @@ export const EditPostPage = () => {
     }
     fetchUpdatePost()
   }, [])
+
   return (
     <Layout>
       <div className='div-update-post'>
@@ -99,12 +110,16 @@ export const EditPostPage = () => {
             onChange={handleOnChangePost}
             value={post}
           />
+          <div className='div-preview-img'>
+            <img src={`${baseApiURL}/post/${imgName}`} alt='imagen del post' className='img-preview' />
+
+          </div>
           <div className='button-position'>
             <section className='category-menu'>
               <select
                 id='categorias'
                 className='category-menu-select'
-                value={categoryId}
+                value='2'
                 disabled
               >
                 <option
@@ -118,7 +133,7 @@ export const EditPostPage = () => {
                     <optgroup
                       label={category.name}
                       className='option-category'
-                      value={category.id}
+                      value={categoryId}
                       key={category.id}
                     >
                       {subcategories.map((subCategory) => {
@@ -159,7 +174,7 @@ export const EditPostPage = () => {
             <div className='button-update-post'>
               <ButtonComponent
                 className='button-generic large'
-                buttonName='Crear Post'
+                buttonName='Editar Post'
                 handleOnClick={handleOnClickUpdatePost}
               />
             </div>
