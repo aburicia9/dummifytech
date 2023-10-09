@@ -6,6 +6,7 @@ import { TitleCategory } from '../titleCategory/titleCategory'
 
 export const Layout = ({ children, isSearchDisabled = false, isSubcategoryDisabled = false }) => {
   const { categories } = useCategories()
+  console.log(categories)
 
   return (
     <>

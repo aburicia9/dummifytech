@@ -61,15 +61,14 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
   const onClickReportPost = async () => {
     let method = ''
     if (ownerReports === 1) {
-      method = 'delete' // Cambio: Usa 'DELETE' en lugar de 'delete'
+      method = 'delete'
       const resultDelete = await reportPostService(postId, method)
       if (resultDelete?.status === 'ok') {
         fetchPosts()
       }
     } else {
-      method = 'post' // Cambio: Usa 'POST' en lugar de 'post'
+      method = 'post'
       const resultPut = await reportPostService(postId, method)
-      // console.log(resultPut)
       if (resultPut?.status === 'ok') {
         fetchPosts()
       }

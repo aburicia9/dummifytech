@@ -9,16 +9,14 @@ import buttonNewPost from '../../assets/post/button_new_post.svg'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 
-export const PostListComponent = ({ posts, fetchPosts }) => {
+export const PostListComponent = ({ posts, fetchPosts, categoryId }) => {
   let lengthPosts = true
   lengthPosts = Object(posts).length
 
   return (
     <article className='article-post'>
       <TitleCategory />
-
-      {/* <Link className='section-post'><ButtonComponent buttonName='Crea un nuevo post' /></Link> */}
-      <Link to='/posts/insert' className='link-new-post'>
+      <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className='link-new-post'>
         <input placeholder='Crea un nuevo post' className='input-new-post' />
         <button className='button-new-post'><img src={buttonNewPost} alt='' /></button>
       </Link>

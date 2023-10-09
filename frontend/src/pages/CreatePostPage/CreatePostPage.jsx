@@ -1,18 +1,26 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
 import './CreatePostPage.css'
+import image from '../../assets/post/image_logo.svg'
 import { createPostService } from '../../services/postService'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { toastifyError } from '../../utils/Toastify/Toastify'
-import newPost from '../../assets/post/new_post.svg'
+import { handleAddFilePreview } from '../../utils/handleAddFilePreview'
+import { handleRemoveFilePreview } from '../../utils/handleRemoveFilePreview'
+import { useCategories } from '../../hooks/categories/useCategories'
 
-export const CreatePostPage = ({ avatar, username }) => {
+export const CreatePostPage = () => {
   const navigate = useNavigate()
+  const fileInputRef = useRef(null)
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
-  const [categoryId, setCategoryId] = useState()
+  const params = useParams()
+  const [categoryId, setCategoryId] = useState(params?.categoryId ?? '')
+  const [file, setFile] = useState(null)
+  const [previewUrl, setPreviewUrl] = useState('')
   const [loading, setLoading] = useState(false)
+  const { categories } = useCategories()
 
   const handleOnChangeTitle = (event) => {
     setTitle(event.target.value)
@@ -24,12 +32,25 @@ export const CreatePostPage = ({ avatar, username }) => {
     setCategoryId(Number(event.target.value))
   }
 
+  const handleOnChangeAddFile = (event) => {
+    handleAddFilePreview(event, setFile, setPreviewUrl)
+  }
+  const handleOnChangeRemoveFile = (event) => {
+    handleRemoveFilePreview(fileInputRef, setFile, setPreviewUrl)
+  }
+
   const handleOnClickCreatePost = async (event) => {
     event.preventDefault()
     try {
       setLoading(true)
 
-      const body = await createPostService({ title, post, categoryId })
+      const formData = new FormData()
+      formData.append('title', title)
+      formData.append('post', post)
+      formData.append('categoryId', categoryId)
+      if (file) formData.append('imgName', file)
+
+      const body = await createPostService(formData)
 
       if (title === '') {
         toastifyError('El titulo es obligatorio')
@@ -58,9 +79,11 @@ export const CreatePostPage = ({ avatar, username }) => {
       <div className='div-create-post'>
         <form className='form-create-post'>
           <div className='h2-div'>
-            <h2 className='title-create-post'>Crea tu post<img src={newPost} className='logo-new-post' /></h2>
+            <h2 className='title-create-post'>Crea tu post</h2>
           </div>
-          <label htmlFor='title' className='label-post-create'>Titulo del post:</label>
+          <label htmlFor='title' className='label-post-create'>
+            Titulo del post:
+          </label>
           <input
             type='text'
             id='title'
@@ -68,7 +91,9 @@ export const CreatePostPage = ({ avatar, username }) => {
             onChange={handleOnChangeTitle}
             value={title}
           />
-          <label htmlFor='text' className='label-post-create'>Publicacion:</label>
+          <label htmlFor='text' className='label-post-create'>
+            Publicacion:
+          </label>
           <textarea
             id='text'
             cols='30'
@@ -85,22 +110,55 @@ export const CreatePostPage = ({ avatar, username }) => {
                 onChange={handleOnChangeCategory}
                 value={categoryId}
               >
-                <option className='option-subcategory' value='2'>Hardware</option>
-                <option className='option-subcategory' value='3'>Software</option>
-                <option className='option-subcategory' value='19'>IA</option>
-                <option className='option-subcategory' value='6'>PlayStation</option>
-                <option className='option-subcategory' value='7'>Xbox</option>
-                <option className='option-subcategory' value='8'>PC</option>
-                <option className='option-subcategory' value='9'>Nintendo</option>
-                <option className='option-subcategory' value='11'>Python</option>
-                <option className='option-subcategory' value='12'>Java</option>
-                <option className='option-subcategory' value='13'>JavaScript</option>
-                <option className='option-subcategory' value='14'>C#Sharp</option>
-                <option className='option-subcategory' value='16'>Android</option>
-                <option className='option-subcategory' value='17'>IOS</option>
-                <option className='option-subcategory' value='18'>DummyMemes</option>
+                <option
+                  className='option-subcategory'
+                  value=''
+                >Seleccion la categoria
+                </option>
+                {categories.map((category) => {
+                  const subcategories = category.subcategories || []
+                  return (
+                    <optgroup
+                      label={category.name}
+                      className='option-category'
+                      value={category.id}
+                      key={category.id}
+                    >
+                      {subcategories.map((subCategory) => {
+                        return (
+                          <option
+                            className='option-subcategory'
+                            value={subCategory.id}
+                            key={subCategory.id}
+                          >
+                            {subCategory.name}
+                          </option>
+                        )
+                      })}
+                    </optgroup>
+                  )
+                })}
               </select>
             </section>
+
+            <label htmlFor='file-input' className='custom-file-label'>
+              <span>Adjuntar imagen</span>
+              <img
+                className='icon-image'
+                src={image}
+                alt='adjuntar imagen icono'
+              />
+            </label>
+
+            <input
+              className='input-file'
+              type='file'
+              id='file-input'
+              accept='image/*'
+              ref={fileInputRef}
+              onChange={handleOnChangeAddFile}
+            />
+
             <div className='button-create-post'>
               <ButtonComponent
                 className='button-generic large'
@@ -108,6 +166,18 @@ export const CreatePostPage = ({ avatar, username }) => {
                 handleOnClick={handleOnClickCreatePost}
               />
             </div>
+          </div>
+
+          <div className='div-preview-img'>
+            {previewUrl && (
+              <img
+                className='img-preview'
+                src={previewUrl}
+                onClick={handleOnChangeRemoveFile}
+                alt='previsualización'
+                title='Eliminar imagen'
+              />
+            )}
           </div>
         </form>
       </div>

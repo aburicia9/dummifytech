@@ -9,6 +9,7 @@ export const usePosts = () => {
   const [loading, setLoading] = useState(false)
   const { isAuthenticated } = useAuth()
   const params = useParams()
+  const categoryId = params?.categoryId
   const [searchParams, setSearchParams] = useSearchParams()
   const location = useLocation()
 
@@ -25,8 +26,8 @@ export const usePosts = () => {
       if (!isAuthenticated) {
         body = await getRandomPostService()
       } else {
-        if (params.categoryId) {
-          body = await listPostByIdCategoryService(params.categoryId, searchParams)
+        if (categoryId) {
+          body = await listPostByIdCategoryService(categoryId, searchParams)
         } else {
           body = await listAllPostsService(searchParams)
         }
@@ -46,6 +47,7 @@ export const usePosts = () => {
   return {
     posts,
     setSearchParams,
-    fetchPosts
+    fetchPosts,
+    categoryId
   }
 }

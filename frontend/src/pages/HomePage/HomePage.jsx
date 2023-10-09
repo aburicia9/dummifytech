@@ -5,11 +5,11 @@ import { PostListComponent } from '../../components/PostRandom/PostListComponent
 import { usePosts } from '../../hooks/posts/usePosts'
 
 export const HomePage = () => {
-  const { posts, fetchPosts } = usePosts()
+  const { posts, fetchPosts, categoryId } = usePosts()
 
   return (
     <Layout isSubcategoryDisabled isSearchDisabled>
-      <PostListComponent posts={posts} fetchPosts={fetchPosts} />
+      <PostListComponent posts={posts} fetchPosts={fetchPosts} categoryId={categoryId} />
     </Layout>
   )
 }
