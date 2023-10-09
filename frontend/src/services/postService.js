@@ -62,6 +62,20 @@ export const dislikePostService = async (postId, method) => {
   return body
 }
 
+// Crear o eliminar report en un post
+export const reportPostService = async (postId, method) => {
+  const token = getToken()
+
+  const res = await fetch(`${baseApiURL}/posts/${postId}/report`, {
+    method,
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}
+
 // Eliminar un post
 export const deletePostService = async (postId) => {
   const token = getToken()
@@ -90,18 +104,7 @@ export const updatePostService = async (postId, formData) => {
   return body
 }
 
-// Crear o eliminar report en un post
-export const reportPostService = async (postId, method) => {
-  const token = getToken()
-  const res = await fetch(`${baseApiURL}/posts/${postId}/report`, {
-    method,
-    headers: {
-      Authorization: token
-    }
-  })
-  const body = await res.json()
-  return body
-}
+
 
 // Crear o eliminar report en un post
 export const listReportPostService = async () => {

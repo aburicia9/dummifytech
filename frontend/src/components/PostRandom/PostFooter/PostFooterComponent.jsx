@@ -8,7 +8,7 @@ import report from '../../../assets/post/button_report.svg'
 import reportOn from '../../../assets/post/button_report_on.svg'
 import { dislikePostService, likePostService, reportPostService } from '../../../services/postService'
 
-export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes = '', ownerDislikes = '', ownerReport = '', countLikes = '', countComments = '' }) => {
+export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes = '', ownerDislikes = '', ownerReports = '', countLikes = '', countComments = '' }) => {
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
   let reportOrReportOn = report
@@ -19,7 +19,7 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
   if (ownerDislikes) {
     disLikeOrDislikeOn = dislikeOn
   }
-  if (ownerReport) {
+  if (ownerReports) {
     reportOrReportOn = reportOn
   }
 
@@ -43,7 +43,7 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
 
   const onClickDislikePost = async () => {
     let method = ''
-
+    console.log('Upeeee' + ownerDislikes)
     if (ownerDislikes === 1) {
       method = 'delete'
       const resultDelete = await dislikePostService(postId, method)
@@ -61,15 +61,17 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
 
   const onClickReportPost = async () => {
     let method = ''
-    if (ownerReport === 1) {
-      method = 'delete'
+    console.log('Holaaaa' + ownerReports)
+    if (ownerReports === 1) {
+      method = 'DELETE' // Cambio: Usa 'DELETE' en lugar de 'delete'
       const resultDelete = await reportPostService(postId, method)
       if (resultDelete?.status === 'ok') {
         fetchPosts()
       }
     } else {
-      method = 'post'
+      method = 'POST' // Cambio: Usa 'POST' en lugar de 'post'
       const resultPut = await reportPostService(postId, method)
+      // console.log(resultPut)
       if (resultPut?.status === 'ok') {
         fetchPosts()
       }
