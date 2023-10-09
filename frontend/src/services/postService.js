@@ -15,19 +15,6 @@ export const createPostService = async (formData) => {
   const body = await res.json()
   return body
 }
-// export const createPostService = async ({ title, post, categoryId }) => {
-//   const token = getToken()
-//   const res = await fetch(`${baseApiURL}/posts/insert`, {
-//     method: 'post',
-//     headers: {
-//       Authorization: token,
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ title, post, categoryId })
-//   })
-//   const body = await res.json()
-//   return body
-// }
 
 // Coger un posts random
 export const getRandomPostService = async () => {
@@ -115,8 +102,6 @@ export const updatePostService = async (postId, formData) => {
   const body = await res.json()
   return body
 }
-
-
 
 // Crear o eliminar report en un post
 export const listReportPostService = async () => {

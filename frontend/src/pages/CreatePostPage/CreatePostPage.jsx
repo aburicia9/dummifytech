@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
 import './CreatePostPage.css'
@@ -8,17 +8,19 @@ import { useRef, useState } from 'react'
 import { toastifyError } from '../../utils/Toastify/Toastify'
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview'
 import { handleRemoveFilePreview } from '../../utils/handleRemoveFilePreview'
+import { useCategories } from '../../hooks/categories/useCategories'
 
-export const CreatePostPage = ({ categories }) => {
+export const CreatePostPage = () => {
   const navigate = useNavigate()
-  const formData = new FormData()
   const fileInputRef = useRef(null)
   const [title, setTitle] = useState('')
   const [post, setPost] = useState('')
-  const [categoryId, setCategoryId] = useState()
+  const params = useParams()
+  const [categoryId, setCategoryId] = useState(params?.categoryId ?? '')
   const [file, setFile] = useState(null)
   const [previewUrl, setPreviewUrl] = useState('')
   const [loading, setLoading] = useState(false)
+  const { categories } = useCategories()
 
   const handleOnChangeTitle = (event) => {
     setTitle(event.target.value)
@@ -79,7 +81,9 @@ export const CreatePostPage = ({ categories }) => {
           <div className='h2-div'>
             <h2 className='title-create-post'>Crea tu post</h2>
           </div>
-          <label htmlFor='title' className='label-post-create'>Titulo del post:</label>
+          <label htmlFor='title' className='label-post-create'>
+            Titulo del post:
+          </label>
           <input
             type='text'
             id='title'
@@ -87,7 +91,9 @@ export const CreatePostPage = ({ categories }) => {
             onChange={handleOnChangeTitle}
             value={title}
           />
-          <label htmlFor='text' className='label-post-create'>Publicacion:</label>
+          <label htmlFor='text' className='label-post-create'>
+            Publicacion:
+          </label>
           <textarea
             id='text'
             cols='30'
@@ -104,26 +110,44 @@ export const CreatePostPage = ({ categories }) => {
                 onChange={handleOnChangeCategory}
                 value={categoryId}
               >
-                <option className='option-subcategory' value='2'>Hardware</option>
-                <option className='option-subcategory' value='3'>Software</option>
-                <option className='option-subcategory' value='19'>IA</option>
-                <option className='option-subcategory' value='6'>PlayStation</option>
-                <option className='option-subcategory' value='7'>Xbox</option>
-                <option className='option-subcategory' value='8'>PC</option>
-                <option className='option-subcategory' value='9'>Nintendo</option>
-                <option className='option-subcategory' value='11'>Python</option>
-                <option className='option-subcategory' value='12'>Java</option>
-                <option className='option-subcategory' value='13'>JavaScript</option>
-                <option className='option-subcategory' value='14'>C#Sharp</option>
-                <option className='option-subcategory' value='16'>Android</option>
-                <option className='option-subcategory' value='17'>IOS</option>
-                <option className='option-subcategory' value='20'>DummyMemes</option>
+                <option
+                  className='option-subcategory'
+                  value=''
+                >Seleccion la categoria
+                </option>
+                {categories.map((category) => {
+                  const subcategories = category.subcategories || []
+                  return (
+                    <optgroup
+                      label={category.name}
+                      className='option-category'
+                      value={category.id}
+                      key={category.id}
+                    >
+                      {subcategories.map((subCategory) => {
+                        return (
+                          <option
+                            className='option-subcategory'
+                            value={subCategory.id}
+                            key={subCategory.id}
+                          >
+                            {subCategory.name}
+                          </option>
+                        )
+                      })}
+                    </optgroup>
+                  )
+                })}
               </select>
             </section>
 
             <label htmlFor='file-input' className='custom-file-label'>
               <span>Adjuntar imagen</span>
-              <img className='icon-image' src={image} alt='adjuntar imagen icono' />
+              <img
+                className='icon-image'
+                src={image}
+                alt='adjuntar imagen icono'
+              />
             </label>
 
             <input
@@ -149,11 +173,12 @@ export const CreatePostPage = ({ categories }) => {
               <img
                 className='img-preview'
                 src={previewUrl}
-                onClick={handleOnChangeRemoveFile} alt='previsualización' title='Eliminar imagen'
+                onClick={handleOnChangeRemoveFile}
+                alt='previsualización'
+                title='Eliminar imagen'
               />
             )}
           </div>
-
         </form>
       </div>
     </Layout>
