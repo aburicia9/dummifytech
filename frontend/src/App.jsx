@@ -22,6 +22,7 @@ export const App = () => {
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
         <Route path='/posts/insert' element={<CreatePostPage />} />
         <Route path='/users/profile' element={<UserProfilePage />} />
+        <Route path='/users/myposts' element={<HomePage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />

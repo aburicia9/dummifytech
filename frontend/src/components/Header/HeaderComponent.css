@@ -12,6 +12,8 @@
 
 .div-button-users-header {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1em;
   position: fixed;
   right: 12px;
