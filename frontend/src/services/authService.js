@@ -162,3 +162,16 @@ export const updateForgetPasswordUserService = async ({ username, email }) => {
   const body = await res.json()
   return body
 }
+
+// Visualizar todos mis posts
+export const listAllOwnerPostsService = async () => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/users/myposts`, {
+    method: 'get',
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}

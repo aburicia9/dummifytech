@@ -20,6 +20,7 @@ export const App = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
         <Route path='/users/profile' element={<UserProfilePage />} />
+        <Route path='/users/myposts' element={<HomePage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />
