@@ -43,7 +43,6 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
 
   const onClickDislikePost = async () => {
     let method = ''
-    console.log('Upeeee' + ownerDislikes)
     if (ownerDislikes === 1) {
       method = 'delete'
       const resultDelete = await dislikePostService(postId, method)
@@ -61,15 +60,14 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
 
   const onClickReportPost = async () => {
     let method = ''
-    console.log('Holaaaa' + ownerReports)
     if (ownerReports === 1) {
-      method = 'DELETE' // Cambio: Usa 'DELETE' en lugar de 'delete'
+      method = 'delete' // Cambio: Usa 'DELETE' en lugar de 'delete'
       const resultDelete = await reportPostService(postId, method)
       if (resultDelete?.status === 'ok') {
         fetchPosts()
       }
     } else {
-      method = 'POST' // Cambio: Usa 'POST' en lugar de 'post'
+      method = 'post' // Cambio: Usa 'POST' en lugar de 'post'
       const resultPut = await reportPostService(postId, method)
       // console.log(resultPut)
       if (resultPut?.status === 'ok') {
