@@ -184,3 +184,16 @@ export const listPostByIdCategoryService = async (categoryId, searchParams) => {
   const body = await res.json()
   return body
 }
+
+export const getPostByIdService = async (postId) => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/posts/${postId}?`, {
+    method: 'get',
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}
+
