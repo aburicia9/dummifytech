@@ -23,6 +23,7 @@ export const usePosts = () => {
         body = await listAllOwnerPostsService()
         return setPosts(body.data.posts)
       }
+
       if (!isAuthenticated) {
         body = await getRandomPostService()
       } else {

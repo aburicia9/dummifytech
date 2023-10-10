@@ -10,7 +10,7 @@ import { useAuth } from '../../hooks/useAuth'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 
-export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons }) => {
+export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons, showCreatePost = false }) => {
   const { isAuthenticated } = useAuth()
   let lengthPosts = true
   lengthPosts = Object(posts).length
@@ -18,10 +18,14 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
   return (
     <article className='article-post'>
       <TitleCategory />
-      <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className={isAuthenticated ? 'link-new-post' : 'link-new-post disabled'}>
-        <input placeholder={isAuthenticated ? 'Crear un post' : 'Para crear un post debes iniciar sesión'} className='input-new-post' />
-        <button className='button-new-post'><img src={buttonNewPost} alt='' /></button>
-      </Link>
+      {showCreatePost
+        ? (<></>)
+        : (
+          <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className={isAuthenticated ? 'link-new-post' : 'link-new-post disabled'}>
+            <input placeholder={isAuthenticated ? 'Crear un post' : 'Para crear un post debes iniciar sesión'} className='input-new-post' />
+            <button className='button-new-post'><img src={buttonNewPost} alt='' /></button>
+          </Link>
+          )}
 
       {lengthPosts
         ? (

@@ -8,7 +8,7 @@ const options = {
   position: 'bottom-right',
   autoClose: 15000,
   hideProgressBar: false,
-  closeOnClick: true,
+  closeOnClick: false,
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
@@ -45,7 +45,8 @@ export const toastifyConfirm = (message, onConfirm) => {
   toast(
     <div className='div-confirm'>
       <p>{message}</p>
-      <ButtonComponent className='button-confirm' onClick={onConfirm} buttonName='Confirmar' />
+      <ButtonComponent className='button-confirm' handleOnClick={onConfirm} buttonName='Confirmar' />
     </div>
     , options)
+    
 }

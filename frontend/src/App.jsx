@@ -11,6 +11,7 @@ import { CreatePostPage } from './pages/CreatePostPage/CreatePostPage'
 import { UserProfilePage } from './pages/UserPage/UserProfilePage'
 import { EditPostPage } from './pages/EditPostPage/EditPostPage'
 import { ReqCategoriesPage } from './pages/ReqCategoriesPage/ReqCategoriesPage'
+import { PostDetailPage } from './pages/PostDetailPage/PostDetailPage'
 
 export const App = () => {
   return (
@@ -22,7 +23,8 @@ export const App = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
         <Route path='/posts/insert' element={<CreatePostPage />} />
-        <Route path='/posts/:postId' element={<EditPostPage />} />
+        <Route path='/posts/:postId' element={<PostDetailPage />} />
+        <Route path='/posts/:postId/edit' element={<EditPostPage />} />
         <Route path='/posts/insert/:categoryId' element={<CreatePostPage />} />
         <Route path='/posts/:categoryId/insert' element={<CreatePostPage />} />
         <Route path='/users/profile' element={<UserProfilePage />} />

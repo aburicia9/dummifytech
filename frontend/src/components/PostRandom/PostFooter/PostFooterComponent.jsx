@@ -20,7 +20,7 @@ import { toastifyConfirm, toastifyForm } from '../../../utils/Toastify/Toastify'
 import { useState } from 'react'
 
 export const PostFooterComponent = ({
-  fetchPosts = '',
+  fetchPosts,
   postId = '',
   ownerLikes = '',
   ownerDislikes = '',
@@ -101,18 +101,22 @@ export const PostFooterComponent = ({
     navigate(`/posts/${postId}`)
   }
 
-  const onClickDeletePost = async () => {
+  const onClickDeletePost = () => {
     try {
       setLoading(true)
-      // const result = await deletePostService(postId)
-      // if (result === 'ok') {
-      //   await fetchPosts()
-      //   toastifyForm(result)
-      // } else {
-      //   toastifyForm(result)
-      //   await fetchPosts()
-      // }
-      toastifyConfirm('¿Estas seguro que quieres eliminar este post?')
+      const deletePost = async () => {
+        const result = await deletePostService(postId)
+        if (result === 'ok') {
+          toast.dismiss()
+          await fetchPosts()
+          toastifyForm(result)
+        } else {
+          toast.dismiss()
+          toastifyForm(result)
+          await fetchPosts()
+        }
+      }
+      toastifyConfirm('¿Estas seguro que quieres eliminar este post?', deletePost)
     } catch (error) {
       console.log(error)
     } finally {

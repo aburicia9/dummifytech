@@ -8,11 +8,12 @@ export const selectAllCommentModel = async (postId) => {
     connection = await getDb()
 
     const [comments] = await connection.query(`
-      SELECT c.comment, u.username, c.created_at as createdAt
+      SELECT c.id, c.comment, u.username, c.created_at as createdAt, u.avatar, c.modified_at as modifiedAt
       FROM comments as c
       INNER JOIN users u ON u.id = c.id_user
       INNER JOIN posts p ON p.id = c.id_post 
-      WHERE c.id_post = ?;
+      WHERE c.id_post = ?
+      ORDER BY createdAt DESC ;
     `, [postId])
 
     return comments

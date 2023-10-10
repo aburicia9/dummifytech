@@ -1,0 +1,156 @@
+.div-comments{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--borderRadiusSmall);
+  transition:all 0.4s;
+  background-size: 100%;
+  margin-top: 5rem;
+}
+
+.div-div-comments{
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  flex-direction: column;
+  border: 0.5px solid #294d61;
+  margin: 5em;
+  background:linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);  width: 50em;
+  border-radius: var(--borderRadiusSmall);
+  box-shadow: var(--borderColorShadow) ;
+  padding: 1.5rem;
+  gap: 2.5rem;
+}
+
+.img-comment-post{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+.ul-comments{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.li-comment{
+  display: flex;
+}
+
+.aside-header-comment{
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-direction: column;
+ 
+
+}
+.div-line-aside{
+  width: 1px;
+  height: 100%;
+  background-color: var(--darBlueOpacity);
+}
+.article-comment{
+  display: flex;
+  justify-content: center;
+  align-items: left ;
+  width: 100%;
+  flex-direction: column;
+  padding-top: 5px;
+  gap: 15px;
+  padding-bottom: 40px;
+}
+.p-body-comment{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+}
+.section-body-comment{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+}
+
+.header-comment{
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.ul-buttons-comments{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-comment{
+  background:transparent ;
+  color: white;
+  border: none;
+  padding: 1px;
+
+}
+.button-comment:hover{
+  background: transparent ;
+  color: white;
+  box-shadow: none;
+  cursor: pointer;  
+}
+
+.button-comment > img{
+  width: 2em;
+  height: 2em;
+}
+
+.from-create-comments{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--borderRadiusSmall);
+  transition:all 0.4s;
+  background-size: 100%;
+  gap:10px;
+}
+
+.textarea-create-comments{
+  width: 100%; /* Ajusta el ancho del área de texto al 100% del contenedor */
+  box-sizing: border-box; /* Incluye el padding en el ancho total */
+  border: 0.5px solid var(--darBlueOpacity);
+  outline: none;
+  resize: none; /* Evita que el usuario redimensione el textarea */
+  min-height: 50px; /* Altura mínima inicial */
+
+}
+
+.textarea-create-comments:focus {
+  min-height: 150px; /* Altura mínima al enfocar el textarea */
+  transition: min-height 0.3s ease-in-out; /* Agrega una transición suave */
+  border: 0.5px solid var(--darBlueOpacity);
+}
+
+.div-button-create-comment{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+}
+
+.button-create-comment{
+border: none;
+background: transparent;
+cursor: pointer;
+}
+.button-create-comment > img{
+  width: 3em;
+  height: 3em;
+}

@@ -41,21 +41,16 @@ console.log('CREANDO POSTS')
 
 async function generatePosts () {
   const randomImages = [
-    'fcb291ac-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb293e6-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb29508-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb29620-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb2971a-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb29814-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb29a4e-638c-11ee-8c99-0242ac120002.jpg',
+    '2ac44fe4-dc61-42a0-b51e-9cd0763e32bf.jpg',
+    '7a072d8b-f57d-4494-876d-d2382d23efa2.jpg',
     'fcb29b5c-638c-11ee-8c99-0242ac120002.jpg',
     'fcb29c4c-638c-11ee-8c99-0242ac120002.jpg',
-    'fcb29d5a-638c-11ee-8c99-0242ac120002.jpg'
+    'fcb291ac-638c-11ee-8c99-0242ac120002.jpg'
   ]
   for (let id = 11; id < 50; id++) {
     const randomTitle = faker.lorem.words({ min: 3, max: 7 })
     const randomPost = faker.lorem.text()
-    const randomImage = randomImages[faker.number.int({ min: 0, max: 9 })]
+    const randomImage = randomImages[faker.number.int({ min: 0, max: 4 })]
     const randomCategoryId = faker.number.int({ min: 7, max: 17 })
     const randomUserId = faker.number.int({ min: 1, max: 10 })
     await insertPostModel(

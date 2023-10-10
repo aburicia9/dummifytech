@@ -13,52 +13,61 @@
 .div-comment-footer-post{
   display: flex;
   gap: 1em;
+  
 }
 
 .button-like-footer-post{
-  width: 3em;
-  background: transparent;
+  border-radius: var(--borderRadiusSmall);
+  background:transparent ;
+  color: white;
   border: none;
+  padding: 1px;
 }
 
 .button-like-footer-post:hover{
-  background-color: transparent;
+
   box-shadow: none;
   cursor: pointer;
 }
 
 .button-dislike-footer-post{
-  width: 3em;
-  background: transparent;
+  border-radius: var(--borderRadiusSmall);
+  background:transparent ;
+  color: white;
   border: none;
+  padding: 1px;
 }
 
 .button-dislike-footer-post:hover{
-  background-color: transparent;
+
   box-shadow: none;
   cursor: pointer;
 }
 
 .button-comment-footer-post{
-  width: 3em;
-  background: transparent;
+  border-radius: var(--borderRadiusSmall);
+  background:transparent ;
+  color: white;
   border: none;
+  padding: 1px;
 }
 
 .button-comment-footer-post:hover{
-  background-color: transparent;
+
   box-shadow: none;
   cursor: pointer;
 }
 
 .button-report-footer-post{
-  width: 3em;
-  background: transparent;
+  border-radius: var(--borderRadiusSmall);
+  background:transparent ;
+  color: white;
   border: none;
+  padding: 1px;
 }
 
 .button-report-footer-post:hover{
-  background-color: transparent;
+
   box-shadow: none;
   cursor: pointer;
 }
@@ -73,4 +82,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.div-footer-post img{
+  width: 3em;
+  height: 3em;
 }
