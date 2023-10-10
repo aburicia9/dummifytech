@@ -6,12 +6,27 @@ import dislikeOn from '../../../assets/post/button_dislike_on.svg'
 import comment from '../../../assets/post/button_comments.svg'
 import report from '../../../assets/post/button_report.svg'
 import reportOn from '../../../assets/post/button_report_on.svg'
-import { deletePostService, dislikePostService, likePostService, reportPostService } from '../../../services/postService'
+import {
+  deletePostService,
+  dislikePostService,
+  likePostService,
+  reportPostService
+} from '../../../services/postService'
 import deleteButton from '../../../assets/post/button_delete.svg'
 import editButton from '../../../assets/post/button_edit.svg'
 import { useNavigate } from 'react-router'
+import { toastifyForm } from '../../../utils/Toastify/Toastify'
 
-export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes = '', ownerDislikes = '', ownerReports = '', countLikes = '', countComments = '', showEditDeleteButtons = true }) => {
+export const PostFooterComponent = ({
+  fetchPosts = '',
+  postId = '',
+  ownerLikes = '',
+  ownerDislikes = '',
+  ownerReports = '',
+  countLikes = '',
+  countComments = '',
+  showEditDeleteButtons = false
+}) => {
   const navigate = useNavigate()
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
@@ -34,13 +49,13 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
       method = 'delete'
       const resultDelete = await likePostService(postId, method)
       if (resultDelete?.status === 'ok') {
-        fetchPosts()
+        await fetchPosts()
       }
     } else {
       method = 'post'
       const resultPut = await likePostService(postId, method)
       if (resultPut?.status === 'ok') {
-        fetchPosts()
+        await fetchPosts()
       }
     }
   }
@@ -51,13 +66,13 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
       method = 'delete'
       const resultDelete = await dislikePostService(postId, method)
       if (resultDelete?.status === 'ok') {
-        fetchPosts()
+        await fetchPosts()
       }
     } else {
       method = 'post'
       const resultPut = await dislikePostService(postId, method)
       if (resultPut?.status === 'ok') {
-        fetchPosts()
+        await fetchPosts()
       }
     }
   }
@@ -68,13 +83,13 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
       method = 'delete'
       const resultDelete = await reportPostService(postId, method)
       if (resultDelete?.status === 'ok') {
-        fetchPosts()
+        await fetchPosts()
       }
     } else {
       method = 'post'
       const resultPut = await reportPostService(postId, method)
       if (resultPut?.status === 'ok') {
-        fetchPosts()
+        await fetchPosts()
       }
     }
   }
@@ -82,35 +97,83 @@ export const PostFooterComponent = ({ fetchPosts = '', postId = '', ownerLikes =
   const onClickEditPost = () => {
     navigate(`/posts/${postId}`)
   }
+
   const onClickDeletePost = async () => {
-    await deletePostService(postId)
+    const result = await deletePostService(postId)
+    if (result === 'ok') {
+      await fetchPosts()
+      toastifyForm(result)
+    } else {
+      toastifyForm(result)
+      await fetchPosts()
+    }
   }
 
   return (
-
     <div className='div-footer-post'>
-
       <div className='div-like-footer-post'>
-        <button className='button-like-footer-post'><img src={likeOrLikeOn} alt='like image button' onClick={onClickLikePost} title='Me gusta' />
+        <button className='button-like-footer-post'>
+          <img
+            src={likeOrLikeOn}
+            alt='like image button'
+            onClick={onClickLikePost}
+            title='Me gusta'
+          />
         </button>
         <span className='span-countlikes-footer-post'>{countLikes}</span>
       </div>
-      <button className='button-dislike-footer-post' title='No me gusta'> <img src={disLikeOrDislikeOn} alt='dislike image button' onClick={onClickDislikePost} /></button>
+      <button className='button-dislike-footer-post' title='No me gusta'>
+        {' '}
+        <img
+          src={disLikeOrDislikeOn}
+          alt='dislike image button'
+          onClick={onClickDislikePost}
+        />
+      </button>
       <div className='div-comment-footer-post'>
         <button className='button-comment-footer-post' title='Comentarios'>
           <img src={comment} alt='comment image button' />
-        </button><span className='span-countcomments-footer-post'>{countComments}</span>
+        </button>
+        <span className='span-countcomments-footer-post'>{countComments}</span>
       </div>
       <button className='button-report-footer-post' title='Reportar'>
-        <img src={reportOrReportOn} alt='report image button' onClick={onClickReportPost} />
-      </button>
-      <button className='button-report-footer-post' title='Editar' hidden={showEditDeleteButtons}>
-        <img src={editButton} alt='report image button' onClick={onClickEditPost} />
-      </button>
-      <button className='button-report-footer-post' title='Borrar' hidden={showEditDeleteButtons}>
-        <img src={deleteButton} alt='report image button' onClick={onClickDeletePost} />
+        <img
+          src={reportOrReportOn}
+          alt='report image button'
+          onClick={onClickReportPost}
+        />
       </button>
 
+      {showEditDeleteButtons
+        ? (
+          <>
+            <button
+              className='button-report-footer-post'
+              title='Editar'
+
+            >
+              <img
+                src={editButton}
+                alt='report image button'
+                onClick={onClickEditPost}
+              />
+            </button>
+            <button
+              className='button-report-footer-post'
+              title='Borrar'
+
+            >
+              <img
+                src={deleteButton}
+                alt='delete post button'
+                onClick={onClickDeletePost}
+              />
+            </button>
+          </>
+          )
+        : (
+          <></>
+          )}
     </div>
   )
 }
