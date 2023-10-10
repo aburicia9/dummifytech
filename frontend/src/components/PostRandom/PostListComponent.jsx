@@ -14,17 +14,17 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
   const { isAuthenticated } = useAuth()
   let lengthPosts = true
   lengthPosts = Object(posts).length
-  let linkNewPost = 'link-new-post'
+  // let linkNewPost = 'link-new-post'
 
-  if (!isAuthenticated) {
-    linkNewPost = 'link-new-post disabled'
-  }
+  // if (!isAuthenticated) {
+  //   linkNewPost = 'link-new-post disabled'
+  // }
 
   return (
     <article className='article-post'>
       <TitleCategory />
-      <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className={linkNewPost}>
-        <input placeholder='Crea un nuevo post' className='input-new-post' />
+      <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className={isAuthenticated ? 'link-new-post' : 'link-new-post disabled'}>
+        <input placeholder={isAuthenticated ? 'Crear un post' : 'Para crear un post debes iniciar sesión'} className='input-new-post' />
         <button className='button-new-post'><img src={buttonNewPost} alt='' /></button>
       </Link>
 
