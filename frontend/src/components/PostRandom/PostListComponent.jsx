@@ -14,11 +14,6 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
   const { isAuthenticated } = useAuth()
   let lengthPosts = true
   lengthPosts = Object(posts).length
-  // let linkNewPost = 'link-new-post'
-
-  // if (!isAuthenticated) {
-  //   linkNewPost = 'link-new-post disabled'
-  // }
 
   return (
     <article className='article-post'>
