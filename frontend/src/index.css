@@ -1,12 +1,12 @@
-:root{
+:root {
   --darkBlue: #101826;
   --midBlue: #374151;
-  --lightBlue: #74C9EF;
+  --lightBlue: #74c9ef;
   --darBlueOpacity: #10182650;
   /* --lightBlue: #1C64F2; */
-  --white: #F3FFFC;
-  --beige: #EEE0CA;
-  --red: #C63B25;
+  --white: #f3fffc;
+  --beige: #eee0ca;
+  --red: #c63b25;
   --optinalBlue: #517689;
 
   --borderRadiusSmall: 10px;
@@ -14,11 +14,17 @@
   --borderRadiusLarge: 60px;
 
   --borderColorShadow: 15px 15px 30px var(--darkBlue),
-  -15px -15px 30px var(--darkBlue);
-  
+    -15px -15px 30px var(--darkBlue);
+
   /* ESTILOS TOASTIFY */
 
-  --toastify-color-light:  linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);
+  --toastify-color-light: linear-gradient(
+    144deg,
+    #e6e3d7,
+    #ffffff,
+    75%,
+    #f6f2e7
+  );
   --toastify-color-dark: #121212;
   --toastify-color-info: #3498db;
   --toastify-color-success: #07bc0c;
@@ -74,17 +80,17 @@
   cursor: not-allowed;
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Cabin', sans-serif;
-  font-family: 'Fjalla One', sans-serif;
+  font-family: "Cabin", sans-serif;
+  font-family: "Fjalla One", sans-serif;
   letter-spacing: 0.5px;
 }
 
-body{
-  display:flex;
+body {
+  display: flex;
   flex-direction: column;
   min-width: 1200px;
   width: 100%;
@@ -95,21 +101,34 @@ body{
   background-position: center center;
 }
 
-a{
-  color:black;
+a {
+  color: black;
   text-decoration: none;
 }
 
-.footer-elevator{
+.span-up {
+  color: #f3fffc;
+}
+
+.img-up {
+  width: 50px;
+  height: 50px;
+}
+
+.footer-elevator {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .elevator {
-    text-align: center;
-    cursor: pointer;
-    width: 140px;
-    margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  width: 140px;
+  margin-top: 15px;
 }
 .elevator:hover {
   opacity: 0.7;
@@ -121,5 +140,3 @@ a{
   margin: auto;
   margin-bottom: 5px;
 }
-
-

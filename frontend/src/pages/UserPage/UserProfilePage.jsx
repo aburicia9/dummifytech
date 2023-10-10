@@ -58,7 +58,7 @@ export const UserProfilePage = () => {
         if (result.status === 'ok') {
           toastifyForm(result)
           setAuthUser({
-            ...useAuth,
+            ...authUser,
             avatar: result.data.avatarName
           })
           resetForm()

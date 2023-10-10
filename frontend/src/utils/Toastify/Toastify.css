@@ -5,3 +5,30 @@
   box-shadow: 5px 5px 10px #888888 !important ; 
   white-space : pre-line !important; 
 } 
+
+
+.button-confirm{
+  border-radius: var(--borderRadiusSmall);
+  background: #3e5137 ;
+  color: white;
+  border: 1px var(--darBlueOpacity) solid;
+  width: 10em;
+  height: 2.5em;
+}
+.button-confirm:hover{
+  background: #3e5137;
+  color: white;
+  box-shadow: none;
+  cursor: pointer;  
+}   
+
+.span-confirm-button{
+  color: white;
+}
+
+.div-confirm{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

@@ -12,10 +12,12 @@ import {
   likePostService,
   reportPostService
 } from '../../../services/postService'
+import { toast } from 'react-toastify'
 import deleteButton from '../../../assets/post/button_delete.svg'
 import editButton from '../../../assets/post/button_edit.svg'
 import { useNavigate } from 'react-router'
-import { toastifyForm } from '../../../utils/Toastify/Toastify'
+import { toastifyConfirm, toastifyForm } from '../../../utils/Toastify/Toastify'
+import { useState } from 'react'
 
 export const PostFooterComponent = ({
   fetchPosts = '',
@@ -28,6 +30,7 @@ export const PostFooterComponent = ({
   showEditDeleteButtons = false
 }) => {
   const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
   let reportOrReportOn = report
@@ -99,13 +102,21 @@ export const PostFooterComponent = ({
   }
 
   const onClickDeletePost = async () => {
-    const result = await deletePostService(postId)
-    if (result === 'ok') {
-      await fetchPosts()
-      toastifyForm(result)
-    } else {
-      toastifyForm(result)
-      await fetchPosts()
+    try {
+      setLoading(true)
+      // const result = await deletePostService(postId)
+      // if (result === 'ok') {
+      //   await fetchPosts()
+      //   toastifyForm(result)
+      // } else {
+      //   toastifyForm(result)
+      //   await fetchPosts()
+      // }
+      toastifyConfirm('¿Estas seguro que quieres eliminar este post?')
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -159,13 +170,13 @@ export const PostFooterComponent = ({
               />
             </button>
             <button
-              className='button-report-footer-post'
+              className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
               title='Borrar'
-
+              disabled={loading}
             >
               <img
                 src={deleteButton}
-                alt='delete post button'
+                alt='delete post button '
                 onClick={onClickDeletePost}
               />
             </button>

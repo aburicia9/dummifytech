@@ -8,7 +8,7 @@ import { getPostByIdService, updatePostService } from '../../services/postServic
 import { ButtonComponent } from '../../components/Button/ButtonComponent.jsx'
 import { Layout } from '../../components/Layout/Layout.jsx'
 import { useCategories } from '../../hooks/categories/useCategories.js'
-import { toastifyForm } from '../../utils/Toastify/Toastify.js'
+import { toastifyForm } from '../../utils/Toastify/Toastify'
 const baseApiURL = import.meta.env.VITE_API_URL
 
 export const EditPostPage = () => {

@@ -128,6 +128,7 @@ const Elevator = function (options) {
 
     // Start music!
     if (mainAudio) {
+      mainAudio.volume = 0.05
       mainAudio.play()
     }
 
@@ -216,6 +217,7 @@ const Elevator = function (options) {
       loopAudio: true,
       startCallback: null,
       endCallback: null
+
     }
 
     _options = extendParameters(_options, defaults)

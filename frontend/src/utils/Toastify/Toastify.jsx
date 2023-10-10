@@ -2,6 +2,7 @@ import './Toastify.css'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { errorFormMessage } from './errorFormMessage'
+import { ButtonComponent } from '../../components/Button/ButtonComponent'
 
 const options = {
   position: 'bottom-right',
@@ -12,7 +13,6 @@ const options = {
   draggable: true,
   progress: undefined,
   theme: 'light'
-
 }
 export const toastifyForm = (result) => {
   if (result.status === 'ok') {
@@ -39,4 +39,13 @@ export const toastifySuccess = (message) => {
 
 export const toastifyError = (message) => {
   toast.error(`${message}`, options)
+}
+
+export const toastifyConfirm = (message, onConfirm) => {
+  toast(
+    <div className='div-confirm'>
+      <p>{message}</p>
+      <ButtonComponent className='button-confirm' onClick={onConfirm} buttonName='Confirmar' />
+    </div>
+    , options)
 }

@@ -1,7 +1,7 @@
+import './CreatePostPage.css'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
-import './CreatePostPage.css'
 import image from '../../assets/post/image_logo.svg'
 import { createPostService } from '../../services/postService'
 import { useRef, useState } from 'react'
@@ -109,6 +109,7 @@ export const CreatePostPage = () => {
                 className='category-menu-select'
                 onChange={handleOnChangeCategory}
                 value={categoryId}
+                disabled={!!params?.categoryId}
               >
                 <option
                   className='option-subcategory'
