@@ -2,7 +2,7 @@ import './CategoryListComponent.css'
 import { useState } from 'react'
 import { ButtonCategoryComponent } from '../Button/ButtonCategoryComponent'
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../../assets/logo/logo.svg'
+import logo from '../../assets/logo/logo.png'
 import { useAuth } from '../../hooks/useAuth'
 import { toastifyError } from '../../utils/Toastify/Toastify'
 
