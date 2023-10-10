@@ -63,12 +63,12 @@ export const PostDetailPage = () => {
   return (
     <Layout>
 
-      <PostListComponent showCreatePost posts={posts} />
+      <PostListComponent showCreatePost posts={posts} className='PostListComponent-details' />
 
       <div className='div-comments'>
         <div className='div-div-comments'>
           <form className='from-create-comments'>
-            <h3>Creacion de comentarios</h3>
+            <h3>Comentarios...</h3>
             <textarea type='text' className='textarea-create-comments' onChange={handleOnChange} value={comment} />
             <div className='div-button-create-comment'>
               <button onClick={onClickCreateComment} className='button-create-comment' title='Comentar'>

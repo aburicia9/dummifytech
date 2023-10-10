@@ -18,6 +18,8 @@ import editButton from '../../../assets/post/button_edit.svg'
 import { useNavigate } from 'react-router'
 import { toastifyConfirm, toastifyForm } from '../../../utils/Toastify/Toastify'
 import { useState } from 'react'
+import { useAuth } from '../../../hooks/useAuth'
+// import { useAuth } from '../../../hooks/useAuth'
 
 export const PostFooterComponent = ({
   fetchPosts,
@@ -30,6 +32,7 @@ export const PostFooterComponent = ({
   showEditDeleteButtons = false
 }) => {
   const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
   const [loading, setLoading] = useState(false)
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
@@ -98,7 +101,11 @@ export const PostFooterComponent = ({
   }
 
   const onClickEditPost = () => {
-    navigate(`/posts/${postId}`)
+    navigate(`/posts/${postId}/edit`)
+  }
+
+  const onClickPostDetail = () => {
+    navigate(isAuthenticated ? `/posts/${postId}` : '/login')
   }
 
   const onClickDeletePost = () => {
@@ -146,7 +153,11 @@ export const PostFooterComponent = ({
         />
       </button>
       <div className='div-comment-footer-post'>
-        <button className='button-comment-footer-post' title='Comentarios'>
+        <button
+          className='button-comment-footer-post'
+          title='Comentarios'
+          onClick={onClickPostDetail}
+        >
           <img src={comment} alt='comment image button' />
         </button>
         <span className='span-countcomments-footer-post'>{countComments}</span>
