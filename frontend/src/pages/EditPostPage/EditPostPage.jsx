@@ -50,8 +50,10 @@ export const EditPostPage = () => {
       const body = await updatePostService(postId, formData)
 
       if (body.status === 'error') {
+        toastifyForm(body)
         throw new Error(body.message)
       }
+      toastifyForm(body)
       navigate('/')
     } catch (error) {
       console.log(error)

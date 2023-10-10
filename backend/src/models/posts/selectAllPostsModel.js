@@ -9,11 +9,12 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
     connection = await getDb()
 
     const [posts] = await connection.query(`
-      SELECT p.id, p.title, p.post, p.image, u.username, u.avatar, c.name as nameCategory, p.created_at as createdAt
+      SELECT p.id, p.title, p.post, p.image, u.username, u.avatar, c.name as nameCategory, p.created_at as createdAt, p.modified_at as modifiedAt
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
       INNER JOIN categories c on c.id = p.id_category
       WHERE p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ? OR c.name LIKE ?
+      ORDER BY modifiedAt DESC 
     `, [`%${keyword}%`, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
 
     for (const post of posts) {

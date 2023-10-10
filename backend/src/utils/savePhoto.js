@@ -20,7 +20,6 @@ export const savePhoto = async (img, width, type) => {
     if (type === UPLOADS_DIRS.POST) finalDir = UPLOADS_DIR_POST
     if (type === UPLOADS_DIRS.CATEGORY) finalDir = UPLOADS_DIR_CATEGORY
 
-    console.log('Estoy aquiiiiiiiiiiiiiiiiiiiiiiii ', finalDir)
     // Creamos la ruta absoluta al directorio de subida de archivos.
     const uploadsPath = path.join(__dirname, '..', '..', finalDir)
 

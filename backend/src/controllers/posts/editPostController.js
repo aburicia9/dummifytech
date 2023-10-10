@@ -4,12 +4,14 @@ import { validateSchema } from '../../schemas/validateSchema.js'
 import { updatePostSchema } from '../../schemas/posts/updatePostSchema.js'
 import { savePhoto } from '../../utils/savePhoto.js'
 import { UPLOADS_DIRS } from '../../utils/constants.js'
+import { updatePostWithoutPhotoSchema } from '../../schemas/posts/updatePostWithoutPhotoSchema.js'
 
 export const editPostController = async (req, res, next) => {
   try {
     const { postId } = req.params
     const { post, title, imgName } = req.body
-    console.log({ post, title, imgName })
+    const { id: userId } = req.user
+
     // Variable que almacenará el nombre de la imagen(si hay)
     let fileImgName
 
@@ -18,21 +20,26 @@ export const editPostController = async (req, res, next) => {
       fileImgName = await savePhoto(req.files.imgName, 500, UPLOADS_DIRS.POST)
     }
 
-    const result = await validateSchema(updatePostSchema, req.body)
-
+    const result = await validateSchema(updatePostWithoutPhotoSchema, req.body)
     if (!result.success) {
       throw fromZodError(result.error)
     }
 
     if (fileImgName) {
-      await updatePostModel(postId, post, title, req.user.id, fileImgName)
+      const result = await validateSchema(updatePostSchema, req.body)
+
+      if (!result.success) {
+        throw fromZodError(result.error)
+      }
+      await updatePostModel(postId, post, title, userId, fileImgName)
       res.send({
         status: 'ok',
         message: '¡Post Editado!'
       })
+      return
     }
-
-    await updatePostModel(postId, post, title, req.user.id, imgName)
+    console.log('AQUI NO LLEGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    await updatePostModel(postId, post, title, userId, imgName)
     res.send({
       status: 'ok',
       message: '¡Post Editado!'

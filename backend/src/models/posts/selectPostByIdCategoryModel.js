@@ -7,11 +7,12 @@ export const selectPostByIdCategoryModel = async (categoryId, keyword = '', user
     console.log({ connection })
 
     const [posts] = await connection.query(`
-    SELECT p.id , p.title, p.post, p.image, u.username, u.avatar, c.name as nameCategory, p.created_at as createdAt
+    SELECT p.id , p.title, p.post, p.image, u.username, u.avatar, c.name as nameCategory, p.created_at as createdAt, p.modified_at as modifiedAt
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
       INNER JOIN categories c on c.id = p.id_category
       WHERE c.id = ? AND (p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ?)
+      ORDER BY modifiedAt DESC 
     `, [categoryId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
 
     for (const post of posts) {

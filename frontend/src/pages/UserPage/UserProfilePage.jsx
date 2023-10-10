@@ -126,6 +126,7 @@ export const UserProfilePage = () => {
       <div className='div-user-profile'>
         <form className='form-user-profile'>
           <h2 className='title-user-profile'>Perfil de Usuario</h2>
+
           <div className='div-avatar-profile'>
             <img className='image-edit-profile' src={`${baseApiURL}/avatar/${avatar}`} alt='' />
             <input type='file' onChange={handleFileChange} />
