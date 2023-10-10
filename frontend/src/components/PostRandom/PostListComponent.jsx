@@ -32,19 +32,21 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
             posts.map((post) => {
               return (
                 <section className='section-post' key={post.id}>
-                  <PostHeaderComponent
-                    avatar={post.avatar}
-                    username={post.username}
-                    createdAt={post.createdAt}
-                    baseApiURL={baseApiURL}
-                    postId={post.id}
-                  />
-                  <PostBodyComponent
-                    title={post.title}
-                    image={post.image}
-                    post={post.post}
-                    baseApiURL={baseApiURL}
-                  />
+                  <Link to={isAuthenticated ? `posts/${post.id}` : '/login'}>
+                    <PostHeaderComponent
+                      avatar={post.avatar}
+                      username={post.username}
+                      createdAt={post.createdAt}
+                      baseApiURL={baseApiURL}
+                      postId={post.id}
+                    />
+                    <PostBodyComponent
+                      title={post.title}
+                      image={post.image}
+                      post={post.post}
+                      baseApiURL={baseApiURL}
+                    />
+                  </Link>
                   <PostFooterComponent
                     fetchPosts={fetchPosts}
                     postId={post.id}
