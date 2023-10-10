@@ -93,7 +93,7 @@ export const PostDetailPage = () => {
                   <section className='section-body-comment'>
                     <p className='p-body-comment'>
                       {comment.comment}
-                      <p>{comment.id}</p>
+
                     </p>
                     <ul className='ul-buttons-comments'>
                       <li>
@@ -108,7 +108,6 @@ export const PostDetailPage = () => {
                               setLoading(true)
                               const result = await deleteCommentPostService(postId, comment.id)
                               if (result.status === 'ok') {
-                                console.log(result)
                                 toastifyForm(result)
                               } else {
                                 toastifyForm(result)
