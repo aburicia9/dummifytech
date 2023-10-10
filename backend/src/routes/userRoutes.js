@@ -14,6 +14,7 @@ import { getUserVerificationController } from '../controllers/users/getUserVerif
 import { editUserRoleController } from '../controllers/users/editUserRoleController.js'
 import { deleteMyUserController } from '../controllers/users/deleteMyUserController.js'
 import { forgottenUserPasswordController } from '../controllers/users/forgottenUserPasswordController.js'
+import { listMyPostsController } from '../controllers/posts/listMyPostsController.js'
 
 const router = Router()
 
@@ -34,6 +35,9 @@ router.put('/recovery-password', forgottenUserPasswordController)
 
 // Aqui empiezan las rutas de usuario existente
 router.get('/users/profile', authUserController, getUserController)
+
+// Visualizar mis publicaciones
+router.get('/users/myposts', authUserController, listMyPostsController)
 
 // Modificamos contraseña
 router.put('/users/profile/password', authUserController, editUserPasswordController)

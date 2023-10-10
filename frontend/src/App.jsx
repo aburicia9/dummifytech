@@ -7,19 +7,28 @@ import { RegisterPage } from './pages/RegisterPage/RegisterPage'
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { RecoveryPasswordPage } from './pages/RecoveryPasswordPage/RecoveryPasswordPage'
 import { ToastContainer } from 'react-toastify'
+import { CreatePostPage } from './pages/CreatePostPage/CreatePostPage'
 import { UserProfilePage } from './pages/UserPage/UserProfilePage'
+import { EditPostPage } from './pages/EditPostPage/EditPostPage'
+import { ReqCategoriesPage } from './pages/ReqCategoriesPage/ReqCategoriesPage'
 
 export const App = () => {
   return (
     <>
-      {/* <h1>DummifyTech</h1> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/posts/categories/:categoryId' element={<HomePage />} />
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/recovery-password' element={<RecoveryPasswordPage />} />
+        <Route path='/posts/insert' element={<CreatePostPage />} />
+        <Route path='/posts/:postId' element={<EditPostPage />} />
+        <Route path='/posts/insert/:categoryId' element={<CreatePostPage />} />
+        <Route path='/posts/:categoryId/insert' element={<CreatePostPage />} />
         <Route path='/users/profile' element={<UserProfilePage />} />
+        <Route path='/users/myposts' element={<HomePage showEditDeleteButtons />} />
+        <Route path='/categories/request' element={<ReqCategoriesPage />} />
+
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />

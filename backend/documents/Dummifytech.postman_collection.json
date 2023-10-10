@@ -465,35 +465,29 @@
 							"response": []
 						},
 						{
-							"name": "Update Forget Password",
+							"name": "List Owner Posts",
 							"request": {
-								"method": "PUT",
+								"auth": {
+									"type": "apikey"
+								},
+								"method": "GET",
 								"header": [
 									{
 										"key": "Authorization",
 										"value": "{{dummifyToken}}",
-										"type": "text",
-										"disabled": true
+										"type": "text"
 									}
 								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"username\": \"juamsito19\",\r\n    \"email\": \"linon24675@klanze.com\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
-									"raw": "http://localhost:8000/recovery-password",
+									"raw": "http://localhost:8000/users/myposts",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"recovery-password"
+										"users",
+										"myposts"
 									]
 								}
 							},
@@ -525,7 +519,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8000/posts/:postId/likes",
+									"raw": "http://localhost:8000/posts/1/likes",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -533,7 +527,7 @@
 									"port": "8000",
 									"path": [
 										"posts",
-										":postId",
+										"1",
 										"likes"
 									],
 									"query": [
@@ -551,12 +545,6 @@
 											"key": "",
 											"value": null,
 											"disabled": true
-										}
-									],
-									"variable": [
-										{
-											"key": "postId",
-											"value": "5"
 										}
 									]
 								},
@@ -773,6 +761,178 @@
 					]
 				},
 				{
+					"name": "COMMENTS",
+					"item": [
+						{
+							"name": "Insert Comment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"commentId\":1,\r\n    \"comment\":\"Apuaaa que tal\", \r\n    \"userId\": 1, \r\n    \"postId\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/posts/1/comments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										"1",
+										"comments"
+									]
+								},
+								"description": "The logged-in user can leave a comment on a post."
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Comment",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/comments/:commentId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"comments",
+										":commentId"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										},
+										{
+											"key": "commentId",
+											"value": "101"
+										}
+									]
+								},
+								"description": "The logged-in user can delete their own comment."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Comment",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"comment\": \"Esto es otrrrrrrro coment\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/comments/:commentId",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"comments",
+										":commentId"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										},
+										{
+											"key": "commentId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "The logged-in user can edit their own comment."
+							},
+							"response": []
+						},
+						{
+							"name": "List Post Comments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{dummifyToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8000/posts/:postId/comments",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"posts",
+										":postId",
+										"comments"
+									],
+									"variable": [
+										{
+											"key": "postId",
+											"value": "1"
+										}
+									]
+								},
+								"description": "The logged-in user can view the comments on a post."
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "List All Post",
 					"request": {
 						"method": "GET",
@@ -946,147 +1106,9 @@
 						"description": "The logged-in user can edit their own post."
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "COMMENTS",
-			"item": [
-				{
-					"name": "Insert Comment",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"commentId\":1,\r\n    \"comment\":\"Apuaaa que tal\", \r\n    \"userId\": 1, \r\n    \"postId\":1\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/posts/1/comments",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								"1",
-								"comments"
-							]
-						},
-						"description": "The logged-in user can leave a comment on a post."
-					},
-					"response": []
 				},
 				{
-					"name": "Delete Comment",
-					"request": {
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/posts/:postId/comments/:commentId",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								":postId",
-								"comments",
-								":commentId"
-							],
-							"variable": [
-								{
-									"key": "postId",
-									"value": "1"
-								},
-								{
-									"key": "commentId",
-									"value": "101"
-								}
-							]
-						},
-						"description": "The logged-in user can delete their own comment."
-					},
-					"response": []
-				},
-				{
-					"name": "Update Comment",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"comment\": \"Esto es otrrrrrrro coment\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/posts/:postId/comments/:commentId",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"posts",
-								":postId",
-								"comments",
-								":commentId"
-							],
-							"variable": [
-								{
-									"key": "postId",
-									"value": "1"
-								},
-								{
-									"key": "commentId",
-									"value": "1"
-								}
-							]
-						},
-						"description": "The logged-in user can edit their own comment."
-					},
-					"response": []
-				},
-				{
-					"name": "List Post Comments",
+					"name": "Get Post by ID",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1097,7 +1119,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:8000/posts/:postId/comments",
+							"raw": "http://localhost:8000/posts/:postId",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1105,17 +1127,15 @@
 							"port": "8000",
 							"path": [
 								"posts",
-								":postId",
-								"comments"
+								":postId"
 							],
 							"variable": [
 								{
 									"key": "postId",
-									"value": "1"
+									"value": ""
 								}
 							]
-						},
-						"description": "The logged-in user can view the comments on a post."
+						}
 					},
 					"response": []
 				}
@@ -1199,7 +1219,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n    \"id\": 19\r\n}",
+							"raw": "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1380,45 +1400,7 @@
 					"response": []
 				},
 				{
-					"name": "Insert Req New Catgory",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/categories/request",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"categories",
-								"request"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "List Req Catgory",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "List post with category",
 					"request": {
 						"method": "GET",
 						"header": [
@@ -1428,66 +1410,21 @@
 								"type": "text"
 							}
 						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "http://localhost:8000/categories/request",
+							"raw": "http://localhost:8000/posts/:categoryId",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8000",
 							"path": [
-								"categories",
-								"request"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Req Category",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Authorization",
-								"value": "{{dummifyToken}}",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"categoryName\": \"tumama\",\r\n    \"categoryReason\": \"porque esta re buena y me encanta\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8000/categories/request/:requestCategoryId",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8000",
-							"path": [
-								"categories",
-								"request",
-								":requestCategoryId"
+								"posts",
+								":categoryId"
 							],
 							"variable": [
 								{
-									"key": "requestCategoryId",
-									"value": "1"
+									"key": "categoryId",
+									"value": "13"
 								}
 							]
 						}

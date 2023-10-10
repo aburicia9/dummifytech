@@ -40,86 +40,10 @@ export const UserProfilePage = () => {
     setComparePassword('')
   }
 
-  // const handleOnClickUpdatePassword = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     setLoading(true)
-
-  //     if (newPassword !== comparePassword) {
-  //       toastifyWarning('Las contraseñas no coinciden')
-  //       return
-  //     }
-
-  //     const result = await updatePasswordUserService(oldPassword, newPassword)
-
-  //     toastifyForm(result)
-
-  //     if (result.status === 'ok') {
-  //       resetForm()
-  //       navigate('/users/profile')
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-  // const handleOnClickUpdateFullName = async (event) => {
-  //   event.preventDefault()
-
-  //   try {
-  //     setLoading(true)
-
-  //     const result = await updateFullNameUserService(inputFullName)
-
-  //     toastifyForm(result)
-
-  //     if (result.status === 'ok') {
-  //       setAuthUser({
-  //         ...authUser,
-  //         fullName: inputFullName
-  //       })
-  //       resetForm()
-  //       navigate('/users/profile')
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
-
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0])
   }
 
-  // const handleOnClickUpdateAvatar = async (event) => {
-  //   event.preventDefault()
-
-  //   try {
-  //     setLoading(true)
-  //     if (selectedFile) {
-  //       const formData = new FormData()
-  //       formData.append('avatar', selectedFile)
-
-  //       const result = await updateAvatarUserService(formData)
-
-  //       toastifyForm(result)
-  //       if (result.status === 'ok') {
-  //         setAuthUser({
-  //           ...useAuth,
-  //           avatar: result.data.avatarName
-  //         })
-  //         resetForm()
-  //         navigate('/users/profile')
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.log(error)
-  //   } finally {
-  //     setLoading(false)
-  //   }
-  // }
   const handleOnClickUpdatePerfil = async (event) => {
     event.preventDefault()
     try {
@@ -202,6 +126,7 @@ export const UserProfilePage = () => {
       <div className='div-user-profile'>
         <form className='form-user-profile'>
           <h2 className='title-user-profile'>Perfil de Usuario</h2>
+
           <div className='div-avatar-profile'>
             <img className='image-edit-profile' src={`${baseApiURL}/avatar/${avatar}`} alt='' />
             <input type='file' onChange={handleFileChange} />
@@ -221,7 +146,7 @@ export const UserProfilePage = () => {
           <div>
             <label className='label-user-profile' htmlFor=''>Contraseña actual:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='*****' onChange={handleOnChangeOldPassword} />
-            <label className='label-user-profile' htmlFor=''>Introduce nueva ontraseña:</label>
+            <label className='label-user-profile' htmlFor=''>Introduce nueva Contraseña:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='Nueva contraseña' onChange={handleOnChangeNewPassword} />
             <label className='label-user-profile' htmlFor=''>Repite la nueva Contraseña:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' onChange={handleOnChangeComparePassword} />

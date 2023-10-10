@@ -12,6 +12,8 @@
 
 .div-button-users-header {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1em;
   position: fixed;
   right: 12px;
@@ -52,8 +54,12 @@
   width: 50rem;
   height: 2.5em;
   padding-left: 25px
-}
 
+}
+.input-search-header:disabled::placeholder{
+  color: white ;
+
+}
 .button-register-header {
   border-radius: var(--borderRadiusSmall);
   background: transparent;

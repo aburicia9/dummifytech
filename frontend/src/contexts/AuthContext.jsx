@@ -15,6 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [loading, setLoading] = useState(false)
+  const navitage = useNavigate()
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -88,6 +89,7 @@ export const AuthProvider = ({ children }) => {
 
     setAuthUser(null)
     setIsAuthenticated(false)
+    navitage('/')
   }
 
   return (

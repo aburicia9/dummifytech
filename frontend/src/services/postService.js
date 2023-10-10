@@ -8,8 +8,7 @@ export const createPostService = async (formData) => {
   const res = await fetch(`${baseApiURL}/posts/insert`, {
     method: 'post',
     headers: {
-      Authorization: token,
-      'Content-Type': 'application/json'
+      Authorization: token
     },
     body: formData
   })
@@ -62,6 +61,20 @@ export const dislikePostService = async (postId, method) => {
   return body
 }
 
+// Crear o eliminar report en un post
+export const reportPostService = async (postId, method) => {
+  const token = getToken()
+
+  const res = await fetch(`${baseApiURL}/posts/${postId}/report`, {
+    method,
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}
+
 // Eliminar un post
 export const deletePostService = async (postId) => {
   const token = getToken()
@@ -78,26 +91,13 @@ export const deletePostService = async (postId) => {
 // Modificamos un post
 export const updatePostService = async (postId, formData) => {
   const token = getToken()
+
   const res = await fetch(`${baseApiURL}/posts/${postId}`, {
     method: 'put',
     headers: {
-      Authorization: token,
-      'Content-Type': 'application/json'
+      Authorization: token
     },
     body: formData
-  })
-  const body = await res.json()
-  return body
-}
-
-// Crear o eliminar report en un post
-export const reportPostService = async (postId, method) => {
-  const token = getToken()
-  const res = await fetch(`${baseApiURL}/posts/${postId}/report`, {
-    method,
-    headers: {
-      Authorization: token
-    }
   })
   const body = await res.json()
   return body
@@ -176,6 +176,18 @@ export const deleteCommentPostService = async (postId, commentId) => {
 export const listPostByIdCategoryService = async (categoryId, searchParams) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/posts/categories/${categoryId}?${searchParams}`, {
+    method: 'get',
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}
+
+export const getPostByIdService = async (postId) => {
+  const token = getToken()
+  const res = await fetch(`${baseApiURL}/posts/${postId}?`, {
     method: 'get',
     headers: {
       Authorization: token

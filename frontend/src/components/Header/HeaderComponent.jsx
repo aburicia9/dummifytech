@@ -1,32 +1,16 @@
-import { useNavigate } from 'react-router-dom'
 import './HeaderComponent.css'
 import search from '../../assets/header/search.svg'
-import logoutIcon from '../../assets/header/logout.svg'
 import { useAuth } from '../../hooks/useAuth'
 import { usePosts } from '../../hooks/posts/usePosts'
 import { useState } from 'react'
-import { toastifySuccess } from '../../utils/Toastify/Toastify'
-import { CircleMenu, CircleMenuItem, TooltipPlacement } from 'react-circular-menu'
-import registerUser from '../../assets/users/register.svg'
-import loginUser from '../../assets/users/login.svg'
-import userProfil from '../../assets/users/userProfile.svg'
+import { MenuCircularNoAuthComponent } from '../MenuCircular/MenuCircularNoAuthComponent'
+import { MenuCircularAuthComponent } from '../MenuCircular/MenuCircularAuthComponent'
+import { toastifyError } from '../../utils/Toastify/Toastify'
 
 export const HeaderComponent = () => {
-  const { authLogout } = useAuth()
-  const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
   const { setSearchParams } = usePosts()
   const [keyword, setKeyword] = useState('')
-
-  const handleOnClickRegister = (event) => {
-    event.preventDefault()
-    navigate('/register')
-  }
-
-  const handleOnClickLogin = (event) => {
-    event.preventDefault()
-    navigate('/login')
-  }
 
   const onSubmitFormSearch = (event) => {
     event.preventDefault()
@@ -37,15 +21,8 @@ export const HeaderComponent = () => {
     setKeyword(event.target.value)
   }
 
-  const onClicklogout = (event) => {
-    event.preventDefault()
-    authLogout()
-    toastifySuccess('¡Sesión Cerrada!')
-  }
-  const onClickUserProfile = (event) => {
-    event.preventDefault()
-    navigate('/users/profile')
-  }
+  const placeholderSearch = isAuthenticated ? 'Busca por titulo, contenido, categoria...' : 'Para poder buscar debes iniciar sesion'
+
   return (
     <>
       <header className='header'>
@@ -57,7 +34,7 @@ export const HeaderComponent = () => {
               onChange={onChangeSearch}
               disabled={!isAuthenticated}
               type='text'
-              placeholder='Busca tu post...'
+              placeholder={placeholderSearch}
             />
             <button
               className='button-search-header'
@@ -74,64 +51,12 @@ export const HeaderComponent = () => {
         {isAuthenticated
           ? (
             <div className='div-button-users-header'>
-              <CircleMenu
-                startAngle={180}
-                rotationAngle={-180}
-                itemSize={2}
-                radius={5}
-                rotationAngleInclusive={false}
-              >
-                <CircleMenuItem
-                  onClick={onClicklogout}
-                  tooltip='logout'
-                  tooltipPlacement={TooltipPlacement.Bottom}
-                >
-                  <img src={logoutIcon} alt='boton para cerrar sesion' />
-                </CircleMenuItem>
-                <CircleMenuItem
-                  onClick={onClickUserProfile}
-                  tooltip='Perfil'
-                  tooltipPlacement={TooltipPlacement.Bottom}
-                >
-                  <img src={userProfil} alt='boton para entrar en el perfil' />
-                </CircleMenuItem>
-
-              </CircleMenu>
+              <MenuCircularAuthComponent />
             </div>
             )
           : (
             <div className='div-button-users-header'>
-              <CircleMenu
-                startAngle={180}
-                rotationAngle={-180}
-                itemSize={2}
-                radius={5}
-                rotationAngleInclusive={false}
-              >
-                <CircleMenuItem
-                  onClick={handleOnClickLogin}
-                  tooltip='Iniciar sesion'
-                  tooltipPlacement={TooltipPlacement.Bottom}
-                >
-                  <img src={loginUser} alt='boton para iniciar sesion' />
-                </CircleMenuItem>
-                <CircleMenuItem
-                  onClick={handleOnClickRegister}
-                  tooltip='Registrarse'
-                  tooltipPlacement={TooltipPlacement.Bottom}
-                >
-                  <img src={registerUser} alt='boton para registrar usuario' />
-                </CircleMenuItem>
-
-              </CircleMenu>
-              {/* <ButtonComponent
-                handleOnClick={handleOnClickRegister}
-                buttonName='Registrarse'
-              />
-              <ButtonComponent
-                handleOnClick={handleOnClickLogin}
-                buttonName='Iniciar sesion'
-              /> */}
+              <MenuCircularNoAuthComponent />
             </div>
             )}
       </header>

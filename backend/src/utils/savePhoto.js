@@ -45,6 +45,7 @@ export const savePhoto = async (img, width, type) => {
 
     // Guardamos la imagen en el disco.
     await sharpImg.toFile(imgPath)
+    console.log(imgName)
 
     // Retornamos el nombre que le hemos dado a la imagen.
     return imgName
