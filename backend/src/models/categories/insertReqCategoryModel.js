@@ -1,7 +1,7 @@
 import { getDb } from '../../db/getDb.js'
 import { categoryNameAlreadyExistsError } from '../../services/errorService.js'
 
-export const insertReqCategoryModel = async (userId, categoryName, categoryReason) => {
+export const insertReqCategoryModel = async (userId, categoryParentId, categoryName, categoryReason) => {
   let connection
   try {
     connection = await getDb()
@@ -18,9 +18,9 @@ export const insertReqCategoryModel = async (userId, categoryName, categoryReaso
 
     const [categories] = await connection.query(`
       INSERT INTO req_categories
-      (id_user, name_category, reason)
-      VALUES(?, ?, ?)`,
-    [userId, categoryName, categoryReason]
+      (id_user, id_category_parent, name_category, reason)
+      VALUES(?, ?, ?, ?)`,
+    [userId, categoryParentId, categoryName, categoryReason]
     )
 
     return categories

@@ -139,6 +139,7 @@ export const main = async () => {
       CREATE TABLE IF NOT EXISTS req_categories(
         id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
         id_user INT unsigned NOT NULL,
+        id_category_parent INT unsigned NOT NULL,
         name_category VARCHAR(100) UNIQUE NOT NULL,
         reason VARCHAR(255) NOT NULL,
         req_status BOOLEAN DEFAULT TRUE,

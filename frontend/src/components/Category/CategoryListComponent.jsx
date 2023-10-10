@@ -1,9 +1,10 @@
-import { useState } from 'react'
 import './CategoryListComponent.css'
+import { useState } from 'react'
 import { ButtonCategoryComponent } from '../Button/ButtonCategoryComponent'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo/logo.svg'
 import { useAuth } from '../../hooks/useAuth'
+import { toastifyError } from '../../utils/Toastify/Toastify'
 
 export const CategoryListComponent = ({
   categories,
@@ -43,14 +44,19 @@ export function Category ({ category, isSubcategoryDisabled }) {
   const { id, name, subcategories } = category
   const [toggle, setToggle] = useState(false)
 
-  function handleOnClick () {
+  const handleOnClick = () => {
     if (toggle === true) {
       setToggle(false)
     }
+
     if (toggle === false) {
+      if (isSubcategoryDisabled) {
+        toastifyError('Debes iniciar sesion para poder navegar')
+      }
       setToggle(true)
     }
   }
+
   return (
     <li key={id} className='li-category'>
       <ButtonCategoryComponent
@@ -68,6 +74,7 @@ export function Category ({ category, isSubcategoryDisabled }) {
                   className={`a-subcategory-category ${
                     isSubcategoryDisabled ? 'disabled' : ''
                   }`}
+
                 >
                   {subcategory.name}
                 </Link>

@@ -5,6 +5,7 @@ import { usePosts } from '../../hooks/posts/usePosts'
 import { useState } from 'react'
 import { MenuCircularNoAuthComponent } from '../MenuCircular/MenuCircularNoAuthComponent'
 import { MenuCircularAuthComponent } from '../MenuCircular/MenuCircularAuthComponent'
+import { toastifyError } from '../../utils/Toastify/Toastify'
 
 export const HeaderComponent = () => {
   const { isAuthenticated } = useAuth()
@@ -20,6 +21,8 @@ export const HeaderComponent = () => {
     setKeyword(event.target.value)
   }
 
+  const placeholderSearch = isAuthenticated ? 'Busca por titulo, contenido, categoria...' : 'Para poder buscar debes iniciar sesion'
+
   return (
     <>
       <header className='header'>
@@ -31,7 +34,7 @@ export const HeaderComponent = () => {
               onChange={onChangeSearch}
               disabled={!isAuthenticated}
               type='text'
-              placeholder='Busca tu post...'
+              placeholder={placeholderSearch}
             />
             <button
               className='button-search-header'

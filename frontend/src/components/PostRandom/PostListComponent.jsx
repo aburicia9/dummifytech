@@ -6,17 +6,24 @@ import noData from '../../assets/post/no-data-post.gif'
 import { TitleCategory } from '../titleCategory/titleCategory'
 import { Link } from 'react-router-dom'
 import buttonNewPost from '../../assets/post/button_new_post.svg'
+import { useAuth } from '../../hooks/useAuth'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 
-export const PostListComponent = ({ posts, fetchPosts, categoryId }) => {
+export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons }) => {
+  const { isAuthenticated } = useAuth()
   let lengthPosts = true
   lengthPosts = Object(posts).length
+  let linkNewPost = 'link-new-post'
+
+  if (!isAuthenticated) {
+    linkNewPost = 'link-new-post disabled'
+  }
 
   return (
     <article className='article-post'>
       <TitleCategory />
-      <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className='link-new-post'>
+      <Link to={`/posts/insert${categoryId ? `/${categoryId}` : ''}`} className={linkNewPost}>
         <input placeholder='Crea un nuevo post' className='input-new-post' />
         <button className='button-new-post'><img src={buttonNewPost} alt='' /></button>
       </Link>
@@ -47,6 +54,7 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId }) => {
                     ownerReports={post.ownerReports}
                     countLikes={post.countLikes}
                     countComments={post.countComments}
+                    showEditDeleteButtons={showEditDeleteButtons}
                   />
                 </section>
               )

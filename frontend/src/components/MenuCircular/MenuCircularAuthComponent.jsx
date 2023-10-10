@@ -59,9 +59,15 @@ export const MenuCircularAuthComponent = () => {
       },
       {
         id: uuidv4(),
-        title: 'Mis posts',
+        title: 'Mis publicaciones',
         svg: menuOwnerPosts,
         onClick: onClickOwnerPosts
+      },
+      {
+        id: uuidv4(),
+        title: 'Peticiones de categorias',
+        svg: menuCategories,
+        onClick: onClickReqCategories
       },
       {
         id: uuidv4(),
@@ -81,7 +87,7 @@ export const MenuCircularAuthComponent = () => {
       },
       {
         id: uuidv4(),
-        title: 'Mis posts',
+        title: 'Mis publicaciones',
         svg: menuOwnerPosts,
         onClick: onClickOwnerPosts
       },
@@ -114,7 +120,7 @@ export const MenuCircularAuthComponent = () => {
       },
       {
         id: uuidv4(),
-        title: 'Mis posts',
+        title: 'Mis publicaciones',
         svg: menuOwnerPosts,
         onClick: onClickOwnerPosts
       },

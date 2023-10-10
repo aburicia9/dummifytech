@@ -10,11 +10,11 @@ import { ToastContainer } from 'react-toastify'
 import { CreatePostPage } from './pages/CreatePostPage/CreatePostPage'
 import { UserProfilePage } from './pages/UserPage/UserProfilePage'
 import { EditPostPage } from './pages/EditPostPage/EditPostPage'
+import { ReqCategoriesPage } from './pages/ReqCategoriesPage/ReqCategoriesPage'
 
 export const App = () => {
   return (
     <>
-      {/* <h1>DummifyTech</h1> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/posts/categories/:categoryId' element={<HomePage />} />
@@ -26,7 +26,9 @@ export const App = () => {
         <Route path='/posts/insert/:categoryId' element={<CreatePostPage />} />
         <Route path='/posts/:categoryId/insert' element={<CreatePostPage />} />
         <Route path='/users/profile' element={<UserProfilePage />} />
-        <Route path='/users/myposts' element={<HomePage />} />
+        <Route path='/users/myposts' element={<HomePage showEditDeleteButtons />} />
+        <Route path='/categories/request' element={<ReqCategoriesPage />} />
+
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
       <ToastContainer />

@@ -60,18 +60,21 @@ export const deleteCategoryService = async (categoryId) => {
 }
 
 // Creamos una request para una categoria nueva
-export const createReqCategoryService = async (categoryName, categoryReason) => {
+export const createReqCategoryService = async (categoryName, categoryReason, categoryParentId) => {
   const token = getToken()
+  console.log({ categoryName, categoryReason, categoryParentId })
+  categoryParentId = Number(categoryParentId)
   const res = await fetch(`${baseApiURL}/categories/request`, {
     method: 'post',
     headers: {
       Authorization: token,
       'Content-Type': 'application/json'
     },
-    body: {
+    body: JSON.stringify({
       categoryName,
-      categoryReason
-    }
+      categoryReason,
+      categoryParentId
+    })
   })
   const body = await res.json()
   return body

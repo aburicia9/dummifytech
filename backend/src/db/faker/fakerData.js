@@ -181,6 +181,7 @@ console.log('CREANDO PETICIONES DE CATEGORIAS')
 async function generateRequestCategory () {
   for (let id = 1; id < 51; id++) {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
+    const randomCategoryParentId = Number('1')
     const randomNameCategory = faker.lorem.text()
     const randomNameCategorySlice = randomNameCategory.slice(0, 99)
     const randomReasonCategory = faker.lorem.text()
@@ -188,6 +189,7 @@ async function generateRequestCategory () {
     try {
       await insertReqCategoryModel(
         randomUserId,
+        randomCategoryParentId,
         randomNameCategorySlice,
         randomReasonCategorySlice
       )
