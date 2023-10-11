@@ -15,8 +15,7 @@ export const getDb = async () => {
       const connection = await mysql.createConnection({
         host: MYSQL_HOST,
         user: MYSQL_USER,
-        password: MYSQL_PASSWORD,
-        timezone: 'Z'
+        password: MYSQL_PASSWORD
       })
 
       await connection.query(`CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE}`)
@@ -26,8 +25,7 @@ export const getDb = async () => {
         host: MYSQL_HOST,
         user: MYSQL_USER,
         password: MYSQL_PASSWORD,
-        database: MYSQL_DATABASE,
-        timezone: 'Z'
+        database: MYSQL_DATABASE
       })
     }
 

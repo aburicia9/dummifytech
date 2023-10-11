@@ -3,7 +3,7 @@ import { Layout } from '../../components/Layout/Layout'
 import { PostListComponent } from '../../components/PostRandom/PostListComponent'
 import { createCommentPostService, deleteCommentPostService, getPostByIdService, listCommentsPostService } from '../../services/postService'
 import './PostDetailPage.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { formatDate } from '../../utils/helpers'
 import editSvg from '../../assets/comments/button_edit.svg'
 import deleteSvg from '../../assets/comments/button_delete.svg'
@@ -72,7 +72,7 @@ export const PostDetailPage = () => {
       <div className='div-comments'>
         <div className='div-div-comments'>
           <form className='from-create-comments'>
-            <h3>Comentarios...</h3>
+            <h3>Comentario</h3>
             <textarea type='text' className='textarea-create-comments' onChange={handleOnChange} value={comment} />
             <div className='div-button-create-comment'>
               <button onClick={onClickCreateComment} className='button-create-comment' title='Comentar'>
@@ -83,6 +83,7 @@ export const PostDetailPage = () => {
           <ul className='ul-comments'>
             {
           comments.map((comment) => {
+            const formattedDate = useMemo(() => formatDate(comment.createdAt), [comments])
             return (
               <li key={comment.id} className='li-comment'>
                 <aside className='aside-header-comment'>
@@ -92,7 +93,7 @@ export const PostDetailPage = () => {
                 <article className='article-comment'>
                   <header className='header-comment'>
                     <span>{comment.username}</span>
-                    <span>{formatDate(comment.createdAt)}</span>
+                    <span>{formattedDate}</span>
                   </header>
                   <section className='section-body-comment'>
                     <p className='p-body-comment'>

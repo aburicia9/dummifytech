@@ -27,7 +27,8 @@ export const PostFooterComponent = ({
   ownerReports = '',
   countLikes = '',
   countComments = '',
-  showEditDeleteButtons = false
+  showEditDeleteButtons = false,
+  showFooter = true
 }) => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -118,73 +119,82 @@ export const PostFooterComponent = ({
 
   return (
     <div className='div-footer-post'>
-      <div className='div-like-footer-post'>
-        <button className='button-like-footer-post'>
-          <img
-            src={ownerLikes ? likeOn : like}
-            alt='like image button'
-            onClick={onClickLikePost}
-            title='Me gusta'
-          />
-        </button>
-        <span className='span-countlikes-footer-post'>{countLikes}</span>
-      </div>
-      <button className='button-dislike-footer-post' title='No me gusta'>
-        {' '}
-        <img
-          src={ownerDislikes ? dislikeOn : dislike}
-          alt='dislike image button'
-          onClick={onClickDislikePost}
-        />
-      </button>
-      <div className='div-comment-footer-post'>
-        <button
-          className='button-comment-footer-post'
-          title='Comentarios'
-          onClick={onClickPostDetail}
-        >
-          <img src={comment} alt='comment image button' />
-        </button>
-        <span className='span-countcomments-footer-post'>{countComments}</span>
-      </div>
-      <button className='button-report-footer-post' title='Reportar'>
-        <img
-          src={ownerReports ? reportOn : report}
-          alt='report image button'
-          onClick={onClickReportPost}
-        />
-      </button>
-
-      {showEditDeleteButtons
+      {showFooter
         ? (
           <>
-            <button
-              className='button-report-footer-post'
-              title='Editar'
-
-            >
+            <div className='div-like-footer-post'>
+              <button className='button-like-footer-post'>
+                <img
+                  src={ownerLikes ? likeOn : like}
+                  alt='like image button'
+                  onClick={onClickLikePost}
+                  title='Me gusta'
+                />
+              </button>
+              <span className='span-countlikes-footer-post'>{countLikes}</span>
+            </div>
+            <button className='button-dislike-footer-post' title='No me gusta'>
+              {' '}
               <img
-                src={editButton}
+                src={ownerDislikes ? dislikeOn : dislike}
+                alt='dislike image button'
+                onClick={onClickDislikePost}
+              />
+            </button>
+            <div className='div-comment-footer-post'>
+              <button
+                className='button-comment-footer-post'
+                title='Comentarios'
+                onClick={onClickPostDetail}
+              >
+                <img src={comment} alt='comment image button' />
+              </button>
+              <span className='span-countcomments-footer-post'>{countComments}</span>
+            </div>
+            <button className='button-report-footer-post' title='Reportar'>
+              <img
+                src={ownerReports ? reportOn : report}
                 alt='report image button'
-                onClick={onClickEditPost}
+                onClick={onClickReportPost}
               />
             </button>
-            <button
-              className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
-              title='Borrar'
-              disabled={loading}
-            >
-              <img
-                src={deleteButton}
-                alt='delete post button '
-                onClick={onClickDeletePost}
-              />
-            </button>
+
+            {showEditDeleteButtons
+              ? (
+                <>
+                  <button
+                    className='button-report-footer-post'
+                    title='Editar'
+                  >
+                    <img
+                      src={editButton}
+                      alt='report image button'
+                      onClick={onClickEditPost}
+                    />
+                  </button>
+                  <button
+                    className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
+                    title='Borrar'
+                    disabled={loading}
+                  >
+                    <img
+                      src={deleteButton}
+                      alt='delete post button '
+                      onClick={onClickDeletePost}
+                    />
+                  </button>
+                </>
+                )
+              : (
+                <></>
+                )}
           </>
           )
         : (
-          <></>
+          <>
+          </>
           )}
+
     </div>
   )
 }

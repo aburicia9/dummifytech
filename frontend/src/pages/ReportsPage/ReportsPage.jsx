@@ -10,7 +10,6 @@ import { PostListComponent } from '../../components/PostRandom/PostListComponent
 export const ReportsPage = () => {
   const [reports, setReports] = useState([])
   const [loading, setLoading] = useState(false)
-  const lengthReports = true
 
   useEffect(() => {
     const fetchReports = async () => {
@@ -56,7 +55,7 @@ export const ReportsPage = () => {
             </section>
             )}
       </article> */}
-      <PostListComponent posts={reports} />
+      <PostListComponent posts={reports} showFooter={false} disableNavigate showCreatePost />
     </Layout>
   )
 }

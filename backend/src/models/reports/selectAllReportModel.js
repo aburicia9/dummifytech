@@ -6,11 +6,12 @@ export const selectAllReportModel = async () => {
     connection = await getDb()
 
     const [reports] = await connection.query(`
-      SELECT r.id_post as idPost, p.title, r.id_comment as idComment, c.comment, u.username 
+      SELECT r.id_post as idPost, p.title, r.id_comment as idComment, c.comment, u.username, u.avatar, p.created_at as createdAt 
       FROM reports AS r
       LEFT JOIN posts p ON p.id = r.id_post 
       LEFT JOIN comments c ON c.id = r.id_comment 
       LEFT JOIN users u ON u.id = r.id_user 
+      ORDER BY createdAt DESC
     `)
     for (const report of reports) {
       const [[{ countPostReports }]] = await connection.query(`
