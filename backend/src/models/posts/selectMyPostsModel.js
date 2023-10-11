@@ -11,7 +11,7 @@ export const selectMyPostModel = async (userId) => {
     INNER JOIN users u on u.id = p.id_user
     INNER JOIN categories c on c.id = p.id_category 
     WHERE u.id = ?
-    ORDER BY modifiedAt DESC 
+    ORDER BY createdAt DESC 
     `, [userId])
     for (const post of posts) {
       const [[{ countLikes }]] = await connection.query(`

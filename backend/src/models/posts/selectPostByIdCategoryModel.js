@@ -12,7 +12,7 @@ export const selectPostByIdCategoryModel = async (categoryId, keyword = '', user
     INNER JOIN users u on u.id = p.id_user  
     INNER JOIN categories c on c.id = p.id_category
     WHERE c.id = ? AND (p.title LIKE ? OR p.post LIKE ? OR u.username LIKE  ?)
-    ORDER BY modifiedAt DESC 
+    ORDER BY createdAt DESC 
     `, [categoryId, `%${keyword}%`, `%${keyword}%`, `%${keyword}%`])
 
     for (const post of posts) {
