@@ -4,7 +4,7 @@ import { notFoundError } from '../../services/errorService.js'
 
 // Funcion que crea la conexion con la base de datos.
 
-export const selectPostByIdModel = async (userId, postId) => {
+export const selectPostByIdModel = async (postId) => {
   let connection
 
   try {
@@ -15,9 +15,9 @@ export const selectPostByIdModel = async (userId, postId) => {
       FROM posts as p
       INNER JOIN users u on u.id = p.id_user  
       INNER JOIN categories c on c.id = p.id_category
-      WHERE p.id = ? AND p.id_user = ?
+      WHERE p.id = ?
       ORDER BY createdAt DESC 
-    `, [postId, userId])
+    `, [postId])
 
     for (const post of posts) {
       const [[{ countLikes }]] = await connection.query(`
@@ -35,18 +35,18 @@ export const selectPostByIdModel = async (userId, postId) => {
       const [[{ ownerLikes }]] = await connection.query(`
       SELECT COUNT(id) AS ownerLikes
       FROM likes
-      WHERE id_post = ${post.id} AND id_user = ${userId}
+      WHERE id_post = ${post.id}
     `)
 
       const [[{ ownerDislikes }]] = await connection.query(`
       SELECT COUNT(id) AS ownerDislikes
       FROM dislikes
-      WHERE id_post = ${post.id} AND id_user = ${userId}
+      WHERE id_post = ${post.id}
     `)
       const [[{ ownerReports }]] = await connection.query(`
         SELECT COUNT(id) AS ownerReports
         FROM reports
-        WHERE id_post = ${post.id} AND id_user = ${userId}
+        WHERE id_post = ${post.id}
       `)
 
       post.countLikes = countLikes

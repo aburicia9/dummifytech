@@ -10,11 +10,10 @@ import { useAuth } from '../../hooks/useAuth'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 
-export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons, showCreatePost = false, showDetailPost }) => {
+export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons, showCreatePost = false, showDetailPost, disableNavigate = false }) => {
   const { isAuthenticated } = useAuth()
   let lengthPosts = true
   lengthPosts = Object(posts).length
-
 
   return (
     <article className='article-post'>
@@ -32,8 +31,7 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
         ? (
             posts.map((post) => {
               return (
-                <section className='section-post' key={post.id}>                     
-                  <Link to={isAuthenticated ? `posts/${post.id}` : '/login'}>
+                <section className='section-post' key={post.id}>
                   <PostHeaderComponent
                     avatar={post.avatar}
                     username={post.username}
@@ -41,13 +39,22 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
                     baseApiURL={baseApiURL}
                     postId={post.id}
                   />
-                  <PostBodyComponent
-                    title={post.title}
-                    image={post.image}
-                    post={post.post}
-                    baseApiURL={baseApiURL}
-                    showDetailPost={showDetailPost}
-                  />
+                  <Link
+                    to={isAuthenticated ? `/posts/${post.id}` : '/login'} onClick={(event) => {
+                      if (disableNavigate) {
+                        event.preventDefault()
+                      }
+                      window.scrollTo(0, 0)
+                    }}
+                    className={disableNavigate ? 'disabled' : ''}
+                  >
+                    <PostBodyComponent
+                      title={post.title}
+                      image={post.image}
+                      post={post.post}
+                      baseApiURL={baseApiURL}
+                      showDetailPost={showDetailPost}
+                    />
                   </Link>
                   <PostFooterComponent
                     fetchPosts={fetchPosts}

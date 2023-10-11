@@ -40,7 +40,7 @@ export const ReqCategoriesPage = () => {
       toastifyForm(body)
       navigate('/')
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
     } finally {
       setLoading(false)
     }
