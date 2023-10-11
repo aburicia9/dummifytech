@@ -45,7 +45,7 @@ export const selectAllPostsModel = async (keyword = '', userId) => {
         SELECT COUNT(id) AS ownerReports
         FROM reports
         WHERE id_post = ${post.id} AND id_user = ${userId}
-      `)
+    `)
 
       post.countLikes = countLikes
       post.countComments = countComments

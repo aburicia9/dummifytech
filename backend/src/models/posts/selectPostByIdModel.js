@@ -4,7 +4,7 @@ import { notFoundError } from '../../services/errorService.js'
 
 // Funcion que crea la conexion con la base de datos.
 
-export const selectPostByIdModel = async (postId) => {
+export const selectPostByIdModel = async (postId, userId) => {
   let connection
 
   try {
@@ -33,21 +33,21 @@ export const selectPostByIdModel = async (postId) => {
     `)
 
       const [[{ ownerLikes }]] = await connection.query(`
-      SELECT COUNT(id) AS ownerLikes
-      FROM likes
-      WHERE id_post = ${post.id}
-    `)
+    SELECT COUNT(id) AS ownerLikes
+    FROM likes
+    WHERE id_post = ${post.id} AND id_user = ${userId}
+  `)
 
       const [[{ ownerDislikes }]] = await connection.query(`
-      SELECT COUNT(id) AS ownerDislikes
-      FROM dislikes
-      WHERE id_post = ${post.id}
-    `)
+    SELECT COUNT(id) AS ownerDislikes
+    FROM dislikes
+    WHERE id_post = ${post.id} AND id_user = ${userId}
+  `)
       const [[{ ownerReports }]] = await connection.query(`
-        SELECT COUNT(id) AS ownerReports
-        FROM reports
-        WHERE id_post = ${post.id}
-      `)
+      SELECT COUNT(id) AS ownerReports
+      FROM reports
+      WHERE id_post = ${post.id} AND id_user = ${userId}
+  `)
 
       post.countLikes = countLikes
       post.countComments = countComments
