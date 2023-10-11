@@ -35,6 +35,7 @@ export const PostFooterComponent = ({
   const onClickLikePost = async () => {
     let method = ''
 
+
     if (ownerLikes === 1) {
       method = 'delete'
       const resultDelete = await likePostService(postId, method)
