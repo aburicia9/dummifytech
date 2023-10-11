@@ -3,6 +3,7 @@
   align-items: center;
   text-align: center;
   flex-direction: column;
+  gap: 30px;
   width: 100%;
   margin: 1em;
   min-height: 12em;
@@ -21,6 +22,8 @@
   display: flex;
   text-align: center;
   justify-content: center;
+  flex-direction: column;
+  gap: 20px;
   width: 500px;
   max-height: 700px;
     
@@ -41,5 +44,5 @@
 .button-leer-body-post:hover{
   background:transparent;
   color: black;
-
 }
+

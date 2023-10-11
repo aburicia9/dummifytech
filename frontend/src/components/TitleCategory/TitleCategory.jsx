@@ -37,6 +37,9 @@ export const TitleCategory = () => {
         if (body.data.categories[0]) {
           setTitle(body.data.categories[0].name)
         }
+        if (location.pathname === `/posts/${params.postId}`) {
+          setTitle('Publicacion')
+        }
       } catch (error) {
         console.log(error.message)
       } finally {

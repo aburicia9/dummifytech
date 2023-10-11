@@ -10,10 +10,11 @@ import { useAuth } from '../../hooks/useAuth'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 
-export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons, showCreatePost = false }) => {
+export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDeleteButtons, showCreatePost = false, showDetailPost }) => {
   const { isAuthenticated } = useAuth()
   let lengthPosts = true
   lengthPosts = Object(posts).length
+
 
   return (
     <article className='article-post'>
@@ -44,6 +45,8 @@ export const PostListComponent = ({ posts, fetchPosts, categoryId, showEditDelet
                     image={post.image}
                     post={post.post}
                     baseApiURL={baseApiURL}
+                    showDetailPost={showDetailPost}
+
                   />
                   <PostFooterComponent
                     fetchPosts={fetchPosts}
