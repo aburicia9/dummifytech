@@ -4,9 +4,11 @@ import { invalidTokenError, notAuthenticatedError } from '../services/errorServi
 export const authUserController = async (req, res, next) => {
   try {
     const { authorization } = req.headers
+
     if (!authorization) {
       notAuthenticatedError()
     }
+
     try {
       const userInfo = jwt.verify(authorization, process.env.SECRET)
 

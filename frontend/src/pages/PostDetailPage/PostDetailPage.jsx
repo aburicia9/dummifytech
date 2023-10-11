@@ -30,6 +30,7 @@ export const PostDetailPage = () => {
       const result = await createCommentPostService(postId, comment)
 
       if (result.status === 'ok') {
+        await fetchPostById()
         setComment('')
         toastifyForm(result)
       } else {
@@ -58,7 +59,7 @@ export const PostDetailPage = () => {
 
   useEffect(() => {
     fetchPostById()
-  }, [comment])
+  }, [])
 
   return (
     <Layout>
