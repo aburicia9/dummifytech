@@ -82,84 +82,92 @@ export const PostDetailPage = () => {
           </form>
           <ul className='ul-comments'>
             {
-          comments.map((comment) => {
-            const formattedDate = useMemo(() => formatDate(comment.createdAt), [comments])
-            return (
-              <li key={comment.id} className='li-comment'>
-                <aside className='aside-header-comment'>
-                  <img src={`${baseApiURL}/avatar/${comment.avatar}`} alt='avatar del usuario' className='img-comment-post' />
-                  <div className='div-line-aside' />
-                </aside>
-                <article className='article-comment'>
-                  <header className='header-comment'>
-                    <span>{comment.username}</span>
-                    <span>{formattedDate}</span>
-                  </header>
-                  <section className='section-body-comment'>
-                    <p className='p-body-comment'>
-                      {comment.comment}
-                    </p>
-                    <ul className='ul-buttons-comments'>
-                      {comment.idUser === authUser.id
-                        ? (
-                          <>
-                            <li>
-                              <button className='button-comment' title='Editar'>
-                                <img src={editSvg} alt='boton para editar un comentario' />
-                              </button>
-                            </li>
-                            <li>
-                              <button
-                                className='button-comment' title='Borrar' onClick={async () => {
-                                  try {
-                                    setLoading(true)
-                                    const deteleComment = async () => {
-                                      try {
-                                        setLoading(true)
-                                        const result = await deleteCommentPostService(postId, comment.id)
-                                        if (result.status === 'ok') {
-                                          toast.dismiss()
-                                          toastifyForm(result)
-                                          await fetchPostById()
-                                        } else {
-                                          toast.dismiss()
-                                          toastifyForm(result)
-                                        }
-                                      } catch (error) {
-                                        console.error(error)
-                                      } finally {
-                                        setLoading(false)
-                                      }
-                                    }
-
-                                    toastifyConfirm('¿Estas seguro que quieres eliminar este comentario?', deteleComment)
-                                  } catch (error) {
-                                    console.error(error)
-                                  } finally {
-                                    setLoading(false)
-                                  }
-                                }}
-                              >
-                                <img src={deleteSvg} alt='boton para eliminar un comentario' />
-                              </button>
-                            </li>
-                          </>
-                          )
-                        : (
-                          <>
-                          </>
-                          )}
-
-                    </ul>
-                  </section>
-                </article>
-              </li>
-            )
-          })
+          comments.map((comment) => <Comment
+            key={comment.id}
+            comment={comment}
+            authUser={authUser}
+            setLoading={setLoading}
+            fetchPostById={fetchPostById}
+            postId={postId}
+                                    />)
           }
           </ul>
         </div>
       </div>
     </Layout>
+  )
+}
+
+function Comment ({ comment, authUser, setLoading, fetchPostById, postId }) {
+  const formattedDate = useMemo(() => formatDate(comment.createdAt), [comment])
+  return (
+    <li key={comment.id} className='li-comment'>
+      <aside className='aside-header-comment'>
+        <img src={`${baseApiURL}/avatar/${comment.avatar}`} alt='avatar del usuario' className='img-comment-post' />
+        <div className='div-line-aside' />
+      </aside>
+      <article className='article-comment'>
+        <header className='header-comment'>
+          <span>{comment.username}</span>
+          <span>{formattedDate}</span>
+        </header>
+        <section className='section-body-comment'>
+          <p className='p-body-comment'>
+            {comment.comment}
+          </p>
+          <ul className='ul-buttons-comments'>
+            {comment.idUser === authUser.id
+              ? (
+                <>
+                  <li>
+                    <button className='button-comment' title='Editar'>
+                      <img src={editSvg} alt='boton para editar un comentario' />
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      className='button-comment' title='Borrar' onClick={async () => {
+                        try {
+                          setLoading(true)
+                          const deteleComment = async () => {
+                            try {
+                              setLoading(true)
+                              const result = await deleteCommentPostService(postId, comment.id)
+                              if (result.status === 'ok') {
+                                toast.dismiss()
+                                toastifyForm(result)
+                                await fetchPostById()
+                              } else {
+                                toast.dismiss()
+                                toastifyForm(result)
+                              }
+                            } catch (error) {
+                              console.error(error)
+                            } finally {
+                              setLoading(false)
+                            }
+                          }
+                          toastifyConfirm('¿Estas seguro que quieres eliminar este comentario?', deteleComment)
+                        } catch (error) {
+                          console.error(error)
+                        } finally {
+                          setLoading(false)
+                        }
+                      }}
+                    >
+                      <img src={deleteSvg} alt='boton para eliminar un comentario' />
+                    </button>
+                  </li>
+                </>
+                )
+              : (
+                <>
+                </>
+                )}
+
+          </ul>
+        </section>
+      </article>
+    </li>
   )
 }

@@ -28,7 +28,10 @@ export const PostFooterComponent = ({
   countLikes = '',
   countComments = '',
   showEditDeleteButtons = false,
-  showFooter = true
+  showFooter = true,
+  countReports = '',
+  onClickDeletePostReports = ''
+
 }) => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
@@ -94,11 +97,11 @@ export const PostFooterComponent = ({
     navigate(`/posts/${postId}`)
   }
 
-  const onClickDeletePost = () => {
+  const onClickDeletePost = (id) => {
     try {
       setLoading(true)
       const deletePost = async () => {
-        const result = await deletePostService(postId)
+        const result = await deletePostService(id)
         if (result === 'ok') {
           toast.dismiss()
           await fetchPosts()
@@ -115,6 +118,22 @@ export const PostFooterComponent = ({
     } finally {
       setLoading(false)
     }
+  }
+
+  function DeleteButton ({ id }) {
+    return (
+      <button
+        className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
+        title='Borrar'
+        disabled={loading}
+      >
+        <img
+          src={deleteButton}
+          alt='delete post button '
+          onClick={onClickDeletePost(id)}
+        />
+      </button>
+    )
   }
 
   return (
@@ -172,17 +191,7 @@ export const PostFooterComponent = ({
                       onClick={onClickEditPost}
                     />
                   </button>
-                  <button
-                    className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
-                    title='Borrar'
-                    disabled={loading}
-                  >
-                    <img
-                      src={deleteButton}
-                      alt='delete post button '
-                      onClick={onClickDeletePost}
-                    />
-                  </button>
+                  <DeleteButton />
                 </>
                 )
               : (
@@ -192,6 +201,18 @@ export const PostFooterComponent = ({
           )
         : (
           <>
+            <div className='div-like-footer-post'>
+              <button className='button-like-footer-post'>
+                <img
+                  src={reportOn}
+                  alt='like image button'
+                  title='Report'
+                />
+              </button>
+              <span className='span-countlikes-footer-post'>{countReports}</span>
+            </div>
+            <DeleteButton onClick={onClickDeletePost} />
+
           </>
           )}
 
