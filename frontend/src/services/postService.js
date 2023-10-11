@@ -74,6 +74,19 @@ export const reportPostService = async (postId, method) => {
   const body = await res.json()
   return body
 }
+// Eliminar todos los reportes de un post
+export const deleteAllReportsByPostIdService = async (postId) => {
+  const token = getToken()
+
+  const res = await fetch(`${baseApiURL}/posts/${postId}/allreport`, {
+    method: 'delete',
+    headers: {
+      Authorization: token
+    }
+  })
+  const body = await res.json()
+  return body
+}
 
 // Eliminar un post
 export const deletePostService = async (postId) => {

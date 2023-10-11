@@ -88,3 +88,11 @@
   width: 3em;
   height: 3em;
 }
+
+.div-delete-report{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}

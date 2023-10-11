@@ -7,6 +7,7 @@ import comment from '../../../assets/post/button_comments.svg'
 import report from '../../../assets/post/button_report.svg'
 import reportOn from '../../../assets/post/button_report_on.svg'
 import {
+  deleteAllReportsByPostIdService,
   deletePostService,
   dislikePostService,
   likePostService,
@@ -18,6 +19,7 @@ import editButton from '../../../assets/post/button_edit.svg'
 import { useNavigate } from 'react-router'
 import { toastifyConfirm, toastifyForm } from '../../../utils/Toastify/Toastify'
 import { useState } from 'react'
+import svgDeleteReport from '../../../assets/reports/button_delete_report.svg'
 
 export const PostFooterComponent = ({
   fetchPosts,
@@ -30,7 +32,8 @@ export const PostFooterComponent = ({
   showEditDeleteButtons = false,
   showFooter = true,
   countReports = '',
-  onClickDeletePostReports = ''
+  reportsPostId = '',
+  reportId = ''
 
 }) => {
   const navigate = useNavigate()
@@ -97,11 +100,15 @@ export const PostFooterComponent = ({
     navigate(`/posts/${postId}`)
   }
 
-  const onClickDeletePost = (id) => {
+  const onClickDeletePost = () => {
     try {
       setLoading(true)
       const deletePost = async () => {
-        const result = await deletePostService(id)
+        let deletePostId = reportsPostId
+        if (!reportsPostId) {
+          deletePostId = postId
+        }
+        const result = await deletePostService(deletePostId)
         if (result === 'ok') {
           toast.dismiss()
           await fetchPosts()
@@ -120,17 +127,40 @@ export const PostFooterComponent = ({
     }
   }
 
-  function DeleteButton ({ id }) {
+  const onClickDeleteReport = () => {
+    try {
+      setLoading(true)
+      const deletePost = async () => {
+        const result = await deleteAllReportsByPostIdService(reportsPostId)
+        if (result === 'ok') {
+          toast.dismiss()
+          await fetchPosts()
+          toastifyForm(result)
+        } else {
+          toast.dismiss()
+          toastifyForm(result)
+          await fetchPosts()
+        }
+      }
+      toastifyConfirm('¿Estas seguro que quieres eliminar todos los reportes?', deletePost)
+    } catch (error) {
+      console.error(error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  function DeleteButton ({ title, imgDeleteButton, onClick }) {
     return (
       <button
         className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
-        title='Borrar'
+        title={title}
         disabled={loading}
       >
         <img
-          src={deleteButton}
+          src={imgDeleteButton}
           alt='delete post button '
-          onClick={onClickDeletePost(id)}
+          onClick={onClick}
         />
       </button>
     )
@@ -191,7 +221,7 @@ export const PostFooterComponent = ({
                       onClick={onClickEditPost}
                     />
                   </button>
-                  <DeleteButton />
+                  <DeleteButton imgDeleteButton={deleteButton} />
                 </>
                 )
               : (
@@ -201,6 +231,10 @@ export const PostFooterComponent = ({
           )
         : (
           <>
+            <div className='div-delete-report'>
+              <DeleteButton imgDeleteButton={svgDeleteReport} onClick={onClickDeleteReport} title='Eliminar reporte' />
+              <span>Eliminar reporte</span>
+            </div>
             <div className='div-like-footer-post'>
               <button className='button-like-footer-post'>
                 <img
@@ -211,7 +245,10 @@ export const PostFooterComponent = ({
               </button>
               <span className='span-countlikes-footer-post'>{countReports}</span>
             </div>
-            <DeleteButton onClick={onClickDeletePost} />
+            <div className='div-delete-report'>
+              <DeleteButton imgDeleteButton={deleteButton} onClick={onClickDeletePost} title='Eliminar publicacion' />
+              <span>Eliminar publicacion</span>
+            </div>
 
           </>
           )}
