@@ -28,12 +28,17 @@
     
     // Simple elevator usage.
     let elementButton = document.querySelector('.elevator');
+    let songs = ['./src/assets/audio/elevator_avenger.mp3', './src/assets/audio/elevator_dragonBall1.mp3', './src/assets/audio/elevator_dragonBall2_up.mp3', './src/assets/audio/elevator_harryPotter.mp3', './src/assets/audio/elevator_muchachos.mp3', './src/assets/audio/elevator_naruto.mp3', './src/assets/audio/elevator_pokemon.mp3', './src/assets/audio/elevator_starWars.mp3.mp3'];
+    let randomNumber = Math.floor(Math.random() * songs.length);
+    let finalSong = songs[randomNumber];
     let elevator = new Elevator({
 
+      
       element: elementButton,
-      mainAudio: "/src/assets/audio/elevator_avenger.mp3",
+      // mainAudio: "/src/assets/audio/elevator_avenger.mp3",
+      mainAudio: finalSong,
       endAudio: '/src/assets/audio/ding.mp3',
-    });
+    })
     
     </script>
   <script>!function(d,s,id){let js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
