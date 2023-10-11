@@ -32,7 +32,7 @@ export const PostFooterComponent = ({
   showEditDeleteButtons = false
 }) => {
   const navigate = useNavigate()
-  const { isAuthenticated } = useAuth()
+
   const [loading, setLoading] = useState(false)
   let likeOrLikeOn = like
   let disLikeOrDislikeOn = dislike
@@ -105,7 +105,7 @@ export const PostFooterComponent = ({
   }
 
   const onClickPostDetail = () => {
-    navigate(isAuthenticated ? `/posts/${postId}` : '/login')
+    navigate(`/posts/${postId}`)
   }
 
   const onClickDeletePost = () => {

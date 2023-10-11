@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { Layout } from '../../components/Layout/Layout'
 import { PostListComponent } from '../../components/PostRandom/PostListComponent'
 import { createCommentPostService, deleteCommentPostService, getPostByIdService, listCommentsPostService } from '../../services/postService'
@@ -18,7 +18,6 @@ export const PostDetailPage = () => {
   const [comments, setComments] = useState([])
   const postId = params.postId
   const [comment, setComment] = useState('')
-  const navigate = useNavigate()
 
   const handleOnChange = (event) => {
     setComment(event.target.value)
@@ -27,6 +26,7 @@ export const PostDetailPage = () => {
     event.preventDefault()
     try {
       setLoading(true)
+
       const result = await createCommentPostService(postId, comment)
 
       if (result.status === 'ok') {
@@ -58,12 +58,12 @@ export const PostDetailPage = () => {
 
   useEffect(() => {
     fetchPostById()
-  }, [comments])
+  }, [comment])
 
   return (
     <Layout>
 
-      <PostListComponent showCreatePost posts={posts} className='PostListComponent-details' />
+      <PostListComponent showCreatePost posts={posts} className='PostListComponent-details' showDetailPost />
 
       <div className='div-comments'>
         <div className='div-div-comments'>
@@ -93,7 +93,6 @@ export const PostDetailPage = () => {
                   <section className='section-body-comment'>
                     <p className='p-body-comment'>
                       {comment.comment}
-
                     </p>
                     <ul className='ul-buttons-comments'>
                       <li>
