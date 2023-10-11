@@ -64,17 +64,23 @@
   gap: 15px;
   padding-bottom: 40px;
 }
-.p-body-comment{
-  display: flex;
-  justify-content: center;
-  align-items: left;
-  flex-direction: column;
-}
+
 .section-body-comment{
   display: flex;
   justify-content: center;
   align-items: left;
   flex-direction: column;
+  width: 100%;
+}
+
+.p-body-comment{
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  width: 100%;
+  max-width: 700px;
+  word-wrap: break-word
 }
 
 .header-comment{
