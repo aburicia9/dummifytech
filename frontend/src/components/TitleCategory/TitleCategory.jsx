@@ -40,6 +40,9 @@ export const TitleCategory = () => {
         if (location.pathname === `/posts/${params.postId}`) {
           setTitle('Publicacion')
         }
+        if (location.pathname === '/posts/reports') {
+          setTitle('Publicaciones reportados')
+        }
       } catch (error) {
         console.error(error.message)
       } finally {

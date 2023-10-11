@@ -36,7 +36,7 @@ export const MenuCircularAuthComponent = () => {
 
   const onClickReports = (event) => {
     event.preventDefault()
-    navigate('/reports')
+    navigate('/posts/reports')
   }
 
   const onClickReqCategories = (event) => {

@@ -106,7 +106,7 @@ export const updatePostService = async (postId, formData) => {
 // Crear o eliminar report en un post
 export const listReportPostService = async () => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/posts/report`, {
+  const res = await fetch(`${baseApiURL}/posts/reports`, {
     method: 'get',
     headers: {
       Authorization: token

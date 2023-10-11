@@ -13,7 +13,7 @@ const router = Router()
 // ------------------------------------------------------------------------------------------------
 // #region reportes
 // Visualizar los reports
-router.get('/reports', authUserController, roleUserController, getAllReportController)
+router.get('/posts/reports', authUserController, roleUserController, getAllReportController)
 
 // Dar report a una publicación
 router.post('/posts/:postId/report', authUserController, postAlreadyExistsController, newReportController)
