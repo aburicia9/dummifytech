@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true)
         setAuthUser(body.data.user)
       } catch (error) {
-        console.log(error.message)
+        console.error(error.message)
       } finally {
         setLoading(false)
       }
@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
 
       navigate('/login')
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
     } finally {
       setLoading(false)
     }
@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
       setIsAuthenticated(true)
       return body
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
     } finally {
       setLoading(false)
     }

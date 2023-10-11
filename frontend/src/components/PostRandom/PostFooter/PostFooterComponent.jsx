@@ -18,8 +18,6 @@ import editButton from '../../../assets/post/button_edit.svg'
 import { useNavigate } from 'react-router'
 import { toastifyConfirm, toastifyForm } from '../../../utils/Toastify/Toastify'
 import { useState } from 'react'
-import { useAuth } from '../../../hooks/useAuth'
-// import { useAuth } from '../../../hooks/useAuth'
 
 export const PostFooterComponent = ({
   fetchPosts,
@@ -32,21 +30,7 @@ export const PostFooterComponent = ({
   showEditDeleteButtons = false
 }) => {
   const navigate = useNavigate()
-
   const [loading, setLoading] = useState(false)
-  let likeOrLikeOn = like
-  let disLikeOrDislikeOn = dislike
-  let reportOrReportOn = report
-
-  if (ownerLikes) {
-    likeOrLikeOn = likeOn
-  }
-  if (ownerDislikes) {
-    disLikeOrDislikeOn = dislikeOn
-  }
-  if (ownerReports) {
-    reportOrReportOn = reportOn
-  }
 
   const onClickLikePost = async () => {
     let method = ''
@@ -68,6 +52,7 @@ export const PostFooterComponent = ({
 
   const onClickDislikePost = async () => {
     let method = ''
+
     if (ownerDislikes === 1) {
       method = 'delete'
       const resultDelete = await dislikePostService(postId, method)
@@ -125,7 +110,7 @@ export const PostFooterComponent = ({
       }
       toastifyConfirm('¿Estas seguro que quieres eliminar este post?', deletePost)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     } finally {
       setLoading(false)
     }
@@ -136,7 +121,7 @@ export const PostFooterComponent = ({
       <div className='div-like-footer-post'>
         <button className='button-like-footer-post'>
           <img
-            src={likeOrLikeOn}
+            src={ownerLikes ? likeOn : like}
             alt='like image button'
             onClick={onClickLikePost}
             title='Me gusta'
@@ -147,7 +132,7 @@ export const PostFooterComponent = ({
       <button className='button-dislike-footer-post' title='No me gusta'>
         {' '}
         <img
-          src={disLikeOrDislikeOn}
+          src={ownerDislikes ? dislikeOn : dislike}
           alt='dislike image button'
           onClick={onClickDislikePost}
         />
@@ -164,7 +149,7 @@ export const PostFooterComponent = ({
       </div>
       <button className='button-report-footer-post' title='Reportar'>
         <img
-          src={reportOrReportOn}
+          src={ownerReports ? reportOn : report}
           alt='report image button'
           onClick={onClickReportPost}
         />

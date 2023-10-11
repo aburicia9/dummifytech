@@ -48,5 +48,4 @@ export const toastifyConfirm = (message, onConfirm) => {
       <ButtonComponent className='button-confirm' handleOnClick={onConfirm} buttonName='Confirmar' />
     </div>
     , options)
-    
 }

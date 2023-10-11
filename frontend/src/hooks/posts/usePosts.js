@@ -21,6 +21,7 @@ export const usePosts = () => {
 
       if (location.pathname === '/users/myposts') {
         body = await listAllOwnerPostsService()
+        console.error(body)
         return setPosts(body.data.posts)
       }
 
@@ -36,7 +37,7 @@ export const usePosts = () => {
 
       setPosts(body.data.posts)
     } catch (error) {
-      console.log(error.message)
+      console.error(error.message)
     } finally {
       setLoading(false)
     }

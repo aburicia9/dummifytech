@@ -11,7 +11,7 @@ export const useRandomPost = () => {
 
         setRandomPost(data)
       } catch (error) {
-        console.log(error.message)
+        console.error(error.message)
       }
     }
     fetchRandomPost()
