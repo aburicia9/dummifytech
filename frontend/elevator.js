@@ -128,7 +128,7 @@ const Elevator = function (options) {
 
     // Start music!
     if (mainAudio) {
-      mainAudio.volume = 0.05
+      mainAudio.volume = 0.1
       mainAudio.play()
     }
 

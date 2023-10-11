@@ -4,7 +4,7 @@ export const getPostByIdController = async (req, res, next) => {
   try {
     const { postId } = req.params
 
-    const posts = await selectPostByIdModel(req.user.id, postId)
+    const posts = await selectPostByIdModel(postId)
     res.send({
       status: 'ok',
       data: {

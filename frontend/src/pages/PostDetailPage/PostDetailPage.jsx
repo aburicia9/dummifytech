@@ -8,7 +8,9 @@ import { formatDate } from '../../utils/helpers'
 import editSvg from '../../assets/comments/button_edit.svg'
 import deleteSvg from '../../assets/comments/button_delete.svg'
 import commentSvg from '../../assets/comments/button_comment.svg'
-import { toastifyForm } from '../../utils/Toastify/Toastify'
+import { toastifyConfirm, toastifyForm } from '../../utils/Toastify/Toastify'
+import { useAuth } from '../../hooks/useAuth'
+import { toast } from 'react-toastify'
 const baseApiURL = import.meta.env.VITE_API_URL
 
 export const PostDetailPage = () => {
@@ -18,6 +20,7 @@ export const PostDetailPage = () => {
   const [comments, setComments] = useState([])
   const postId = params.postId
   const [comment, setComment] = useState('')
+  const { authUser } = useAuth()
 
   const handleOnChange = (event) => {
     setComment(event.target.value)
@@ -37,7 +40,7 @@ export const PostDetailPage = () => {
         toastifyForm(result)
       }
     } catch (error) {
-      console.log(error)
+      console.error(error)
     } finally {
       setLoading(false)
     }
@@ -64,7 +67,7 @@ export const PostDetailPage = () => {
   return (
     <Layout>
 
-      <PostListComponent showCreatePost posts={posts} className='PostListComponent-details' showDetailPost />
+      <PostListComponent fetchPosts={fetchPostById} showCreatePost posts={posts} className='PostListComponent-details' showDetailPost disableNavigate />
 
       <div className='div-comments'>
         <div className='div-div-comments'>
@@ -96,32 +99,55 @@ export const PostDetailPage = () => {
                       {comment.comment}
                     </p>
                     <ul className='ul-buttons-comments'>
-                      <li>
-                        <button className='button-comment' title='Editar'>
-                          <img src={editSvg} alt='boton para editar un comentario' />
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          className='button-comment' title='Borrar' onClick={async () => {
-                            try {
-                              setLoading(true)
-                              const result = await deleteCommentPostService(postId, comment.id)
-                              if (result.status === 'ok') {
-                                toastifyForm(result)
-                              } else {
-                                toastifyForm(result)
-                              }
-                            } catch (error) {
-                              console.log(error)
-                            } finally {
-                              setLoading(false)
-                            }
-                          }}
-                        >
-                          <img src={deleteSvg} alt='boton para eliminar un comentario' />
-                        </button>
-                      </li>
+                      {comment.idUser === authUser.id
+                        ? (
+                          <>
+                            <li>
+                              <button className='button-comment' title='Editar'>
+                                <img src={editSvg} alt='boton para editar un comentario' />
+                              </button>
+                            </li>
+                            <li>
+                              <button
+                                className='button-comment' title='Borrar' onClick={async () => {
+                                  try {
+                                    setLoading(true)
+                                    const deteleComment = async () => {
+                                      try {
+                                        setLoading(true)
+                                        const result = await deleteCommentPostService(postId, comment.id)
+                                        if (result.status === 'ok') {
+                                          toast.dismiss()
+                                          toastifyForm(result)
+                                          await fetchPostById()
+                                        } else {
+                                          toast.dismiss()
+                                          toastifyForm(result)
+                                        }
+                                      } catch (error) {
+                                        console.error(error)
+                                      } finally {
+                                        setLoading(false)
+                                      }
+                                    }
+
+                                    toastifyConfirm('¿Estas seguro que quieres eliminar este comentario?', deteleComment)
+                                  } catch (error) {
+                                    console.error(error)
+                                  } finally {
+                                    setLoading(false)
+                                  }
+                                }}
+                              >
+                                <img src={deleteSvg} alt='boton para eliminar un comentario' />
+                              </button>
+                            </li>
+                          </>
+                          )
+                        : (
+                          <>
+                          </>
+                          )}
 
                     </ul>
                   </section>
