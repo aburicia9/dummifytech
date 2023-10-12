@@ -18,7 +18,7 @@ export const UsersRolePage = () => {
       if (isAuthenticated) {
         body = await listAllUsersService()
       }
-      setUsers(body.data.users)
+      setUsers(body.data.user)
 
       return setUsers()
     } catch (error) {
@@ -31,6 +31,7 @@ export const UsersRolePage = () => {
   useEffect(() => {
     fetchUsers()
   }, [])
+
   return (
     <Layout>
       <div className='div-users-change'>
@@ -48,14 +49,16 @@ export const UsersRolePage = () => {
   )
 }
 
-function UserInfo ({ user, authUsers, setLoading, fetchUsers }) {
+function UserInfo ({ user, authUser, setLoading, fetchUsers }) {
   return (
     <li key={user.id} className='li-users'>
       <aside className='aside-header-user'>
         <img className='img-users-list' src={`${baseApiURL}/avatar/${user.avatar}`} alt='avatar del usuario' />
-
+        <div className='div-line-aside' />
+        <header className='header-comment'>
+          <span>{user.username}</span>
+        </header>
       </aside>
-
     </li>
   )
 }
