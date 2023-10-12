@@ -131,7 +131,7 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 -   GET `/categories` - Visualizar categorias.
 -   GET `/categories/:categoryId` - Visualizar categorias por ID categoría
 -   POST `'/categories/request'` - Solicitar nueva categoría
-  #### Reports
+  #### Reportes
 -   POST `/posts/:postId/report` Reportar un post.
 -   DELETE `/posts/:postId/report` Borrar nuestro propio report.
   #### Comentarios
