@@ -111,25 +111,27 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 -   GET `/` - Visualizar post sin usuario registrado, solo un post aleatorio.
 -   POST `/register` - Registro de usuario.
 -   GET `/confirm/:token` - Confirmación del usuario.
-
-##  Usuario registrado rol normal.
-
 -   POST `/login` - Login de usuario (devuelve token).
+-   PUT `/recovery-password` - Recuperar contraseña
+##  Usuario registrado rol normal.
   #### Usuarios
 -   GET `/users/profile` - Perfil de usuario.
 -   PUT `/users/profile/avatar` - Editar el avatar.
 -   PUT `/users/profile/password` - Editar la contraseña.
 -   PUT `/users/profile/fullname` - Editar el nombre completo.
 -   DELETE `users/profile` - Borrar tu usuario.
+-   GET `/users/myposts` - Visualizar mis posts.
   #### Posts
 -   GET `/posts` - Visualizar posts con usuario registrado.
--   GET `/posts/myposts` - Visualizar mis posts.
+-   GET `/posts/categories/:categoryId` Visualizar los post con esa categoría
 -   POST `/posts/insert` - Insertar un post.
 -   DELETE `/posts/:postId` - Borrar un propio post o borrar si  eres administrador o moderador.
 -   PUT `/posts/:postId` - Editar un propio post.
   #### Categorias
 -   GET `/categories` - Visualizar categorias.
-  #### Reports
+-   GET `/categories/:categoryId` - Visualizar categorias por ID categoría
+-   POST `'/categories/request'` - Solicitar nueva categoría
+  #### Reportes
 -   POST `/posts/:postId/report` Reportar un post.
 -   DELETE `/posts/:postId/report` Borrar nuestro propio report.
   #### Comentarios
@@ -148,10 +150,16 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 ## Usuario registrado rol moderador.
 
      Las mismas que el rol normal, y añadimos:
+   #### Categorias
 -   PUT `/categories/:categoryId` -Editar la categoría.
 -   POST `/categories/insert` - Añadir nueva categoría.
 -   DELETE `/categories/:categoryId` - Borrar categoría.
--   GET `/reports` - Visualizar los reports a un post o comentario.
+-   GET `/categories/request` - Visualizar las peticiones de categorías
+-   POST `/categories/insert`- Crear nueva categoría
+
+#### Reportes
+-   GET `/posts/reports` - Visualizar los reports a un post.
+-   DELETE `/posts/:postId/allreport` - Eliminar los reportes de un post
 
 ## Usuario registrado rol admin
 
@@ -159,7 +167,7 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 -   GET `/users` - Lista de usuarios.
 -   DELETE `/users/:userId` - Borrar usuario.
--   PUT `/users/:userId` - Editar role de usuario.
+-   PUT `/users/:userId` - Editar rol de usuario.
 
 ## Equipo
 
@@ -298,24 +306,26 @@ Here we present our project of a forum for opinions where users can share their 
 
 ## Unregistered Users
 
-- GET `/` - View posts without a registered user, only a random post.
-- POST `/register` - User registration.
-- GET /confirm/:token - User confirmation.
+-   GET `/` - View posts without a registered user, only a random post.
+-   POST `/register` - User registration.
+-   GET `/confirm/:token` - User confirmation.
+-   POST `/login` - User login (returns a token).
+-   PUT `/recovery-password` - Recover password.
 
 ## Registered Users with Normal Role
 
-- POST `/login` - User login (returns a token).
 #### Users
 
-- GET `/users/profile` - User profile.
-- PUT `/users/profile/avatar` - Edit avatar.
-- PUT `/users/profile/password` - Edit password.
-- PUT `/users/profile/fullname` - Edit full name.
-- DELETE `users/profile` - Delete your account.
+-   GET `/users/profile` - User profile.
+-   PUT `/users/profile/avatar` - Edit avatar.
+-   PUT `/users/profile/password` - Edit password.
+-   PUT `/users/profile/fullname` - Edit full name.
+-   DELETE `/users/profile` - Delete your user.
+-   GET `/users/myposts` - View my posts.
 
 #### Posts
 - GET `/posts` - View posts with a registered user.
-- GET `/posts/myposts` - View my posts.
+- GET `/posts/categories/:categoryId ` - View posts with that category.
 - POST `/posts/insert` - Insert a post.
 - DELETE `/posts/:postId` - Delete own post or delete if you are an administrator or moderator.
 - PUT `/posts/:postId` - Edit own post.
@@ -323,6 +333,8 @@ Here we present our project of a forum for opinions where users can share their 
 #### Categories
 
 - GET `/categories` - View categories.
+- GET `/categories/:categoryId` - View categories by category ID.
+- POST `/categories/request` - Request a new category.
 #### Reports
 
 - POST `/posts/:postId/report` - Report a post.
@@ -341,17 +353,27 @@ Here we present our project of a forum for opinions where users can share their 
 - DELETE `/posts/:postId/likes` - Remove own like from a post.
 - POST `/posts/:postId/dislikes` - Dislike a post.
 - DELETE `/posts/:postId/dislikes` - Remove own dislike from a post.
-#### Registered Users with Moderator Role
-      The same endpoints as normal role, with the following additions:
-- PUT `/categories/:categoryId` - Edit a category.
-- POST `/categories/insert` - Add a new category.
-- DELETE `/categories/:categoryId` - Delete a category.
-- GET `/reports` - View reports on a post or comment.
-#### Registered Users with Admin Role
-      The same endpoints as normal and moderator roles, with the following additions:
-- GET `/users` - List of users.
-- DELETE `/users/:userId` - Delete a user.
-- PUT `/users/:userId` - Edit user role.
+
+## Registered user (Moderator Role).
+
+      Same as the normal role, with the following additions:
+   #### Categories
+-   PUT `/categories/:categoryId` -Edit the category.
+-   POST `/categories/insert` - Add a new category.
+-   DELETE `/categories/:categoryId` -  Delete a category.
+-   GET `/categories/request` - View category requests.
+-   POST `/categories/insert`- Create a new category.
+#### Reportes
+-   GET `/posts/reports` - View reports for a post.
+-   DELETE `/posts/:postId/allreport` - Delete all reports for a post.
+
+## Registered User (Admin Role)
+
+     Same as the normal and moderator roles, with the following additions:
+
+-   GET `/users` -  List of users.
+-   DELETE `/users/:userId` -Delete a user.
+-   PUT `/users/:userId` -  Edit user role.
 
 ## Team
 
