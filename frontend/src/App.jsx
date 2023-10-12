@@ -13,6 +13,7 @@ import { EditPostPage } from './pages/EditPostPage/EditPostPage'
 import { ReqCategoriesPage } from './pages/ReqCategoriesPage/ReqCategoriesPage'
 import { PostDetailPage } from './pages/PostDetailPage/PostDetailPage'
 import { ReportsPage } from './pages/ReportsPage/ReportsPage'
+import { UsersRolePage } from './pages/UsersRolePage/UsersRolePage'
 
 export const App = () => {
   return (
@@ -32,6 +33,7 @@ export const App = () => {
         <Route path='/users/myposts' element={<HomePage showEditDeleteButtons />} />
         <Route path='/categories/request' element={<ReqCategoriesPage />} />
         <Route path='/posts/reports' element={<ReportsPage />} />
+        <Route path='/users' element={<UsersRolePage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
