@@ -22,6 +22,7 @@ router.post('/posts/:postId/report', authUserController, postAlreadyExistsContro
 // Eliminar report a una publicación
 router.delete('/posts/:postId/report', authUserController, postAlreadyExistsController, deleteReportController)
 
+// Eliminar los reportes de un post
 router.delete('/posts/:postId/allreport', authUserController, roleUserController, deleteAllReportsByPostIdController)
 // #endregion reports
 
