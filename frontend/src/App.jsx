@@ -14,6 +14,7 @@ import { ReqCategoriesPage } from './pages/ReqCategoriesPage/ReqCategoriesPage'
 import { PostDetailPage } from './pages/PostDetailPage/PostDetailPage'
 import { ReportsPage } from './pages/ReportsPage/ReportsPage'
 import { UsersRolePage } from './pages/UsersRolePage/UsersRolePage'
+import { ListReqCategoriesPage } from './pages/ListReqCategoriesPage/ListReqCategoriesPage'
 
 export const App = () => {
   return (
@@ -32,6 +33,7 @@ export const App = () => {
         <Route path='/users/profile' element={<UserProfilePage />} />
         <Route path='/users/myposts' element={<HomePage showEditDeleteButtons />} />
         <Route path='/categories/request' element={<ReqCategoriesPage />} />
+        <Route path='/categories/list/request' element={<ListReqCategoriesPage />} />
         <Route path='/posts/reports' element={<ReportsPage />} />
         <Route path='/users' element={<UsersRolePage />} />
 

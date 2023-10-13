@@ -1,0 +1,32 @@
+.article-listReqCategories {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-radius: var(--borderRadiusSmall);
+  transition:all 0.4s;
+  background-size: 100%;
+  margin-top: 8rem;
+}
+
+.section-listReqCategories{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  border: 0.5px solid #294d61;
+  margin-top: 7em;
+  background:linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);
+  width: 50rem;
+  border-radius: var(--borderRadiusSmall);
+  box-shadow: var(--borderColorShadow);
+}
+
+.section-listReqCategory{
+  display: flex ;
+ justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px  solid black;
+  padding: 5px;
+}

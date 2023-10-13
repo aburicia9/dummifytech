@@ -38,7 +38,7 @@ export const editPostController = async (req, res, next) => {
       })
       return
     }
-    console.log('AQUI NO LLEGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+
     await updatePostModel(postId, post, title, userId, imgName)
     res.send({
       status: 'ok',

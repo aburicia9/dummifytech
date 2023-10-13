@@ -19,11 +19,11 @@ const router = Router()
 // Eliminar categoria
 router.delete('/categories/:categoryId', authUserController, roleUserController, deleteCategoryController)
 
-// Editar categoria
-router.put('/categories/:categoryId', authUserController, roleUserController, editCategoryController)
+// Visualizar todas las peticiones de categorias
+router.get('/categories/request', authUserController, roleUserController, getAllReqCategoriesController)
 
-// Listar categorias por ID
-router.get('/categories/:categoryId', authUserController, getAllCategoriesByIdController)
+// Visualizar todas las peticiones de categorias
+router.put('/categories/request/:requestCategoryId', authUserController, roleUserController, editReqCategoryController)
 
 // Peticion de categoria
 router.post('/categories/request', authUserController, newReqCategoryController)
@@ -32,11 +32,11 @@ router.post('/categories/request', authUserController, newReqCategoryController)
 // router.get('/categories', authUserController, getAllCategoriesController)
 router.get('/categories', getAllCategoriesController)
 
-// Visualizar todas las peticiones de categorias
-router.get('/categories/request', authUserController, roleUserController, getAllReqCategoriesController)
+// Editar categoria
+router.put('/categories/:categoryId', authUserController, roleUserController, editCategoryController)
 
-// Visualizar todas las peticiones de categorias
-router.put('/categories/request/:requestCategoryId', authUserController, roleUserController, editReqCategoryController)
+// Listar categorias por ID
+router.get('/categories/:categoryId', authUserController, getAllCategoriesByIdController)
 
 // Crear nueva categoria
 router.post('/categories/insert', authUserController, roleUserController, newCategoriesController)

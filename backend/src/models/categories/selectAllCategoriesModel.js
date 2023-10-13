@@ -5,16 +5,16 @@ export const selectAllCategoriesModel = async () => {
   try {
     connection = await getDb()
     const [categories] = await connection.query(`
-      SELECT id, id_categories_parent, name, description, image
+      SELECT id, id_category_parent, name, description, image
       FROM categories
-      WHERE id_categories_parent is null
+      WHERE id_category_parent is null
       `)
 
     for (const category of categories) {
       const [subcategories] = await connection.query(`
         SELECT id, name, description, image
         from categories
-        WHERE id_categories_parent = ${category.id}
+        WHERE id_category_parent = ${category.id}
         `)
       category.subcategories = subcategories
     }

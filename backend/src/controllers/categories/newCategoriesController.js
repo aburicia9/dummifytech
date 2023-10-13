@@ -6,6 +6,7 @@ export const newCategoriesController = async (req, res, next) => {
   try {
     const { subCategories, name, description } = req.body
     req.body.subCategories = Number(subCategories)
+    console.log(req.body)
 
     let imgName
     if (req.files?.imgName) {

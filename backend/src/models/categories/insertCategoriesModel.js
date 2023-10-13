@@ -1,6 +1,7 @@
 import { getDb } from '../../db/getDb.js'
 
 export const insertCategoriesModel = async (categoryId, name, description, imgName) => {
+
   let connection
   try {
     connection = await getDb()

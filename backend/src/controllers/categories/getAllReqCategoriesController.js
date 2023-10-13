@@ -2,13 +2,13 @@ import { selectAllReqCategoriesModel } from '../../models/categories/selectAllRe
 
 export const getAllReqCategoriesController = async (req, res, next) => {
   try {
-    const categories = await selectAllReqCategoriesModel()
+    const reqCategories = await selectAllReqCategoriesModel()
+    console.log(reqCategories)
     res.send({
       status: 'ok',
       data: {
-        categories
+        reqCategories
       }
-
     })
   } catch (error) {
     console.error(error)

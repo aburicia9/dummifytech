@@ -1,9 +1,9 @@
 import './ReqCategoriesPage.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
 import { useState } from 'react'
-import { toastifyError, toastifyForm } from '../../utils/Toastify/Toastify'
+import { toastifyForm } from '../../utils/Toastify/Toastify'
 import { useCategories } from '../../hooks/categories/useCategories'
 import { createReqCategoryService } from '../../services/categoryService'
 
@@ -11,7 +11,7 @@ export const ReqCategoriesPage = () => {
   const navigate = useNavigate()
   const [categoryName, setTitle] = useState('')
   const [categoryReason, setPost] = useState('')
-  const params = useParams()
+
   const [categoryParentId, setCategoryParentId] = useState()
   const [loading, setLoading] = useState(false)
   const { categories } = useCategories()

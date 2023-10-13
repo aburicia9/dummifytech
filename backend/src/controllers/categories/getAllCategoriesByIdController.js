@@ -2,6 +2,7 @@ import { selectAllCategoriesByIdModel } from '../../models/categories/selectAllC
 
 export const getAllCategoriesByIdController = async (req, res, next) => {
   const { categoryId } = req.params
+
   try {
     const { categories } = await selectAllCategoriesByIdModel(categoryId)
     res.send({

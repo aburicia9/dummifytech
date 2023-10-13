@@ -2,6 +2,8 @@ import jwt from 'jsonwebtoken'
 import { invalidTokenError, notAuthenticatedError } from '../services/errorService.js'
 
 export const authUserController = async (req, res, next) => {
+  
+
   try {
     const { authorization } = req.headers
 

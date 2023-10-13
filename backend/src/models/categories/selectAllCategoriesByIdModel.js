@@ -5,7 +5,7 @@ export const selectAllCategoriesByIdModel = async (categoryId) => {
   try {
     connection = await getDb()
     const [categories] = await connection.query(`
-      SELECT id, id_categories_parent, name, description, image
+      SELECT id, id_category_parent, name, description, image
       FROM categories
       WHERE id = ?
       `, [categoryId])

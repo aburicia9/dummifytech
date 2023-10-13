@@ -4,7 +4,7 @@ export const selectPostByIdCategoryModel = async (categoryId, keyword = '', user
   let connection
   try {
     connection = await getDb()
-    console.log({ connection })
+
 
     const [posts] = await connection.query(`
     SELECT p.id , p.title, p.post, p.image, u.username, u.avatar, c.name as nameCategory, p.created_at as createdAt, p.modified_at as modifiedAt
