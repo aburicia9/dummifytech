@@ -24,7 +24,7 @@ export const TitleCategory = () => {
           return setTitle('Usuarios')
         }
         if (location.pathname === '/categories/request') {
-          return setTitle('Peticiones de categorias')
+          return setTitle('Peticiones de categorías')
         }
         if (location.pathname === '/reports') {
           return setTitle('Publicaciones reportadas')
@@ -38,7 +38,7 @@ export const TitleCategory = () => {
           setTitle(body.data.categories[0].name)
         }
         if (location.pathname === `/posts/${params.postId}`) {
-          setTitle('Publicacion')
+          setTitle('Publicación')
         }
         if (location.pathname === '/posts/reports') {
           setTitle('Publicaciones reportados')
