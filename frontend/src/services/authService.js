@@ -28,6 +28,24 @@ export const deleteUserService = async (userId) => {
   const body = await res.json()
   return body
 }
+// Modificamos el rol del usuario
+export const updateUserRoleService = async ({ userId, role }) => {
+  const token = getToken()
+
+  const res = await fetch(`${baseApiURL}/users`, {
+    method: 'put',
+    headers: {
+      Authorization: token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      role,
+      userId
+    })
+  })
+  const body = await res.json()
+  return body
+}
 
 // Para registrar un usuario
 export const createUserService = async ({ username, email, password, fullName }) => {

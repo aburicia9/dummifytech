@@ -61,7 +61,7 @@ router.delete('/users/profile', authUserController, deleteMyUserController)
 router.get('/users', authUserController, adminController, getAllUserController)
 
 // Editar rol
-router.put('/users/:userId', authUserController, adminController, editUserRoleController)
+router.put('/users', authUserController, adminController, editUserRoleController)
 
 // Eliminar usuario (admin)
 router.delete('/users/:userId', authUserController, adminController, deleteUserController)
