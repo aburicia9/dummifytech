@@ -46,9 +46,8 @@
   justify-content: left;
   align-items: center;
   flex-direction: column;
- 
-
 }
+
 .div-line-aside{
   width: 1px;
   height: 100%;
@@ -97,12 +96,12 @@
 }
 
 .button-comment{
-  background:transparent ;
+  background: transparent;
   color: white;
   border: none;
   padding: 1px;
-
 }
+
 .button-comment:hover{
   background: transparent ;
   color: white;
