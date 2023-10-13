@@ -11,8 +11,6 @@ export const newReqCategoryController = async (req, res, next) => {
     const { id: userId } = req.user
     const { categoryName, categoryReason, categoryParentId } = req.body
 
-    console.log(typeof categoryParentId)
-
     const result = await validateSchema(newReqCategoriesSchema, req.body)
 
     if (!result.success) {
