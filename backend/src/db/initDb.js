@@ -142,7 +142,7 @@ export const main = async () => {
         id_category_parent INT unsigned NOT NULL,
         name_category VARCHAR(100) UNIQUE NOT NULL,
         reason VARCHAR(255) NOT NULL,
-        req_status BOOLEAN DEFAULT TRUE,
+        req_status BOOLEAN DEFAULT FALSE,
         accepted BOOLEAN DEFAULT FALSE,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         modified_at DATETIME ON UPDATE CURRENT_TIMESTAMP,

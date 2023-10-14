@@ -22,8 +22,8 @@ router.delete('/categories/:categoryId', authUserController, roleUserController,
 // Visualizar todas las peticiones de categorias
 router.get('/categories/request', authUserController, roleUserController, getAllReqCategoriesController)
 
-// Visualizar todas las peticiones de categorias
-router.put('/categories/request/:requestCategoryId', authUserController, roleUserController, editReqCategoryController)
+// Editar las peticiones de categorias
+router.put('/categories/request', authUserController, roleUserController, editReqCategoryController)
 
 // Peticion de categoria
 router.post('/categories/request', authUserController, newReqCategoryController)

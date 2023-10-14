@@ -9,24 +9,77 @@
   margin-top: 8rem;
 }
 
-.section-listReqCategories{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  border: 0.5px solid #294d61;
+.ul-listReqCategory {
+  gap: 50px;
+}
+
+.ul-listReqCategory .li-listReqCategory:first-child {
   margin-top: 7em;
+}
+
+.ul-listReqCategory .li-listReqCategory:not(:first-child) {
+  margin-top: 3em;
+}
+
+
+.li-listReqCategory{
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+  border: 1px  solid black;
   background:linear-gradient(144deg,#E6E3D7,#ffffff, 75%,#F6F2E7);
   width: 50rem;
   border-radius: var(--borderRadiusSmall);
   box-shadow: var(--borderColorShadow);
+  padding: 2rem;
 }
 
-.section-listReqCategory{
-  display: flex ;
- justify-content: center;
-  align-items: center;
+.div-req-category {
+  display: flex;
   flex-direction: column;
-  border: 1px  solid black;
-  padding: 5px;
+}
+
+.section-header-listReqCategory {
+  display: flex;
+  align-items: center;
+}
+
+.img-user {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  /* margin-right: 8px; */
+  /* margin-left: 8px; */
+}
+
+.section-body-listReqCategory {
+  gap: 0.8rem;
+}
+
+
+.section-footer-listReqCategory {
+  gap: 0.8rem;
+}
+
+.buttons-reqCategory-position {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.button-reqCategory {
+  border-radius: var(--borderRadiusSmall);
+  width: 3rem;
+  height: 3rem;
+  background:transparent ;
+  border: none;
+  padding: 1px;
+}
+
+.button-reqCategory:hover{
+  box-shadow: none;
+  cursor: pointer;
 }

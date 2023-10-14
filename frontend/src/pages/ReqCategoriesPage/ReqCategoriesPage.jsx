@@ -7,7 +7,7 @@ import { toastifyForm } from '../../utils/Toastify/Toastify'
 import { useCategories } from '../../hooks/categories/useCategories'
 import { createReqCategoryService } from '../../services/categoryService'
 
-export const ReqCategoriesPage = () => {
+export const ReqCategoriesPage = (showGetListButton = false) => {
   const navigate = useNavigate()
   const [categoryName, setTitle] = useState('')
   const [categoryReason, setPost] = useState('')
@@ -110,6 +110,19 @@ export const ReqCategoriesPage = () => {
             </div>
           </div>
         </form>
+
+        {showGetListButton
+          ? (
+            <section className='section-list-reqCategory'>
+              <ButtonComponent
+                className='button-generic large'
+                buttonName='Todas las peticion Categoria'
+              />
+            </section>
+            )
+          : (
+            <></>
+            )}
       </div>
     </Layout>
   )

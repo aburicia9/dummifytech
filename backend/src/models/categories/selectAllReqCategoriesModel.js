@@ -5,11 +5,11 @@ export const selectAllReqCategoriesModel = async () => {
   try {
     connection = await getDb()
     const [categories] = await connection.query(
-      `SELECT rc.id, u.username , name_category, reason, req_status, accepted, c.name 
+      `SELECT rc.id, u.username, u.avatar, name_category, reason, req_status, accepted, c.name 
       FROM req_categories rc
       inner join categories c on c.id  = rc.id_category_parent
       inner join users u on u.id = rc.id_user 
-      WHERE req_status = 1;
+      WHERE req_status = 0;
       `
     )
 

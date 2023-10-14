@@ -94,18 +94,20 @@ export const listReqCategoriesService = async () => {
 }
 
 // Cambiamos el estado de una peticion de categoria nueva
-export const updateReqCategoryService = async (requestcategoryId, statusReq, accepted) => {
+export const updateReqCategoryService = async (requestCategoryId, statusReq, accepted) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/categories/request/${requestcategoryId}`, {
+  console.log(requestCategoryId, statusReq, accepted)
+  const res = await fetch(`${baseApiURL}/categories/request`, {
     method: 'put',
     headers: {
       Authorization: token,
       'Content-Type': 'application/json'
     },
-    body: {
+    body: JSON.stringify({
+      requestCategoryId,
       statusReq,
       accepted
-    }
+    })
   })
   const body = await res.json()
   return body
