@@ -50,6 +50,7 @@ export const usePosts = () => {
     posts,
     setSearchParams,
     fetchPosts,
-    categoryId
+    categoryId,
+    searchParams
   }
 }

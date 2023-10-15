@@ -25,7 +25,7 @@ const router = Router()
 router.post('/register', newUserController)
 
 // Creamos la ruta para confirmar usuario
-router.get('/confirm', getUserVerificationController)
+router.get('/users/verify', getUserVerificationController)
 
 // Login de usuario
 router.post('/login', loginUserController)
