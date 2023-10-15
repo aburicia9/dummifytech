@@ -140,11 +140,7 @@ function Comment ({ comment, authUser, setLoading, fetchPostById, postId }) {
             {comment.idUser === authUser.id
               ? (
                 <>
-                  <li>
-                    <button className='button-comment' title='Editar'>
-                      <img src={editSvg} alt='boton para editar un comentario' />
-                    </button>
-                  </li>
+
                   <li>
                     <button
                       className='button-comment'

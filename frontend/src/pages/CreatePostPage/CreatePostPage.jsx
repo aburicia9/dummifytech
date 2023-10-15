@@ -5,10 +5,11 @@ import { Layout } from '../../components/Layout/Layout'
 import image from '../../assets/post/image_logo.svg'
 import { createPostService } from '../../services/postService'
 import { useRef, useState } from 'react'
-import { toastifyError } from '../../utils/Toastify/Toastify'
+import { toastifyConfirm, toastifyError, toastifyForm } from '../../utils/Toastify/Toastify'
 import { handleAddFilePreview } from '../../utils/handleAddFilePreview'
 import { handleRemoveFilePreview } from '../../utils/handleRemoveFilePreview'
 import { useCategories } from '../../hooks/categories/useCategories'
+import Confetti from 'canvas-confetti'
 
 export const CreatePostPage = () => {
   const navigate = useNavigate()
@@ -52,20 +53,14 @@ export const CreatePostPage = () => {
 
       const body = await createPostService(formData)
 
-      if (title === '') {
-        toastifyError('El titulo es obligatorio')
-      }
-      if (post === '') {
-        toastifyError('La publicación es obligatoria')
-      }
-      if (!categoryId) {
-        toastifyError('Y la categoria?...')
+      if (body.status === 'ok') {
+        toastifyForm(body)
       }
 
       if (body.status === 'error') {
-        throw new Error(body.message)
+        toastifyForm(body)
       }
-
+      Confetti()
       navigate('/')
     } catch (error) {
       console.error(error.message)

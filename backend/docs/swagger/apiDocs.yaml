@@ -11,14 +11,20 @@ components:
       scheme: apikey
 tags:
   - name: USERS
+  - name: USERS > ADMIN
+  - name: USERS > MODERATOR
+  - name: USERS > NORMAL
   - name: POSTS
-  - name: COMMENTS
+  - name: POSTS > LIKES
+  - name: POSTS > REPORTS
+  - name: POSTS > DISLIKES
+  - name: POSTS > COMMENTS
   - name: CATEGORIES
 paths:
   /users:
     get:
       tags:
-        - USERS
+        - USERS > ADMIN
       summary: List All Users
       description: As an admin user, you can list all the users.
       parameters:
@@ -26,7 +32,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -35,7 +41,7 @@ paths:
   /users/{userId}:
     delete:
       tags:
-        - USERS
+        - USERS > ADMIN
       summary: Delete User
       description: As an admin user, you can delete a specific user.
       parameters:
@@ -43,7 +49,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: userId
           in: path
           schema:
@@ -58,6 +64,7 @@ paths:
   /login:
     post:
       tags:
+        - USERS > NORMAL
       summary: Insert User Login
       description: At this endpoint, you can log in.
       requestBody:
@@ -76,6 +83,7 @@ paths:
   /register:
     post:
       tags:
+        - USERS > NORMAL
       summary: Insert User Register
       description: At this endpoint, you can register.
       requestBody:
@@ -96,6 +104,7 @@ paths:
   /users/profile:
     get:
       tags:
+        - USERS > NORMAL
       summary: List User Info
       description: The logged-in user can view their own profile.
       security:
@@ -105,7 +114,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -113,6 +122,7 @@ paths:
             application/json: {}
     delete:
       tags:
+        - USERS > NORMAL
       summary: Delete  Own User
       description: The logged-in user can delete their own profile.
       parameters:
@@ -120,7 +130,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -129,6 +139,7 @@ paths:
   /users/profile/avatar:
     put:
       tags:
+        - USERS > NORMAL
       summary: Update avatar
       description: The logged-in user can change their avatar.
       requestBody:
@@ -145,7 +156,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -154,6 +165,7 @@ paths:
   /users/profile/password:
     put:
       tags:
+        - USERS > NORMAL
       summary: Update Password
       description: The logged-in user can change their password.
       requestBody:
@@ -170,7 +182,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -179,6 +191,7 @@ paths:
   /users/profile/fullname:
     put:
       tags:
+        - USERS > NORMAL
       summary: Update Full Name
       description: The logged-in user can change their full name.
       requestBody:
@@ -193,7 +206,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -202,6 +215,7 @@ paths:
   /confirm/{token}:
     get:
       tags:
+        - USERS > NORMAL
       summary: Verification User
       description: >-
         When the user registers, it sends an email with a link for user
@@ -222,6 +236,7 @@ paths:
   /recovery-password:
     put:
       tags:
+        - USERS > NORMAL
       summary: Update Forget Password
       description: The user has forgotten the password and can request a new password.
       requestBody:
@@ -237,10 +252,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /posts/{postId}/likes:
+  /users/myposts:
+    get:
+      tags:
+        - USERS > NORMAL
+      summary: List Owner Posts
+      security:
+        - apikeyAuth: []
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/1/likes:
     post:
       tags:
-        - POSTS
+        - POSTS > LIKES
       summary: Insert Like
       description: The logged-in user can like a post.
       requestBody:
@@ -254,21 +287,16 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
-        - name: postId
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '5'
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
           content:
             application/json: {}
+  /posts/{postId}/likes:
     delete:
       tags:
-        - POSTS
+        - POSTS > LIKES
       summary: Delete Like
       description: The logged-in user can remove the like from a post.
       parameters:
@@ -276,7 +304,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
@@ -291,7 +319,7 @@ paths:
   /posts/{postId}/report:
     post:
       tags:
-        - POSTS
+        - POSTS > REPORTS
       summary: Insert Report
       description: The logged-in user can report a post.
       requestBody:
@@ -301,7 +329,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
@@ -313,9 +341,10 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /posts/{postId}/allreport:
     delete:
       tags:
-        - POSTS
+        - POSTS > REPORTS
       summary: Delete Report
       description: The logged-in user can delete the report of the post.
       parameters:
@@ -323,13 +352,13 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
             type: integer
           required: true
-          example: '1'
+          example: '11'
       responses:
         '200':
           description: Successful response
@@ -338,7 +367,7 @@ paths:
   /reports:
     get:
       tags:
-        - POSTS
+        - POSTS > REPORTS
       summary: List All Reports
       description: >-
         The user with the moderator role can view all the posts/comments that
@@ -348,7 +377,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -357,7 +386,7 @@ paths:
   /posts/{postId}/dislikes:
     post:
       tags:
-        - POSTS
+        - POSTS > DISLIKES
       summary: Insert Dislike
       description: The logged-in user can dislike a post.
       requestBody:
@@ -367,7 +396,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
@@ -381,7 +410,7 @@ paths:
             application/json: {}
     delete:
       tags:
-        - POSTS
+        - POSTS > DISLIKES
       summary: Delete Dislike
       description: The logged-in user can delete the report of the post.
       parameters:
@@ -389,7 +418,121 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/1/comments:
+    post:
+      tags:
+        - POSTS > COMMENTS
+      summary: Insert Comment
+      description: The logged-in user can leave a comment on a post.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                commentId: 1
+                comment: Apuaaa que tal
+                userId: 1
+                postId: 1
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/comments/{commentId}:
+    delete:
+      tags:
+        - POSTS > COMMENTS
+      summary: Delete Comment
+      description: The logged-in user can delete their own comment.
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+        - name: commentId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '101'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - POSTS > COMMENTS
+      summary: Update Comment
+      description: The logged-in user can edit their own comment.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                comment: Esto es otrrrrrrro coment
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
+        - name: postId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+        - name: commentId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{postId}/comments:
+    get:
+      tags:
+        - POSTS > COMMENTS
+      summary: List Post Comments
+      description: The logged-in user can view the comments on a post.
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
@@ -412,7 +555,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -438,7 +581,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -455,7 +598,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
@@ -484,13 +627,33 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: postId
           in: path
           schema:
             type: integer
           required: true
           example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+        - POSTS
+      summary: Get Post by ID
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
+        - name: postId
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: Successful response
@@ -507,120 +670,6 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /posts/1/comments:
-    post:
-      tags:
-        - COMMENTS
-      summary: Insert Comment
-      description: The logged-in user can leave a comment on a post.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                commentId: 1
-                comment: Apuaaa que tal
-                userId: 1
-                postId: 1
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /posts/{postId}/comments/{commentId}:
-    delete:
-      tags:
-        - COMMENTS
-      summary: Delete Comment
-      description: The logged-in user can delete their own comment.
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
-        - name: postId
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '1'
-        - name: commentId
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '101'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-    put:
-      tags:
-        - COMMENTS
-      summary: Update Comment
-      description: The logged-in user can edit their own comment.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                comment: Esto es otrrrrrrro coment
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
-        - name: postId
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '1'
-        - name: commentId
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
-  /posts/{postId}/comments:
-    get:
-      tags:
-        - COMMENTS
-      summary: List Post Comments
-      description: The logged-in user can view the comments on a post.
-      parameters:
-        - name: Authorization
-          in: header
-          schema:
-            type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
-        - name: postId
-          in: path
-          schema:
-            type: integer
-          required: true
-          example: '1'
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json: {}
   /categories:
     get:
       tags:
@@ -632,7 +681,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -660,7 +709,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -677,16 +726,13 @@ paths:
           application/json:
             schema:
               type: object
-              example:
-                name: caca
-                description: hola
-                id: 19
+              example: "{\r\n    \"name\": \"caca\",\r\n    \"description\": \"hola\",\r\n\r\n}"
       parameters:
         - name: Authorization
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: categoryId
           in: path
           schema:
@@ -708,7 +754,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: categoryId
           in: path
           schema:
@@ -739,7 +785,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -757,7 +803,7 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
       responses:
         '200':
           description: Successful response
@@ -782,13 +828,35 @@ paths:
           in: header
           schema:
             type: string
-          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjk2MDAxMTg4LCJleHAiOjE2OTYwODc1ODh9.rqj2EJ4Tz4Yy8Mth62GhqZTD57bs4xNR3CSsOs7GODc"
+          example: '{{dummifyToken}}'
         - name: requestCategoryId
           in: path
           schema:
             type: integer
           required: true
           example: '3'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /posts/{categoryId}:
+    get:
+      tags:
+        - CATEGORIES
+      summary: List post with category
+      parameters:
+        - name: Authorization
+          in: header
+          schema:
+            type: string
+          example: '{{dummifyToken}}'
+        - name: categoryId
+          in: path
+          schema:
+            type: integer
+          required: true
+          example: '13'
       responses:
         '200':
           description: Successful response
