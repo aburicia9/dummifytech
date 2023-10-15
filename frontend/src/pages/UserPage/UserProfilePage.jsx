@@ -2,9 +2,10 @@ import { Layout } from '../../components/Layout/Layout'
 import './UserProfilePage.css'
 import { useAuth } from '../../hooks/useAuth'
 import { useState } from 'react'
-import { toastifyForm, toastifyWarning } from '../../utils/Toastify/Toastify'
+import { toastifyConfirm, toastifyForm, toastifyWarning } from '../../utils/Toastify/Toastify'
 import { useNavigate } from 'react-router'
-import { updateAvatarUserService, updateFullNameUserService, updatePasswordUserService } from '../../services/authService'
+import { deleteOwnUserService, updateAvatarUserService, updateFullNameUserService, updatePasswordUserService } from '../../services/authService'
+import { toast } from 'react-toastify'
 const baseApiURL = import.meta.env.VITE_API_URL
 
 export const UserProfilePage = () => {
@@ -105,6 +106,26 @@ export const UserProfilePage = () => {
       setLoading(false)
     }
   }
+  const handleOnClickDeletePerfil = async (event) => {
+    event.preventDefault()
+    try {
+      const deleteProfile = async () => {
+        const result = await deleteOwnUserService()
+        if (result.status === 'ok') {
+          toast.dismiss()
+          toastifyForm(result)
+          navigate('/')
+          window.location.reload()
+        } else if (result.status === 'error') {
+          toast.dismiss()
+          toastifyForm(result)
+        }
+      }
+      toastifyConfirm('¿Estas seguro que quieres eliminar este post?', deleteProfile)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   if (loading || !authUser) {
     return (
@@ -156,7 +177,7 @@ export const UserProfilePage = () => {
             <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' onChange={handleOnChangeComparePassword} />
           </div>
           <button className='button-user-profile' onClick={handleOnClickUpdatePerfil}>Guardar Cambios</button>
-          <button className='button-user-profile'>Eliminar Perfil</button>
+          <button className='button-user-profile' onClick={handleOnClickDeletePerfil}>Eliminar Perfil</button>
         </form>
 
       </div>

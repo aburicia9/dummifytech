@@ -111,7 +111,7 @@ export const PostFooterComponent = ({
           deletePostId = postId
         }
         const result = await deletePostService(deletePostId)
-        if (result === 'ok') {
+        if (result.status === 'ok') {
           toast.dismiss()
           await fetchPosts()
           toastifyForm(result)
