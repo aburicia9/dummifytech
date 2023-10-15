@@ -59,13 +59,13 @@ export const ReqCategoriesPage = () => {
   //     setHideShow(true)
   //   }
   // }, [authUser])
-
+  
   const handleOnClickReqList = (event) => {
     event.preventDefault()
     navigate('/categories/list/request')
   }
 
-  // const { roleUser }
+  /
   return (
     <Layout>
       <div className='div-create-post'>
@@ -130,6 +130,7 @@ export const ReqCategoriesPage = () => {
             </div>
           </div>
         </form>
+        
 
         {/* {hideShow
           ? (
@@ -143,7 +144,12 @@ export const ReqCategoriesPage = () => {
             )
           : (
             <></>
-            )} */}
+            )} */
+            }
+
+          
+
+          
 
         <section className='section-list-reqCategory'>
           {authUser === 'admin' && (
