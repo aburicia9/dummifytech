@@ -10,9 +10,9 @@ export const PostBodyComponent = ({
   const postSlice = post.slice(0, 50) + '...'
 
   return (
-    <div className='body-div-post'>
+    <article className='body-article-post'>
       <h2 className='body-title-post'>{title}</h2>
-      <div className='body-image-text-post'>
+      <section className='body-image-text-post'>
         {showDetailPost
           ? (
               image
@@ -41,7 +41,7 @@ export const PostBodyComponent = ({
                 <button className='button-leer-body-post'>[Leer +]</button>
               </p>
               )}
-      </div>
-    </div>
+      </section>
+    </article>
   )
 }
