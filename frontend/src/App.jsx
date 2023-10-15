@@ -14,6 +14,7 @@ import { ReqCategoriesPage } from './pages/ReqCategoriesPage/ReqCategoriesPage'
 import { PostDetailPage } from './pages/PostDetailPage/PostDetailPage'
 import { ReportsPage } from './pages/ReportsPage/ReportsPage'
 import { UsersRolePage } from './pages/UsersRolePage/UsersRolePage'
+import { VerificationUserPage } from './pages/VerificationUserPage/VerificationUserPage'
 
 export const App = () => {
   return (
@@ -34,6 +35,7 @@ export const App = () => {
         <Route path='/categories/request' element={<ReqCategoriesPage />} />
         <Route path='/posts/reports' element={<ReportsPage />} />
         <Route path='/users' element={<UsersRolePage />} />
+        <Route path='/users/verify:token' element={<VerificationUserPage />} />
 
         <Route path='*' element={<NotFoundPage />} />
       </Routes>

@@ -159,8 +159,13 @@ export const deleteOwnUserService = async () => {
 }
 
 // Verificamos nuestra cuenta
-export const verificationOwnUserService = async (token) => {
-  const res = await fetch(`${baseApiURL}/confirm/${token}`)
+export const verificationOwnUserService = async (encodedToken) => {
+  const res = await fetch(`${baseApiURL}/users/verify?token=${encodedToken}`, {
+    method: 'get',
+    headers: {
+      Authorization: `Bearer ${encodedToken}`
+    }
+  })
   const body = await res.json()
   return body
 }

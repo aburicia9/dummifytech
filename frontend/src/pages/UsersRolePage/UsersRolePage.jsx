@@ -7,7 +7,7 @@ import { deleteUserService, listAllUsersService, updateUserRoleService } from '.
 import { useParams } from 'react-router-dom'
 import { toastifyConfirm, toastifyError, toastifyForm } from '../../utils/Toastify/Toastify'
 import { toast } from 'react-toastify'
-import { TitleCategory } from '../../components/titleCategory/titleCategory'
+import { TitleCategory } from '../../components/TitleCategory/TitleCategory'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 

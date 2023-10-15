@@ -5,7 +5,6 @@ import { usePosts } from '../../hooks/posts/usePosts'
 import { useState } from 'react'
 import { MenuCircularNoAuthComponent } from '../MenuCircular/MenuCircularNoAuthComponent'
 import { MenuCircularAuthComponent } from '../MenuCircular/MenuCircularAuthComponent'
-import { toastifyError } from '../../utils/Toastify/Toastify'
 
 export const HeaderComponent = () => {
   const { isAuthenticated } = useAuth()

@@ -1,4 +1,6 @@
 import nodemailer from 'nodemailer'
+import 'dotenv/config'
+const { BASE_FRONT_URL } = process.env
 
 export const mail = {
   user: 'infodummifytech@gmail.com',
@@ -46,7 +48,7 @@ export const getTemplateVerificationNewUserEmailConfig = (name, token) => {
         <h2>Hola ${name}</h2>
         <p>Para confirmar tu cuenta, ingresa al siguiente enlace</p>
         <a
-            href="http://localhost:8000/confirm/${token}"
+            href="${BASE_FRONT_URL}/users/verify/${token}"
             target="_blank"
         >Confirmar Cuenta</a>
       </div> 

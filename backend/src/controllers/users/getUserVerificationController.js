@@ -8,12 +8,12 @@ export const getUserVerificationController = async (req, res, next) => {
   try {
     // Obtener el token
     const { token } = req.params
+    console.log('holaaaaa', token)
 
     try {
       const decoded = jwt.decode(token)
       const expireToken = decoded.exp * 1000
       const timeNow = new Date().getTime()
-
 
       if (timeNow > expireToken) {
         sendVerificationEmail(decoded.email, decoded.username, decoded.code)
