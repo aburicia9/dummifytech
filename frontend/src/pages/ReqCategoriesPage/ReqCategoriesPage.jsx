@@ -2,15 +2,18 @@ import './ReqCategoriesPage.css'
 import { useNavigate } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
-import { useState } from 'react'
 import { toastifyForm } from '../../utils/Toastify/Toastify'
 import { useCategories } from '../../hooks/categories/useCategories'
 import { createReqCategoryService } from '../../services/categoryService'
+import { useAuth } from '../../hooks/useAuth'
+import { useState } from 'react'
 
-export const ReqCategoriesPage = (showGetListButton = false) => {
+export const ReqCategoriesPage = () => {
   const navigate = useNavigate()
   const [categoryName, setTitle] = useState('')
   const [categoryReason, setPost] = useState('')
+  // const [hideShow, setHideShow] = useState(false)
+  const { authUser } = useAuth()
 
   const [categoryParentId, setCategoryParentId] = useState()
   const [loading, setLoading] = useState(false)
@@ -46,6 +49,23 @@ export const ReqCategoriesPage = (showGetListButton = false) => {
     }
   }
 
+  // useEffect(() => {
+  //   if (authUser) {
+  //     setHideShow(authUser.role)
+  //   }
+  //   if (hideShow === false) {
+  //     setHideShow(false)
+  //   } else {
+  //     setHideShow(true)
+  //   }
+  // }, [authUser])
+
+  const handleOnClickReqList = (event) => {
+    event.preventDefault()
+    navigate('/categories/list/request')
+  }
+
+  // const { roleUser }
   return (
     <Layout>
       <div className='div-create-post'>
@@ -111,18 +131,37 @@ export const ReqCategoriesPage = (showGetListButton = false) => {
           </div>
         </form>
 
-        {showGetListButton
+        {/* {hideShow
           ? (
             <section className='section-list-reqCategory'>
               <ButtonComponent
                 className='button-generic large'
-                buttonName='Todas las peticion Categoria'
+                buttonName='Lista de peticiones'
+                handleOnClick={handleOnClickReqList}
               />
             </section>
             )
           : (
             <></>
-            )}
+            )} */}
+
+        <section className='section-list-reqCategory'>
+          {authUser === 'admin' && (
+            <ButtonComponent
+              className='button-generic large'
+              buttonName='Lista de peticiones'
+              handleOnClick={handleOnClickReqList}
+            />)}
+          {authUser === 'moderator' && (
+            <ButtonComponent
+              className='button-generic large'
+              buttonName='Lista de peticiones'
+              handleOnClick={handleOnClickReqList}
+            />)}
+          {authUser === 'normal' && (
+            <></>
+          )}
+        </section>
       </div>
     </Layout>
   )

@@ -5,7 +5,7 @@ export const selectAllReqCategoriesModel = async () => {
   try {
     connection = await getDb()
     const [categories] = await connection.query(
-      `SELECT rc.id, u.username, u.avatar, name_category, reason, req_status, accepted, c.name 
+      `SELECT rc.id, u.username, u.avatar, name_category, reason, req_status, accepted, c.name, rc.id_category_parent AS idCategoryParent
       FROM req_categories rc
       inner join categories c on c.id  = rc.id_category_parent
       inner join users u on u.id = rc.id_user 
