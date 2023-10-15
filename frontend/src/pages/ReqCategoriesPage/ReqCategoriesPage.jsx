@@ -5,20 +5,16 @@ import { Layout } from '../../components/Layout/Layout'
 import { toastifyForm } from '../../utils/Toastify/Toastify'
 import { useCategories } from '../../hooks/categories/useCategories'
 import { createReqCategoryService } from '../../services/categoryService'
-import { useAuth } from '../../hooks/useAuth'
+
 import { useState } from 'react'
 
 export const ReqCategoriesPage = () => {
   const navigate = useNavigate()
   const [categoryName, setTitle] = useState('')
   const [categoryReason, setPost] = useState('')
-  // const [hideShow, setHideShow] = useState(false)
-  const { authUser } = useAuth()
-
   const [categoryParentId, setCategoryParentId] = useState()
   const [loading, setLoading] = useState(false)
   const { categories } = useCategories()
-
   const handleOnChangeCategoryName = (event) => {
     setTitle(event.target.value)
   }
@@ -34,7 +30,11 @@ export const ReqCategoriesPage = () => {
     try {
       setLoading(true)
 
-      const body = await createReqCategoryService(categoryName, categoryReason, categoryParentId)
+      const body = await createReqCategoryService(
+        categoryName,
+        categoryReason,
+        categoryParentId
+      )
 
       if (body.status === 'error') {
         return toastifyForm(body)
@@ -49,23 +49,6 @@ export const ReqCategoriesPage = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (authUser) {
-  //     setHideShow(authUser.role)
-  //   }
-  //   if (hideShow === false) {
-  //     setHideShow(false)
-  //   } else {
-  //     setHideShow(true)
-  //   }
-  // }, [authUser])
-  
-  const handleOnClickReqList = (event) => {
-    event.preventDefault()
-    navigate('/categories/list/request')
-  }
-
-  /
   return (
     <Layout>
       <div className='div-create-post'>
@@ -96,17 +79,14 @@ export const ReqCategoriesPage = () => {
           />
           <div className='button-position'>
             <section className='category-menu'>
-
               <select
                 id='categorias'
                 className='category-menu-select'
                 onChange={handleOnChangeCategory}
                 value={categoryParentId}
               >
-                <option
-                  className='option-subcategory'
-                  value=''
-                >Seleccion la categoria
+                <option className='option-subcategory' value=''>
+                  Seleccion la categoria
                 </option>
                 {categories.map((category) => {
                   return (
@@ -130,44 +110,6 @@ export const ReqCategoriesPage = () => {
             </div>
           </div>
         </form>
-        
-
-        {/* {hideShow
-          ? (
-            <section className='section-list-reqCategory'>
-              <ButtonComponent
-                className='button-generic large'
-                buttonName='Lista de peticiones'
-                handleOnClick={handleOnClickReqList}
-              />
-            </section>
-            )
-          : (
-            <></>
-            )} */
-            }
-
-          
-
-          
-
-        <section className='section-list-reqCategory'>
-          {authUser === 'admin' && (
-            <ButtonComponent
-              className='button-generic large'
-              buttonName='Lista de peticiones'
-              handleOnClick={handleOnClickReqList}
-            />)}
-          {authUser === 'moderator' && (
-            <ButtonComponent
-              className='button-generic large'
-              buttonName='Lista de peticiones'
-              handleOnClick={handleOnClickReqList}
-            />)}
-          {authUser === 'normal' && (
-            <></>
-          )}
-        </section>
       </div>
     </Layout>
   )

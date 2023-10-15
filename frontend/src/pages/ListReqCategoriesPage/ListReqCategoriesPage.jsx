@@ -5,12 +5,13 @@ import deleteReqCategorySvg from '../../assets/categories/button_rejected.svg'
 import createReqCategorySvg from '../../assets/categories/button_tick.svg'
 import { createCategoryService, listReqCategoriesService, updateReqCategoryService } from '../../services/categoryService'
 import { toastifyForm } from '../../utils/Toastify/Toastify'
+import { useCategories } from '../../hooks/categories/useCategories'
 
 const baseApiURL = import.meta.env.VITE_API_URL
 
 export const ListReqCategoriesPage = () => {
+  const { fetchCategories } = useCategories()
   const [loading, setLoading] = useState(false)
-
   const [listReqCategories, setListReqCategories] = useState([])
   const fetchReqCategories = async () => {
     try {
@@ -77,10 +78,12 @@ export const ListReqCategoriesPage = () => {
                             const name = listReqCategory.name_category
                             const description = listReqCategory.reason
                             const newCategory = await createCategoryService(subCategories, name, description)
-                            if (newCategory === 'ok') {
+                            if (newCategory.status === 'ok') {
+                              await fetchCategories()
                               await fetchReqCategories()
                               toastifyForm(newCategory)
-                            } else if (newCategory === 'error') {
+                              window.location.reload()
+                            } else if (newCategory.status === 'error') {
                               toastifyForm(newCategory)
                             }
                           } catch (error) {
@@ -102,6 +105,7 @@ export const ListReqCategoriesPage = () => {
                             const requestCategoryId = listReqCategory.id
                             const result = await updateReqCategoryService(requestCategoryId, statusReq, accepted)
                             if (result.status === 'ok') {
+                              await fetchCategories()
                               await fetchReqCategories()
                               toastifyForm(result)
                             } else if (result.status === 'error') {

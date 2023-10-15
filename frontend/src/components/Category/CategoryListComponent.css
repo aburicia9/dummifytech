@@ -4,11 +4,11 @@
   align-items: center;
   gap: 1em;
   width: 13rem;
-  height: 100%;
   background: var(--midBlue);
   border-right: 0.5px solid var(--darBlueOpacity);
   position: fixed;
   z-index: 10;
+  height: 100%;
 }
 .ul-category-list {
   display: flex;

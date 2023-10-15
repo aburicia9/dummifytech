@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
 import menuReports from '../../assets/users/menuReports.svg'
 import menuUsers from '../../assets/users/menuUsers.svg'
 import menuCategories from '../../assets/users/menuCategories.svg'
+import menuListCategories from '../../assets/categories/button_list_req_categories.svg'
 import { useEffect, useState } from 'react'
 import { useAuth } from '../../hooks/useAuth'
 import { toastifySuccess } from '../../utils/Toastify/Toastify'
@@ -46,6 +47,11 @@ export const MenuCircularAuthComponent = () => {
   const onClickUsers = (event) => {
     event.preventDefault()
     navigate('/users')
+  }
+
+  const onClickAllReqCategories = (event) => {
+    event.preventDefault()
+    navigate('/categories/list/request')
   }
 
   const menuOptions = {
@@ -105,6 +111,12 @@ export const MenuCircularAuthComponent = () => {
       },
       {
         id: uuidv4(),
+        title: 'Lista de peticiones de categorias',
+        svg: menuListCategories,
+        onClick: onClickAllReqCategories
+      },
+      {
+        id: uuidv4(),
         title: 'Cerrar sesión',
         svg: menuLogOut,
         onClick: onClicklogout
@@ -135,6 +147,12 @@ export const MenuCircularAuthComponent = () => {
         title: 'Peticiones de categorias',
         svg: menuCategories,
         onClick: onClickReqCategories
+      },
+      {
+        id: uuidv4(),
+        title: 'Lista de peticiones de categorias',
+        svg: menuListCategories,
+        onClick: onClickAllReqCategories
       },
       {
         id: uuidv4(),

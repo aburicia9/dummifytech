@@ -96,7 +96,7 @@ export const listReqCategoriesService = async () => {
 // Cambiamos el estado de una peticion de categoria nueva
 export const updateReqCategoryService = async (requestCategoryId, statusReq, accepted) => {
   const token = getToken()
-  console.log(requestCategoryId, statusReq, accepted)
+
   const res = await fetch(`${baseApiURL}/categories/request`, {
     method: 'put',
     headers: {
