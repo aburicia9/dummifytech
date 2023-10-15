@@ -36,15 +36,15 @@ gap: 5px;
 
 .div-button-users-header {
   display: flex;
-  gap: 1em;
+  gap: 0em;
   position: fixed;
-  right: 12px;
+  right: 35px;
 }
 
 .button-menu{ 
   background: transparent;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border: none;
   cursor: pointer;
 }

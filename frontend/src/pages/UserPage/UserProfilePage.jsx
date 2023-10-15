@@ -146,11 +146,14 @@ export const UserProfilePage = () => {
           <div>
             <label className='label-user-profile' htmlFor=''>Contraseña actual:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='*****' onChange={handleOnChangeOldPassword} />
+          </div>
+          <div>
             <label className='label-user-profile' htmlFor=''>Introduce nueva Contraseña:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='Nueva contraseña' onChange={handleOnChangeNewPassword} />
+          </div>
+          <div>
             <label className='label-user-profile' htmlFor=''>Repite la nueva Contraseña:</label>
             <input className='input-user-profile' type='password' id='password' placeholder='Repite nueva contraseña' onChange={handleOnChangeComparePassword} />
-
           </div>
           <button className='button-user-profile' onClick={handleOnClickUpdatePerfil}>Guardar Cambios</button>
           <button className='button-user-profile'>Eliminar Perfil</button>

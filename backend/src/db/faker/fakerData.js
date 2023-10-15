@@ -178,7 +178,7 @@ async function generateRequestCategory () {
     const randomUserId = faker.number.int({ min: 1, max: 10 })
     const randomCategoryParentId = Number('1')
     const randomNameCategory = faker.lorem.text()
-    const randomNameCategorySlice = randomNameCategory.slice(0, 99)
+    const randomNameCategorySlice = randomNameCategory.slice(0, 10)
     const randomReasonCategory = faker.lorem.text()
     const randomReasonCategorySlice = randomReasonCategory.slice(0, 254)
     try {

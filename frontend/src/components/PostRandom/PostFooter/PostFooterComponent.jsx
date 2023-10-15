@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router'
 import { toastifyConfirm, toastifyForm } from '../../../utils/Toastify/Toastify'
 import { useState } from 'react'
 import svgDeleteReport from '../../../assets/reports/button_delete_report.svg'
+import { useAuth } from '../../../hooks/useAuth'
 
 export const PostFooterComponent = ({
   fetchPosts,
@@ -38,6 +39,7 @@ export const PostFooterComponent = ({
 }) => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const { isAuthenticated } = useAuth()
 
   const onClickLikePost = async () => {
     let method = ''
@@ -153,7 +155,7 @@ export const PostFooterComponent = ({
   function DeleteButton ({ title, imgDeleteButton, onClick }) {
     return (
       <button
-        className={loading ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
+        className={loading || !isAuthenticated ? 'button-report-footer-post disabled' : 'button-report-footer-post'}
         title={title}
         disabled={loading}
       >
@@ -172,27 +174,31 @@ export const PostFooterComponent = ({
         ? (
           <>
             <div className='div-like-footer-post'>
-              <button className='button-like-footer-post'>
+
+              <button className={loading || !isAuthenticated ? 'button-like-footer-post disabled' : 'button-like-footer-post'} title='Me gusta'>
                 <img
                   src={ownerLikes ? likeOn : like}
                   alt='like image button'
                   onClick={onClickLikePost}
-                  title='Me gusta'
+
                 />
               </button>
               <span className='span-countlikes-footer-post'>{countLikes}</span>
             </div>
-            <button className='button-dislike-footer-post' title='No me gusta'>
+
+            <button className={loading || !isAuthenticated ? 'button-dislike-footer-post disabled' : 'button-dislike-footer-post'} title='No me gusta'>
               {' '}
               <img
                 src={ownerDislikes ? dislikeOn : dislike}
                 alt='dislike image button'
                 onClick={onClickDislikePost}
+
               />
             </button>
             <div className='div-comment-footer-post'>
+
               <button
-                className='button-comment-footer-post'
+                className={loading || !isAuthenticated ? 'button-comment-footer-post disabled' : 'button-comment-footer-post'}
                 title='Comentarios'
                 onClick={onClickPostDetail}
               >
@@ -200,7 +206,8 @@ export const PostFooterComponent = ({
               </button>
               <span className='span-countcomments-footer-post'>{countComments}</span>
             </div>
-            <button className='button-report-footer-post' title='Reportar'>
+
+            <button className={loading || !isAuthenticated ? 'button-report-footer-post disabled' : 'button-report-footer-post'} title='Reportar'>
               <img
                 src={ownerReports ? reportOn : report}
                 alt='report image button'

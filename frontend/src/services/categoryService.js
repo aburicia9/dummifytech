@@ -3,7 +3,7 @@ import { getToken } from '../utils/getToken'
 const baseApiURL = import.meta.env.VITE_API_URL
 
 // Creamos una categoria
-export const createCategoryService = async (categoryParentId, name, description) => {
+export const createCategoryService = async (subCategories, name, description) => {
   const token = getToken()
   const res = await fetch(`${baseApiURL}/categories/insert`, {
     method: 'post',
@@ -11,11 +11,11 @@ export const createCategoryService = async (categoryParentId, name, description)
       Authorization: token,
       'Content-Type': 'application/json'
     },
-    body: {
-      categoryParentId,
+    body: JSON.stringify({
+      subCategories,
       name,
       description
-    }
+    })
   })
   const body = await res.json()
   return body
@@ -94,18 +94,20 @@ export const listReqCategoriesService = async () => {
 }
 
 // Cambiamos el estado de una peticion de categoria nueva
-export const updateReqCategoryService = async (requestcategoryId, statusReq, accepted) => {
+export const updateReqCategoryService = async (requestCategoryId, statusReq, accepted) => {
   const token = getToken()
-  const res = await fetch(`${baseApiURL}/categories/request/${requestcategoryId}`, {
+
+  const res = await fetch(`${baseApiURL}/categories/request`, {
     method: 'put',
     headers: {
       Authorization: token,
       'Content-Type': 'application/json'
     },
-    body: {
+    body: JSON.stringify({
+      requestCategoryId,
       statusReq,
       accepted
-    }
+    })
   })
   const body = await res.json()
   return body

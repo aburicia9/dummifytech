@@ -637,7 +637,7 @@
 									}
 								],
 								"url": {
-									"raw": "http://localhost:8000/posts/:postId/report",
+									"raw": "http://localhost:8000/posts/:postId/allreport",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -646,12 +646,12 @@
 									"path": [
 										"posts",
 										":postId",
-										"report"
+										"allreport"
 									],
 									"variable": [
 										{
 											"key": "postId",
-											"value": "1"
+											"value": "11"
 										}
 									]
 								},

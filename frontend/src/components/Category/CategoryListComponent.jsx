@@ -1,17 +1,18 @@
 import './CategoryListComponent.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ButtonCategoryComponent } from '../Button/ButtonCategoryComponent'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo/logo.png'
 import { useAuth } from '../../hooks/useAuth'
 import { toastifyError } from '../../utils/Toastify/Toastify'
+import { useCategories } from '../../hooks/categories/useCategories'
 
-export const CategoryListComponent = ({
-  categories,
-  isSubcategoryDisabled
-}) => {
+export const CategoryListComponent = () => {
+  const { categories } = useCategories()
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
+  const [categoryIdOpened, setCategoryIdOpened] = useState(-1)
+
   const handleOnClickHome = () => {
     navigate('/')
   }
@@ -32,6 +33,8 @@ export const CategoryListComponent = ({
               category={category}
               key={category.id}
               isSubcategoryDisabled={!isAuthenticated}
+              categoryIdOpened={categoryIdOpened}
+              setCategoryIdOpened={setCategoryIdOpened}
             />
           )
         })}
@@ -40,7 +43,7 @@ export const CategoryListComponent = ({
   )
 }
 
-export function Category ({ category, isSubcategoryDisabled }) {
+export function Category ({ category, isSubcategoryDisabled, categoryIdOpened, setCategoryIdOpened }) {
   const { id, name, subcategories } = category
   const [toggle, setToggle] = useState(false)
 
@@ -53,9 +56,15 @@ export function Category ({ category, isSubcategoryDisabled }) {
       if (isSubcategoryDisabled) {
         toastifyError('Debes iniciar sesion para poder navegar')
       }
+      setCategoryIdOpened(id)
       setToggle(true)
     }
   }
+  useEffect(() => {
+    if (categoryIdOpened !== id && toggle) {
+      setToggle(false)
+    }
+  }, [categoryIdOpened])
 
   return (
     <li key={id} className='li-category'>
@@ -65,7 +74,10 @@ export function Category ({ category, isSubcategoryDisabled }) {
         showHide={toggle}
       />
       {toggle && (
-        <>
+        <ul style={{
+          overflowY: 'auto'
+        }}
+        >
           {subcategories.map((subcategory) => {
             return (
               <li key={subcategory.id} className='li-subcategory-category'>
@@ -74,14 +86,13 @@ export function Category ({ category, isSubcategoryDisabled }) {
                   className={`a-subcategory-category ${
                     isSubcategoryDisabled ? 'disabled' : ''
                   }`}
-
                 >
                   {subcategory.name}
                 </Link>
               </li>
             )
           })}
-        </>
+        </ul>
       )}
     </li>
   )

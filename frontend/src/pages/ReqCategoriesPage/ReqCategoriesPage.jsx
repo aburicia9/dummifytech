@@ -1,21 +1,20 @@
 import './ReqCategoriesPage.css'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ButtonComponent } from '../../components/Button/ButtonComponent'
 import { Layout } from '../../components/Layout/Layout'
-import { useState } from 'react'
-import { toastifyError, toastifyForm } from '../../utils/Toastify/Toastify'
+import { toastifyForm } from '../../utils/Toastify/Toastify'
 import { useCategories } from '../../hooks/categories/useCategories'
 import { createReqCategoryService } from '../../services/categoryService'
+
+import { useState } from 'react'
 
 export const ReqCategoriesPage = () => {
   const navigate = useNavigate()
   const [categoryName, setTitle] = useState('')
   const [categoryReason, setPost] = useState('')
-  const params = useParams()
   const [categoryParentId, setCategoryParentId] = useState()
   const [loading, setLoading] = useState(false)
   const { categories } = useCategories()
-
   const handleOnChangeCategoryName = (event) => {
     setTitle(event.target.value)
   }
@@ -31,7 +30,11 @@ export const ReqCategoriesPage = () => {
     try {
       setLoading(true)
 
-      const body = await createReqCategoryService(categoryName, categoryReason, categoryParentId)
+      const body = await createReqCategoryService(
+        categoryName,
+        categoryReason,
+        categoryParentId
+      )
 
       if (body.status === 'error') {
         return toastifyForm(body)
@@ -76,17 +79,14 @@ export const ReqCategoriesPage = () => {
           />
           <div className='button-position'>
             <section className='category-menu'>
-
               <select
                 id='categorias'
                 className='category-menu-select'
                 onChange={handleOnChangeCategory}
                 value={categoryParentId}
               >
-                <option
-                  className='option-subcategory'
-                  value=''
-                >Seleccion la categoria
+                <option className='option-subcategory' value=''>
+                  Seleccion la categoria
                 </option>
                 {categories.map((category) => {
                   return (

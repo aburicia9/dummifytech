@@ -21,7 +21,7 @@
   border-radius: var(--borderRadiusSmall);
   box-shadow: var(--borderColorShadow);
   padding: 1.5rem;
-  gap: 0.3rem;
+  gap: 0.8rem;
 }
 
 .title-register {
@@ -62,3 +62,4 @@
   box-shadow: none;
   cursor: pointer;
 }
+

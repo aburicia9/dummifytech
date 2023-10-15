@@ -38,6 +38,7 @@ export const editPostController = async (req, res, next) => {
       })
       return
     }
+
     await updatePostModel(postId, post, title, userId, imgName)
     res.send({
       status: 'ok',

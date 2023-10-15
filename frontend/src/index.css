@@ -108,6 +108,10 @@ a {
 ul{
   list-style: none;
 }
+
+input, textarea{
+  padding: 15px;
+}
 .span-up {
   color: #f3fffc;
 }
