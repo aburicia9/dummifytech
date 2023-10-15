@@ -10,10 +10,18 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 ## Instalar
 
+### Frontend
+1. Instalar las dependencias mediante el comando `npm install` o `npm i`.
+2. Ejecutar `npm run dev` para lanzar el servidor.
+3. Para la realización del frontend del proyecto se ha utilizado JavaScript, React con Vite y CSS vanilla.
+
+
+### Backend
 1. Instalar las dependencias mediante el comando `npm install` o `npm i`.
 2. Guardar el archivo `.env.example` como `.env` y cubrir los datos necesarios.
-3. Ejecutar `npm run initDb` para crear las tablas necesarias en la base de datos anteriormente creada.
+3. Ejecutar `npm run initDb:faker` para crear las tablas necesarias en la base de datos anteriormente creada y para extraer los datos introducidos por faker.
 4. Ejecutar `npm start` para lanzar el servidor.
+5. Para la realización del backend se ha utilizado Node con Express y para la validación de los esquemas se ha utilizado la libreria zod.
 
 ## Entidades
 
@@ -110,7 +118,7 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 -   GET `/` - Visualizar post sin usuario registrado, solo un post aleatorio.
 -   POST `/register` - Registro de usuario.
--   GET `/confirm/:token` - Confirmación del usuario.
+-   GET `/users/verify` - Confirmación del usuario.
 -   POST `/login` - Login de usuario (devuelve token).
 -   PUT `/recovery-password` - Recuperar contraseña
 ##  Usuario registrado rol normal.
@@ -123,23 +131,25 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 -   GET `/users/myposts` - Visualizar mis posts.
   #### Posts
 -   GET `/posts` - Visualizar posts con usuario registrado.
--   GET `/posts/categories/:categoryId` Visualizar los post con esa categoría
+-   GET `/posts/:postId` - Visualizar posts con usuario registrado.
+-   GET `/posts/categories/:categoryId` Visualizar un post por su id de categoria
 -   POST `/posts/insert` - Insertar un post.
 -   DELETE `/posts/:postId` - Borrar un propio post o borrar si  eres administrador o moderador.
 -   PUT `/posts/:postId` - Editar un propio post.
   #### Categorias
 -   GET `/categories` - Visualizar categorias.
 -   GET `/categories/:categoryId` - Visualizar categorias por ID categoría
--   POST `'/categories/request'` - Solicitar nueva categoría
+-   POST `/categories/request` - Solicitar nueva categoría
   #### Reportes
 -   POST `/posts/:postId/report` Reportar un post.
 -   DELETE `/posts/:postId/report` Borrar nuestro propio report.
   #### Comentarios
 -   GET `/posts/:postId/comments` - Visualizar comentarios de un post.
 -   POST `/posts/:postId/comments` -Crear comentario.
--   POST `/posts/:postId/comments/:commentId`-Crear respuesta a un comentario.
+-   POST `/posts/:postId/comments/:commentId`-Crear respuesta a un comentario. (Futurible)
 -   DELETE `/posts/:postId/comments/:commentId` - Borrar un comentario propio.
--   PUT `/posts/:postId/comments/:commentId` - Editar un comentario propio.
+-   PUT `/posts/:postId/comments/:commentId` - Editar comentario propio (Futurible)
+
   #### Likes/Dislikes
 -   POST `/posts/:postId/likes` - Dar like a un post.
 -   DELETE `/posts/:postId/likes` - Quitar un like propio a un post.
@@ -151,11 +161,12 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
      Las mismas que el rol normal, y añadimos:
    #### Categorias
--   PUT `/categories/:categoryId` -Editar la categoría.
+-   PUT `/categories/:categoryId` -Editar la categoría. (Futurible)
 -   POST `/categories/insert` - Añadir nueva categoría.
--   DELETE `/categories/:categoryId` - Borrar categoría.
+-   DELETE `/categories/:categoryId` - Borrar categoría. (Futurible)
 -   GET `/categories/request` - Visualizar las peticiones de categorías
--   POST `/categories/insert`- Crear nueva categoría
+-   PUT `/categories/request`- Editar las peticiones de categorias.
+
 
 #### Reportes
 -   GET `/posts/reports` - Visualizar los reports a un post.
@@ -167,7 +178,11 @@ Aqui presentamos nuestro proyecto de un foro de opiniones donde los usuarios pod
 
 -   GET `/users` - Lista de usuarios.
 -   DELETE `/users/:userId` - Borrar usuario.
--   PUT `/users/:userId` - Editar rol de usuario.
+-   PUT `/users` - Editar rol de usuario.
+
+### Documentación
+
+    Para visualizar la documentacion de todos los endpoints, visita http://localhost:8000/docs
 
 ## Equipo
 
@@ -210,11 +225,18 @@ Here we present our project of a forum for opinions where users can share their 
 
 ## Installation
 
-1. Install dependencies using the command `npm install` or `npm i`.
-2. Save the `.env.example` file as `.env` and fill in the necessary data.
-3. Run `npm run initDb` to create the required tables in the previously created database.
-4. Execute `npm start` to launch the server.
+### Frontend
 
+1. Install the dependencies using the command npm install or npm i.
+2. Run npm run dev to launch the server.
+3. JavaScript, React with Vite, and vanilla CSS have been used for the frontend development of the project.
+
+## Backend
+1. Install the dependencies using the command npm install or npm i.
+2. Save the .env.example file as .env and fill in the necessary data.
+3. Run npm run initDb:faker to create the required tables in the previously created database and populate them with data generated by faker.
+4. Run npm start to start the server.
+5. Node with Express has been used for the backend development, and the zod library has been used for schema validation.
 ## Entities
 
 ### Users
@@ -308,7 +330,7 @@ Here we present our project of a forum for opinions where users can share their 
 
 -   GET `/` - View posts without a registered user, only a random post.
 -   POST `/register` - User registration.
--   GET `/confirm/:token` - User confirmation.
+-   GET `/users/verify` - User confirmation.
 -   POST `/login` - User login (returns a token).
 -   PUT `/recovery-password` - Recover password.
 
@@ -325,6 +347,7 @@ Here we present our project of a forum for opinions where users can share their 
 
 #### Posts
 - GET `/posts` - View posts with a registered user.
+- GET `/posts/:postId` - Visualize posts with a registered user.
 - GET `/posts/categories/:categoryId ` - View posts with that category.
 - POST `/posts/insert` - Insert a post.
 - DELETE `/posts/:postId` - Delete own post or delete if you are an administrator or moderator.
@@ -343,9 +366,9 @@ Here we present our project of a forum for opinions where users can share their 
 
 - GET `/posts/:postId/comments` - View comments on a post.
 - POST `/posts/:postId/comments` - Create a comment.
-- POST `/posts/:postId/comments/:commentId` - Create a reply to a comment.
+- POST `/posts/:postId/comments/:commentId` - Create a reply to a comment. (Future)
 - DELETE `/posts/:postId/comments/:commentId` - Delete own comment.
-- PUT `/posts/:postId/comments/:commentId` - Edit own comment.
+- PUT `/posts/:postId/comments/:commentId` - Edit own comment. (Future)
 
 #### Likes/Dislikes
 
@@ -358,11 +381,12 @@ Here we present our project of a forum for opinions where users can share their 
 
       Same as the normal role, with the following additions:
    #### Categories
--   PUT `/categories/:categoryId` -Edit the category.
+-   PUT `/categories/:categoryId` -Edit the category. (Future)
 -   POST `/categories/insert` - Add a new category.
--   DELETE `/categories/:categoryId` -  Delete a category.
+-   DELETE `/categories/:categoryId` -  Delete a category. (Future)
 -   GET `/categories/request` - View category requests.
--   POST `/categories/insert`- Create a new category.
+-   PUT `/categories/request`- Edit requests's categories.
+
 #### Reportes
 -   GET `/posts/reports` - View reports for a post.
 -   DELETE `/posts/:postId/allreport` - Delete all reports for a post.
@@ -373,7 +397,12 @@ Here we present our project of a forum for opinions where users can share their 
 
 -   GET `/users` -  List of users.
 -   DELETE `/users/:userId` -Delete a user.
--   PUT `/users/:userId` -  Edit user role.
+-   PUT `/users` -  Edit user role.
+
+
+### Documentationn
+
+   To view the documentation for all endpoints, visit http://localhost:8000/docs
 
 ## Team
 

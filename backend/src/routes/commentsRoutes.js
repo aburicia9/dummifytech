@@ -2,7 +2,6 @@ import { newCommentController } from '../controllers/comments/newCommentControll
 import { Router } from 'express'
 import { authUserController } from '../middlewares/authUserController.js'
 import { deleteCommentsController } from '../controllers/comments/deleteCommentsController.js'
-import { editCommentController } from '../controllers/comments/editCommentController.js'
 import { getAllCommentsController } from '../controllers/comments/getAllCommentsController.js'
 
 const router = Router()
@@ -27,9 +26,6 @@ router.post('/posts/:postId/comments/:commentId', authUserController, newComment
 
 router.delete('/posts/:postId/comments/:commentId', authUserController, deleteCommentsController)
 
-// Editar un comentario
-
-router.put('/posts/:postId/comments/:commentId', authUserController, editCommentController)
 // #endregion comentarios
 
 export default router

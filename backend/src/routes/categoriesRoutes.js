@@ -28,6 +28,8 @@ router.put('/categories/request', authUserController, roleUserController, editRe
 // Peticion de categoria
 router.post('/categories/request', authUserController, newReqCategoryController)
 
+// editar request
+
 // Visualizar todas las categorias
 // router.get('/categories', authUserController, getAllCategoriesController)
 router.get('/categories', getAllCategoriesController)
